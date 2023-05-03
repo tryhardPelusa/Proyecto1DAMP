@@ -1,6 +1,7 @@
 package pantallas;
 
 import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -8,12 +9,11 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollPane;
-import java.awt.Font;
 
 public class PPrincipal extends JFrame {
 
@@ -89,20 +89,9 @@ public class PPrincipal extends JFrame {
 
 		tableLigasPublicas = new JTable();
 		tableLigasPublicas.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Premiere Legue"},
-				{"Liga Santander"},
-				{"Liga 123"},
-				{"NBA"},
-				{"Liga ABC"},
-				{"WNBA"},
-				{"Otra"},
-				{"Otra"},
-				{"Otra"},
-				{"Otra"},
-			},
-				new String[] { "Ligas Públicas" }
-		));
+				new Object[][] { { "Premiere Legue" }, { "Liga Santander" }, { "Liga 123" }, { "NBA" }, { "Liga ABC" },
+						{ "WNBA" }, { "Otra" }, { "Otra" }, { "Otra" }, { "Otra" }, },
+				new String[] { "Ligas Públicas" }));
 		tableLigasPublicas.setBounds(0, 0, 287, 355);
 		tableLigasPublicas.setRowHeight(40);
 		panelLigasPublicas.add(tableLigasPublicas);
@@ -114,16 +103,8 @@ public class PPrincipal extends JFrame {
 
 		tableLigasPrivadas = new JTable();
 		tableLigasPrivadas.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Pocholos CUP"},
-				{"U-TAD League"},
-				{"Copa Programación"},
-				{"Torneo Ochio"},
-			},
-			new String[] {
-				"Ligas Privadas"
-			}
-		));
+				new Object[][] { { "Pocholos CUP" }, { "U-TAD League" }, { "Copa Programación" }, { "Torneo Ochio" }, },
+				new String[] { "Ligas Privadas" }));
 		tableLigasPrivadas.setRowHeight(40);
 		tableLigasPrivadas.setBounds(0, 0, 287, 355);
 		panelLigasPrivadas.add(tableLigasPrivadas);
@@ -136,62 +117,30 @@ public class PPrincipal extends JFrame {
 		JLabel lblBuscarLigas = new JLabel("Buscar Ligas:");
 		lblBuscarLigas.setBounds(792, 90, 96, 14);
 		contentPane.add(lblBuscarLigas);
-		
+
 		btnBuscar = new JButton("Buscar");
 		btnBuscar.setBounds(890, 111, 89, 23);
 		contentPane.add(btnBuscar);
-		
+
 		lblLigasPublicas = new JLabel("Ligas P\u00FAblicas");
 		lblLigasPublicas.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblLigasPublicas.setBounds(62, 97, 287, 23);
 		contentPane.add(lblLigasPublicas);
-		
+
 		lblLigasPrivadas = new JLabel("Tus Ligas");
 		lblLigasPrivadas.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblLigasPrivadas.setBounds(389, 98, 286, 23);
 		contentPane.add(lblLigasPrivadas);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(724, 170, 176, 274);
 		contentPane.add(scrollPane);
-		
+
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-			},
-			new String[] {
-				"New column"
-			}
-		));
+		table.setModel(new DefaultTableModel(new Object[][] { { null }, { null }, { null }, { null }, { null },
+				{ null }, { null }, { null }, { null }, { null }, { null }, { null }, { null }, { null }, { null },
+				{ null }, { null }, { null }, { null }, { null }, { null }, { null }, { null }, { null }, { null },
+				{ null }, { null }, { null }, { null }, }, new String[] { "New column" }));
 		scrollPane.setViewportView(table);
 	}
 }
