@@ -1,38 +1,46 @@
 package pantallas;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollPane;
-import java.awt.Font;
+import javax.swing.ImageIcon;
 
 public class PPrincipal extends JFrame {
-
 	private JPanel contentPane;
-	private JPanel panel;
-	private JComboBox<Object> comboBoxLigas;
-	private JComboBox<Object> comboBoxApuestas;
-	private JComboBox<Object> comboBoxEquipos;
+	private JMenuBar menuNavegacion;
+	private JMenu mnNewMenu;
+	private JMenu mnNewMenu_1;
+	private JMenu mnNewMenu_2;
+	private JMenuItem mntmNewMenuItem;
+	private JMenuItem mntmNewMenuItem_1;
+	private JMenuItem mntmNewMenuItem_3;
+	private JMenuItem mntmNewMenuItem_4;
+	private JMenuItem mntmNewMenuItem_5;
+	private JMenuItem mntmNewMenuItem_6;
+	private JMenuItem mntmNewMenuItem_7;
 	private JButton btnMiCuenta;
 	private JButton btnSignOut;
-	private JPanel panelLigasPublicas;
-	private JPanel panelLigasPrivadas;
-	private JTable tableLigasPublicas;
-	private JTable tableLigasPrivadas;
 	private JTextField txtBuscar;
 	private JButton btnBuscar;
-	private JLabel lblLigasPublicas;
-	private JLabel lblLigasPrivadas;
-	private JTable table;
+	private JTable tableLigasPublicas;
+	private JTable tableLigasPrivadas;
+	private JScrollPane scrollPaneLigasPublicas;
+	private JScrollPane scrollPaneLigasPrivadas;
+	private JLabel lblBuscarLigas;
+	private JLabel lblAnuncio;
 
 	public static void main(String[] args) {
 
@@ -46,152 +54,105 @@ public class PPrincipal extends JFrame {
 		setBounds(0, 0, 1024, 576);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
 
-		panel = new JPanel();
-		panel.setBackground(new Color(0, 255, 255));
-		panel.setForeground(new Color(0, 0, 0));
-		panel.setBounds(62, 11, 885, 35);
-		contentPane.add(panel);
-		panel.setLayout(null);
+		menuNavegacion = new JMenuBar();
+		setJMenuBar(menuNavegacion);
 
-		comboBoxLigas = new JComboBox<Object>();
-		comboBoxLigas.setModel(
-				new DefaultComboBoxModel<Object>(new String[] { "Ligas", "Crear Liga", "Unirse a Liga", "Ver Ligas" }));
-		comboBoxLigas.setBounds(10, 0, 96, 35);
-		panel.add(comboBoxLigas);
+		mnNewMenu = new JMenu("Ligas");
+		menuNavegacion.add(mnNewMenu);
 
-		comboBoxApuestas = new JComboBox<Object>();
-		comboBoxApuestas
-				.setModel(new DefaultComboBoxModel<Object>(new String[] { "Apuestas", "Mis Apuestas", "Apostar" }));
-		comboBoxApuestas.setBounds(116, 0, 96, 35);
-		panel.add(comboBoxApuestas);
+		mntmNewMenuItem = new JMenuItem("Ver ligas");
+		mnNewMenu.add(mntmNewMenuItem);
 
-		comboBoxEquipos = new JComboBox<Object>();
-		comboBoxEquipos.setModel(
-				new DefaultComboBoxModel<Object>(new String[] { "Equipos", "Unirse a equipo", "Crear Equipo" }));
-		comboBoxEquipos.setBounds(222, 0, 96, 35);
-		panel.add(comboBoxEquipos);
+		mntmNewMenuItem_5 = new JMenuItem("Crear liga");
+		mnNewMenu.add(mntmNewMenuItem_5);
 
-		btnMiCuenta = new JButton("Mi Cuenta");
-		btnMiCuenta.setBounds(678, 0, 96, 35);
-		panel.add(btnMiCuenta);
+		mntmNewMenuItem_6 = new JMenuItem("Unirse a liga");
+		mnNewMenu.add(mntmNewMenuItem_6);
 
-		btnSignOut = new JButton("Sign Out");
-		btnSignOut.setBounds(779, 0, 96, 35);
-		panel.add(btnSignOut);
+		mnNewMenu_1 = new JMenu("Apuestas");
+		menuNavegacion.add(mnNewMenu_1);
 
-		panelLigasPublicas = new JPanel();
-		panelLigasPublicas.setBounds(62, 122, 287, 355);
-		contentPane.add(panelLigasPublicas);
-		panelLigasPublicas.setLayout(null);
+		mntmNewMenuItem_1 = new JMenuItem("Mis apuestas");
+		mnNewMenu_1.add(mntmNewMenuItem_1);
 
-		tableLigasPublicas = new JTable();
-		tableLigasPublicas.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Premiere Legue"},
-				{"Liga Santander"},
-				{"Liga 123"},
-				{"NBA"},
-				{"Liga ABC"},
-				{"WNBA"},
-				{"Otra"},
-				{"Otra"},
-				{"Otra"},
-				{"Otra"},
-			},
-				new String[] { "Ligas Públicas" }
-		));
-		tableLigasPublicas.setBounds(0, 0, 287, 355);
-		tableLigasPublicas.setRowHeight(40);
-		panelLigasPublicas.add(tableLigasPublicas);
+		mntmNewMenuItem_7 = new JMenuItem("Apostar");
+		mnNewMenu_1.add(mntmNewMenuItem_7);
 
-		panelLigasPrivadas = new JPanel();
-		panelLigasPrivadas.setBounds(388, 122, 287, 355);
-		panelLigasPrivadas.setLayout(null);
-		contentPane.add(panelLigasPrivadas);
+		mnNewMenu_2 = new JMenu("Equipos");
+		menuNavegacion.add(mnNewMenu_2);
 
-		tableLigasPrivadas = new JTable();
-		tableLigasPrivadas.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Pocholos CUP"},
-				{"U-TAD League"},
-				{"Copa Programación"},
-				{"Torneo Ochio"},
-			},
-			new String[] {
-				"Ligas Privadas"
+		mntmNewMenuItem_3 = new JMenuItem("Unirse a equipo");
+		mnNewMenu_2.add(mntmNewMenuItem_3);
+
+		mntmNewMenuItem_4 = new JMenuItem("Crear equipo");
+		mnNewMenu_2.add(mntmNewMenuItem_4);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		btnMiCuenta = new JButton("Mi cuenta");
+		btnMiCuenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 			}
-		));
-		tableLigasPrivadas.setRowHeight(40);
-		tableLigasPrivadas.setBounds(0, 0, 287, 355);
-		panelLigasPrivadas.add(tableLigasPrivadas);
+		});
+		btnMiCuenta.setBounds(873, 19, 109, 23);
+		contentPane.add(btnMiCuenta);
+
+		btnSignOut = new JButton("Sign out");
+		btnSignOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnSignOut.setBounds(873, 53, 109, 23);
+		contentPane.add(btnSignOut);
 
 		txtBuscar = new JTextField();
 		txtBuscar.setBounds(792, 112, 96, 20);
 		contentPane.add(txtBuscar);
 		txtBuscar.setColumns(10);
 
-		JLabel lblBuscarLigas = new JLabel("Buscar Ligas:");
+		lblBuscarLigas = new JLabel("Buscar Ligas:");
 		lblBuscarLigas.setBounds(792, 90, 96, 14);
 		contentPane.add(lblBuscarLigas);
-		
+
 		btnBuscar = new JButton("Buscar");
 		btnBuscar.setBounds(890, 111, 89, 23);
 		contentPane.add(btnBuscar);
+
+		scrollPaneLigasPublicas = new JScrollPane();
+		scrollPaneLigasPublicas.setBounds(48, 30, 315, 452);
+		contentPane.add(scrollPaneLigasPublicas);
+
+		tableLigasPublicas = new JTable();
+		tableLigasPublicas.setModel(new DefaultTableModel(
+				new Object[][] { { "Premiere League" }, { "Liga 123" }, { "Liga Santander" }, { "NBA" }, { "WNBA" },
+						{ "Liga ABC" }, { "World Paddel Tour" }, { "Otra" }, { "Otra" }, { "Otra" }, },
+				new String[] { "Ligas Públicas" }));
+		tableLigasPublicas.setRowHeight(40);
+		tableLigasPublicas.getTableHeader().setBackground(Color.CYAN);
+		scrollPaneLigasPublicas.setViewportView(tableLigasPublicas);
+
+		scrollPaneLigasPrivadas = new JScrollPane();
+		scrollPaneLigasPrivadas.setBounds(412, 30, 315, 452);
+		contentPane.add(scrollPaneLigasPrivadas);
+
+		tableLigasPrivadas = new JTable();
+		tableLigasPrivadas
+				.setModel(
+						new DefaultTableModel(
+								new Object[][] { { "Pocholos Cup" }, { "Torneo Ochio" }, { "Programame Futbol" },
+										{ "The coders League" }, { "U-TAD League" }, },
+								new String[] { "Ligas Privadas" }));
+		tableLigasPrivadas.setRowHeight(40);
+		tableLigasPrivadas.getTableHeader().setBackground(Color.CYAN);
+		scrollPaneLigasPrivadas.setViewportView(tableLigasPrivadas);
+
+		lblAnuncio = new JLabel("");
+		lblAnuncio.setIcon(new ImageIcon(PPrincipal.class.getResource("/img/publicidad2.png")));
+		lblAnuncio.setBounds(792, 195, 187, 287);
+		contentPane.add(lblAnuncio);
 		
-		lblLigasPublicas = new JLabel("Ligas P\u00FAblicas");
-		lblLigasPublicas.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblLigasPublicas.setBounds(62, 97, 287, 23);
-		contentPane.add(lblLigasPublicas);
-		
-		lblLigasPrivadas = new JLabel("Tus Ligas");
-		lblLigasPrivadas.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblLigasPrivadas.setBounds(389, 98, 286, 23);
-		contentPane.add(lblLigasPrivadas);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(724, 170, 176, 274);
-		contentPane.add(scrollPane);
-		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-			},
-			new String[] {
-				"New column"
-			}
-		));
-		scrollPane.setViewportView(table);
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 	}
 }
