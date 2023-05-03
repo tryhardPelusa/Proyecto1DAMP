@@ -64,13 +64,13 @@ public class PPrincipal extends JFrame {
 
 		comboBoxApuestas = new JComboBox<Object>();
 		comboBoxApuestas
-				.setModel(new DefaultComboBoxModel<Object>(new String[] { "Apuestas", "Mis Apuestas", "Apostar" }));
+				.setModel(new DefaultComboBoxModel(new String[] {"Apuestas", "Mis Apuestas", "Apostar"}));
 		comboBoxApuestas.setBounds(116, 0, 96, 35);
 		panel.add(comboBoxApuestas);
 
 		comboBoxEquipos = new JComboBox<Object>();
 		comboBoxEquipos.setModel(
-				new DefaultComboBoxModel<Object>(new String[] { "Equipos", "Unirse a equipo", "Crear Equipo" }));
+				new DefaultComboBoxModel(new String[] {"Equipos", "Unirse a equipo", "Crear Equipo"}));
 		comboBoxEquipos.setBounds(222, 0, 96, 35);
 		panel.add(comboBoxEquipos);
 
