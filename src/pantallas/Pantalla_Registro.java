@@ -23,6 +23,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JTextArea;
+import com.toedter.calendar.JCalendar;
+import com.toedter.calendar.JDateChooser;
 
 public class Pantalla_Registro extends JFrame {
 
@@ -54,18 +56,11 @@ public class Pantalla_Registro extends JFrame {
 	private JLabel lblPwd;
 	private JLabel lblRegistro;
 	private JLabel lblFecha;
-	private JLabel lblAnyo;
-	private JLabel lblMes;
-	private JLabel lblDia;
-	private JSpinner spinner;
-	private JSpinner spinner_1;
-	private JSpinner spinner_2;
-	private JLabel lblNewLabel;
-	private JLabel lblNewLabel_1;
 	private JLabel lblCorreo;
 	private JTextField txtCorreo;
 	private JButton btnRegistrarse;
 	private JTextArea txtrSeAadiran;
+	private JDateChooser dateChooser;
 
 	public static void main(String[] args) {
 
@@ -157,41 +152,6 @@ public class Pantalla_Registro extends JFrame {
 		lblFecha.setBounds(487, 246, 132, 21);
 		contentPane.add(lblFecha);
 
-		spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(1, 1, 31, 1));
-		spinner.setBounds(629, 248, 43, 20);
-		contentPane.add(spinner);
-
-		spinner_1 = new JSpinner();
-		spinner_1.setModel(new SpinnerNumberModel(1, 1, 12, 1));
-		spinner_1.setBounds(689, 248, 40, 20);
-		contentPane.add(spinner_1);
-
-		spinner_2 = new JSpinner();
-		spinner_2.setModel(new SpinnerNumberModel(0, null, 2023, 1));
-		spinner_2.setBounds(739, 248, 53, 20);
-		contentPane.add(spinner_2);
-
-		lblDia = new JLabel("Dia");
-		lblDia.setBounds(642, 226, 45, 13);
-		contentPane.add(lblDia);
-
-		lblMes = new JLabel("Mes");
-		lblMes.setBounds(700, 225, 45, 13);
-		contentPane.add(lblMes);
-
-		lblAnyo = new JLabel("Año");
-		lblAnyo.setBounds(749, 225, 45, 13);
-		contentPane.add(lblAnyo);
-
-		lblNewLabel = new JLabel("/");
-		lblNewLabel.setBounds(679, 251, 45, 13);
-		contentPane.add(lblNewLabel);
-
-		lblNewLabel_1 = new JLabel("/");
-		lblNewLabel_1.setBounds(734, 251, 45, 13);
-		contentPane.add(lblNewLabel_1);
-
 		lblCorreo = new JLabel("Correo*");
 		lblCorreo.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblCorreo.setBounds(559, 342, 60, 21);
@@ -216,5 +176,9 @@ public class Pantalla_Registro extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		dateChooser = new JDateChooser();
+		dateChooser.setBounds(642, 246, 180, 19);
+		contentPane.add(dateChooser);
 	}
 }
