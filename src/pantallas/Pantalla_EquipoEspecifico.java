@@ -11,10 +11,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
+import javax.swing.JTextArea;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import javax.swing.JTextPane;
+import javax.swing.DropMode;
 
-public class Pantalla_UnirseLiga extends JFrame {
+public class Pantalla_EquipoEspecifico extends JFrame {
 
     private JPanel contentPane;
     private JMenuBar menuNavegacion;
@@ -30,18 +34,21 @@ public class Pantalla_UnirseLiga extends JFrame {
     private JMenuItem mntmNewMenuItem_7;
     private JButton btnMiCuenta;
     private JButton btnSignOut;
-    private JTextField textField;
-    private JButton btnUnion;
-    private JLabel lblunirse;
-    private JLabel lblUnirse;
+    private JLabel lblIntegrantes;
+    private JTextArea txtparticipantes;
+    private JPanel panel;
+    private JTextArea txtdeportes;
+    private JLabel lblSede;
+    private JLabel lblLigas;
+    private JTextArea txtrligas;
 
     public static void main(String[] args) {
 
-        Pantalla_UnirseLiga frame = new Pantalla_UnirseLiga();
+        Pantalla_EquipoEspecifico frame = new Pantalla_EquipoEspecifico();
         frame.setVisible(true);
 
     }
-public Pantalla_UnirseLiga() {
+public Pantalla_EquipoEspecifico() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(0, 0, 1024, 576);
 
@@ -98,58 +105,65 @@ public Pantalla_UnirseLiga() {
         btnSignOut.setBounds(873, 53, 109, 23);
         contentPane.add(btnSignOut);
         
-        lblUnirse = new JLabel("Unirse a una Liga");
-        lblUnirse.setFont(new Font("Tahoma", Font.BOLD, 46));
-        lblUnirse.setBounds(271, 29, 416, 86);
-        contentPane.add(lblUnirse);
+        JLabel lbltitulo = new JLabel("Equipo Especifico");
+        lbltitulo.setFont(new Font("Tahoma", Font.PLAIN, 40));
+        lbltitulo.setBounds(303, 53, 445, 97);
+        contentPane.add(lbltitulo);
         
-        lblunirse = new JLabel("Introduzca un codigo de union:");
-        lblunirse.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        lblunirse.setBounds(117, 255, 316, 39);
-        contentPane.add(lblunirse);
+        panel = new JPanel();
+        panel.setBounds(40, 201, 277, 303);
+        contentPane.add(panel);
+        panel.setLayout(null);
         
-        textField = new JTextField();
-        textField.setBounds(401, 269, 219, 19);
-        contentPane.add(textField);
-        textField.setColumns(10);
+        lblIntegrantes = new JLabel("Integrantes del Equipo");
+        lblIntegrantes.setBounds(83, 11, 109, 14);
+        panel.add(lblIntegrantes);
         
-        btnUnion = new JButton("Unirse");
-        btnUnion.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
-        btnUnion.setBounds(655, 268, 85, 21);
-        contentPane.add(btnUnion);
+        txtparticipantes = new JTextArea();
+        txtparticipantes.setEditable(false);
+        txtparticipantes.setText("-Paco\r\n- Juan\r\n- Rodolfo\r\n- Guillermo\r\n- kike\r\n- Ra\u00FAl\r\n- Daniel\r\n- Alejandro\r\n- Sergio\r\n- Miguel");
+        txtparticipantes.setBounds(36, 36, 210, 256);
+        panel.add(txtparticipantes);
         
-        JLabel lblNewLabel = new JLabel("No tienes equipo?, crea o unete a uno :D ");
-        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblNewLabel.setBounds(481, 475, 266, 32);
-        contentPane.add(lblNewLabel);
+        JPanel panel_1 = new JPanel();
+        panel_1.setBounds(355, 201, 284, 303);
+        contentPane.add(panel_1);
+        panel_1.setLayout(null);
         
-        JButton btnNewButton = new JButton("Unirse equip");
-        btnNewButton.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
-        btnNewButton.setBounds(746, 483, 97, 21);
-        contentPane.add(btnNewButton);
+        txtdeportes = new JTextArea();
+        txtdeportes.setText("-Baloncesto\r\n-futbol\r\n-golf");
+        txtdeportes.setEditable(false);
+        txtdeportes.setBounds(40, 34, 210, 98);
+        panel_1.add(txtdeportes);
         
-        JButton btnNewButton_1 = new JButton("Crear Equip");
-        btnNewButton_1.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
-        btnNewButton_1.setBounds(873, 483, 109, 21);
-        contentPane.add(btnNewButton_1);
+        JLabel lbldeportes = new JLabel("Deportes Participados");
+        lbldeportes.setBounds(94, 9, 105, 14);
+        panel_1.add(lbldeportes);
         
-        JLabel lblNewLabel_1 = new JLabel("");
-        lblNewLabel_1.setIcon(new ImageIcon(Pantalla_UnirseLiga.class.getResource("/img/el-equipo-de-f\u00FAtbol-del-deporte-con-el-entrenador-agrupe-la-foto-76609484.jpg")));
-        lblNewLabel_1.setBounds(42, 298, 369, 223);
-        contentPane.add(lblNewLabel_1);
+        lblSede = new JLabel("Sede");
+        lblSede.setBounds(133, 172, 39, 14);
+        panel_1.add(lblSede);
         
-        JLabel lblNewLabel_2 = new JLabel("");
-        lblNewLabel_2.setIcon(new ImageIcon(Pantalla_UnirseLiga.class.getResource("/img/publicidad2.png")));
-        lblNewLabel_2.setBounds(764, 167, 154, 256);
-        contentPane.add(lblNewLabel_2);
+        JTextArea txtrCavenidaDeMargarita = new JTextArea();
+        txtrCavenidaDeMargarita.setText("C/avenida de margarita n\u00BA5");
+        txtrCavenidaDeMargarita.setEditable(false);
+        txtrCavenidaDeMargarita.setBounds(40, 197, 210, 44);
+        panel_1.add(txtrCavenidaDeMargarita);
+        
+        JPanel panel_2 = new JPanel();
+        panel_2.setBounds(688, 201, 277, 303);
+        contentPane.add(panel_2);
+        panel_2.setLayout(null);
+        
+        lblLigas = new JLabel("Ligas en las que Participan");
+        lblLigas.setBounds(75, 5, 126, 14);
+        panel_2.add(lblLigas);
+        
+        txtrligas = new JTextArea();
+        txtrligas.setLineWrap(true);
+        txtrligas.setEditable(false);
+        txtrligas.setText("-liga A\r\n-Liga B\r\n-Liga C\r\n-Liga D");
+        txtrligas.setBounds(36, 36, 210, 256);
+        panel_2.add(txtrligas);
     }
 }

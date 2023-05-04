@@ -1,5 +1,5 @@
+/*@autor: Raúl Fernández*/
 package pantallas;
-
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
