@@ -75,57 +75,6 @@ public class Pantalla_Registro extends JFrame {
 	}
 
 	public Pantalla_Registro() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 1024, 576);
-
-		menuNavegacion = new JMenuBar();
-		setJMenuBar(menuNavegacion);
-
-		mnNewMenu = new JMenu("Ligas");
-		menuNavegacion.add(mnNewMenu);
-
-		mntmNewMenuItem = new JMenuItem("Ver ligas");
-		mnNewMenu.add(mntmNewMenuItem);
-
-		mntmNewMenuItem_5 = new JMenuItem("Crear liga");
-		mnNewMenu.add(mntmNewMenuItem_5);
-
-		mntmNewMenuItem_6 = new JMenuItem("Unirse a liga");
-		mnNewMenu.add(mntmNewMenuItem_6);
-
-		mnNewMenu_1 = new JMenu("Apuestas");
-		menuNavegacion.add(mnNewMenu_1);
-
-		mntmNewMenuItem_1 = new JMenuItem("Mis apuestas");
-		mnNewMenu_1.add(mntmNewMenuItem_1);
-
-		mntmNewMenuItem_7 = new JMenuItem("Apostar");
-		mnNewMenu_1.add(mntmNewMenuItem_7);
-
-		mnNewMenu_2 = new JMenu("Equipos");
-		menuNavegacion.add(mnNewMenu_2);
-
-		mntmNewMenuItem_3 = new JMenuItem("Unirse a equipo");
-		mnNewMenu_2.add(mntmNewMenuItem_3);
-
-		mntmNewMenuItem_4 = new JMenuItem("Crear equipo");
-		mnNewMenu_2.add(mntmNewMenuItem_4);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		btnMiCuenta = new JButton("Mi cuenta");
-		btnMiCuenta.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnMiCuenta.setBounds(873, 19, 109, 23);
-		contentPane.add(btnMiCuenta);
-
-		btnSignOut = new JButton("Sign out");
-		btnSignOut.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnSignOut.setBounds(873, 53, 109, 23);
 		contentPane.add(btnSignOut);
 
