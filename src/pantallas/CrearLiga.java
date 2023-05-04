@@ -23,6 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import com.toedter.calendar.JDateChooser;
 
 public class CrearLiga extends JFrame {
 
@@ -47,12 +48,6 @@ public class CrearLiga extends JFrame {
 	private JLabel lblDeporte;
 	private JTextField txtDeporte;
 	private JLabel lblFecha;
-	private JLabel lblDia;
-	private JLabel lblMes;
-	private JLabel lblAnyo;
-	private JSpinner spinnerDia;
-	private JSpinner spinnerMes;
-	private JSpinner spinnerAnyo;
 	private JLabel lblPrivacidad;
 	private JRadioButton rdbtnPrivada;
 	private JRadioButton rdbtnPublica;
@@ -71,6 +66,7 @@ public class CrearLiga extends JFrame {
 	private JSpinner spinnerDerrota;
 	private JButton btnCrear;
 	private JButton btnVolver;
+	private JDateChooser dateFecha;
 
 	public static void main(String[] args) {
 
@@ -167,40 +163,6 @@ public class CrearLiga extends JFrame {
 		lblFecha.setBounds(92, 233, 105, 14);
 		contentPane.add(lblFecha);
 
-		spinnerDia = new JSpinner();
-		spinnerDia.setModel(new SpinnerNumberModel(1, 1, 31, 1));
-		spinnerDia.setBounds(207, 230, 48, 20);
-		contentPane.add(spinnerDia);
-
-		spinnerMes = new JSpinner();
-		spinnerMes.setModel(new SpinnerNumberModel(1, 1, 12, 1));
-		spinnerMes.setBounds(265, 230, 48, 20);
-		contentPane.add(spinnerMes);
-
-		spinnerAnyo = new JSpinner();
-		spinnerAnyo.setModel(
-				new SpinnerNumberModel(Integer.valueOf(2023), Integer.valueOf(2023), null, Integer.valueOf(1)));
-		spinnerAnyo.setBounds(323, 230, 63, 20);
-		contentPane.add(spinnerAnyo);
-
-		lblDia = new JLabel("Dia");
-		lblDia.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDia.setToolTipText("");
-		lblDia.setBounds(207, 215, 48, 14);
-		contentPane.add(lblDia);
-
-		lblMes = new JLabel("Mes");
-		lblMes.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMes.setToolTipText("");
-		lblMes.setBounds(265, 215, 48, 14);
-		contentPane.add(lblMes);
-
-		lblAnyo = new JLabel("Año");
-		lblAnyo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAnyo.setToolTipText("");
-		lblAnyo.setBounds(326, 215, 48, 14);
-		contentPane.add(lblAnyo);
-
 		lblPrivacidad = new JLabel("Privacidad");
 		lblPrivacidad.setToolTipText("");
 		lblPrivacidad.setBounds(92, 271, 105, 14);
@@ -295,5 +257,9 @@ public class CrearLiga extends JFrame {
 		btnVolver = new JButton("Volver");
 		btnVolver.setBounds(62, 71, 89, 23);
 		contentPane.add(btnVolver);
+		
+		dateFecha = new JDateChooser();
+		dateFecha.setBounds(207, 227, 109, 20);
+		contentPane.add(dateFecha);
 	}
 }
