@@ -1,5 +1,9 @@
+/**
+ * @author Guillermo Callizaya
+ */
 package pantallas;
 
+//Importación de clases de Java
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -13,8 +17,9 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+//Clase principal POlvido que extiende de JFrame
 public class POlvido extends JFrame {
-
+	// Declaración de componentes de la interfaz
 	private JPanel contentPane;
 	private JLabel lblTituloAcceder;
 	private JLabel lblPorFavorIntroduzca;
@@ -26,15 +31,17 @@ public class POlvido extends JFrame {
 	private JButton btnRecuperar;
 	private JLabel lblRevise;
 
-
+	// Método main de la aplicación
 	public static void main(String[] args) {
-
-					POlvido frame = new POlvido();
-					frame.setVisible(true);
+		// Crear una instancia de POlvido y hacerla visible
+		POlvido frame = new POlvido();
+		frame.setVisible(true);
 
 	}
 
+	// Constructor de la clase POlvido
 	public POlvido() {
+		// Configuración básica de la ventana
 		setTitle("Pagina Olvido");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 576);
@@ -43,44 +50,45 @@ public class POlvido extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
+		// Creación y configuración de los componentes de la interfaz
 		lblTituloAcceder = new JLabel("\u00BFNo puedes acceder?");
 		lblTituloAcceder.setFont(new Font("Lucida Grande", Font.PLAIN, 24));
 		lblTituloAcceder.setBounds(389, 58, 253, 70);
 		contentPane.add(lblTituloAcceder);
-		
+		// Un JLabel donde muestra las instrucciones a seguir
 		lblPorFavorIntroduzca = new JLabel("Por favor, introduzca su nombre de usuario");
 		lblPorFavorIntroduzca.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblPorFavorIntroduzca.setBounds(306, 124, 415, 70);
 		contentPane.add(lblPorFavorIntroduzca);
-		
+		// Un JLabel donde indica que aqui, se pone el usuario
 		lblUsuario = new JLabel("Usuario:");
 		lblUsuario.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblUsuario.setBounds(361, 206, 86, 25);
 		contentPane.add(lblUsuario);
-		
+		// Un JLabel donde indica que aqui, se pone el correo
 		lblCorreo = new JLabel("Correo:");
 		lblCorreo.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblCorreo.setBounds(366, 293, 86, 25);
 		contentPane.add(lblCorreo);
-		
+
 		lblO = new JLabel("o");
 		lblO.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblO.setBounds(441, 234, 21, 47);
 		contentPane.add(lblO);
-		
+		// Creamos un JTextField para introducir el Usuario
 		textUsuario = new JTextField();
 		textUsuario.setText("Usuario");
 		textUsuario.setBounds(450, 203, 180, 36);
 		contentPane.add(textUsuario);
 		textUsuario.setColumns(10);
-		
+		// Creamos un JTextField para introducir el correo
 		textCorreo = new JTextField();
 		textCorreo.setText("Correo electronico");
 		textCorreo.setColumns(10);
 		textCorreo.setBounds(451, 290, 180, 36);
 		contentPane.add(textCorreo);
-		
+		// El boton para recuperar la cuenta del usuario
 		btnRecuperar = new JButton("Recuperar Cuenta");
 		btnRecuperar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -90,7 +98,8 @@ public class POlvido extends JFrame {
 		btnRecuperar.setBackground(Color.BLUE);
 		btnRecuperar.setBounds(409, 380, 167, 29);
 		contentPane.add(btnRecuperar);
-		
+		// Es un JLabel donde ahora es sin comentario pero luego lo usaremos en el
+		// button
 		lblRevise = new JLabel("");
 		lblRevise.setFont(new Font("Geneva", Font.PLAIN, 18));
 		lblRevise.setBounds(399, 338, 215, 30);
