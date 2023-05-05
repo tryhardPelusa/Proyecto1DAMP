@@ -23,6 +23,7 @@ En total tenemos unas 12 pantallas repartidas asi:
 10. **Liga especifica**
 11. **Equipo Especifico**
 12. **Apuestas**
+13. **Mis Apuestas**
 
 ## PaginaPrincipal
 ## Inicio de sesion
@@ -41,3 +42,4 @@ cambiar los datos del usuario.
 ## Liga especifica
 ## Equipo Especifico
 ## Apuestas
+## Mis Apuestas
