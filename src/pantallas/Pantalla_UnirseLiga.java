@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class Pantalla_UnirseLiga extends JFrame {
 
@@ -98,7 +99,7 @@ public class Pantalla_UnirseLiga extends JFrame {
 		lblUnirse.setBounds(271, 29, 416, 86);
 		contentPane.add(lblUnirse);
 
-		lblunirse = new JLabel("Introduzca un codigo de union:");
+		lblunirse = new JLabel("Introduzca  c\u00F3digo de uni\u00F3n:");
 		lblunirse.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblunirse.setBounds(117, 255, 316, 39);
 		contentPane.add(lblunirse);
@@ -109,6 +110,7 @@ public class Pantalla_UnirseLiga extends JFrame {
 		textField.setColumns(10);
 
 		btnUnion = new JButton("Unirse");
+		btnUnion.setBackground(Color.BLACK);
 		btnUnion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -116,20 +118,20 @@ public class Pantalla_UnirseLiga extends JFrame {
 		btnUnion.setBounds(655, 268, 85, 21);
 		contentPane.add(btnUnion);
 
-		JLabel lblNewLabel = new JLabel("No tienes equipo?, crea o unete a uno :D ");
+		JLabel lblNewLabel = new JLabel("\u00BFNo tienes equipo?, crea o unete a uno :D ");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel.setBounds(481, 475, 266, 32);
 		contentPane.add(lblNewLabel);
 		// boton para unirse a equipo
-		JButton btnNewButton = new JButton("Unirse equip");
+		JButton btnNewButton = new JButton("Unirse equipo");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(746, 483, 97, 21);
+		btnNewButton.setBounds(746, 483, 115, 21);
 		contentPane.add(btnNewButton);
 		// boton para crear equipo
-		JButton btnNewButton_1 = new JButton("Crear Equip");
+		JButton btnNewButton_1 = new JButton("Crear Equipo");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}

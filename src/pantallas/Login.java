@@ -158,7 +158,7 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnCrearCuenta.setBounds(386, 401, 104, 23);
+		btnCrearCuenta.setBounds(368, 401, 122, 23);
 		contentPane.add(btnCrearCuenta);
 
 		JButton btnInvitado = new JButton("Invitado");

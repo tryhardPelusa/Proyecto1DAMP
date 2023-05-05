@@ -102,7 +102,7 @@ public class Pantalla_EquipoEspecifico extends JFrame {
 		// titulo de la pagina
 		JLabel lbltitulo = new JLabel("Equipo Especifico");
 		lbltitulo.setFont(new Font("Tahoma", Font.PLAIN, 40));
-		lbltitulo.setBounds(303, 53, 445, 97);
+		lbltitulo.setBounds(355, 53, 339, 97);
 		contentPane.add(lbltitulo);
 		// hacemos un jpanel en el que metemos los integrantes del equipo
 		panel = new JPanel();
@@ -111,7 +111,7 @@ public class Pantalla_EquipoEspecifico extends JFrame {
 		panel.setLayout(null);
 
 		lblIntegrantes = new JLabel("Integrantes del Equipo");
-		lblIntegrantes.setBounds(83, 11, 109, 14);
+		lblIntegrantes.setBounds(63, 10, 159, 14);
 		panel.add(lblIntegrantes);
 
 		// creamos un jTextArea par introducir el nombre de los integrantes del equipo
@@ -135,7 +135,7 @@ public class Pantalla_EquipoEspecifico extends JFrame {
 		panel_1.add(txtdeportes);
 
 		JLabel lbldeportes = new JLabel("Deportes Participados");
-		lbldeportes.setBounds(94, 9, 105, 14);
+		lbldeportes.setBounds(74, 9, 149, 14);
 		panel_1.add(lbldeportes);
 
 		lblSede = new JLabel("Sede");
@@ -154,7 +154,7 @@ public class Pantalla_EquipoEspecifico extends JFrame {
 		panel_2.setLayout(null);
 
 		lblLigas = new JLabel("Ligas en las que Participan");
-		lblLigas.setBounds(75, 5, 126, 14);
+		lblLigas.setBounds(48, 5, 179, 14);
 		panel_2.add(lblLigas);
 
 		txtrligas = new JTextArea();

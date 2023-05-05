@@ -26,7 +26,7 @@ public class PMiCuenta extends JFrame {
 	// Declaración de componentes de la interfaz
 	private JPanel contentPane;
 	private JLabel lblUsuario;
-	private JTextField textField;
+	private JTextField txtUsuario;
 	private JLabel lblNombre;
 	private JTextField txtNombre;
 	private JLabel lblApellido1;
@@ -36,7 +36,7 @@ public class PMiCuenta extends JFrame {
 	private JLabel lblCorreo;
 	private JTextField txtCorreoElectronico;
 	private JLabel lblPwd;
-	private JTextField textPwd;
+	private JTextField txtPwd;
 	private JLabel lblTelefono;
 	private JTextField txtTelefono;
 	private JLabel lblFecha;
@@ -127,11 +127,11 @@ public class PMiCuenta extends JFrame {
 		lblUsuario.setBounds(143, 138, 86, 25);
 		contentPane.add(lblUsuario);
 		// Establece el texto inicial del campo de texto a "Usuario"
-		textField = new JTextField();
-		textField.setText("Usuario");
-		textField.setColumns(10);
-		textField.setBounds(232, 135, 180, 36);
-		contentPane.add(textField);
+		txtUsuario = new JTextField();
+		txtUsuario.setText("Usuario");
+		txtUsuario.setColumns(10);
+		txtUsuario.setBounds(232, 135, 180, 36);
+		contentPane.add(txtUsuario);
 		// Crea y agrega un JLabel para mostrar el texto "Nombre"
 		lblNombre = new JLabel("Nombre:");
 		lblNombre.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
@@ -182,11 +182,11 @@ public class PMiCuenta extends JFrame {
 		lblPwd.setBounds(575, 141, 96, 25);
 		contentPane.add(lblPwd);
 		// Establece el texto inicial del campo de texto a "Password"
-		textPwd = new JTextField();
-		textPwd.setText("Password");
-		textPwd.setColumns(10);
-		textPwd.setBounds(674, 138, 180, 36);
-		contentPane.add(textPwd);
+		txtPwd = new JTextField();
+		txtPwd.setText("Password");
+		txtPwd.setColumns(10);
+		txtPwd.setBounds(674, 138, 180, 36);
+		contentPane.add(txtPwd);
 		// Crea y agrega un JLabel para mostrar el texto "Telefono"
 		lblTelefono = new JLabel("Telefono:");
 		lblTelefono.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
