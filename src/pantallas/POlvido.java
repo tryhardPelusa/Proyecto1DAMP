@@ -31,14 +31,6 @@ public class POlvido extends JFrame {
 	private JButton btnRecuperar;
 	private JLabel lblRevise;
 
-	// Método main de la aplicación
-	public static void main(String[] args) {
-		// Crear una instancia de POlvido y hacerla visible
-		POlvido frame = new POlvido();
-		frame.setVisible(true);
-
-	}
-
 	// Constructor de la clase POlvido
 	public POlvido() {
 		// Configuración básica de la ventana

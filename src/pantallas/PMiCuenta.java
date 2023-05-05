@@ -46,13 +46,6 @@ public class PMiCuenta extends JFrame {
 	private JPanel panel;
 	private JDateChooser dateCalendario;
 
-	// Método main de la aplicación
-	public static void main(String[] args) {
-		// Crear una instancia de PMiCuenta y hacerla visible
-		PMiCuenta frame = new PMiCuenta();
-		frame.setVisible(true);
-	}
-
 	// Constructor de la clase PMiCuenta
 	public PMiCuenta() {
 		// Configuración básica de la ventana
