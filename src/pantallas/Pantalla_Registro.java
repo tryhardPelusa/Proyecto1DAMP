@@ -1,5 +1,6 @@
 /*@autor: Raúl Fernández*/
 package pantallas;
+
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -45,11 +46,11 @@ public class Pantalla_Registro extends JFrame {
 	private JLabel lblUser;
 	private JTextField txtUser;
 	private JLabel lblApellido1;
-	private JTextField txtApel1;
+	private JTextField txtnombre;
 	private JLabel lblApellido2;
-	private JTextField txtapel2;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtapellido1;
+	private JTextField txtapellido;
+	private JTextField txtTelefono;
 	private JLabel lblNombre;
 	private JLabel lblTelefono;
 	private JPasswordField passwordField;
@@ -60,14 +61,7 @@ public class Pantalla_Registro extends JFrame {
 	private JTextField txtCorreo;
 	private JButton btnRegistrarse;
 	private JTextArea txtrSeAadiran;
-	private JDateChooser dateChooser;
-
-	public static void main(String[] args) {
-
-		Pantalla_Registro frame = new Pantalla_Registro();
-		frame.setVisible(true);
-
-	}
+	private JDateChooser FechaNaci;
 
 	public Pantalla_Registro() {
 		btnSignOut.setBounds(873, 53, 109, 23);
@@ -82,7 +76,7 @@ public class Pantalla_Registro extends JFrame {
 		lblUser.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblUser.setBounds(207, 186, 60, 21);
 		contentPane.add(lblUser);
-
+		// campo usuario en el que el usuario introduce su nombre de usuario
 		txtUser = new JTextField();
 		txtUser.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		txtUser.setBounds(270, 186, 96, 19);
@@ -93,35 +87,35 @@ public class Pantalla_Registro extends JFrame {
 		lblApellido1.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblApellido1.setBounds(202, 291, 65, 21);
 		contentPane.add(lblApellido1);
-
-		txtApel1 = new JTextField();
-		txtApel1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		txtApel1.setColumns(10);
-		txtApel1.setBounds(270, 246, 96, 19);
-		contentPane.add(txtApel1);
+		// Campo apellido 1 en el que recoge el primer apellido de un usuario
+		txtnombre = new JTextField();
+		txtnombre.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		txtnombre.setColumns(10);
+		txtnombre.setBounds(270, 246, 96, 19);
+		contentPane.add(txtnombre);
 
 		lblApellido2 = new JLabel("Apellido 2");
 		lblApellido2.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblApellido2.setBounds(207, 342, 60, 21);
 		contentPane.add(lblApellido2);
+		// Campo apellido 2 en el que recoge el segundo apellido de un usuario
+		txtapellido1 = new JTextField();
+		txtapellido1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		txtapellido1.setColumns(10);
+		txtapellido1.setBounds(270, 293, 96, 19);
+		contentPane.add(txtapellido1);
 
-		txtapel2 = new JTextField();
-		txtapel2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		txtapel2.setColumns(10);
-		txtapel2.setBounds(270, 293, 96, 19);
-		contentPane.add(txtapel2);
+		txtapellido = new JTextField();
+		txtapellido.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		txtapellido.setColumns(10);
+		txtapellido.setBounds(270, 342, 96, 19);
+		contentPane.add(txtapellido);
 
-		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		textField.setColumns(10);
-		textField.setBounds(270, 342, 96, 19);
-		contentPane.add(textField);
-
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		textField_1.setColumns(10);
-		textField_1.setBounds(270, 390, 96, 19);
-		contentPane.add(textField_1);
+		txtTelefono = new JTextField();
+		txtTelefono.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		txtTelefono.setColumns(10);
+		txtTelefono.setBounds(270, 390, 96, 19);
+		contentPane.add(txtTelefono);
 
 		lblNombre = new JLabel("Nombre*");
 		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -166,7 +160,7 @@ public class Pantalla_Registro extends JFrame {
 		btnRegistrarse = new JButton("Registrarse");
 		btnRegistrarse.setBounds(858, 484, 96, 33);
 		contentPane.add(btnRegistrarse);
-
+		//jtext en el que damos una pequeña informacion sobre las monedas
 		txtrSeAadiran = new JTextArea();
 		txtrSeAadiran.setEditable(false);
 		txtrSeAadiran.setText(
@@ -176,9 +170,9 @@ public class Pantalla_Registro extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		dateChooser = new JDateChooser();
-		dateChooser.setBounds(642, 246, 180, 19);
-		contentPane.add(dateChooser);
+
+		FechaNaci = new JDateChooser();
+		FechaNaci.setBounds(642, 246, 180, 19);
+		contentPane.add(FechaNaci);
 	}
 }
