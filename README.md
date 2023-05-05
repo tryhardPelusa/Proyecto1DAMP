@@ -33,9 +33,10 @@ en esta pagina el usuario introducira sus datos personales siendo estos obligato
 En esta página, será una ventana para poder recuperar tu contraseña si la has olvidado. Tienes varios JLabels donde te explica que tienes que hacer, como por ejemplo; Introduzca tu usuario o correo electronico.
 Tendras dos JTexteField donde seran los campos donde introduciras lo que te pide. También tendrás un boton de recuperar cuenta para cuando introduzcas en uno de los campos si le das se hara visible un Jlabel que tendrá un texto: "Revise su Correo".
 ## MiCuenta
-En esta cuenta el usuario podrá acceder a su cuenta de usuaria donde puede ver todos los datos que ingreso para registrarse: "Nombre","Usuario","Apellido","Apellido2","Telefono","Correo electronico","Fecha de nacimiento". También tendremos un buttom para poder modificiar los datos si un usuario quiere hacer algún ajuste.
+En esta pantalla el usuario podrá acceder a su cuenta de usuaria donde puede ver todos los datos que ingreso para registrarse: "Nombre","Usuario","Apellido","Apellido2","Telefono","Correo electronico","Fecha de nacimiento". También tendremos un buttom para poder modificiar los datos si un usuario quiere hacer algún ajuste.
 cambiar los datos del usuario.
 ## Unirse Liga
+aqui el usuario puede unirse a las ligas atraves de un codigo de union, tambien se puede unirse a un equipo o crearlo atraves de dos botones que redirigiran a la pantalla correspondiente
 ## Unirse Equipo
 ## Crear Ligas
 ## Crear Equipos
@@ -44,5 +45,6 @@ Esta pantalla es la que el usuario usa para dar de alta un equipo nuevo, tendra 
 ## Liga especifica
 En esta pantalla se mostrara la clasificacion y el calendario de una liga en concreto. Dentro de la clasificacion estara el ranking en si de la liga, con puntuacion, partidos jugados, goles...etc., tipicos de cualquier ranking de liga de futbol. En la pestaña de calendario esta el calendario de partidos que van a tener lugar entre todos los integrantes de la liga.
 ## Equipo Especifico
+en esta pantalla se puede observar el nombre del equipo como titulo seguido de tres columnas siendo la que se encuentra mas a la izquierda en la que apareceran los componentes del equipo la que se encuentra en el medio se muestran los deportes en los que participa dicho equipo junto a la sede del equipo si tiene y la de más a la derecha aparecen todas las ligas a las que pertenece dicho equipo
 ## Apuestas
 ## Mis Apuestas
