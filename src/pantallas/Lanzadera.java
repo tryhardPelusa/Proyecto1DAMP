@@ -18,6 +18,16 @@ public class Lanzadera extends JFrame {
 	private static Lanzadera main = new Lanzadera();
 	private PPrincipal principal = new PPrincipal();
 	private PUnirseAEquipo unirseEquipo = new PUnirseAEquipo();
+	private Apuestas apuestas = new Apuestas();
+	private CrearLiga crearLiga = new CrearLiga();
+	private Login login = new Login();
+	private MisApuestas misApuestas = new MisApuestas();
+	private Pantalla_EquipoEspecifico equipoEspecifico = new Pantalla_EquipoEspecifico();
+	private Pantalla_Registro registro = new Pantalla_Registro();
+	private Pantalla_UnirseLiga unirseLiga = new Pantalla_UnirseLiga();
+	private PMiCuenta miCuenta = new PMiCuenta();
+	private POlvido olvido = new POlvido();
+	
 	// Main
 	public static void main(String[] args) {
 		// Hacemos visible el main
