@@ -28,6 +28,7 @@ En total tenemos unas 12 pantallas repartidas asi:
 ## PaginaPrincipal
 ## Inicio de sesion
 ## Registro 
+en esta pagina el usuario introducira sus datos personales siendo estos obligatorios y otros datos no obligatorios como telefono o correo, tiene tambien una pequeña descripcion del funcionamiento de las monedas de la aplicacion
 ## Recuperar Cuenta
 En esta página, será una ventana para poder recuperar tu contraseña si la has olvidado. Tienes varios JLabels donde te explica que tienes que hacer, como por ejemplo; Introduzca tu usuario o correo electronico.
 Tendras dos JTexteField donde seran los campos donde introduciras lo que te pide. También tendrás un boton de recuperar cuenta para cuando introduzcas en uno de los campos si le das se hara visible un Jlabel que tendrá un texto: "Revise su Correo".
