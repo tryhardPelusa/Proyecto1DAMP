@@ -4,29 +4,27 @@
 
 package pantallas;
 
-//Importación de clases de Java
-import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import java.awt.Font;
 import java.awt.Color;
-import javax.swing.JComboBox;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
 import com.toedter.calendar.JDateChooser;
 
 //Clase principal PMiCuenta que extiende de JFrame
 public class PMiCuenta extends JFrame {
 	// Declaración de componentes de la interfaz
 	private JPanel contentPane;
-	private JComboBox<Object> comboBoxLigas;
-	private JComboBox<Object> comboBoxApuestas;
-	private JComboBox<Object> comboBoxEquipos;
-	private JButton btnMiCuenta;
-	private JButton btnSignOut;
 	private JLabel lblUsuario;
 	private JTextField textField;
 	private JLabel lblNombre;
@@ -43,8 +41,20 @@ public class PMiCuenta extends JFrame {
 	private JTextField txtTelefono;
 	private JLabel lblFecha;
 	private JButton btnCambiar;
-	private JPanel panel;
 	private JDateChooser dateCalendario;
+    private JMenuBar menuNavegacion;
+    private JMenu mnLigas;
+    private JMenu mnApuestas;
+    private JMenu mnEquipos;
+    private JMenuItem mntmNewMenuItem;
+    private JMenuItem mntmNewMenuItem_1;
+    private JMenuItem mntmNewMenuItem_3;
+    private JMenuItem mntmNewMenuItem_4;
+    private JMenuItem mntmNewMenuItem_5;
+    private JMenuItem mntmNewMenuItem_6;
+    private JMenuItem mntmNewMenuItem_7;
+    private JButton btnMiCuenta;
+    private JButton btnSignOut;
 
 	// Constructor de la clase PMiCuenta
 	public PMiCuenta() {
@@ -54,46 +64,65 @@ public class PMiCuenta extends JFrame {
 		setBounds(0, 0, 1024, 576);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		
+		menuNavegacion = new JMenuBar();
+        setJMenuBar(menuNavegacion);
 
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+        mnLigas = new JMenu("Ligas");
+        menuNavegacion.add(mnLigas);
+
+        mntmNewMenuItem = new JMenuItem("Ver ligas");
+        mnLigas.add(mntmNewMenuItem);
+
+        mntmNewMenuItem_5 = new JMenuItem("Crear liga");
+        mnLigas.add(mntmNewMenuItem_5);
+
+        mntmNewMenuItem_6 = new JMenuItem("Unirse a liga");
+        mnLigas.add(mntmNewMenuItem_6);
+
+        mnApuestas = new JMenu("Apuestas");
+        menuNavegacion.add(mnApuestas);
+
+        mntmNewMenuItem_1 = new JMenuItem("Mis apuestas");
+        mnApuestas.add(mntmNewMenuItem_1);
+
+        mntmNewMenuItem_7 = new JMenuItem("Apostar");
+        mnApuestas.add(mntmNewMenuItem_7);
+
+        mnEquipos = new JMenu("Equipos");
+        menuNavegacion.add(mnEquipos);
+
+        mntmNewMenuItem_3 = new JMenuItem("Unirse a equipo");
+        mnEquipos.add(mntmNewMenuItem_3);
+
+        mntmNewMenuItem_4 = new JMenuItem("Crear equipo");
+        mnEquipos.add(mntmNewMenuItem_4);
+        contentPane = new JPanel();
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+        btnMiCuenta = new JButton("Mi cuenta");
+        btnMiCuenta.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+        btnMiCuenta.setBounds(873, 19, 109, 23);
+        contentPane.add(btnMiCuenta);
+
+        btnSignOut = new JButton("Sign out");
+        btnSignOut.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+        btnSignOut.setBounds(873, 53, 109, 23);
+        contentPane.add(btnSignOut);
+
+
+
 		// Crea y agrega un JLabel para mostrar el título "Mi cuenta"
 		JLabel lblMiCuenta = new JLabel("Mi cuenta");
 		lblMiCuenta.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		lblMiCuenta.setBounds(440, 66, 158, 36);
 		contentPane.add(lblMiCuenta);
-		// Crea un nuevo panel para mostrar la barra de navegación
-		panel = new JPanel();
-		panel.setLayout(null);
-		panel.setForeground(Color.BLACK);
-		panel.setBackground(Color.CYAN);
-		panel.setBounds(66, 17, 885, 35);
-		contentPane.add(panel);
-		// Crea y agrega un JComboBox para mostrar las diferentes opciones de "Ligas"
-		comboBoxLigas = new JComboBox<Object>();
-		comboBoxLigas.setModel(
-				new DefaultComboBoxModel(new String[] { "Ligas", "Crear Liga", "Unirse a Liga", "Ver Ligas" }));
-		comboBoxLigas.setBounds(10, 0, 96, 35);
-		panel.add(comboBoxLigas);
-		// Crea y agrega un JComboBox para mostrar las diferentes opciones de "Apuestas"
-		comboBoxApuestas = new JComboBox<Object>();
-		comboBoxApuestas.setModel(new DefaultComboBoxModel(new String[] { "Apuestas", "Mis Apuestas", "Apostar" }));
-		comboBoxApuestas.setBounds(107, 0, 110, 35);
-		panel.add(comboBoxApuestas);
-		// Crea y agrega un JComboBox para mostrar las diferentes opciones de "Equipos"
-		comboBoxEquipos = new JComboBox<Object>();
-		comboBoxEquipos
-				.setModel(new DefaultComboBoxModel(new String[] { "Equipos", "Unirse a equipo", "Crear Equipo" }));
-		comboBoxEquipos.setBounds(215, 0, 103, 35);
-		panel.add(comboBoxEquipos);
-		// Crea y agrega un JButton para mostrar la opción "Mi Cuenta"
-		btnMiCuenta = new JButton("Mi Cuenta");
-		btnMiCuenta.setBounds(678, 0, 96, 35);
-		panel.add(btnMiCuenta);
-		// Crea y agrega un JButton para mostrar la opción "Sign Out"
-		btnSignOut = new JButton("Sign Out");
-		btnSignOut.setBounds(779, 0, 96, 35);
-		panel.add(btnSignOut);
 		// Crea y agrega un JLabel para mostrar el texto "Usuario:"
 		lblUsuario = new JLabel("Usuario:");
 		lblUsuario.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
@@ -186,5 +215,7 @@ public class PMiCuenta extends JFrame {
 		dateCalendario = new JDateChooser();
 		dateCalendario.setBounds(676, 267, 158, 26);
 		contentPane.add(dateCalendario);
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 	}
 }
