@@ -31,7 +31,7 @@ En total tenemos unas 12 pantallas repartidas asi:
 En esta página, será una ventana para poder recuperar tu contraseña si la has olvidado. Tienes varios JLabels donde te explica que tienes que hacer, como por ejemplo; Introduzca tu usuario o correo electronico.
 Tendras dos JTexteField donde seran los campos donde introduciras lo que te pide. También tendrás un boton de recuperar cuenta para cuando introduzcas en uno de los campos si le das se hara visible un Jlabel que tendrá un texto: "Revise su Correo".
 ## MiCuenta
-En esta cuenta el usuario podrá acceder a su cuenta de usuaria donde puede ver todos los datos que ingreso para registrarse: "Nombre","Usuario","Apellido","Apellido2","Telefono","Correo electronico","Fecha de nacimiento". También tendremos un buttom para 
+En esta cuenta el usuario podrá acceder a su cuenta de usuaria donde puede ver todos los datos que ingreso para registrarse: "Nombre","Usuario","Apellido","Apellido2","Telefono","Correo electronico","Fecha de nacimiento". También tendremos un buttom para poder modificiar los datos si un usuario quiere hacer algún ajuste.
 cambiar los datos del usuario.
 ## Unirse Liga
 ## Unirse Equipo
