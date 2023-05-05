@@ -1,3 +1,6 @@
+/*
+ * @autor Javier Turienzo
+ */
 package pantallas;
 
 import java.awt.Color;
@@ -67,13 +70,6 @@ public class CrearLiga extends JFrame {
 	private JButton btnCrear;
 	private JButton btnVolver;
 	private JDateChooser dateFecha;
-
-	public static void main(String[] args) {
-
-		CrearLiga frame = new CrearLiga();
-		frame.setVisible(true);
-
-	}
 
 	public CrearLiga() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -257,7 +253,7 @@ public class CrearLiga extends JFrame {
 		btnVolver = new JButton("Volver");
 		btnVolver.setBounds(62, 71, 89, 23);
 		contentPane.add(btnVolver);
-		
+
 		dateFecha = new JDateChooser();
 		dateFecha.setBounds(207, 227, 109, 20);
 		contentPane.add(dateFecha);
