@@ -22,18 +22,19 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.ImageIcon;
 
 public class PPrincipal extends JFrame {
+	// Atributos
 	private JPanel contentPane;
 	private JMenuBar menuNavegacion;
-	private JMenu mnNewMenu;
-	private JMenu mnNewMenu_1;
-	private JMenu mnNewMenu_2;
-	private JMenuItem mntmNewMenuItem;
-	private JMenuItem mntmNewMenuItem_1;
-	private JMenuItem mntmNewMenuItem_3;
-	private JMenuItem mntmNewMenuItem_4;
-	private JMenuItem mntmNewMenuItem_5;
-	private JMenuItem mntmNewMenuItem_6;
-	private JMenuItem mntmNewMenuItem_7;
+	private JMenu mnLigas;
+	private JMenu mnApuestas;
+	private JMenu mnEquipos;
+	private JMenuItem mntmVerLigas;
+	private JMenuItem mntmMisApuestas;
+	private JMenuItem mntmUnirseEquipo;
+	private JMenuItem mntmCrearEquipo;
+	private JMenuItem mntmCrearLigas;
+	private JMenuItem mntmUnirseALiga;
+	private JMenuItem mntmApostar;
 	private JButton btnMiCuenta;
 	private JButton btnSignOut;
 	private JTextField txtBuscar;
@@ -45,6 +46,7 @@ public class PPrincipal extends JFrame {
 	private JLabel lblBuscarLigas;
 	private JLabel lblAnuncio;
 
+	// Constructor
 	public PPrincipal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 576);
@@ -54,35 +56,35 @@ public class PPrincipal extends JFrame {
 		menuNavegacion = new JMenuBar();
 		setJMenuBar(menuNavegacion);
 
-		mnNewMenu = new JMenu("Ligas");
-		menuNavegacion.add(mnNewMenu);
+		mnLigas = new JMenu("Ligas");
+		menuNavegacion.add(mnLigas);
 
-		mntmNewMenuItem = new JMenuItem("Ver ligas");
-		mnNewMenu.add(mntmNewMenuItem);
+		mntmVerLigas = new JMenuItem("Ver ligas");
+		mnLigas.add(mntmVerLigas);
 
-		mntmNewMenuItem_5 = new JMenuItem("Crear liga");
-		mnNewMenu.add(mntmNewMenuItem_5);
+		mntmCrearLigas = new JMenuItem("Crear liga");
+		mnLigas.add(mntmCrearLigas);
 
-		mntmNewMenuItem_6 = new JMenuItem("Unirse a liga");
-		mnNewMenu.add(mntmNewMenuItem_6);
+		mntmUnirseALiga = new JMenuItem("Unirse a liga");
+		mnLigas.add(mntmUnirseALiga);
 
-		mnNewMenu_1 = new JMenu("Apuestas");
-		menuNavegacion.add(mnNewMenu_1);
+		mnApuestas = new JMenu("Apuestas");
+		menuNavegacion.add(mnApuestas);
 
-		mntmNewMenuItem_1 = new JMenuItem("Mis apuestas");
-		mnNewMenu_1.add(mntmNewMenuItem_1);
+		mntmMisApuestas = new JMenuItem("Mis apuestas");
+		mnApuestas.add(mntmMisApuestas);
 
-		mntmNewMenuItem_7 = new JMenuItem("Apostar");
-		mnNewMenu_1.add(mntmNewMenuItem_7);
+		mntmApostar = new JMenuItem("Apostar");
+		mnApuestas.add(mntmApostar);
 
-		mnNewMenu_2 = new JMenu("Equipos");
-		menuNavegacion.add(mnNewMenu_2);
+		mnEquipos = new JMenu("Equipos");
+		menuNavegacion.add(mnEquipos);
 
-		mntmNewMenuItem_3 = new JMenuItem("Unirse a equipo");
-		mnNewMenu_2.add(mntmNewMenuItem_3);
+		mntmUnirseEquipo = new JMenuItem("Unirse a equipo");
+		mnEquipos.add(mntmUnirseEquipo);
 
-		mntmNewMenuItem_4 = new JMenuItem("Crear equipo");
-		mnNewMenu_2.add(mntmNewMenuItem_4);
+		mntmCrearEquipo = new JMenuItem("Crear equipo");
+		mnEquipos.add(mntmCrearEquipo);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 

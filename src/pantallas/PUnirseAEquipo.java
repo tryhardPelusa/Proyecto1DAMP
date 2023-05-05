@@ -20,23 +20,24 @@ import java.awt.Color;
 
 public class PUnirseAEquipo extends JFrame {
 
+	// Atributos
 	private JPanel contentPane;
-	private JPanel contentPane_1;
 	private JMenuBar menuNavegacion;
-	private JMenu mnNewMenu;
-	private JMenu mnNewMenu_1;
-	private JMenu mnNewMenu_2;
-	private JMenuItem mntmNewMenuItem;
-	private JMenuItem mntmNewMenuItem_1;
-	private JMenuItem mntmNewMenuItem_3;
-	private JMenuItem mntmNewMenuItem_4;
-	private JMenuItem mntmNewMenuItem_5;
-	private JMenuItem mntmNewMenuItem_6;
-	private JMenuItem mntmNewMenuItem_7;
+	private JMenu mnLigas;
+	private JMenu mnApuestas;
+	private JMenu mnEquipos;
+	private JMenuItem mntmVerLigas;
+	private JMenuItem mntmMisApuestas;
+	private JMenuItem mntmUnirseaEquipo;
+	private JMenuItem mntmCrearEquipo;
+	private JMenuItem mntmCrearLiga;
+	private JMenuItem mntmUnirseALiga;
+	private JMenuItem mntmApostar;
 	private JButton btnMiCuenta;
 	private JButton btnSignOut;
 	private JTextField textFieldCodigoEquipo;
 
+	// Constructor
 	public PUnirseAEquipo() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 576);
@@ -45,38 +46,38 @@ public class PUnirseAEquipo extends JFrame {
 
 		menuNavegacion = new JMenuBar();
 		setJMenuBar(menuNavegacion);
-		mnNewMenu = new JMenu("Ligas");
-		menuNavegacion.add(mnNewMenu);
+		mnLigas = new JMenu("Ligas");
+		menuNavegacion.add(mnLigas);
 
-		mntmNewMenuItem = new JMenuItem("Ver ligas");
-		mnNewMenu.add(mntmNewMenuItem);
+		mntmVerLigas = new JMenuItem("Ver ligas");
+		mnLigas.add(mntmVerLigas);
 
-		mntmNewMenuItem_5 = new JMenuItem("Crear liga");
-		mnNewMenu.add(mntmNewMenuItem_5);
+		mntmCrearLiga = new JMenuItem("Crear liga");
+		mnLigas.add(mntmCrearLiga);
 
-		mntmNewMenuItem_6 = new JMenuItem("Unirse a liga");
-		mnNewMenu.add(mntmNewMenuItem_6);
+		mntmUnirseALiga = new JMenuItem("Unirse a liga");
+		mnLigas.add(mntmUnirseALiga);
 
-		mnNewMenu_1 = new JMenu("Apuestas");
-		menuNavegacion.add(mnNewMenu_1);
+		mnApuestas = new JMenu("Apuestas");
+		menuNavegacion.add(mnApuestas);
 
-		mntmNewMenuItem_1 = new JMenuItem("Mis apuestas");
-		mnNewMenu_1.add(mntmNewMenuItem_1);
+		mntmMisApuestas = new JMenuItem("Mis apuestas");
+		mnApuestas.add(mntmMisApuestas);
 
-		mntmNewMenuItem_7 = new JMenuItem("Apostar");
-		mnNewMenu_1.add(mntmNewMenuItem_7);
+		mntmApostar = new JMenuItem("Apostar");
+		mnApuestas.add(mntmApostar);
 
-		mnNewMenu_2 = new JMenu("Equipos");
-		menuNavegacion.add(mnNewMenu_2);
+		mnEquipos = new JMenu("Equipos");
+		menuNavegacion.add(mnEquipos);
 
-		mntmNewMenuItem_3 = new JMenuItem("Unirse a equipo");
-		mnNewMenu_2.add(mntmNewMenuItem_3);
+		mntmUnirseaEquipo = new JMenuItem("Unirse a equipo");
+		mnEquipos.add(mntmUnirseaEquipo);
 
-		mntmNewMenuItem_4 = new JMenuItem("Crear equipo");
-		mnNewMenu_2.add(mntmNewMenuItem_4);
+		mntmCrearEquipo = new JMenuItem("Crear equipo");
+		mnEquipos.add(mntmCrearEquipo);
 
-		contentPane_1 = new JPanel();
-		contentPane_1.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		btnMiCuenta = new JButton("Mi cuenta");
 		btnMiCuenta.addActionListener(new ActionListener() {
@@ -84,7 +85,7 @@ public class PUnirseAEquipo extends JFrame {
 			}
 		});
 		btnMiCuenta.setBounds(873, 19, 109, 23);
-		contentPane_1.add(btnMiCuenta);
+		contentPane.add(btnMiCuenta);
 
 		btnSignOut = new JButton("Sign out");
 		btnSignOut.addActionListener(new ActionListener() {
@@ -92,37 +93,37 @@ public class PUnirseAEquipo extends JFrame {
 			}
 		});
 		btnSignOut.setBounds(873, 53, 109, 23);
-		contentPane_1.add(btnSignOut);
+		contentPane.add(btnSignOut);
 		
-		setContentPane(contentPane_1);
-		contentPane_1.setLayout(null);
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
 		JLabel lblCodigoEquipo = new JLabel("Introduce el ID del equipo:");
 		lblCodigoEquipo.setBounds(101, 148, 202, 14);
-		contentPane_1.add(lblCodigoEquipo);
+		contentPane.add(lblCodigoEquipo);
 		
 		textFieldCodigoEquipo = new JTextField();
 		textFieldCodigoEquipo.setBounds(101, 173, 127, 20);
-		contentPane_1.add(textFieldCodigoEquipo);
+		contentPane.add(textFieldCodigoEquipo);
 		textFieldCodigoEquipo.setColumns(10);
 		
 		JButton btnUnirse = new JButton("Unirme");
 		btnUnirse.setBackground(new Color(0, 128, 255));
 		btnUnirse.setBounds(125, 204, 89, 23);
-		contentPane_1.add(btnUnirse);
+		contentPane.add(btnUnirse);
 		
 		JLabel lblImagen1 = new JLabel("");
 		lblImagen1.setIcon(new ImageIcon(PUnirseAEquipo.class.getResource("/img/el-equipo-de-f\u00FAtbol-del-deporte-con-el-entrenador-agrupe-la-foto-76609484.jpg")));
 		lblImagen1.setBounds(416, 79, 269, 185);
-		contentPane_1.add(lblImagen1);
+		contentPane.add(lblImagen1);
 		
 		JLabel lblImagen2 = new JLabel("");
 		lblImagen2.setIcon(new ImageIcon(PUnirseAEquipo.class.getResource("/img/istockphoto-1161534890-612x612.jpg")));
 		lblImagen2.setBounds(693, 265, 269, 185);
-		contentPane_1.add(lblImagen2);
+		contentPane.add(lblImagen2);
 		
 		JLabel lblNewLabel = new JLabel("Aqu\u00ED Aparecer\u00E1 si se ha podido unir correctamente al equipo ");
 		lblNewLabel.setBounds(36, 315, 375, 125);
-		contentPane_1.add(lblNewLabel);
+		contentPane.add(lblNewLabel);
 	}
 }
