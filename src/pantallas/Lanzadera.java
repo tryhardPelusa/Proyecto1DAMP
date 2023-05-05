@@ -1,7 +1,7 @@
 /**
  * @author daniel
  */
-package pantallas;
+package pantallas; 
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
