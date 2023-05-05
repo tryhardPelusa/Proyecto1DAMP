@@ -42,19 +42,19 @@ public class PMiCuenta extends JFrame {
 	private JLabel lblFecha;
 	private JButton btnCambiar;
 	private JDateChooser dateCalendario;
-    private JMenuBar menuNavegacion;
-    private JMenu mnLigas;
-    private JMenu mnApuestas;
-    private JMenu mnEquipos;
-    private JMenuItem mntmNewMenuItem;
-    private JMenuItem mntmNewMenuItem_1;
-    private JMenuItem mntmNewMenuItem_3;
-    private JMenuItem mntmNewMenuItem_4;
-    private JMenuItem mntmNewMenuItem_5;
-    private JMenuItem mntmNewMenuItem_6;
-    private JMenuItem mntmNewMenuItem_7;
-    private JButton btnMiCuenta;
-    private JButton btnSignOut;
+	private JMenuBar menuNavegacion;
+	private JMenu mnLigas;
+	private JMenu mnApuestas;
+	private JMenu mnEquipos;
+	private JMenuItem mntmNewMenuItem;
+	private JMenuItem mntmNewMenuItem_1;
+	private JMenuItem mntmNewMenuItem_3;
+	private JMenuItem mntmNewMenuItem_4;
+	private JMenuItem mntmNewMenuItem_5;
+	private JMenuItem mntmNewMenuItem_6;
+	private JMenuItem mntmNewMenuItem_7;
+	private JButton btnMiCuenta;
+	private JButton btnSignOut;
 
 	// Constructor de la clase PMiCuenta
 	public PMiCuenta() {
@@ -64,59 +64,57 @@ public class PMiCuenta extends JFrame {
 		setBounds(0, 0, 1024, 576);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		
+		// Creacion de un JmenuBar donde tendremos todos los items
 		menuNavegacion = new JMenuBar();
-        setJMenuBar(menuNavegacion);
+		setJMenuBar(menuNavegacion);
 
-        mnLigas = new JMenu("Ligas");
-        menuNavegacion.add(mnLigas);
+		mnLigas = new JMenu("Ligas");
+		menuNavegacion.add(mnLigas);
 
-        mntmNewMenuItem = new JMenuItem("Ver ligas");
-        mnLigas.add(mntmNewMenuItem);
+		mntmNewMenuItem = new JMenuItem("Ver ligas");
+		mnLigas.add(mntmNewMenuItem);
 
-        mntmNewMenuItem_5 = new JMenuItem("Crear liga");
-        mnLigas.add(mntmNewMenuItem_5);
+		mntmNewMenuItem_5 = new JMenuItem("Crear liga");
+		mnLigas.add(mntmNewMenuItem_5);
 
-        mntmNewMenuItem_6 = new JMenuItem("Unirse a liga");
-        mnLigas.add(mntmNewMenuItem_6);
+		mntmNewMenuItem_6 = new JMenuItem("Unirse a liga");
+		mnLigas.add(mntmNewMenuItem_6);
 
-        mnApuestas = new JMenu("Apuestas");
-        menuNavegacion.add(mnApuestas);
+		mnApuestas = new JMenu("Apuestas");
+		menuNavegacion.add(mnApuestas);
 
-        mntmNewMenuItem_1 = new JMenuItem("Mis apuestas");
-        mnApuestas.add(mntmNewMenuItem_1);
+		mntmNewMenuItem_1 = new JMenuItem("Mis apuestas");
+		mnApuestas.add(mntmNewMenuItem_1);
 
-        mntmNewMenuItem_7 = new JMenuItem("Apostar");
-        mnApuestas.add(mntmNewMenuItem_7);
+		mntmNewMenuItem_7 = new JMenuItem("Apostar");
+		mnApuestas.add(mntmNewMenuItem_7);
 
-        mnEquipos = new JMenu("Equipos");
-        menuNavegacion.add(mnEquipos);
+		mnEquipos = new JMenu("Equipos");
+		menuNavegacion.add(mnEquipos);
 
-        mntmNewMenuItem_3 = new JMenuItem("Unirse a equipo");
-        mnEquipos.add(mntmNewMenuItem_3);
+		mntmNewMenuItem_3 = new JMenuItem("Unirse a equipo");
+		mnEquipos.add(mntmNewMenuItem_3);
 
-        mntmNewMenuItem_4 = new JMenuItem("Crear equipo");
-        mnEquipos.add(mntmNewMenuItem_4);
-        contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-        btnMiCuenta = new JButton("Mi cuenta");
-        btnMiCuenta.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
-        btnMiCuenta.setBounds(873, 19, 109, 23);
-        contentPane.add(btnMiCuenta);
-
-        btnSignOut = new JButton("Sign out");
-        btnSignOut.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
-        btnSignOut.setBounds(873, 53, 109, 23);
-        contentPane.add(btnSignOut);
-
-
+		mntmNewMenuItem_4 = new JMenuItem("Crear equipo");
+		mnEquipos.add(mntmNewMenuItem_4);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		// Creamos un Button de mi cuenta para acceder al usuario
+		btnMiCuenta = new JButton("Mi cuenta");
+		btnMiCuenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnMiCuenta.setBounds(873, 19, 109, 23);
+		contentPane.add(btnMiCuenta);
+		// Creamos un buttom donde hara la funcion de salir cerrar sesion
+		btnSignOut = new JButton("Sign out");
+		btnSignOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnSignOut.setBounds(873, 53, 109, 23);
+		contentPane.add(btnSignOut);
 
 		// Crea y agrega un JLabel para mostrar el título "Mi cuenta"
 		JLabel lblMiCuenta = new JLabel("Mi cuenta");
