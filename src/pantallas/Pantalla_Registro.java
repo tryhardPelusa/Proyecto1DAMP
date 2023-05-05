@@ -42,7 +42,6 @@ public class Pantalla_Registro extends JFrame {
 	private JMenuItem mntmNewMenuItem_6;
 	private JMenuItem mntmNewMenuItem_7;
 	private JButton btnMiCuenta;
-	private JButton btnSignOut;
 	private JLabel lblUser;
 	private JTextField txtUser;
 	private JLabel lblApellido1;
@@ -64,9 +63,6 @@ public class Pantalla_Registro extends JFrame {
 	private JDateChooser FechaNaci;
 
 	public Pantalla_Registro() {
-		btnSignOut.setBounds(873, 53, 109, 23);
-		contentPane.add(btnSignOut);
-
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 576);
 		contentPane = new JPanel();
