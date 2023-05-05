@@ -1,3 +1,6 @@
+/**
+ * @author Daniel
+ */
 package pantallas;
 
 import java.awt.Color;
@@ -41,13 +44,6 @@ public class PPrincipal extends JFrame {
 	private JScrollPane scrollPaneLigasPrivadas;
 	private JLabel lblBuscarLigas;
 	private JLabel lblAnuncio;
-
-	public static void main(String[] args) {
-
-		PPrincipal frame = new PPrincipal();
-		frame.setVisible(true);
-
-	}
 
 	public PPrincipal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

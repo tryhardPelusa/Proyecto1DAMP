@@ -1,3 +1,6 @@
+/**
+ * @author Daniel
+ */
 package pantallas;
 
 import java.awt.event.ActionEvent;
@@ -33,11 +36,6 @@ public class PUnirseAEquipo extends JFrame {
 	private JButton btnMiCuenta;
 	private JButton btnSignOut;
 	private JTextField textFieldCodigoEquipo;
-
-	public static void main(String[] args) {
-		PUnirseAEquipo frame = new PUnirseAEquipo();
-		frame.setVisible(true);
-	}
 
 	public PUnirseAEquipo() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -124,7 +122,7 @@ public class PUnirseAEquipo extends JFrame {
 		contentPane_1.add(lblImagen2);
 		
 		JLabel lblNewLabel = new JLabel("Aqu\u00ED Aparecer\u00E1 si se ha podido unir correctamente al equipo ");
-		lblNewLabel.setBounds(36, 315, 328, 125);
+		lblNewLabel.setBounds(36, 315, 375, 125);
 		contentPane_1.add(lblNewLabel);
 	}
 }
