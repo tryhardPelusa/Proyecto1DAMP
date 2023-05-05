@@ -38,8 +38,10 @@ cambiar los datos del usuario.
 ## Unirse Equipo
 ## Crear Ligas
 ## Crear Equipos
+Esta pantalla es la que el usuario usa para dar de alta un equipo nuevo, tendra que dar informacion sobre el nombre, el deporte, y su sede o lugar (si asi lo desea donde se realizaran los partidos "en casa"). Aparte cuenta con el boton "Crear" que da de alta el equipo con los datos introducidos.
 ## Pantalla Ligas
 ## Liga especifica
+En esta pantalla se mostrara la clasificacion y el calendario de una liga en concreto. Dentro de la clasificacion estara el ranking en si de la liga, con puntuacion, partidos jugados, goles...etc., tipicos de cualquier ranking de liga de futbol. En la pestaña de calendario esta el calendario de partidos que van a tener lugar entre todos los integrantes de la liga.
 ## Equipo Especifico
 ## Apuestas
 ## Mis Apuestas
