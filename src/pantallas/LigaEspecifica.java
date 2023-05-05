@@ -17,8 +17,15 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
+/**
+ * 
+ * @author josem
+ *
+ */
+
 public class LigaEspecifica extends JFrame {
 
+	//Creamos las variables siguiendo las convenciones al nombrarlas
 	private JPanel contentPane;
 	private JMenuBar menuNavegacion;
 	private JMenu mnMenuLigas;
@@ -49,12 +56,15 @@ public class LigaEspecifica extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 576);
 
+		//Crea menu navegacion de la ventana principal
 		menuNavegacion = new JMenuBar();
 		setJMenuBar(menuNavegacion);
 
+		//Crea la opcion de los botones del menu principal, en este caso, de "Ligas"
 		mnMenuLigas = new JMenu("Ligas");
 		menuNavegacion.add(mnMenuLigas);
-
+		
+		//Crea los items de "Ligas"
 		mntmVerLigas = new JMenuItem("Ver ligas");
 		mnMenuLigas.add(mntmVerLigas);
 
@@ -64,18 +74,22 @@ public class LigaEspecifica extends JFrame {
 		mntmUnirseLiga = new JMenuItem("Unirse a liga");
 		mnMenuLigas.add(mntmUnirseLiga);
 
+		//Crea la otra opcion "Apuestas" del menu principal
 		mnMenuApuestas = new JMenu("Apuestas");
 		menuNavegacion.add(mnMenuApuestas);
 
+		//El siguiente codigo crea el desplegable de la opcion "Apuestas"
 		mntmMisApuestas = new JMenuItem("Mis apuestas");
 		mnMenuApuestas.add(mntmMisApuestas);
 
 		mntmApostar = new JMenuItem("Apostar");
 		mnMenuApuestas.add(mntmApostar);
 
+		//Crea la opcion "Equipos" del menu
 		mnMenuEquipos = new JMenu("Equipos");
 		menuNavegacion.add(mnMenuEquipos);
 
+		//Crea los items desplegables de la opcion "Equipos" del menu principal
 		mntmUnirseEquipo = new JMenuItem("Unirse a equipo");
 		mnMenuEquipos.add(mntmUnirseEquipo);
 
@@ -86,6 +100,7 @@ public class LigaEspecifica extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		//Crea boton "Mi cuenta"
 		btnMiCuenta = new JButton("Mi cuenta");
 		btnMiCuenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -94,6 +109,7 @@ public class LigaEspecifica extends JFrame {
 		btnMiCuenta.setBounds(873, 19, 109, 23);
 		contentPane.add(btnMiCuenta);
 
+		//Crea boton de "Sign out"
 		btnSignOut = new JButton("Sign out");
 		btnSignOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -102,36 +118,44 @@ public class LigaEspecifica extends JFrame {
 		btnSignOut.setBounds(873, 53, 109, 23);
 		contentPane.add(btnSignOut);
 
+		//Crea el texto de la pantalla actual, en la que se vera el nombre de la liga en concreto que estemos viendo
 		lblNombreLiga = new JLabel("Liga DAM U-Tad");
 		lblNombreLiga.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNombreLiga.setFont(new Font("Tahoma", Font.PLAIN, 36));
 		lblNombreLiga.setBounds(238, 19, 372, 83);
 		contentPane.add(lblNombreLiga);
 
+		//Boton para ver equipo concreto de los equipos de la liga que se esta mostrando
 		btnVerEquipo = new JButton("Ver equipo");
 		btnVerEquipo.setBounds(717, 174, 109, 23);
 		contentPane.add(btnVerEquipo);
 
+		//Crea boton para apostar
 		btnApostar = new JButton("Apostar");
 		btnApostar.setBounds(717, 208, 109, 23);
 		contentPane.add(btnApostar);
 
+		//Crea boton para poder introducir los datos relativos a la liga, por parte del administrador
 		btnModificar = new JButton("Modificar");
 		btnModificar.setBounds(717, 242, 109, 23);
 		contentPane.add(btnModificar);
 
+		//Crea el contenedor para poder poner las pestañas 
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(225, 126, 429, 206);
 		contentPane.add(tabbedPane);
 
+		//Crea el panel de "Clasificacion"
 		panelClasificacion = new JPanel();
 		tabbedPane.addTab("Clasificacion", null, panelClasificacion, null);
 		panelClasificacion.setLayout(null);
 
+		//Se crea el scrollpanel para poder meter la clasificacion y su tabla dentro
 		scrollPaneClasificacion = new JScrollPane();
 		scrollPaneClasificacion.setBounds(0, 0, 424, 178);
 		panelClasificacion.add(scrollPaneClasificacion);
 
+		//Tabla con los resultados de la liga
 		tableClasificacion = new JTable();
 		tableClasificacion.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -152,14 +176,17 @@ public class LigaEspecifica extends JFrame {
 		));
 		scrollPaneClasificacion.setViewportView(tableClasificacion);
 
+		//Crea el panel de "Calendario"
 		panelCalendario = new JPanel();
 		tabbedPane.addTab("Calendario", null, panelCalendario, null);
 		panelCalendario.setLayout(null);
 
+		//Se crea el scrollpanel para poder meter el calendario y su tabla dentro
 		scrollPaneCalendario = new JScrollPane();
 		scrollPaneCalendario.setBounds(0, 0, 424, 178);
 		panelCalendario.add(scrollPaneCalendario);
 
+		//Crea la tabla del calendario
 		tableCalendario = new JTable();
 		tableCalendario.setModel(new DefaultTableModel(
 			new Object[][] {
