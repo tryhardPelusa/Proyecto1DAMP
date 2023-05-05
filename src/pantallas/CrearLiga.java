@@ -1,5 +1,5 @@
 /*
- * @autor Javier Turienzo
+ * @Author Javier Turienzo
  */
 package pantallas;
 
@@ -30,6 +30,7 @@ import com.toedter.calendar.JDateChooser;
 
 public class CrearLiga extends JFrame {
 
+	// Atributos
 	private JPanel contentPane;
 	private JMenuBar menuNavegacion;
 	private JMenu mnNewMenu;
@@ -71,6 +72,7 @@ public class CrearLiga extends JFrame {
 	private JButton btnVolver;
 	private JDateChooser dateFecha;
 
+	// Constructor
 	public CrearLiga() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 576);
@@ -164,17 +166,22 @@ public class CrearLiga extends JFrame {
 		lblPrivacidad.setBounds(92, 271, 105, 14);
 		contentPane.add(lblPrivacidad);
 
+		// ButtonGroup para hacer exclusiva la selección de privacidad
 		privacidad = new ButtonGroup();
 
 		rdbtnPublica = new JRadioButton("Pública");
 		rdbtnPublica.setBounds(204, 267, 80, 23);
 		contentPane.add(rdbtnPublica);
+
+		// Añadir el boton pública al ButtonGroup
 		privacidad.add(rdbtnPublica);
 
 		rdbtnPrivada = new JRadioButton("Privada");
 		rdbtnPrivada.setSelected(true);
 		rdbtnPrivada.setBounds(286, 267, 109, 23);
 		contentPane.add(rdbtnPrivada);
+
+		// Añadir el boton privada al ButtonGroup
 		privacidad.add(rdbtnPrivada);
 
 		lblSede = new JLabel("Sede");
