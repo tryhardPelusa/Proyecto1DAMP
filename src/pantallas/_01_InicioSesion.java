@@ -22,7 +22,7 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class Login extends JFrame {
+public class _01_InicioSesion extends JFrame {
 
 	// Atributos
 	private JPanel contentPane;
@@ -46,7 +46,7 @@ public class Login extends JFrame {
 	private JLabel lblRestaurarPwd;
 
 	// Constructor
-	public Login() {
+	public _01_InicioSesion() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 576);
 

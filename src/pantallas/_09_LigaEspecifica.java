@@ -23,7 +23,7 @@ import javax.swing.JScrollPane;
  *
  */
 
-public class LigaEspecifica extends JFrame {
+public class _09_LigaEspecifica extends JFrame {
 
 	//Creamos las variables siguiendo las convenciones al nombrarlas
 	private JPanel contentPane;
@@ -52,7 +52,7 @@ public class LigaEspecifica extends JFrame {
 	private JScrollPane scrollPaneClasificacion;
 	private JScrollPane scrollPaneCalendario;
 
-	public LigaEspecifica() {
+	public _09_LigaEspecifica() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 576);
 

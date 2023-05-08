@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 
-public class Pantalla_UnirseLiga extends JFrame {
+public class _05_UnirseLiga extends JFrame {
 
 	private JPanel contentPane;
 	private JMenuBar menuNavegacion;
@@ -37,7 +37,7 @@ public class Pantalla_UnirseLiga extends JFrame {
 	private JLabel lblunirse;
 	private JLabel lblUnirse;
 
-	public Pantalla_UnirseLiga() {
+	public _05_UnirseLiga() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 576);
 		// creamos todos los menus de la barra superior
@@ -140,13 +140,13 @@ public class Pantalla_UnirseLiga extends JFrame {
 		contentPane.add(btnNewButton_1);
 
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(Pantalla_UnirseLiga.class.getResource(
+		lblNewLabel_1.setIcon(new ImageIcon(_05_UnirseLiga.class.getResource(
 				"/img/el-equipo-de-f\u00FAtbol-del-deporte-con-el-entrenador-agrupe-la-foto-76609484.jpg")));
 		lblNewLabel_1.setBounds(42, 298, 369, 223);
 		contentPane.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon(Pantalla_UnirseLiga.class.getResource("/img/publicidad2.png")));
+		lblNewLabel_2.setIcon(new ImageIcon(_05_UnirseLiga.class.getResource("/img/publicidad2.png")));
 		lblNewLabel_2.setBounds(764, 167, 154, 256);
 		contentPane.add(lblNewLabel_2);
 	}

@@ -28,7 +28,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import com.toedter.calendar.JDateChooser;
 
-public class CrearLiga extends JFrame {
+public class _07_CrearLigas extends JFrame {
 
 	// Atributos
 	private JPanel contentPane;
@@ -73,7 +73,7 @@ public class CrearLiga extends JFrame {
 	private JDateChooser dateFecha;
 
 	// Constructor
-	public CrearLiga() {
+	public _07_CrearLigas() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 576);
 

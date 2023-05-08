@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 
-public class PUnirseAEquipo extends JFrame {
+public class _06_UnirseEquipo extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel contentPane_1;
@@ -37,7 +37,7 @@ public class PUnirseAEquipo extends JFrame {
 	private JButton btnSignOut;
 	private JTextField textFieldCodigoEquipo;
 
-	public PUnirseAEquipo() {
+	public _06_UnirseEquipo() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 576);
 		contentPane = new JPanel();
@@ -112,12 +112,12 @@ public class PUnirseAEquipo extends JFrame {
 		contentPane_1.add(btnUnirse);
 		
 		JLabel lblImagen1 = new JLabel("");
-		lblImagen1.setIcon(new ImageIcon(PUnirseAEquipo.class.getResource("/img/el-equipo-de-f\u00FAtbol-del-deporte-con-el-entrenador-agrupe-la-foto-76609484.jpg")));
+		lblImagen1.setIcon(new ImageIcon(_06_UnirseEquipo.class.getResource("/img/el-equipo-de-f\u00FAtbol-del-deporte-con-el-entrenador-agrupe-la-foto-76609484.jpg")));
 		lblImagen1.setBounds(416, 79, 269, 185);
 		contentPane_1.add(lblImagen1);
 		
 		JLabel lblImagen2 = new JLabel("");
-		lblImagen2.setIcon(new ImageIcon(PUnirseAEquipo.class.getResource("/img/istockphoto-1161534890-612x612.jpg")));
+		lblImagen2.setIcon(new ImageIcon(_06_UnirseEquipo.class.getResource("/img/istockphoto-1161534890-612x612.jpg")));
 		lblImagen2.setBounds(693, 265, 269, 185);
 		contentPane_1.add(lblImagen2);
 		

@@ -18,7 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 //Clase principal POlvido que extiende de JFrame
-public class POlvido extends JFrame {
+public class _03_RecuperarCuenta extends JFrame {
 	// Declaración de componentes de la interfaz
 	private JPanel contentPane;
 	private JLabel lblTituloAcceder;
@@ -32,7 +32,7 @@ public class POlvido extends JFrame {
 	private JLabel lblRevise;
 
 	// Constructor de la clase POlvido
-	public POlvido() {
+	public _03_RecuperarCuenta() {
 		// Configuración básica de la ventana
 		setTitle("Pagina Olvido");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

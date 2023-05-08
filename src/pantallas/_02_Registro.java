@@ -27,7 +27,7 @@ import javax.swing.JTextArea;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
-public class Pantalla_Registro extends JFrame {
+public class _02_Registro extends JFrame {
 
 	private JPanel contentPane;
 	private JMenuBar menuNavegacion;
@@ -62,7 +62,7 @@ public class Pantalla_Registro extends JFrame {
 	private JTextArea txtrSeAadiran;
 	private JDateChooser FechaNaci;
 
-	public Pantalla_Registro() {
+	public _02_Registro() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 576);
 		contentPane = new JPanel();

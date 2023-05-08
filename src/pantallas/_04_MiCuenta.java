@@ -22,7 +22,7 @@ import javax.swing.border.EmptyBorder;
 import com.toedter.calendar.JDateChooser;
 
 //Clase principal PMiCuenta que extiende de JFrame
-public class PMiCuenta extends JFrame {
+public class _04_MiCuenta extends JFrame {
 	// Declaración de componentes de la interfaz
 	private JPanel contentPane;
 	private JLabel lblUsuario;
@@ -57,7 +57,7 @@ public class PMiCuenta extends JFrame {
 	private JButton btnSignOut;
 
 	// Constructor de la clase PMiCuenta
-	public PMiCuenta() {
+	public _04_MiCuenta() {
 		// Configuración básica de la ventana
 		setTitle("Pagina Registro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

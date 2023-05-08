@@ -19,7 +19,7 @@ import java.awt.FlowLayout;
 import javax.swing.JTextPane;
 import javax.swing.DropMode;
 
-public class Pantalla_EquipoEspecifico extends JFrame {
+public class _10_EquipoEspecifico extends JFrame {
 
 	private JPanel contentPane;
 	private JMenuBar menuNavegacion;
@@ -43,7 +43,7 @@ public class Pantalla_EquipoEspecifico extends JFrame {
 	private JLabel lblLigas;
 	private JTextArea txtrligas;
 
-	public Pantalla_EquipoEspecifico() {
+	public _10_EquipoEspecifico() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 576);
 

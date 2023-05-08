@@ -20,7 +20,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import java.awt.Color;
 
-public class MisApuestas extends JFrame {
+public class _12_MisApuestas extends JFrame {
 
 	// Atributos
 	private JPanel contentPane;
@@ -69,7 +69,7 @@ public class MisApuestas extends JFrame {
 	private JLabel lblNewLabel_2;
 
 	// Constructor
-	public MisApuestas() {
+	public _12_MisApuestas() {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 576);

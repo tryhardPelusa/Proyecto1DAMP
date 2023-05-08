@@ -19,7 +19,7 @@ import javax.swing.JTextField;
  * @author josem
  *
  */
-public class CrearEquipo extends JFrame {
+public class _08_CrearEquipos extends JFrame {
 
 	//Creamos las variables siguiendo las convenciones al nombrarlas
 	private JPanel contentPane;
@@ -45,7 +45,7 @@ public class CrearEquipo extends JFrame {
 	private JTextField txtDeporte;
 	private JButton btnCrear;
 
-	public CrearEquipo() {
+	public _08_CrearEquipos() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 576);
 

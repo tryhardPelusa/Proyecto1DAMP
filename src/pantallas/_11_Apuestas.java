@@ -26,7 +26,7 @@ import javax.swing.JSpinner;
 import java.awt.Color;
 import javax.swing.SpinnerNumberModel;
 
-public class Apuestas extends JFrame {
+public class _11_Apuestas extends JFrame {
 
 	// Atributos
 	private JPanel contentPane;
@@ -91,7 +91,7 @@ public class Apuestas extends JFrame {
 	private JButton btnConfirmar;
 
 	// Constructor
-	public Apuestas() {
+	public _11_Apuestas() {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 576);

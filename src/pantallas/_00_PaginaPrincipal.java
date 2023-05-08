@@ -21,7 +21,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ImageIcon;
 
-public class PPrincipal extends JFrame {
+public class _00_PaginaPrincipal extends JFrame {
 	private JPanel contentPane;
 	private JMenuBar menuNavegacion;
 	private JMenu mnNewMenu;
@@ -45,7 +45,7 @@ public class PPrincipal extends JFrame {
 	private JLabel lblBuscarLigas;
 	private JLabel lblAnuncio;
 
-	public PPrincipal() {
+	public _00_PaginaPrincipal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 576);
 		contentPane = new JPanel();
@@ -144,7 +144,7 @@ public class PPrincipal extends JFrame {
 		scrollPaneLigasPrivadas.setViewportView(tableLigasPrivadas);
 
 		lblAnuncio = new JLabel("");
-		lblAnuncio.setIcon(new ImageIcon(PPrincipal.class.getResource("/img/publicidad2.png")));
+		lblAnuncio.setIcon(new ImageIcon(_00_PaginaPrincipal.class.getResource("/img/publicidad2.png")));
 		lblAnuncio.setBounds(792, 195, 187, 287);
 		contentPane.add(lblAnuncio);
 		

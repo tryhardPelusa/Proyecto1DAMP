@@ -17,19 +17,19 @@ public class Lanzadera extends JFrame {
 	// Creamos los frames de las pantallas
 	private JPanel contentPane;
 	private static Lanzadera main = new Lanzadera();
-	private Login login = new Login();
-	private Pantalla_Registro registro = new Pantalla_Registro();
-	private POlvido olvido = new POlvido();
-	private PMiCuenta miCuenta = new PMiCuenta();
-	private PPrincipal principal = new PPrincipal();
-	private CrearLiga crearLiga = new CrearLiga();
-	private LigaEspecifica ligaEspecifica = new LigaEspecifica();
-	private Pantalla_UnirseLiga unirseLiga = new Pantalla_UnirseLiga();
-	private PUnirseAEquipo unirseEquipo = new PUnirseAEquipo();
-	private CrearEquipo crearEquipo = new CrearEquipo();
-	private Pantalla_EquipoEspecifico equipoEspecifico = new Pantalla_EquipoEspecifico();
-	private Apuestas apuestas = new Apuestas();
-	private MisApuestas misApuestas = new MisApuestas();
+	private _01_InicioSesion login = new _01_InicioSesion();
+	private _02_Registro registro = new _02_Registro();
+	private _03_RecuperarCuenta olvido = new _03_RecuperarCuenta();
+	private _04_MiCuenta miCuenta = new _04_MiCuenta();
+	private _00_PaginaPrincipal principal = new _00_PaginaPrincipal();
+	private _07_CrearLigas crearLiga = new _07_CrearLigas();
+	private _09_LigaEspecifica ligaEspecifica = new _09_LigaEspecifica();
+	private _05_UnirseLiga unirseLiga = new _05_UnirseLiga();
+	private _06_UnirseEquipo unirseEquipo = new _06_UnirseEquipo();
+	private _08_CrearEquipos crearEquipo = new _08_CrearEquipos();
+	private _10_EquipoEspecifico equipoEspecifico = new _10_EquipoEspecifico();
+	private _11_Apuestas apuestas = new _11_Apuestas();
+	private _12_MisApuestas misApuestas = new _12_MisApuestas();
 
 	// Main
 	public static void main(String[] args) {
