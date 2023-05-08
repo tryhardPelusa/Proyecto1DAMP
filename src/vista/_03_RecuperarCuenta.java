@@ -1,7 +1,7 @@
 /**
  * @author Guillermo Callizaya
  */
-package pantallas;
+package vista;
 
 //Importación de clases de Java
 import java.awt.EventQueue;

@@ -1,5 +1,5 @@
 /*@autor: Raúl Fernández*/
-package pantallas;
+package vista;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;

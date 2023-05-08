@@ -1,7 +1,7 @@
 /**
  * @author Daniel
  */
-package pantallas;
+package vista;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
