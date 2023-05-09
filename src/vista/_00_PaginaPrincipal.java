@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,9 +20,14 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.ImageIcon;
 
-public class _00_PaginaPrincipal extends JFrame {
+import controlador.Controlador;
+import modelo.Modelo;
+
+public class _00_PaginaPrincipal extends JFrame implements Vista {
+	private Controlador miControlador;
+	private Modelo miModelo;
+
 	private JPanel contentPane;
 	private JMenuBar menuNavegacion;
 	private JMenu mnNewMenu;
@@ -147,8 +153,20 @@ public class _00_PaginaPrincipal extends JFrame {
 		lblAnuncio.setIcon(new ImageIcon(_00_PaginaPrincipal.class.getResource("/img/publicidad2.png")));
 		lblAnuncio.setBounds(792, 195, 187, 287);
 		contentPane.add(lblAnuncio);
-		
+
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 	}
+
+	@Override
+	public void setModelo(Modelo miModelo) {
+		this.miModelo = miModelo;
+
+	}
+
+	@Override
+	public void setControlador(Controlador miControlador) {
+		this.miControlador = miControlador;
+	}
+
 }

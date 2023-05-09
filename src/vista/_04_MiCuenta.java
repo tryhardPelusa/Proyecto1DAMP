@@ -21,9 +21,15 @@ import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.JDateChooser;
 
+import controlador.Controlador;
+import modelo.Modelo;
+
 //Clase principal PMiCuenta que extiende de JFrame
-public class _04_MiCuenta extends JFrame {
+public class _04_MiCuenta extends JFrame implements Vista {
 	// Declaración de componentes de la interfaz
+	private Controlador miControlador;
+	private Modelo miModelo;
+
 	private JPanel contentPane;
 	private JLabel lblUsuario;
 	private JTextField txtUsuario;
@@ -215,5 +221,16 @@ public class _04_MiCuenta extends JFrame {
 		contentPane.add(dateCalendario);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+	}
+
+	@Override
+	public void setModelo(Modelo miModelo) {
+		this.miModelo = miModelo;
+
+	}
+
+	@Override
+	public void setControlador(Controlador miControlador) {
+		this.miControlador = miControlador;
 	}
 }

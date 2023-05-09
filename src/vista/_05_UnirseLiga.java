@@ -4,6 +4,10 @@ package vista;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controlador.Controlador;
+import modelo.Modelo;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -16,7 +20,9 @@ import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 
-public class _05_UnirseLiga extends JFrame {
+public class _05_UnirseLiga extends JFrame implements Vista {
+	private Controlador miControlador;
+	private Modelo miModelo;
 
 	private JPanel contentPane;
 	private JMenuBar menuNavegacion;
@@ -149,5 +155,16 @@ public class _05_UnirseLiga extends JFrame {
 		lblNewLabel_2.setIcon(new ImageIcon(_05_UnirseLiga.class.getResource("/img/publicidad2.png")));
 		lblNewLabel_2.setBounds(764, 167, 154, 256);
 		contentPane.add(lblNewLabel_2);
+	}
+
+	@Override
+	public void setModelo(Modelo miModelo) {
+		this.miModelo = miModelo;
+
+	}
+
+	@Override
+	public void setControlador(Controlador miControlador) {
+		this.miControlador = miControlador;
 	}
 }

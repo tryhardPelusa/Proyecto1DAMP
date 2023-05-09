@@ -4,6 +4,10 @@ package vista;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controlador.Controlador;
+import modelo.Modelo;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -19,7 +23,10 @@ import java.awt.FlowLayout;
 import javax.swing.JTextPane;
 import javax.swing.DropMode;
 
-public class _10_EquipoEspecifico extends JFrame {
+public class _10_EquipoEspecifico extends JFrame implements Vista {
+
+	private Controlador miControlador;
+	private Modelo miModelo;
 
 	private JPanel contentPane;
 	private JMenuBar menuNavegacion;
@@ -163,5 +170,16 @@ public class _10_EquipoEspecifico extends JFrame {
 		txtrligas.setText("-liga A\r\n-Liga B\r\n-Liga C\r\n-Liga D");
 		txtrligas.setBounds(36, 36, 210, 256);
 		panel_2.add(txtrligas);
+	}
+
+	@Override
+	public void setModelo(Modelo miModelo) {
+		this.miModelo = miModelo;
+
+	}
+
+	@Override
+	public void setControlador(Controlador miControlador) {
+		this.miControlador = miControlador;
 	}
 }

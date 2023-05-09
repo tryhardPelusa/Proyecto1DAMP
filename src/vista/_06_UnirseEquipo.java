@@ -13,12 +13,18 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controlador.Controlador;
+import modelo.Modelo;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 
-public class _06_UnirseEquipo extends JFrame {
+public class _06_UnirseEquipo extends JFrame implements Vista {
+	private Controlador miControlador;
+	private Modelo miModelo;
 
 	private JPanel contentPane;
 	private JPanel contentPane_1;
@@ -93,36 +99,49 @@ public class _06_UnirseEquipo extends JFrame {
 		});
 		btnSignOut.setBounds(873, 53, 109, 23);
 		contentPane_1.add(btnSignOut);
-		
+
 		setContentPane(contentPane_1);
 		contentPane_1.setLayout(null);
-		
+
 		JLabel lblCodigoEquipo = new JLabel("Introduce el ID del equipo:");
 		lblCodigoEquipo.setBounds(101, 148, 202, 14);
 		contentPane_1.add(lblCodigoEquipo);
-		
+
 		textFieldCodigoEquipo = new JTextField();
 		textFieldCodigoEquipo.setBounds(101, 173, 127, 20);
 		contentPane_1.add(textFieldCodigoEquipo);
 		textFieldCodigoEquipo.setColumns(10);
-		
+
 		JButton btnUnirse = new JButton("Unirme");
 		btnUnirse.setBackground(new Color(0, 128, 255));
 		btnUnirse.setBounds(125, 204, 89, 23);
 		contentPane_1.add(btnUnirse);
-		
+
 		JLabel lblImagen1 = new JLabel("");
-		lblImagen1.setIcon(new ImageIcon(_06_UnirseEquipo.class.getResource("/img/el-equipo-de-f\u00FAtbol-del-deporte-con-el-entrenador-agrupe-la-foto-76609484.jpg")));
+		lblImagen1.setIcon(new ImageIcon(_06_UnirseEquipo.class.getResource(
+				"/img/el-equipo-de-f\u00FAtbol-del-deporte-con-el-entrenador-agrupe-la-foto-76609484.jpg")));
 		lblImagen1.setBounds(416, 79, 269, 185);
 		contentPane_1.add(lblImagen1);
-		
+
 		JLabel lblImagen2 = new JLabel("");
-		lblImagen2.setIcon(new ImageIcon(_06_UnirseEquipo.class.getResource("/img/istockphoto-1161534890-612x612.jpg")));
+		lblImagen2
+				.setIcon(new ImageIcon(_06_UnirseEquipo.class.getResource("/img/istockphoto-1161534890-612x612.jpg")));
 		lblImagen2.setBounds(693, 265, 269, 185);
 		contentPane_1.add(lblImagen2);
-		
+
 		JLabel lblNewLabel = new JLabel("Aqu\u00ED Aparecer\u00E1 si se ha podido unir correctamente al equipo ");
 		lblNewLabel.setBounds(36, 315, 375, 125);
 		contentPane_1.add(lblNewLabel);
+	}
+
+	@Override
+	public void setModelo(Modelo miModelo) {
+		this.miModelo = miModelo;
+
+	}
+
+	@Override
+	public void setControlador(Controlador miControlador) {
+		this.miControlador = miControlador;
 	}
 }

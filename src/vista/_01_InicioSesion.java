@@ -13,6 +13,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controlador.Controlador;
+import modelo.Modelo;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -22,9 +26,12 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class _01_InicioSesion extends JFrame {
+public class _01_InicioSesion extends JFrame implements Vista {
 
 	// Atributos
+	private Controlador miControlador;
+	private Modelo miModelo;
+
 	private JPanel contentPane;
 	private JMenuBar menuNavegacion;
 	private JMenu mnMenuLigas;
@@ -168,5 +175,16 @@ public class _01_InicioSesion extends JFrame {
 		});
 		btnInvitado.setBounds(509, 401, 98, 23);
 		contentPane.add(btnInvitado);
+	}
+
+	@Override
+	public void setModelo(Modelo miModelo) {
+		this.miModelo = miModelo;
+
+	}
+
+	@Override
+	public void setControlador(Controlador miControlador) {
+		this.miControlador = miControlador;
 	}
 }
