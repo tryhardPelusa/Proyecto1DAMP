@@ -107,7 +107,7 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 
         // Personaliza el estilo de las celdas de encabezado de la tabla
         JTableHeader headerClasificacion = tableClasificacion.getTableHeader();
-        headerClasificacion.setFont(new Font("Calibri", Font.BOLD, 12));
+        headerClasificacion.setFont(new Font("Calibri", Font.PLAIN, 11));
         headerClasificacion.setBackground(new Color(0, 128, 192));
         headerClasificacion.setForeground(Color.WHITE);
 
