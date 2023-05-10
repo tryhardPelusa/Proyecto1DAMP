@@ -67,7 +67,7 @@ public class _04_MiCuenta extends JFrame implements Vista {
 	private JButton btnSignOut;
 	private JLabel lblUsuario_1;
 	private JLabel lblIconoUsuario;
-	private JLabel lblImagenPerfil;
+	private JLabel lblCargarNuevaImgen;
 
 	// Constructor de la clase PMiCuenta
 	public _04_MiCuenta() {
@@ -237,18 +237,18 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		
 		lblIconoUsuario = new JLabel("\"\"");
 		lblIconoUsuario.setIcon(new ImageIcon("/Users/guillermofdez/git/prog---ud15---tarea-rosa-melano/src/img/pngwing.png"));
-		lblIconoUsuario.setBounds(592, 6, 85, 100);
+		lblIconoUsuario.setBounds(630, 3, 85, 100);
 		contentPane_1.add(lblIconoUsuario);
 		
-		lblImagenPerfil = new JLabel("Cargar im\u00E1gen de perfil");
-		lblImagenPerfil.setForeground(SystemColor.inactiveCaption);
-		lblImagenPerfil.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblImagenPerfil.setBounds(563, 96, 148, 33);
-		contentPane_1.add(lblImagenPerfil);
+		lblCargarNuevaImgen = new JLabel("Cargar nueva im\u00E1gen de perfil");
+		lblCargarNuevaImgen.setForeground(SystemColor.inactiveCaption);
+		lblCargarNuevaImgen.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblCargarNuevaImgen.setBounds(601, 93, 148, 33);
+		contentPane_1.add(lblCargarNuevaImgen);
 		
 		JPanel panelFondo = new JPanel();
 		panelFondo.setBackground(UIManager.getColor("Button.select"));
-		panelFondo.setBounds(81, 88, 798, 356);
+		panelFondo.setBounds(81, 102, 798, 356);
 		contentPane_1.add(panelFondo);
 	}
 
