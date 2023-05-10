@@ -1,7 +1,7 @@
 /*
  * @Author Javier Turienzo
  */
-package pantallas;
+package vista;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -28,9 +28,15 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import com.toedter.calendar.JDateChooser;
 
-public class CrearLiga extends JFrame {
+import controlador.Controlador;
+import modelo.Modelo;
+
+public class _07_CrearLigas extends JFrame implements Vista {
 
 	// Atributos
+	private Controlador miControlador;
+	private Modelo miModelo;
+
 	private JPanel contentPane;
 	private JMenuBar menuNavegacion;
 	private JMenu mnMenuLigas;
@@ -73,7 +79,7 @@ public class CrearLiga extends JFrame {
 	private JDateChooser dateFecha;
 
 	// Constructor
-	public CrearLiga() {
+	public _07_CrearLigas() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 576);
 
@@ -264,5 +270,16 @@ public class CrearLiga extends JFrame {
 		dateFecha = new JDateChooser();
 		dateFecha.setBounds(207, 227, 109, 20);
 		contentPane.add(dateFecha);
+	}
+
+	@Override
+	public void setModelo(Modelo miModelo) {
+		this.miModelo = miModelo;
+
+	}
+
+	@Override
+	public void setControlador(Controlador miControlador) {
+		this.miControlador = miControlador;
 	}
 }

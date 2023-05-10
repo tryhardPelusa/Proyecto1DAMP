@@ -1,5 +1,5 @@
 /*@autor: Raúl Fernández*/
-package pantallas;
+package vista;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
@@ -27,7 +27,12 @@ import javax.swing.JTextArea;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
-public class Pantalla_Registro extends JFrame {
+import controlador.Controlador;
+import modelo.Modelo;
+
+public class _02_Registro extends JFrame implements Vista {
+	private Controlador miControlador;
+	private Modelo miModelo;
 
 	private JPanel contentPane;
 	private JMenuBar menuNavegacion;
@@ -62,7 +67,7 @@ public class Pantalla_Registro extends JFrame {
 	private JTextArea txtrSeAadiran;
 	private JDateChooser FechaNaci;
 
-	public Pantalla_Registro() {
+	public _02_Registro() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 576);
 		contentPane = new JPanel();
@@ -156,7 +161,7 @@ public class Pantalla_Registro extends JFrame {
 		btnRegistrarse = new JButton("Registrarse");
 		btnRegistrarse.setBounds(858, 484, 96, 33);
 		contentPane.add(btnRegistrarse);
-		//jtext en el que damos una pequeña informacion sobre las monedas
+		// jtext en el que damos una pequeña informacion sobre las monedas
 		txtrSeAadiran = new JTextArea();
 		txtrSeAadiran.setEditable(false);
 		txtrSeAadiran.setText(
@@ -170,5 +175,16 @@ public class Pantalla_Registro extends JFrame {
 		FechaNaci = new JDateChooser();
 		FechaNaci.setBounds(642, 246, 180, 19);
 		contentPane.add(FechaNaci);
+	}
+
+	@Override
+	public void setModelo(Modelo miModelo) {
+		this.miModelo = miModelo;
+
+	}
+
+	@Override
+	public void setControlador(Controlador miControlador) {
+		this.miControlador = miControlador;
 	}
 }

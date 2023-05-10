@@ -1,9 +1,13 @@
 /*@autor: Raúl Fernández*/
-package pantallas;
+package vista;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controlador.Controlador;
+import modelo.Modelo;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -19,7 +23,10 @@ import java.awt.FlowLayout;
 import javax.swing.JTextPane;
 import javax.swing.DropMode;
 
-public class Pantalla_EquipoEspecifico extends JFrame {
+public class _10_EquipoEspecifico extends JFrame implements Vista {
+
+	private Controlador miControlador;
+	private Modelo miModelo;
 
 	private JPanel contentPane;
 	private JMenuBar menuNavegacion;
@@ -43,7 +50,7 @@ public class Pantalla_EquipoEspecifico extends JFrame {
 	private JLabel lblLigas;
 	private JTextArea txtrligas;
 
-	public Pantalla_EquipoEspecifico() {
+	public _10_EquipoEspecifico() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 576);
 
@@ -102,7 +109,7 @@ public class Pantalla_EquipoEspecifico extends JFrame {
 		// titulo de la pagina
 		JLabel lbltitulo = new JLabel("Equipo Especifico");
 		lbltitulo.setFont(new Font("Tahoma", Font.PLAIN, 40));
-		lbltitulo.setBounds(303, 53, 445, 97);
+		lbltitulo.setBounds(355, 53, 339, 97);
 		contentPane.add(lbltitulo);
 		// hacemos un jpanel en el que metemos los integrantes del equipo
 		panel = new JPanel();
@@ -111,7 +118,7 @@ public class Pantalla_EquipoEspecifico extends JFrame {
 		panel.setLayout(null);
 
 		lblIntegrantes = new JLabel("Integrantes del Equipo");
-		lblIntegrantes.setBounds(83, 11, 109, 14);
+		lblIntegrantes.setBounds(63, 10, 159, 14);
 		panel.add(lblIntegrantes);
 
 		// creamos un jTextArea par introducir el nombre de los integrantes del equipo
@@ -135,7 +142,7 @@ public class Pantalla_EquipoEspecifico extends JFrame {
 		panel_1.add(txtdeportes);
 
 		JLabel lbldeportes = new JLabel("Deportes Participados");
-		lbldeportes.setBounds(94, 9, 105, 14);
+		lbldeportes.setBounds(74, 9, 149, 14);
 		panel_1.add(lbldeportes);
 
 		lblSede = new JLabel("Sede");
@@ -154,7 +161,7 @@ public class Pantalla_EquipoEspecifico extends JFrame {
 		panel_2.setLayout(null);
 
 		lblLigas = new JLabel("Ligas en las que Participan");
-		lblLigas.setBounds(75, 5, 126, 14);
+		lblLigas.setBounds(48, 5, 179, 14);
 		panel_2.add(lblLigas);
 
 		txtrligas = new JTextArea();
@@ -163,5 +170,16 @@ public class Pantalla_EquipoEspecifico extends JFrame {
 		txtrligas.setText("-liga A\r\n-Liga B\r\n-Liga C\r\n-Liga D");
 		txtrligas.setBounds(36, 36, 210, 256);
 		panel_2.add(txtrligas);
+	}
+
+	@Override
+	public void setModelo(Modelo miModelo) {
+		this.miModelo = miModelo;
+
+	}
+
+	@Override
+	public void setControlador(Controlador miControlador) {
+		this.miControlador = miControlador;
 	}
 }

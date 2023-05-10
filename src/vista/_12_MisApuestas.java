@@ -1,7 +1,7 @@
 /*
  * @Author Javier Turienzo
  */
-package pantallas;
+package vista;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +13,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controlador.Controlador;
+import modelo.Modelo;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -20,9 +24,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import java.awt.Color;
 
-public class MisApuestas extends JFrame {
+public class _12_MisApuestas extends JFrame implements Vista {
 
 	// Atributos
+	private Controlador miControlador;
+	private Modelo miModelo;
+
 	private JPanel contentPane;
 	private JMenuBar menuNavegacion;
 	private JMenu mnMenuLigas;
@@ -69,7 +76,7 @@ public class MisApuestas extends JFrame {
 	private JLabel lblNewLabel_2;
 
 	// Constructor
-	public MisApuestas() {
+	public _12_MisApuestas() {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 576);
@@ -285,5 +292,16 @@ public class MisApuestas extends JFrame {
 		lbl_Finalizadas.setBounds(707, 64, 83, 23);
 		contentPane.add(lbl_Finalizadas);
 
+	}
+
+	@Override
+	public void setModelo(Modelo miModelo) {
+		this.miModelo = miModelo;
+
+	}
+
+	@Override
+	public void setControlador(Controlador miControlador) {
+		this.miControlador = miControlador;
 	}
 }

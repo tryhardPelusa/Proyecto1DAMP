@@ -1,7 +1,7 @@
 /*
  * @Author Javier Turienzo
  */
-package pantallas;
+package vista;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,6 +19,10 @@ import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import controlador.Controlador;
+import modelo.Modelo;
+
 import javax.swing.JSeparator;
 import javax.swing.Box;
 import javax.swing.JCheckBox;
@@ -26,9 +30,12 @@ import javax.swing.JSpinner;
 import java.awt.Color;
 import javax.swing.SpinnerNumberModel;
 
-public class Apuestas extends JFrame {
+public class _11_Apuestas extends JFrame implements Vista {
 
 	// Atributos
+	private Controlador miControlador;
+	private Modelo miModelo;
+
 	private JPanel contentPane;
 	private JMenuBar menuNavegacion;
 	private JMenu mnMenuLigas;
@@ -91,7 +98,7 @@ public class Apuestas extends JFrame {
 	private JButton btnConfirmar;
 
 	// Constructor
-	public Apuestas() {
+	public _11_Apuestas() {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 576);
@@ -387,5 +394,16 @@ public class Apuestas extends JFrame {
 		btnConfirmar.setBounds(63, 368, 102, 37);
 		panel_Total.add(btnConfirmar);
 
+	}
+
+	@Override
+	public void setModelo(Modelo miModelo) {
+		this.miModelo = miModelo;
+
+	}
+
+	@Override
+	public void setControlador(Controlador miControlador) {
+		this.miControlador = miControlador;
 	}
 }

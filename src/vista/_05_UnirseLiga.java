@@ -1,9 +1,13 @@
 /*@autor: Raúl Fernández*/
-package pantallas;
+package vista;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controlador.Controlador;
+import modelo.Modelo;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -14,8 +18,11 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
+import java.awt.Color;
 
-public class Pantalla_UnirseLiga extends JFrame {
+public class _05_UnirseLiga extends JFrame implements Vista {
+	private Controlador miControlador;
+	private Modelo miModelo;
 
 	private JPanel contentPane;
 	private JMenuBar menuNavegacion;
@@ -36,7 +43,7 @@ public class Pantalla_UnirseLiga extends JFrame {
 	private JLabel lblunirse;
 	private JLabel lblUnirse;
 
-	public Pantalla_UnirseLiga() {
+	public _05_UnirseLiga() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 576);
 		// creamos todos los menus de la barra superior
@@ -98,7 +105,7 @@ public class Pantalla_UnirseLiga extends JFrame {
 		lblUnirse.setBounds(271, 29, 416, 86);
 		contentPane.add(lblUnirse);
 
-		lblunirse = new JLabel("Introduzca un codigo de union:");
+		lblunirse = new JLabel("Introduzca  c\u00F3digo de uni\u00F3n:");
 		lblunirse.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblunirse.setBounds(117, 255, 316, 39);
 		contentPane.add(lblunirse);
@@ -109,6 +116,7 @@ public class Pantalla_UnirseLiga extends JFrame {
 		textField.setColumns(10);
 
 		btnUnion = new JButton("Unirse");
+		btnUnion.setBackground(Color.BLACK);
 		btnUnion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -116,20 +124,20 @@ public class Pantalla_UnirseLiga extends JFrame {
 		btnUnion.setBounds(655, 268, 85, 21);
 		contentPane.add(btnUnion);
 
-		JLabel lblNewLabel = new JLabel("No tienes equipo?, crea o unete a uno :D ");
+		JLabel lblNewLabel = new JLabel("\u00BFNo tienes equipo?, crea o unete a uno :D ");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel.setBounds(481, 475, 266, 32);
 		contentPane.add(lblNewLabel);
 		// boton para unirse a equipo
-		JButton btnNewButton = new JButton("Unirse equip");
+		JButton btnNewButton = new JButton("Unirse equipo");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(746, 483, 97, 21);
+		btnNewButton.setBounds(746, 483, 115, 21);
 		contentPane.add(btnNewButton);
 		// boton para crear equipo
-		JButton btnNewButton_1 = new JButton("Crear Equip");
+		JButton btnNewButton_1 = new JButton("Crear Equipo");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -138,14 +146,25 @@ public class Pantalla_UnirseLiga extends JFrame {
 		contentPane.add(btnNewButton_1);
 
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(Pantalla_UnirseLiga.class.getResource(
+		lblNewLabel_1.setIcon(new ImageIcon(_05_UnirseLiga.class.getResource(
 				"/img/el-equipo-de-f\u00FAtbol-del-deporte-con-el-entrenador-agrupe-la-foto-76609484.jpg")));
 		lblNewLabel_1.setBounds(42, 298, 369, 223);
 		contentPane.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon(Pantalla_UnirseLiga.class.getResource("/img/publicidad2.png")));
+		lblNewLabel_2.setIcon(new ImageIcon(_05_UnirseLiga.class.getResource("/img/publicidad2.png")));
 		lblNewLabel_2.setBounds(764, 167, 154, 256);
 		contentPane.add(lblNewLabel_2);
+	}
+
+	@Override
+	public void setModelo(Modelo miModelo) {
+		this.miModelo = miModelo;
+
+	}
+
+	@Override
+	public void setControlador(Controlador miControlador) {
+		this.miControlador = miControlador;
 	}
 }

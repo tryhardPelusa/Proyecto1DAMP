@@ -1,7 +1,7 @@
 /**
  * @author Guillermo Callizaya
  */
-package pantallas;
+package vista;
 
 //Importación de clases de Java
 import java.awt.EventQueue;
@@ -9,6 +9,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controlador.Controlador;
+import modelo.Modelo;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -18,8 +22,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 //Clase principal POlvido que extiende de JFrame
-public class POlvido extends JFrame {
+public class _03_RecuperarCuenta extends JFrame implements Vista {
 	// Declaración de componentes de la interfaz
+	private Controlador miControlador;
+	private Modelo miModelo;
+
 	private JPanel contentPane;
 	private JLabel lblTituloAcceder;
 	private JLabel lblPorFavorIntroduzca;
@@ -32,7 +39,7 @@ public class POlvido extends JFrame {
 	private JLabel lblRevise;
 
 	// Constructor de la clase POlvido
-	public POlvido() {
+	public _03_RecuperarCuenta() {
 		// Configuración básica de la ventana
 		setTitle("Pagina Olvido");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -96,5 +103,16 @@ public class POlvido extends JFrame {
 		lblRevise.setFont(new Font("Geneva", Font.PLAIN, 18));
 		lblRevise.setBounds(399, 338, 215, 30);
 		contentPane.add(lblRevise);
+	}
+
+	@Override
+	public void setModelo(Modelo miModelo) {
+		this.miModelo = miModelo;
+
+	}
+
+	@Override
+	public void setControlador(Controlador miControlador) {
+		this.miControlador = miControlador;
 	}
 }
