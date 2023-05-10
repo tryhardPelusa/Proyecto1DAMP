@@ -72,9 +72,12 @@ public class _02_Registro extends JFrame implements Vista {
 	private JLabel lblIconoUsuario;
 
 	public _02_Registro() {
+		setTitle("Registro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 576);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(128, 128, 64));
+		contentPane.setForeground(new Color(192, 192, 192));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		lblUser = new JLabel("Usuario*");
@@ -83,62 +86,74 @@ public class _02_Registro extends JFrame implements Vista {
 		contentPane.add(lblUser);
 		// campo usuario en el que el usuario introduce su nombre de usuario
 		txtUser = new JTextField();
+		txtUser.setForeground(new Color(255, 255, 255));
+		txtUser.setBackground(new Color(64, 0, 64));
 		txtUser.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		txtUser.setBounds(270, 186, 96, 19);
+		txtUser.setBounds(270, 186, 171, 19);
 		contentPane.add(txtUser);
 		txtUser.setColumns(10);
 
 		lblApellido1 = new JLabel("Apellido 1*");
 		lblApellido1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblApellido1.setBounds(202, 291, 65, 21);
+		lblApellido1.setBounds(202, 329, 65, 21);
 		contentPane.add(lblApellido1);
 		// Campo apellido 1 en el que recoge el primer apellido de un usuario
 		txtnombre = new JTextField();
+		txtnombre.setBackground(new Color(64, 0, 64));
+		txtnombre.setForeground(new Color(255, 255, 255));
 		txtnombre.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		txtnombre.setColumns(10);
-		txtnombre.setBounds(270, 246, 96, 19);
+		txtnombre.setBounds(270, 299, 171, 19);
 		contentPane.add(txtnombre);
 
 		lblApellido2 = new JLabel("Apellido 2");
 		lblApellido2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblApellido2.setBounds(207, 342, 60, 21);
+		lblApellido2.setBounds(207, 361, 60, 21);
 		contentPane.add(lblApellido2);
 		// Campo apellido 2 en el que recoge el segundo apellido de un usuario
 		txtapellido1 = new JTextField();
+		txtapellido1.setBackground(new Color(64, 0, 64));
+		txtapellido1.setForeground(new Color(255, 255, 255));
 		txtapellido1.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		txtapellido1.setColumns(10);
-		txtapellido1.setBounds(270, 293, 96, 19);
+		txtapellido1.setBounds(270, 331, 171, 19);
 		contentPane.add(txtapellido1);
 
 		txtapellido = new JTextField();
+		txtapellido.setBackground(new Color(64, 0, 64));
+		txtapellido.setForeground(new Color(255, 255, 255));
 		txtapellido.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		txtapellido.setColumns(10);
-		txtapellido.setBounds(270, 342, 96, 19);
+		txtapellido.setBounds(270, 361, 171, 19);
 		contentPane.add(txtapellido);
 
 		txtTelefono = new JTextField();
+		txtTelefono.setBackground(new Color(64, 0, 64));
+		txtTelefono.setForeground(new Color(255, 255, 255));
 		txtTelefono.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		txtTelefono.setColumns(10);
-		txtTelefono.setBounds(270, 390, 96, 19);
+		txtTelefono.setBounds(640, 277, 183, 19);
 		contentPane.add(txtTelefono);
 
 		lblNombre = new JLabel("Nombre*");
 		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNombre.setBounds(207, 244, 72, 21);
+		lblNombre.setBounds(207, 297, 72, 21);
 		contentPane.add(lblNombre);
 
 		lblTelefono = new JLabel("Telefono ");
 		lblTelefono.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTelefono.setBounds(207, 392, 60, 21);
+		lblTelefono.setBounds(560, 277, 60, 21);
 		contentPane.add(lblTelefono);
 
 		passwordField = new JPasswordField();
-		passwordField.setBounds(270, 434, 96, 19);
+		passwordField.setBackground(new Color(64, 0, 64));
+		passwordField.setForeground(new Color(255, 255, 255));
+		passwordField.setBounds(270, 218, 171, 19);
 		contentPane.add(passwordField);
 
 		lblPwd = new JLabel("Contraseña *");
 		lblPwd.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblPwd.setBounds(181, 432, 98, 21);
+		lblPwd.setBounds(177, 218, 98, 21);
 		contentPane.add(lblPwd);
 
 		lblRegistro = new JLabel("Registro");
@@ -148,36 +163,43 @@ public class _02_Registro extends JFrame implements Vista {
 
 		lblFecha = new JLabel("Fecha de Nacimiento*");
 		lblFecha.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblFecha.setBounds(487, 246, 132, 21);
+		lblFecha.setBounds(492, 311, 132, 21);
 		contentPane.add(lblFecha);
 
 		lblCorreo = new JLabel("Correo*");
 		lblCorreo.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblCorreo.setBounds(555, 277, 60, 21);
+		lblCorreo.setBounds(560, 342, 60, 21);
 		contentPane.add(lblCorreo);
 
 		txtCorreo = new JTextField();
+		txtCorreo.setBackground(new Color(64, 0, 64));
+		txtCorreo.setForeground(new Color(255, 255, 255));
 		txtCorreo.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		txtCorreo.setColumns(10);
-		txtCorreo.setBounds(638, 277, 180, 19);
+		txtCorreo.setBounds(640, 342, 183, 19);
 		contentPane.add(txtCorreo);
 
 		btnRegistrarse = new JButton("Registrarse");
-		btnRegistrarse.setBounds(722, 429, 96, 33);
+		btnRegistrarse.setBackground(new Color(255, 128, 64));
+		btnRegistrarse.setForeground(new Color(255, 255, 255));
+		btnRegistrarse.setBounds(865, 493, 114, 33);
 		contentPane.add(btnRegistrarse);
 		// jtext en el que damos una pequeña informacion sobre las monedas
 		txtrSeAadiran = new JTextArea();
+		txtrSeAadiran.setBackground(new Color(128, 128, 0));
 		txtrSeAadiran.setEditable(false);
 		txtrSeAadiran.setText(
 				"se añadiran 300 monedas una \r\nvez se halla registrado, una cierta \r\ncantidad de monedas se renovaran \r\ndiariamente");
-		txtrSeAadiran.setBounds(525, 318, 293, 76);
+		txtrSeAadiran.setBounds(534, 389, 293, 76);
 		contentPane.add(txtrSeAadiran);
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		FechaNaci = new JDateChooser();
-		FechaNaci.setBounds(642, 246, 180, 19);
+		FechaNaci.setBackground(new Color(64, 0, 64));
+		FechaNaci.setForeground(new Color(255, 255, 255));
+		FechaNaci.setBounds(640, 311, 187, 19);
 		contentPane.add(FechaNaci);
 		
 		lblIconoUsuario = new JLabel("\"\"");

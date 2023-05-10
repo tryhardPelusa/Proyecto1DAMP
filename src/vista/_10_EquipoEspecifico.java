@@ -22,6 +22,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import javax.swing.JTextPane;
 import javax.swing.DropMode;
+import java.awt.Color;
 
 public class _10_EquipoEspecifico extends JFrame implements Vista {
 
@@ -51,6 +52,7 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 	private JTextArea txtrligas;
 
 	public _10_EquipoEspecifico() {
+		setTitle("Equipo Especifico");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 576);
 
@@ -87,6 +89,7 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 		mntmNewMenuItem_4 = new JMenuItem("Crear equipo");
 		mnNewMenu_2.add(mntmNewMenuItem_4);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(0, 128, 192));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -113,6 +116,7 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 		contentPane.add(lbltitulo);
 		// hacemos un jpanel en el que metemos los integrantes del equipo
 		panel = new JPanel();
+		panel.setBackground(new Color(128, 128, 192));
 		panel.setBounds(40, 201, 277, 303);
 		contentPane.add(panel);
 		panel.setLayout(null);
@@ -123,6 +127,7 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 
 		// creamos un jTextArea par introducir el nombre de los integrantes del equipo
 		txtparticipantes = new JTextArea();
+		txtparticipantes.setBackground(new Color(128, 0, 128));
 		txtparticipantes.setEditable(false);
 		txtparticipantes.setText(
 				"-Paco\r\n- Juan\r\n- Rodolfo\r\n- Guillermo\r\n- kike\r\n- Ra\u00FAl\r\n- Daniel\r\n- Alejandro\r\n- Sergio\r\n- Miguel");
@@ -131,11 +136,13 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 		// hacemos un Jpanel en el que meteremos las deportes que se juegasn aparte de
 		// la sede del equipo si tiene
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(128, 128, 192));
 		panel_1.setBounds(355, 201, 284, 303);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 
 		txtdeportes = new JTextArea();
+		txtdeportes.setBackground(new Color(128, 0, 128));
 		txtdeportes.setText("-Baloncesto\r\n-futbol\r\n-golf");
 		txtdeportes.setEditable(false);
 		txtdeportes.setBounds(40, 34, 210, 98);
@@ -150,12 +157,14 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 		panel_1.add(lblSede);
 
 		JTextArea txtrCavenidaDeMargarita = new JTextArea();
+		txtrCavenidaDeMargarita.setBackground(new Color(128, 0, 128));
 		txtrCavenidaDeMargarita.setText("C/avenida de margarita n\u00BA5");
 		txtrCavenidaDeMargarita.setEditable(false);
 		txtrCavenidaDeMargarita.setBounds(40, 197, 210, 44);
 		panel_1.add(txtrCavenidaDeMargarita);
 		// jPanel en el que se introduce las ligas en las que participan los equipos
 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(128, 128, 192));
 		panel_2.setBounds(688, 201, 277, 303);
 		contentPane.add(panel_2);
 		panel_2.setLayout(null);
@@ -165,6 +174,7 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 		panel_2.add(lblLigas);
 
 		txtrligas = new JTextArea();
+		txtrligas.setBackground(new Color(128, 0, 128));
 		txtrligas.setLineWrap(true);
 		txtrligas.setEditable(false);
 		txtrligas.setText("-liga A\r\n-Liga B\r\n-Liga C\r\n-Liga D");

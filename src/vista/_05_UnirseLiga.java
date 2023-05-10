@@ -44,6 +44,7 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 	private JLabel lblUnirse;
 
 	public _05_UnirseLiga() {
+		setTitle("Unirse a liga");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 576);
 		// creamos todos los menus de la barra superior
@@ -80,6 +81,7 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 		mntmNewMenuItem_4 = new JMenuItem("Crear equipo");
 		mnNewMenu_2.add(mntmNewMenuItem_4);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(0, 128, 192));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -111,6 +113,7 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 		contentPane.add(lblunirse);
 		// un campo de texto en el que se introducira el codigo de de union
 		textField = new JTextField();
+		textField.setBackground(new Color(162, 177, 160));
 		textField.setBounds(401, 269, 219, 19);
 		contentPane.add(textField);
 		textField.setColumns(10);
@@ -126,10 +129,11 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 
 		JLabel lblNewLabel = new JLabel("\u00BFNo tienes equipo?, crea o unete a uno :D ");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel.setBounds(481, 475, 266, 32);
+		lblNewLabel.setBounds(470, 475, 266, 32);
 		contentPane.add(lblNewLabel);
 		// boton para unirse a equipo
 		JButton btnNewButton = new JButton("Unirse equipo");
+		btnNewButton.setBackground(new Color(162, 177, 160));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -144,17 +148,6 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 		});
 		btnNewButton_1.setBounds(873, 483, 109, 21);
 		contentPane.add(btnNewButton_1);
-
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(_05_UnirseLiga.class.getResource(
-				"/img/el-equipo-de-f\u00FAtbol-del-deporte-con-el-entrenador-agrupe-la-foto-76609484.jpg")));
-		lblNewLabel_1.setBounds(42, 298, 369, 223);
-		contentPane.add(lblNewLabel_1);
-
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon(_05_UnirseLiga.class.getResource("/img/publicidad2.png")));
-		lblNewLabel_2.setBounds(764, 167, 154, 256);
-		contentPane.add(lblNewLabel_2);
 	}
 
 	@Override
