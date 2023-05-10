@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-<<<<<<< HEAD
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk-19">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="jcalendar-1.4.jar"/>
-=======
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="jcalendar-1.4.jar"/>
-	<classpathentry kind="lib" path="jgoodies-common-1.2.0.jar"/>
-	<classpathentry kind="lib" path="jgoodies-looks-2.4.1.jar"/>
-	<classpathentry kind="lib" path="junit-4.6.jar"/>
->>>>>>> branch 'master' of https://github.com/DAM-UTAD-1-2223/prog---ud16---lanzadera-mvc-rosa-melano.git
 	<classpathentry kind="output" path="bin"/>
 </classpath>
