@@ -23,12 +23,14 @@ import javax.swing.table.DefaultTableModel;
 
 import controlador.Controlador;
 import modelo.Modelo;
+import java.awt.Font;
 
 public class _00_PaginaPrincipal extends JFrame implements Vista {
 	private Controlador miControlador;
 	private Modelo miModelo;
 
 	private JPanel contentPane;
+	private JPanel contentPane_1;
 	private JMenuBar menuNavegacion;
 	private JMenu mnNewMenu;
 	private JMenu mnNewMenu_1;
@@ -50,8 +52,11 @@ public class _00_PaginaPrincipal extends JFrame implements Vista {
 	private JScrollPane scrollPaneLigasPrivadas;
 	private JLabel lblBuscarLigas;
 	private JLabel lblAnuncio;
+	private JLabel lblPaginaPrincipal;
+	private JLabel lblMisLigas;
 
 	public _00_PaginaPrincipal() {
+		setTitle("Pagina Principal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 576);
 		contentPane = new JPanel();
@@ -89,8 +94,8 @@ public class _00_PaginaPrincipal extends JFrame implements Vista {
 
 		mntmNewMenuItem_4 = new JMenuItem("Crear equipo");
 		mnNewMenu_2.add(mntmNewMenuItem_4);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane_1 = new JPanel();
+		contentPane_1.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		btnMiCuenta = new JButton("Mi cuenta");
 		btnMiCuenta.addActionListener(new ActionListener() {
@@ -98,7 +103,7 @@ public class _00_PaginaPrincipal extends JFrame implements Vista {
 			}
 		});
 		btnMiCuenta.setBounds(873, 19, 109, 23);
-		contentPane.add(btnMiCuenta);
+		contentPane_1.add(btnMiCuenta);
 
 		btnSignOut = new JButton("Sign out");
 		btnSignOut.addActionListener(new ActionListener() {
@@ -106,24 +111,34 @@ public class _00_PaginaPrincipal extends JFrame implements Vista {
 			}
 		});
 		btnSignOut.setBounds(873, 53, 109, 23);
-		contentPane.add(btnSignOut);
+		contentPane_1.add(btnSignOut);
+		
+				btnBuscar = new JButton("Buscar");
+				btnBuscar.setBounds(247, 69, 89, 23);
+				contentPane_1.add(btnBuscar);
 
 		txtBuscar = new JTextField();
-		txtBuscar.setBounds(792, 112, 96, 20);
-		contentPane.add(txtBuscar);
+		txtBuscar.setBounds(133, 69, 114, 20);
+		contentPane_1.add(txtBuscar);
 		txtBuscar.setColumns(10);
 
 		lblBuscarLigas = new JLabel("Buscar Ligas:");
-		lblBuscarLigas.setBounds(792, 90, 96, 14);
-		contentPane.add(lblBuscarLigas);
-
-		btnBuscar = new JButton("Buscar");
-		btnBuscar.setBounds(890, 111, 89, 23);
-		contentPane.add(btnBuscar);
+		lblBuscarLigas.setBounds(48, 72, 96, 14);
+		contentPane_1.add(lblBuscarLigas);
+		
+		lblPaginaPrincipal = new JLabel("Pagina Principal");
+		lblPaginaPrincipal.setFont(new Font("Kannada MN", Font.PLAIN, 30));
+		lblPaginaPrincipal.setBounds(345, 4, 248, 42);
+		contentPane_1.add(lblPaginaPrincipal);
+		
+		lblMisLigas = new JLabel("Mis Ligas");
+		lblMisLigas.setFont(new Font("Kannada MN", Font.PLAIN, 15));
+		lblMisLigas.setBounds(476, 91, 76, 42);
+		contentPane_1.add(lblMisLigas);
 
 		scrollPaneLigasPublicas = new JScrollPane();
-		scrollPaneLigasPublicas.setBounds(48, 30, 315, 452);
-		contentPane.add(scrollPaneLigasPublicas);
+		scrollPaneLigasPublicas.setBounds(48, 121, 389, 386);
+		contentPane_1.add(scrollPaneLigasPublicas);
 
 		tableLigasPublicas = new JTable();
 		tableLigasPublicas.setModel(new DefaultTableModel(
@@ -135,8 +150,8 @@ public class _00_PaginaPrincipal extends JFrame implements Vista {
 		scrollPaneLigasPublicas.setViewportView(tableLigasPublicas);
 
 		scrollPaneLigasPrivadas = new JScrollPane();
-		scrollPaneLigasPrivadas.setBounds(412, 30, 315, 452);
-		contentPane.add(scrollPaneLigasPrivadas);
+		scrollPaneLigasPrivadas.setBounds(476, 121, 224, 386);
+		contentPane_1.add(scrollPaneLigasPrivadas);
 
 		tableLigasPrivadas = new JTable();
 		tableLigasPrivadas
@@ -151,11 +166,16 @@ public class _00_PaginaPrincipal extends JFrame implements Vista {
 
 		lblAnuncio = new JLabel("");
 		lblAnuncio.setIcon(new ImageIcon(_00_PaginaPrincipal.class.getResource("/img/publicidad2.png")));
-		lblAnuncio.setBounds(792, 195, 187, 287);
-		contentPane.add(lblAnuncio);
+		lblAnuncio.setBounds(734, 334, 271, 173);
+		contentPane_1.add(lblAnuncio);
 
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		setContentPane(contentPane_1);
+		contentPane_1.setLayout(null);
+		
+		JLabel lblLigaPublicas = new JLabel("Ligas P\u00FAblicas");
+		lblLigaPublicas.setFont(new Font("Kannada MN", Font.PLAIN, 15));
+		lblLigaPublicas.setBounds(48, 93, 114, 42);
+		contentPane_1.add(lblLigaPublicas);
 	}
 
 	@Override
@@ -168,5 +188,4 @@ public class _00_PaginaPrincipal extends JFrame implements Vista {
 	public void setControlador(Controlador miControlador) {
 		this.miControlador = miControlador;
 	}
-
 }
