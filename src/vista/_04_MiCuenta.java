@@ -25,6 +25,8 @@ import com.toedter.calendar.JDateChooser;
 import controlador.Controlador;
 import modelo.Modelo;
 import javax.swing.UIManager;
+import java.awt.SystemColor;
+import javax.swing.ImageIcon;
 
 //Clase principal PMiCuenta que extiende de JFrame
 public class _04_MiCuenta extends JFrame implements Vista {
@@ -64,6 +66,8 @@ public class _04_MiCuenta extends JFrame implements Vista {
 	private JButton btnMiCuenta;
 	private JButton btnSignOut;
 	private JLabel lblUsuario_1;
+	private JLabel lblIconoUsuario;
+	private JLabel lblImagenPerfil;
 
 	// Constructor de la clase PMiCuenta
 	public _04_MiCuenta() {
@@ -230,6 +234,17 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		contentPane_1.add(dateCalendario);
 		setContentPane(contentPane_1);
 		contentPane_1.setLayout(null);
+		
+		lblIconoUsuario = new JLabel("\"\"");
+		lblIconoUsuario.setIcon(new ImageIcon("/Users/guillermofdez/git/prog---ud15---tarea-rosa-melano/src/img/pngwing.png"));
+		lblIconoUsuario.setBounds(592, 6, 85, 100);
+		contentPane_1.add(lblIconoUsuario);
+		
+		lblImagenPerfil = new JLabel("Cargar im\u00E1gen de perfil");
+		lblImagenPerfil.setForeground(SystemColor.inactiveCaption);
+		lblImagenPerfil.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblImagenPerfil.setBounds(563, 96, 148, 33);
+		contentPane_1.add(lblImagenPerfil);
 		
 		JPanel panelFondo = new JPanel();
 		panelFondo.setBackground(UIManager.getColor("Button.select"));

@@ -29,6 +29,9 @@ import com.toedter.calendar.JDateChooser;
 
 import controlador.Controlador;
 import modelo.Modelo;
+import javax.swing.ImageIcon;
+import java.awt.SystemColor;
+import javax.swing.SwingConstants;
 
 public class _02_Registro extends JFrame implements Vista {
 	private Controlador miControlador;
@@ -66,6 +69,7 @@ public class _02_Registro extends JFrame implements Vista {
 	private JButton btnRegistrarse;
 	private JTextArea txtrSeAadiran;
 	private JDateChooser FechaNaci;
+	private JLabel lblIconoUsuario;
 
 	public _02_Registro() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -138,8 +142,8 @@ public class _02_Registro extends JFrame implements Vista {
 		contentPane.add(lblPwd);
 
 		lblRegistro = new JLabel("Registro");
-		lblRegistro.setFont(new Font("Tahoma", Font.BOLD, 43));
-		lblRegistro.setBounds(360, 39, 229, 111);
+		lblRegistro.setFont(new Font("Kannada MN", Font.BOLD, 43));
+		lblRegistro.setBounds(316, 40, 180, 111);
 		contentPane.add(lblRegistro);
 
 		lblFecha = new JLabel("Fecha de Nacimiento*");
@@ -149,24 +153,24 @@ public class _02_Registro extends JFrame implements Vista {
 
 		lblCorreo = new JLabel("Correo*");
 		lblCorreo.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblCorreo.setBounds(559, 342, 60, 21);
+		lblCorreo.setBounds(555, 277, 60, 21);
 		contentPane.add(lblCorreo);
 
 		txtCorreo = new JTextField();
 		txtCorreo.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		txtCorreo.setColumns(10);
-		txtCorreo.setBounds(642, 342, 180, 19);
+		txtCorreo.setBounds(638, 277, 180, 19);
 		contentPane.add(txtCorreo);
 
 		btnRegistrarse = new JButton("Registrarse");
-		btnRegistrarse.setBounds(858, 484, 96, 33);
+		btnRegistrarse.setBounds(722, 429, 96, 33);
 		contentPane.add(btnRegistrarse);
 		// jtext en el que damos una pequeña informacion sobre las monedas
 		txtrSeAadiran = new JTextArea();
 		txtrSeAadiran.setEditable(false);
 		txtrSeAadiran.setText(
 				"se añadiran 300 monedas una \r\nvez se halla registrado, una cierta \r\ncantidad de monedas se renovaran \r\ndiariamente");
-		txtrSeAadiran.setBounds(429, 405, 293, 76);
+		txtrSeAadiran.setBounds(525, 318, 293, 76);
 		contentPane.add(txtrSeAadiran);
 
 		setContentPane(contentPane);
@@ -175,6 +179,17 @@ public class _02_Registro extends JFrame implements Vista {
 		FechaNaci = new JDateChooser();
 		FechaNaci.setBounds(642, 246, 180, 19);
 		contentPane.add(FechaNaci);
+		
+		lblIconoUsuario = new JLabel("\"\"");
+		lblIconoUsuario.setIcon(new ImageIcon("/Users/guillermofdez/git/prog---ud15---tarea-rosa-melano/src/img/pngwing.png"));
+		lblIconoUsuario.setBounds(525, 40, 85, 100);
+		contentPane.add(lblIconoUsuario);
+		
+		JLabel lblImagenPerfil = new JLabel("Cargar im\u00E1gen de perfil");
+		lblImagenPerfil.setForeground(SystemColor.inactiveCaptionText);
+		lblImagenPerfil.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblImagenPerfil.setBounds(496, 130, 148, 33);
+		contentPane.add(lblImagenPerfil);
 	}
 
 	@Override

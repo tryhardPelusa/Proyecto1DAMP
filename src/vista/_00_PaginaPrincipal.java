@@ -150,7 +150,7 @@ public class _00_PaginaPrincipal extends JFrame implements Vista {
 		scrollPaneLigasPublicas.setViewportView(tableLigasPublicas);
 
 		scrollPaneLigasPrivadas = new JScrollPane();
-		scrollPaneLigasPrivadas.setBounds(476, 121, 224, 386);
+		scrollPaneLigasPrivadas.setBounds(476, 121, 224, 150);
 		contentPane_1.add(scrollPaneLigasPrivadas);
 
 		tableLigasPrivadas = new JTable();

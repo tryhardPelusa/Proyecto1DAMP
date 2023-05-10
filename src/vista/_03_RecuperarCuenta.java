@@ -73,7 +73,7 @@ public class _03_RecuperarCuenta extends JFrame implements Vista {
 
 		lblO = new JLabel("o");
 		lblO.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		lblO.setBounds(441, 234, 21, 47);
+		lblO.setBounds(428, 234, 21, 47);
 		contentPane.add(lblO);
 		// Creamos un JTextField para introducir el Usuario
 		textUsuario = new JTextField();
@@ -95,13 +95,14 @@ public class _03_RecuperarCuenta extends JFrame implements Vista {
 			}
 		});
 		btnRecuperar.setBackground(Color.BLUE);
-		btnRecuperar.setBounds(409, 380, 167, 29);
+		btnRecuperar.setBounds(428, 381, 167, 29);
 		contentPane.add(btnRecuperar);
 		// Es un JLabel donde ahora es sin comentario pero luego lo usaremos en el
 		// button
 		lblRevise = new JLabel("");
+		lblRevise.setForeground(new Color(204, 0, 0));
 		lblRevise.setFont(new Font("Geneva", Font.PLAIN, 18));
-		lblRevise.setBounds(399, 338, 215, 30);
+		lblRevise.setBounds(440, 338, 180, 30);
 		contentPane.add(lblRevise);
 	}
 
