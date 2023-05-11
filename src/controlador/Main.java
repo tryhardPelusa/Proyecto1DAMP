@@ -41,7 +41,7 @@ public class Main {
 		misVistas[11] = new _11_Apuestas();
 		misVistas[12] = new _12_MisApuestas();
 		misVistas[13] = new _13_Lanzadera();
-
+ 
 		miModelo.setControlador(miControlador);
 		miControlador.setVista(misVistas);
 		miControlador.setModelo(miModelo);
