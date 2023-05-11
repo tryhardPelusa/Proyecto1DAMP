@@ -14,7 +14,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controlador.Controlador;
 import modelo.Modelo;
 
 import javax.swing.JLabel;
@@ -27,6 +26,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.border.TitledBorder;
+
+import controlador.Controlador;
+
 import javax.swing.DropMode;
 import javax.swing.JSeparator;
 
