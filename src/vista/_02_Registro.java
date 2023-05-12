@@ -203,7 +203,7 @@ public class _02_Registro extends JFrame implements Vista {
 		contentPane.add(FechaNaci);
 		
 		lblIconoUsuario = new JLabel("\"\"");
-		lblIconoUsuario.setIcon(new ImageIcon("/Users/guillermofdez/git/prog---ud15---tarea-rosa-melano/src/img/pngwing.png"));
+		lblIconoUsuario.setIcon(new ImageIcon(_02_Registro.class.getResource("/img/pngwing.png")));
 		lblIconoUsuario.setBounds(525, 40, 85, 100);
 		contentPane.add(lblIconoUsuario);
 		
