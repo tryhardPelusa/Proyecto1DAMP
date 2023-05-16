@@ -20,6 +20,7 @@ import modelo.Modelo;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 
 public class Plantilla extends JFrame implements Vista {
 
@@ -40,14 +41,14 @@ public class Plantilla extends JFrame implements Vista {
 	private JButton btnMisApuestas;
 	private JButton btnApostar;
 	private JButton btnSignOut;
+	private JLabel lblBarraMoverVentana;
+	private int xMouse, yMouse;
 
 	// Constructor
 	public Plantilla() {
 		setTitle("Plantilla");
 		setResizable(false);
 		setUndecorated(true);
-		setLocationRelativeTo(null);
-		setLocationByPlatform(rootPaneCheckingEnabled);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1010, 539);
 		contentPane = new JPanel();
@@ -337,6 +338,26 @@ public class Plantilla extends JFrame implements Vista {
 		btnSignOut.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		background.add(btnSignOut);
 		background.setComponentZOrder(btnSignOut, 0);
+		
+		lblBarraMoverVentana = new JLabel("");
+		lblBarraMoverVentana.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				int xPantalla = e.getXOnScreen();
+				int yPantalla = e.getYOnScreen();
+				setLocation(xPantalla - xMouse, yPantalla - yMouse);
+			}
+		});
+		
+		lblBarraMoverVentana.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				xMouse = e.getX();
+				yMouse = e.getY();
+			}
+		});
+		lblBarraMoverVentana.setBounds(0, 0, 918, 23);
+		background.add(lblBarraMoverVentana);
 		
 
 	}
