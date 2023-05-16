@@ -12,12 +12,12 @@ import vista._03_RecuperarCuenta;
 import vista._04_MiCuenta;
 import vista._05_UnirseLiga;
 import vista._06_UnirseEquipo;
-import vista._07_CrearLigas;
+import vista._07_CrearLigas2;
 import vista._08_CrearEquipos;
 import vista._09_LigaEspecifica2;
 import vista._10_EquipoEspecifico;
-import vista._11_Apuestas;
-import vista._12_MisApuestas;
+import vista._11_Apuestas2;
+import vista._12_MisApuestas2;
 import vista._13_Lanzadera;
 
 public class Main {
@@ -35,12 +35,12 @@ public class Main {
 		misVistas[4] = new _04_MiCuenta();
 		misVistas[5] = new _05_UnirseLiga();
 		misVistas[6] = new _06_UnirseEquipo();
-		misVistas[7] = new _07_CrearLigas();
+		misVistas[7] = new _07_CrearLigas2();
 		misVistas[8] = new _08_CrearEquipos();
 		misVistas[9] = new _09_LigaEspecifica2();
 		misVistas[10] = new _10_EquipoEspecifico();
-		misVistas[11] = new _11_Apuestas();
-		misVistas[12] = new _12_MisApuestas();
+		misVistas[11] = new _11_Apuestas2();
+		misVistas[12] = new _12_MisApuestas2();
 		misVistas[13] = new _13_Lanzadera();
 		misVistas[14] = new Plantilla();
  
