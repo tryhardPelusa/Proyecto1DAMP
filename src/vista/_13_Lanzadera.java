@@ -36,6 +36,7 @@ public class _13_Lanzadera extends JFrame implements Vista {
 	private JButton btnLigaEspecifica;
 	private JButton btnEquipoEspecifico;
 	private JButton btnApuestas;
+	private JButton btnPlantilla;
 
 	// Constructor
 	public _13_Lanzadera() {
@@ -165,6 +166,15 @@ public class _13_Lanzadera extends JFrame implements Vista {
 		});
 		btnPRecuperarCuenta.setBounds(404, 133, 140, 23);
 		contentPane.add(btnPRecuperarCuenta);
+		
+		btnPlantilla = new JButton("Plantilla");
+		btnPlantilla.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(13, 14);
+			}
+		});
+		btnPlantilla.setBounds(404, 505, 140, 23);
+		contentPane.add(btnPlantilla);
 	}
 
 	@Override

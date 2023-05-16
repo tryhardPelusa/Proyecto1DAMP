@@ -3,6 +3,7 @@ package controlador;
 import javax.swing.JFrame;
 
 import modelo.Modelo;
+import vista.Plantilla;
 import vista.Vista;
 import vista._00_PaginaPrincipal;
 import vista._01_InicioSesion2;
@@ -26,7 +27,7 @@ public class Main {
 		Modelo miModelo = new Modelo();
 		Controlador miControlador = new Controlador();
 
-		Vista[] misVistas = new Vista[14];
+		Vista[] misVistas = new Vista[15];
 		misVistas[0] = new _00_PaginaPrincipal();
 		misVistas[1] = new _01_InicioSesion2();
 		misVistas[2] = new _02_Registro();
@@ -41,6 +42,7 @@ public class Main {
 		misVistas[11] = new _11_Apuestas();
 		misVistas[12] = new _12_MisApuestas();
 		misVistas[13] = new _13_Lanzadera();
+		misVistas[14] = new Plantilla();
  
 		miModelo.setControlador(miControlador);
 		miControlador.setVista(misVistas);
