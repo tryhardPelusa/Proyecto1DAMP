@@ -24,6 +24,8 @@ import javax.swing.JPasswordField;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+
 import javax.swing.ImageIcon;
 import javax.swing.border.TitledBorder;
 
@@ -61,11 +63,17 @@ public class _02_Registro extends JFrame implements Vista {
 	private JTextField txtApellido1;
 	private JTextField txtApellido2;
 	private JDateChooser dateNacimiento;
+	private JLabel lblBarraMoverVentana;
+	private int xMouse, yMouse;
+	private JLabel lblBtnCerrar;
+	private JLabel lblBtnMinimizar;
 
 	// Constructor
 	public _02_Registro() {
+		setResizable(false);
+		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 1024, 576);
+		setBounds(0, 0, 1008, 537);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -77,11 +85,6 @@ public class _02_Registro extends JFrame implements Vista {
 		background.setBounds(0, 0, 1008, 537);
 		contentPane.add(background);
 		background.setLayout(null);
-
-		lblFondo = new JLabel("");
-		lblFondo.setIcon(new ImageIcon(_01_InicioSesion2.class.getResource("/img/fondoLogin2  - copia.jpg")));
-		lblFondo.setBounds(725, 0, 283, 537);
-		background.add(lblFondo);
 
 		lblLogo = new JLabel("");
 		lblLogo.setIcon(new ImageIcon(_01_InicioSesion2.class.getResource("/img/logo.png")));
@@ -191,6 +194,69 @@ public class _02_Registro extends JFrame implements Vista {
 		txtApellido2.setBackground(new Color(0, 128, 192));
 		txtApellido2.setBounds(507, 299, 208, 20);
 		background.add(txtApellido2);
+		
+		lblBarraMoverVentana = new JLabel("");
+		lblBarraMoverVentana.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				int xPantalla = e.getXOnScreen();
+				int yPantalla = e.getYOnScreen();
+				setLocation(xPantalla - xMouse, yPantalla - yMouse);
+			}
+		});
+
+		lblBarraMoverVentana.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				xMouse = e.getX();
+				yMouse = e.getY();
+			}
+		});
+		lblBarraMoverVentana.setBounds(0, 0, 918, 23);
+		background.add(lblBarraMoverVentana);
+		
+		lblBtnCerrar = new JLabel("");
+		lblBtnCerrar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.exit(0);
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblBtnCerrar.setBackground(Color.RED);
+				lblBtnCerrar.setOpaque(true);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblBtnCerrar.setBackground(null);
+				lblBtnCerrar.setOpaque(false);
+			}
+		});
+		lblBtnCerrar.setIcon(new ImageIcon(Plantilla.class.getResource("/img/close.png")));
+		lblBtnCerrar.setBounds(970, 0, 40, 40);
+		background.add(lblBtnCerrar);
+		
+		lblBtnMinimizar = new JLabel("");
+		lblBtnMinimizar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setState(JFrame.ICONIFIED);
+			}
+		});
+		lblBtnMinimizar.setIcon(new ImageIcon(Plantilla.class.getResource("/img/minimize.png")));
+		lblBtnMinimizar.setBounds(928, 0, 34, 40);
+		background.add(lblBtnMinimizar);
+		
+				lblFondo = new JLabel("");
+				lblFondo.setIcon(new ImageIcon(_01_InicioSesion2.class.getResource("/img/fondoLogin2  - copia.jpg")));
+				lblFondo.setBounds(725, 0, 283, 537);
+				background.add(lblFondo);
+				lblFondo = new JLabel("");
+				lblFondo.setIcon(new ImageIcon(_01_InicioSesion2.class.getResource("/img/fondoLogin2  - copia.jpg")));
+				lblFondo.setBounds(725, 0, 283, 537);
+				background.add(lblFondo);
 	}
 
 	@Override
