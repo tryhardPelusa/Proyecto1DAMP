@@ -386,6 +386,11 @@ public class _08_CrearEquipos extends JFrame implements Vista {
 		background.add(lblNuevoEquipo);
 		
 		btnCrear = new JButton("Crear");
+		btnCrear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		btnCrear.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
 		btnCrear.setBackground(new Color(255, 128, 0));
 		btnCrear.setBounds(481, 411, 111, 23);
@@ -408,19 +413,19 @@ public class _08_CrearEquipos extends JFrame implements Vista {
 		
 		lblNombre = new JLabel("NOMBRE");
 		lblNombre.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNombre.setFont(new Font("Calibri Light", Font.PLAIN, 12));
+		lblNombre.setFont(new Font("Britannic Bold", Font.PLAIN, 12));
 		lblNombre.setBounds(404, 192, 67, 40);
 		background.add(lblNombre);
 		
 		lblSede = new JLabel("SEDE");
 		lblSede.setHorizontalAlignment(SwingConstants.LEFT);
-		lblSede.setFont(new Font("Calibri Light", Font.PLAIN, 12));
+		lblSede.setFont(new Font("Britannic Bold", Font.PLAIN, 12));
 		lblSede.setBounds(401, 264, 59, 40);
 		background.add(lblSede);
 		
 		lblDeporte = new JLabel("DEPORTE");
 		lblDeporte.setHorizontalAlignment(SwingConstants.LEFT);
-		lblDeporte.setFont(new Font("Calibri Light", Font.PLAIN, 12));
+		lblDeporte.setFont(new Font("Britannic Bold", Font.PLAIN, 12));
 		lblDeporte.setBounds(401, 332, 67, 40);
 		background.add(lblDeporte);
 		

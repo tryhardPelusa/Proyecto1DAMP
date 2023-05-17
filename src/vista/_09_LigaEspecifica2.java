@@ -88,6 +88,10 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 		background.setLayout(null);
 		
 		 btnVerEquipo = new JButton("Ver Equipo");
+		 btnVerEquipo.addActionListener(new ActionListener() {
+		 	public void actionPerformed(ActionEvent e) {
+		 	}
+		 });
 		 btnVerEquipo.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
 		 btnVerEquipo.setBackground(new Color(255, 128, 0));
 		 btnVerEquipo.setBounds(416, 419, 111, 23);
@@ -408,7 +412,8 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 	
 	// Tabla con los resultados de la liga
 	tableClasificacion = new JTable();
-	tableClasificacion.setFont(new Font("Calibri", Font.PLAIN, 11));
+	tableClasificacion.setEnabled(false);
+	tableClasificacion.setFont(new Font("Britannic Bold", Font.PLAIN, 11));
 	tableClasificacion.setModel(new DefaultTableModel(
 			new Object[][] { { "Real Madrid", 12, 5, 4, 1, 14, 5 }, { "Barcelona", 10, 5, 3, 1, 12, 6 },
 					{ "Cordoba", 8, 5, 2, 3, 10, 9 }, { null, null, null, null, null, null, null },
@@ -421,7 +426,7 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
     
     // Personaliza el estilo de las celdas de encabezado de la tabla
 	  JTableHeader headerClasificacion = tableClasificacion.getTableHeader();
-	  headerClasificacion.setFont(new Font("Calibri", Font.PLAIN, 11));
+	  headerClasificacion.setFont(new Font("Britannic Bold", Font.PLAIN, 11));
 	  headerClasificacion.setBackground(new Color(0, 128, 192));
 	  headerClasificacion.setForeground(Color.WHITE);
 	 
@@ -452,11 +457,12 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
 						{ null, null, null, null }, { null, null, null, null }, },
 				new String[] { "Fecha", "Equipo Local", "Equipo Visitante", "Sede" }));
+		tableCalendario.setFont(new Font("Britannic Bold", Font.PLAIN, 11));
 		scrollPaneCalendario.setViewportView(tableCalendario);
 	
 		// Personaliza el estilo de las celdas de encabezado de la tabla
      JTableHeader headerCalendario = tableCalendario.getTableHeader();
-     headerCalendario.setFont(new Font("Calibri", Font.BOLD, 12));
+     headerCalendario.setFont(new Font("Britannic Bold", Font.PLAIN, 11));
      headerCalendario.setBackground(new Color(0, 128, 192));
      headerCalendario.setForeground(Color.WHITE);
 	
