@@ -133,6 +133,11 @@ public class _08_CrearEquipos extends JFrame implements Vista {
 		background.add(lblBtnMinimizar);
 
 		btnMiCuenta = new JButton("MI CUENTA");
+		btnMiCuenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(8, 4);
+			}
+		});
 		btnMiCuenta.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
@@ -159,6 +164,11 @@ public class _08_CrearEquipos extends JFrame implements Vista {
 		background.setComponentZOrder(btnMiCuenta, 0);
 		
 		btnVerLigas = new JButton("VER LIGAS");
+		btnVerLigas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(8, 0);
+			}
+		});
 		btnVerLigas.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
@@ -184,6 +194,11 @@ public class _08_CrearEquipos extends JFrame implements Vista {
 		background.setComponentZOrder(btnVerLigas, 0);
 		
 		btnCrearLiga = new JButton("CREAR LIGA");
+		btnCrearLiga.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(8, 7);
+			}
+		});
 		btnCrearLiga.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
@@ -209,6 +224,11 @@ public class _08_CrearEquipos extends JFrame implements Vista {
 		background.setComponentZOrder(btnCrearLiga, 0);
 		
 		btnUnirseALiga = new JButton("UNIRSE A LIGA");
+		btnUnirseALiga.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(8, 5);
+			}
+		});
 		btnUnirseALiga.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
@@ -234,6 +254,11 @@ public class _08_CrearEquipos extends JFrame implements Vista {
 		background.setComponentZOrder(btnUnirseALiga, 0);
 		
 		btnCrearEquipo = new JButton("CREAR EQUIPO");
+		btnCrearEquipo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(8, 8);
+			}
+		});
 		btnCrearEquipo.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
@@ -259,6 +284,11 @@ public class _08_CrearEquipos extends JFrame implements Vista {
 		background.setComponentZOrder(btnCrearEquipo, 0);
 		
 		btnUnirseAEquipo = new JButton("UNIRSE A EQUIPO");
+		btnUnirseAEquipo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(8, 6);
+			}
+		});
 		btnUnirseAEquipo.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
@@ -284,6 +314,11 @@ public class _08_CrearEquipos extends JFrame implements Vista {
 		background.setComponentZOrder(btnUnirseAEquipo, 0);
 		
 		btnMisApuestas = new JButton("MIS APUESTAS");
+		btnMisApuestas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(8, 12);
+			}
+		});
 		btnMisApuestas.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
@@ -309,6 +344,11 @@ public class _08_CrearEquipos extends JFrame implements Vista {
 		background.setComponentZOrder(btnMisApuestas, 0);
 		
 		btnApostar = new JButton("APOSTAR");
+		btnApostar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(8, 11);
+			}
+		});
 		btnApostar.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
@@ -334,6 +374,11 @@ public class _08_CrearEquipos extends JFrame implements Vista {
 		background.setComponentZOrder(btnApostar, 0);
 		
 		btnSignOut = new JButton("Sign Out");
+		btnSignOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(8, 1);
+			}
+		});
 		btnSignOut.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
