@@ -361,7 +361,7 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 
 		JLabel lblNewLabel = new JLabel("\u00BFNo tienes equipo?, crea o unete a uno :D ");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel.setBounds(475, 496, 266, 32);
+		lblNewLabel.setBounds(437, 496, 304, 32);
 		background.add(lblNewLabel);
 
 		JButton btnNewButton_1 = new JButton("Crear Equipo");

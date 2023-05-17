@@ -43,6 +43,8 @@ public class Plantilla extends JFrame implements Vista {
 	private JButton btnSignOut;
 	private JLabel lblBarraMoverVentana;
 	private int xMouse, yMouse;
+	private JLabel lblBtnMinimizar;
+	private JLabel lblBtnCerrar;
 
 	// Constructor
 	public Plantilla() {
@@ -63,11 +65,6 @@ public class Plantilla extends JFrame implements Vista {
 		contentPane.add(background);
 		background.setLayout(null);
 
-		lblFondo = new JLabel("");
-		lblFondo.setIcon(new ImageIcon(Plantilla.class.getResource("/img/fondoLogin2  - copia.jpg")));
-		lblFondo.setBounds(0, 0, 283, 539);
-		background.add(lblFondo);
-
 		lblLogo = new JLabel("");
 		lblLogo.setIcon(new ImageIcon(Plantilla.class.getResource("/img/logo.png")));
 		lblLogo.setBounds(290, 11, 150, 64);
@@ -80,29 +77,30 @@ public class Plantilla extends JFrame implements Vista {
 		separator.setBounds(282, 0, 13, 537);
 		background.add(separator);
 
-		JLabel lblBtnCerrar = new JLabel("");
+		lblBtnCerrar = new JLabel("");
 		lblBtnCerrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.exit(0);
 			}
+
 			@Override
-		    public void mouseEntered(MouseEvent e) {
+			public void mouseEntered(MouseEvent e) {
 				lblBtnCerrar.setBackground(Color.RED);
 				lblBtnCerrar.setOpaque(true);
-		    }
+			}
 
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		    	lblBtnCerrar.setBackground(null);
-		    	lblBtnCerrar.setOpaque(false);
-		    }
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblBtnCerrar.setBackground(null);
+				lblBtnCerrar.setOpaque(false);
+			}
 		});
 		lblBtnCerrar.setIcon(new ImageIcon(Plantilla.class.getResource("/img/close.png")));
 		lblBtnCerrar.setBounds(970, 0, 40, 40);
 		background.add(lblBtnCerrar);
 
-		JLabel lblBtnMinimizar = new JLabel("");
+		lblBtnMinimizar = new JLabel("");
 		lblBtnMinimizar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -115,43 +113,43 @@ public class Plantilla extends JFrame implements Vista {
 
 		btnMiCuenta = new JButton("MI CUENTA");
 		btnMiCuenta.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mouseEntered(MouseEvent e) {
-		        btnMiCuenta.setBackground(Color.yellow);
-		        btnMiCuenta.setOpaque(true);
-		    }
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnMiCuenta.setBackground(Color.yellow);
+				btnMiCuenta.setOpaque(true);
+			}
 
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		        btnMiCuenta.setBackground(null);
-		        btnMiCuenta.setOpaque(false);
-		    }
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnMiCuenta.setBackground(null);
+				btnMiCuenta.setOpaque(false);
+			}
 		});
 
 		btnMiCuenta.setHorizontalAlignment(SwingConstants.LEFT);
 		btnMiCuenta.setFont(new Font("Britannic Bold", Font.BOLD, 25));
 		btnMiCuenta.setBounds(10, 13, 262, 49);
-		btnMiCuenta.setBorderPainted(false); 
-        btnMiCuenta.setContentAreaFilled(false); 
+		btnMiCuenta.setBorderPainted(false);
+		btnMiCuenta.setContentAreaFilled(false);
 		btnMiCuenta.setOpaque(false);
 		btnMiCuenta.setFocusPainted(false);
 		btnMiCuenta.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		background.add(btnMiCuenta);
 		background.setComponentZOrder(btnMiCuenta, 0);
-		
+
 		btnVerLigas = new JButton("VER LIGAS");
 		btnVerLigas.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mouseEntered(MouseEvent e) {
-		    	btnVerLigas.setBackground(Color.yellow);
-		    	btnVerLigas.setOpaque(true);
-		    }
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnVerLigas.setBackground(Color.yellow);
+				btnVerLigas.setOpaque(true);
+			}
 
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		    	btnVerLigas.setBackground(null);
-		    	btnVerLigas.setOpaque(false);
-		    }
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnVerLigas.setBackground(null);
+				btnVerLigas.setOpaque(false);
+			}
 		});
 		btnVerLigas.setHorizontalAlignment(SwingConstants.LEFT);
 		btnVerLigas.setOpaque(false);
@@ -163,20 +161,20 @@ public class Plantilla extends JFrame implements Vista {
 		btnVerLigas.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		background.add(btnVerLigas);
 		background.setComponentZOrder(btnVerLigas, 0);
-		
+
 		btnCrearLiga = new JButton("CREAR LIGA");
 		btnCrearLiga.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mouseEntered(MouseEvent e) {
-		    	btnCrearLiga.setBackground(Color.yellow);
-		    	btnCrearLiga.setOpaque(true);
-		    }
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnCrearLiga.setBackground(Color.yellow);
+				btnCrearLiga.setOpaque(true);
+			}
 
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		    	btnCrearLiga.setBackground(null);
-		    	btnCrearLiga.setOpaque(false);
-		    }
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnCrearLiga.setBackground(null);
+				btnCrearLiga.setOpaque(false);
+			}
 		});
 		btnCrearLiga.setHorizontalAlignment(SwingConstants.LEFT);
 		btnCrearLiga.setOpaque(false);
@@ -188,20 +186,20 @@ public class Plantilla extends JFrame implements Vista {
 		btnCrearLiga.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		background.add(btnCrearLiga);
 		background.setComponentZOrder(btnCrearLiga, 0);
-		
+
 		btnUnirseALiga = new JButton("UNIRSE A LIGA");
 		btnUnirseALiga.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mouseEntered(MouseEvent e) {
-		    	btnUnirseALiga.setBackground(Color.yellow);
-		    	btnUnirseALiga.setOpaque(true);
-		    }
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnUnirseALiga.setBackground(Color.yellow);
+				btnUnirseALiga.setOpaque(true);
+			}
 
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		    	btnUnirseALiga.setBackground(null);
-		    	btnUnirseALiga.setOpaque(false);
-		    }
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnUnirseALiga.setBackground(null);
+				btnUnirseALiga.setOpaque(false);
+			}
 		});
 		btnUnirseALiga.setHorizontalAlignment(SwingConstants.LEFT);
 		btnUnirseALiga.setOpaque(false);
@@ -213,20 +211,20 @@ public class Plantilla extends JFrame implements Vista {
 		btnUnirseALiga.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		background.add(btnUnirseALiga);
 		background.setComponentZOrder(btnUnirseALiga, 0);
-		
+
 		btnCrearEquipo = new JButton("CREAR EQUIPO");
 		btnCrearEquipo.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mouseEntered(MouseEvent e) {
-		    	btnCrearEquipo.setBackground(Color.yellow);
-		    	btnCrearEquipo.setOpaque(true);
-		    }
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnCrearEquipo.setBackground(Color.yellow);
+				btnCrearEquipo.setOpaque(true);
+			}
 
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		    	btnCrearEquipo.setBackground(null);
-		    	btnCrearEquipo.setOpaque(false);
-		    }
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnCrearEquipo.setBackground(null);
+				btnCrearEquipo.setOpaque(false);
+			}
 		});
 		btnCrearEquipo.setHorizontalAlignment(SwingConstants.LEFT);
 		btnCrearEquipo.setOpaque(false);
@@ -238,20 +236,20 @@ public class Plantilla extends JFrame implements Vista {
 		btnCrearEquipo.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		background.add(btnCrearEquipo);
 		background.setComponentZOrder(btnCrearEquipo, 0);
-		
+
 		btnUnirseAEquipo = new JButton("UNIRSE A EQUIPO");
 		btnUnirseAEquipo.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mouseEntered(MouseEvent e) {
-		    	btnUnirseAEquipo.setBackground(Color.yellow);
-		    	btnUnirseAEquipo.setOpaque(true);
-		    }
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnUnirseAEquipo.setBackground(Color.yellow);
+				btnUnirseAEquipo.setOpaque(true);
+			}
 
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		    	btnUnirseAEquipo.setBackground(null);
-		    	btnUnirseAEquipo.setOpaque(false);
-		    }
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnUnirseAEquipo.setBackground(null);
+				btnUnirseAEquipo.setOpaque(false);
+			}
 		});
 		btnUnirseAEquipo.setHorizontalAlignment(SwingConstants.LEFT);
 		btnUnirseAEquipo.setOpaque(false);
@@ -263,20 +261,20 @@ public class Plantilla extends JFrame implements Vista {
 		btnUnirseAEquipo.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		background.add(btnUnirseAEquipo);
 		background.setComponentZOrder(btnUnirseAEquipo, 0);
-		
+
 		btnMisApuestas = new JButton("MIS APUESTAS");
 		btnMisApuestas.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mouseEntered(MouseEvent e) {
-		    	btnMisApuestas.setBackground(Color.yellow);
-		    	btnMisApuestas.setOpaque(true);
-		    }
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnMisApuestas.setBackground(Color.yellow);
+				btnMisApuestas.setOpaque(true);
+			}
 
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		    	btnMisApuestas.setBackground(null);
-		    	btnMisApuestas.setOpaque(false);
-		    }
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnMisApuestas.setBackground(null);
+				btnMisApuestas.setOpaque(false);
+			}
 		});
 		btnMisApuestas.setHorizontalAlignment(SwingConstants.LEFT);
 		btnMisApuestas.setOpaque(false);
@@ -288,20 +286,20 @@ public class Plantilla extends JFrame implements Vista {
 		btnMisApuestas.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		background.add(btnMisApuestas);
 		background.setComponentZOrder(btnMisApuestas, 0);
-		
+
 		btnApostar = new JButton("APOSTAR");
 		btnApostar.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mouseEntered(MouseEvent e) {
-		    	btnApostar.setBackground(Color.yellow);
-		    	btnApostar.setOpaque(true);
-		    }
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnApostar.setBackground(Color.yellow);
+				btnApostar.setOpaque(true);
+			}
 
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		    	btnApostar.setBackground(null);
-		    	btnApostar.setOpaque(false);
-		    }
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnApostar.setBackground(null);
+				btnApostar.setOpaque(false);
+			}
 		});
 		btnApostar.setHorizontalAlignment(SwingConstants.LEFT);
 		btnApostar.setOpaque(false);
@@ -313,20 +311,20 @@ public class Plantilla extends JFrame implements Vista {
 		btnApostar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		background.add(btnApostar);
 		background.setComponentZOrder(btnApostar, 0);
-		
+
 		btnSignOut = new JButton("Sign Out");
 		btnSignOut.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mouseEntered(MouseEvent e) {
-		    	btnSignOut.setBackground(Color.yellow);
-		    	btnSignOut.setOpaque(true);
-		    }
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnSignOut.setBackground(Color.yellow);
+				btnSignOut.setOpaque(true);
+			}
 
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		    	btnSignOut.setBackground(null);
-		    	btnSignOut.setOpaque(false);
-		    }
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnSignOut.setBackground(null);
+				btnSignOut.setOpaque(false);
+			}
 		});
 		btnSignOut.setHorizontalAlignment(SwingConstants.LEFT);
 		btnSignOut.setOpaque(false);
@@ -338,7 +336,7 @@ public class Plantilla extends JFrame implements Vista {
 		btnSignOut.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		background.add(btnSignOut);
 		background.setComponentZOrder(btnSignOut, 0);
-		
+
 		lblBarraMoverVentana = new JLabel("");
 		lblBarraMoverVentana.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
@@ -348,7 +346,7 @@ public class Plantilla extends JFrame implements Vista {
 				setLocation(xPantalla - xMouse, yPantalla - yMouse);
 			}
 		});
-		
+
 		lblBarraMoverVentana.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -358,7 +356,11 @@ public class Plantilla extends JFrame implements Vista {
 		});
 		lblBarraMoverVentana.setBounds(0, 0, 918, 23);
 		background.add(lblBarraMoverVentana);
-		
+
+		lblFondo = new JLabel("");
+		lblFondo.setIcon(new ImageIcon(Plantilla.class.getResource("/img/fondoLogin2  - copia.jpg")));
+		lblFondo.setBounds(0, 0, 283, 539);
+		background.add(lblFondo);
 
 	}
 
