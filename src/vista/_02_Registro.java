@@ -195,7 +195,6 @@ public class _02_Registro extends JFrame implements Vista {
 		txtApellido2.setBounds(507, 299, 208, 20);
 		background.add(txtApellido2);
 		
-		
 		lblBarraMoverVentana = new JLabel("");
 		lblBarraMoverVentana.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
@@ -254,7 +253,10 @@ public class _02_Registro extends JFrame implements Vista {
 				lblFondo.setIcon(new ImageIcon(_01_InicioSesion2.class.getResource("/img/fondoLogin2  - copia.jpg")));
 				lblFondo.setBounds(725, 0, 283, 537);
 				background.add(lblFondo);
-		
+				lblFondo = new JLabel("");
+				lblFondo.setIcon(new ImageIcon(_01_InicioSesion2.class.getResource("/img/fondoLogin2  - copia.jpg")));
+				lblFondo.setBounds(725, 0, 283, 537);
+				background.add(lblFondo);
 	}
 
 	@Override
