@@ -78,11 +78,6 @@ public class _02_Registro extends JFrame implements Vista {
 		contentPane.add(background);
 		background.setLayout(null);
 
-		lblFondo = new JLabel("");
-		lblFondo.setIcon(new ImageIcon(_01_InicioSesion2.class.getResource("/img/fondoLogin2  - copia.jpg")));
-		lblFondo.setBounds(725, 0, 283, 537);
-		background.add(lblFondo);
-
 		lblLogo = new JLabel("");
 		lblLogo.setIcon(new ImageIcon(_01_InicioSesion2.class.getResource("/img/logo.png")));
 		lblLogo.setBounds(10, 11, 150, 64);
@@ -191,6 +186,11 @@ public class _02_Registro extends JFrame implements Vista {
 		txtApellido2.setBackground(new Color(0, 128, 192));
 		txtApellido2.setBounds(507, 299, 208, 20);
 		background.add(txtApellido2);
+		
+				lblFondo = new JLabel("");
+				lblFondo.setIcon(new ImageIcon(_01_InicioSesion2.class.getResource("/img/fondoLogin2  - copia.jpg")));
+				lblFondo.setBounds(725, 0, 283, 537);
+				background.add(lblFondo);
 	}
 
 	@Override

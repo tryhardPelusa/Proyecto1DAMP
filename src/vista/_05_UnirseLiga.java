@@ -61,11 +61,6 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 		contentPane.add(background);
 		background.setLayout(null);
 
-		lblFondo = new JLabel("");
-		lblFondo.setIcon(new ImageIcon(Plantilla.class.getResource("/img/fondoLogin2  - copia.jpg")));
-		lblFondo.setBounds(0, 0, 283, 539);
-		background.add(lblFondo);
-
 		lblLogo = new JLabel("");
 		lblLogo.setIcon(new ImageIcon(Plantilla.class.getResource("/img/logo.png")));
 		lblLogo.setBounds(290, 11, 150, 64);
@@ -361,12 +356,17 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 
 		JLabel lblNewLabel = new JLabel("\u00BFNo tienes equipo?, crea o unete a uno :D ");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel.setBounds(475, 496, 266, 32);
+		lblNewLabel.setBounds(440, 496, 322, 32);
 		background.add(lblNewLabel);
 
 		JButton btnNewButton_1 = new JButton("Crear Equipo");
 		btnNewButton_1.setBounds(878, 504, 109, 21);
 		background.add(btnNewButton_1);
+		
+				lblFondo = new JLabel("");
+				lblFondo.setIcon(new ImageIcon(Plantilla.class.getResource("/img/fondoLogin2  - copia.jpg")));
+				lblFondo.setBounds(0, 0, 283, 539);
+				background.add(lblFondo);
 
 	}
 

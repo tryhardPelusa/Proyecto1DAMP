@@ -69,11 +69,6 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 		contentPane.add(background);
 		background.setLayout(null);
 
-		lblFondo = new JLabel("");
-		lblFondo.setIcon(new ImageIcon(Plantilla.class.getResource("/img/fondoLogin2  - copia.jpg")));
-		lblFondo.setBounds(0, 0, 283, 539);
-		background.add(lblFondo);
-
 		lblLogo = new JLabel("");
 		lblLogo.setIcon(new ImageIcon(Plantilla.class.getResource("/img/logo.png")));
 		lblLogo.setBounds(290, 11, 150, 64);
@@ -390,6 +385,11 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 		lblEquipoEspecifico.setFont(new Font("Britannic Bold", Font.PLAIN, 27));
 		lblEquipoEspecifico.setBounds(539, 108, 215, 74);
 		background.add(lblEquipoEspecifico);
+		
+				lblFondo = new JLabel("");
+				lblFondo.setIcon(new ImageIcon(Plantilla.class.getResource("/img/fondoLogin2  - copia.jpg")));
+				lblFondo.setBounds(0, 0, 283, 539);
+				background.add(lblFondo);
 
 	}
 
