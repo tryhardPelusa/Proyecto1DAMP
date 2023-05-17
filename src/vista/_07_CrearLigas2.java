@@ -76,7 +76,6 @@ public class _07_CrearLigas2 extends JFrame implements Vista {
 	private JSpinner spinnerVictoria;
 	private JSpinner spinnerEmpate;
 	private JSpinner spinnerDerrota;
-	private JButton btnCrear;
 
 	// Constructor
 	public _07_CrearLigas2() {
@@ -520,9 +519,10 @@ public class _07_CrearLigas2 extends JFrame implements Vista {
         spinnerEmpate.setBounds(902, 270, 60, 20);
         background.add(spinnerEmpate);
         
-        btnCrear = new JButton("Crear Liga");
-        btnCrear.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
-        btnCrear.setBounds(773, 478, 107, 41);
+        JButton btnCrear = new JButton("CREAR");
+        btnCrear.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
+        btnCrear.setBackground(new Color(255, 128, 0));
+        btnCrear.setBounds(781, 484, 101, 39);
         background.add(btnCrear);
         
 

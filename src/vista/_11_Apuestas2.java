@@ -61,12 +61,12 @@ public class _11_Apuestas2 extends JFrame implements Vista {
 	private JSeparator separator_Hor_5;
 	private JSeparator separator_Hor_6;
 	private JLabel lblTotal;
-	private JButton btnConfirmar;
-	private JButton btnAnterior;
-	private JButton btnSiguiente;
 	private JLabel lblJornada;
 	private JTable tblApuestas;
 	private JSpinner spinnerCantidad;
+	private JButton btnConfirmar;
+	private JButton btnSiguiente;
+	private JButton btnAnterior;
 
 	// Constructor
 	public _11_Apuestas2() {
@@ -474,27 +474,30 @@ public class _11_Apuestas2 extends JFrame implements Vista {
 		lblTotal.setFont(new Font("Britannic Bold", Font.PLAIN, 15));
 		lblTotal.setBounds(10, 323, 193, 23);
 		panelListado.add(lblTotal);
-
-		btnConfirmar = new JButton("Confirmar");
-		btnConfirmar.setFont(new Font("Britannic Bold", Font.PLAIN, 15));
-		btnConfirmar.setBounds(63, 357, 102, 37);
+		
+		btnConfirmar = new JButton("CONFIRMAR");
+		btnConfirmar.setFont(new Font("Britannic Bold", Font.PLAIN, 14));
+		btnConfirmar.setBackground(new Color(255, 128, 0));
+		btnConfirmar.setBounds(48, 357, 117, 39);
 		panelListado.add(btnConfirmar);
-
-		btnAnterior = new JButton("Anterior");
-		btnAnterior.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
-		btnAnterior.setBounds(323, 84, 89, 23);
-		background.add(btnAnterior);
-
-		btnSiguiente = new JButton("Siguiente");
-		btnSiguiente.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
-		btnSiguiente.setBounds(663, 84, 89, 23);
-		background.add(btnSiguiente);
 
 		lblJornada = new JLabel("Jornada 7");
 		lblJornada.setHorizontalAlignment(SwingConstants.CENTER);
 		lblJornada.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
 		lblJornada.setBounds(469, 77, 126, 34);
 		background.add(lblJornada);
+		
+		btnSiguiente = new JButton("SIGUIENTE");
+		btnSiguiente.setFont(new Font("Britannic Bold", Font.PLAIN, 14));
+		btnSiguiente.setBackground(new Color(255, 128, 0));
+		btnSiguiente.setBounds(651, 79, 101, 23);
+		background.add(btnSiguiente);
+		
+		btnAnterior = new JButton("ANTERIOR");
+		btnAnterior.setFont(new Font("Britannic Bold", Font.PLAIN, 14));
+		btnAnterior.setBackground(new Color(255, 128, 0));
+		btnAnterior.setBounds(320, 79, 101, 23);
+		background.add(btnAnterior);
 
 	}
 
