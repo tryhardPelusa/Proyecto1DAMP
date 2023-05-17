@@ -49,7 +49,6 @@ public class _04_MiCuenta extends JFrame implements Vista {
 	private JLabel lblMiCuenta;
 	private JLabel lblUsuario;
 	private JLabel lblNombre;
-	private JLabel lbliconoobligatorio;
 	private JLabel lblApellido2;
 	private JLabel lblTelefono;
 	private JLabel lblCorreo;
@@ -420,36 +419,32 @@ public class _04_MiCuenta extends JFrame implements Vista {
 				
 				lblUsuario = new JLabel("Usuario:");
 				lblUsuario.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-				lblUsuario.setBounds(357, 140, 85, 20);
+				lblUsuario.setBounds(358, 140, 85, 20);
 				background.add(lblUsuario);
 				
 				lblNombre = new JLabel("Nombre:");
 				lblNombre.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-				lblNombre.setBounds(352, 190, 85, 20);
+				lblNombre.setBounds(358, 190, 85, 20);
 				background.add(lblNombre);
-				
-				lbliconoobligatorio = new JLabel("*");
-				lbliconoobligatorio.setBounds(430, 183, 13, 16);
-				background.add(lbliconoobligatorio);
 				
 				JLabel lblApellido1 = new JLabel("1\u00BA Apellido:");
 				lblApellido1.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-				lblApellido1.setBounds(322, 240, 118, 25);
+				lblApellido1.setBounds(331, 240, 118, 25);
 				background.add(lblApellido1);
 				
 				lblApellido2 = new JLabel("2\u00BA Apellido:");
 				lblApellido2.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-				lblApellido2.setBounds(322, 290, 118, 25);
+				lblApellido2.setBounds(331, 290, 118, 25);
 				background.add(lblApellido2);
 				
 				lblTelefono = new JLabel("Telefono:");
 				lblTelefono.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-				lblTelefono.setBounds(345, 340, 90, 25);
+				lblTelefono.setBounds(350, 340, 90, 25);
 				background.add(lblTelefono);
 				
 				lblCorreo = new JLabel("Correo:");
 				lblCorreo.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-				lblCorreo.setBounds(739, 190, 85, 20);
+				lblCorreo.setBounds(740, 190, 85, 20);
 				background.add(lblCorreo);
 				
 				lblPassword = new JLabel("Password:");
@@ -459,7 +454,7 @@ public class _04_MiCuenta extends JFrame implements Vista {
 				
 				lblFechaNacimiento = new JLabel("Fecha nacimiento:");
 				lblFechaNacimiento.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-				lblFechaNacimiento.setBounds(659, 240, 178, 20);
+				lblFechaNacimiento.setBounds(644, 240, 168, 20);
 				background.add(lblFechaNacimiento);
 				
 				JDateChooser dateChooser = new JDateChooser();
@@ -467,7 +462,7 @@ public class _04_MiCuenta extends JFrame implements Vista {
 					public void actionPerformed(ActionEvent e) {
 					}
 				});
-				dateChooser.setBounds(840, 238, 130, 26);
+				dateChooser.setBounds(824, 238, 146, 26);
 				background.add(dateChooser);
 				
 				txtNombre = new JTextField();
@@ -527,7 +522,7 @@ public class _04_MiCuenta extends JFrame implements Vista {
 				btnCambiarDatos.setBackground(new Color(255, 128, 0));
 				btnCambiarDatos.setForeground(Color.BLACK);
 				btnCambiarDatos.setFont(new Font("Britannic Bold", Font.PLAIN, 18));
-				btnCambiarDatos.setBounds(820, 332, 150, 44);
+				btnCambiarDatos.setBounds(811, 332, 159, 44);
 				background.add(btnCambiarDatos);
 				
 

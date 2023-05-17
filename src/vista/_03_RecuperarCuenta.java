@@ -200,22 +200,22 @@ public class _03_RecuperarCuenta extends JFrame implements Vista {
 		background.add(lblBarraMoverVentana);
 		
 		lblTituloAcceder = new JLabel("\u00BFNo puedes acceder?");
-		lblTituloAcceder.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
-		lblTituloAcceder.setBounds(565, 114, 232, 25);
+		lblTituloAcceder.setFont(new Font("Britannic Bold", Font.PLAIN, 22));
+		lblTituloAcceder.setBounds(601, 114, 232, 32);
 		background.add(lblTituloAcceder);
 		
 		lblPorFavorIntroduzca = new JLabel("Por favor, introduzca:");
-		lblPorFavorIntroduzca.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		lblPorFavorIntroduzca.setBounds(575, 163, 205, 25);
+		lblPorFavorIntroduzca.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
+		lblPorFavorIntroduzca.setBounds(601, 163, 205, 25);
 		background.add(lblPorFavorIntroduzca);
 		
 		lblUsuario = new JLabel("Usuario:");
-		lblUsuario.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		lblUsuario.setBounds(515, 215, 86, 25);
+		lblUsuario.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
+		lblUsuario.setBounds(518, 215, 86, 25);
 		background.add(lblUsuario);
 		
 		txtUsuario = new JTextField();
-		txtUsuario.setBackground(new Color(235, 108, 46));
+		txtUsuario.setBackground(new Color(0, 128, 192));
 		txtUsuario.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		txtUsuario.setText("          Introduzca el usuario");
 		txtUsuario.setBounds(601, 207, 268, 40);
@@ -223,12 +223,12 @@ public class _03_RecuperarCuenta extends JFrame implements Vista {
 		txtUsuario.setColumns(10);
 		
 		lblCorreo = new JLabel("Correo:");
-		lblCorreo.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		lblCorreo.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
 		lblCorreo.setBounds(525, 290, 76, 25);
 		background.add(lblCorreo);
 		
 		txtCorreoElectronico = new JTextField();
-		txtCorreoElectronico.setBackground(new Color(235, 108, 46));
+		txtCorreoElectronico.setBackground(new Color(0, 128, 192));
 		txtCorreoElectronico.setText("Introduzca el correo electronico");
 		txtCorreoElectronico.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		txtCorreoElectronico.setColumns(10);
@@ -236,8 +236,8 @@ public class _03_RecuperarCuenta extends JFrame implements Vista {
 		background.add(txtCorreoElectronico);
 		
 		lblO = new JLabel("o");
-		lblO.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		lblO.setBounds(665, 248, 18, 25);
+		lblO.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
+		lblO.setBounds(604, 250, 18, 25);
 		background.add(lblO);
 		
 		btnRecuperarCuenta = new JButton("Recuperar Cuenta");
@@ -248,14 +248,14 @@ public class _03_RecuperarCuenta extends JFrame implements Vista {
 		});
 		btnRecuperarCuenta.setBackground(new Color(255, 128, 0));
 		btnRecuperarCuenta.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		btnRecuperarCuenta.setBounds(588, 370, 179, 40);
+		btnRecuperarCuenta.setBounds(601, 365, 179, 40);
 		background.add(btnRecuperarCuenta);
 		
 		lblRevise = new JLabel("");
 		lblRevise.setForeground(new Color(255, 128, 0));
 		lblRevise.setBackground(Color.WHITE);
 		lblRevise.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 16));
-		lblRevise.setBounds(564, 333, 249, 25);
+		lblRevise.setBounds(601, 328, 249, 25);
 		background.add(lblRevise);
 		
 
