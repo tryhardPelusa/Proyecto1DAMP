@@ -90,6 +90,7 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 		 btnVerEquipo = new JButton("Ver Equipo");
 		 btnVerEquipo.addActionListener(new ActionListener() {
 		 	public void actionPerformed(ActionEvent e) {
+		 		miControlador.cambiarVentana(9, 10);
 		 	}
 		 });
 		 btnVerEquipo.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
@@ -481,6 +482,11 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 	 background.add(lblNombreLiga);
 	
 	 btnApostar2 = new JButton("Apostar");
+	 btnApostar2.addActionListener(new ActionListener() {
+	 	public void actionPerformed(ActionEvent e) {
+	 		miControlador.cambiarVentana(9, 11);
+	 	}
+	 });
 	 btnApostar2.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
 	 btnApostar2.setBackground(new Color(255, 128, 0));
 	 btnApostar2.setBounds(584, 419, 111, 23);
