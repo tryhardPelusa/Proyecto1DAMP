@@ -17,6 +17,8 @@ import modelo.Modelo;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -47,6 +49,8 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 	private JTable table_2;
 	private JScrollPane scrollPane_2;
 	private JTable table_3;
+	private JLabel lblBarraMoverVentana;
+	private int xMouse, yMouse;
 
 	// Constructor
 	public _10_EquipoEspecifico() {
@@ -380,16 +384,35 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 		table_3.setModel(new DefaultTableModel(
 				new Object[][] { { "Liga A" }, { "Liga B" }, { "Liga C" }, { "Liga D" }, }, new String[] { "Ligas" }));
 		scrollPane_2.setViewportView(table_3);
-		
+
 		JLabel lblEquipoEspecifico = new JLabel("Real Madrid");
 		lblEquipoEspecifico.setFont(new Font("Britannic Bold", Font.PLAIN, 27));
 		lblEquipoEspecifico.setBounds(539, 108, 215, 74);
 		background.add(lblEquipoEspecifico);
-		
-				lblFondo = new JLabel("");
-				lblFondo.setIcon(new ImageIcon(Plantilla.class.getResource("/img/fondoLogin2  - copia.jpg")));
-				lblFondo.setBounds(0, 0, 283, 539);
-				background.add(lblFondo);
+
+		lblFondo = new JLabel("");
+		lblFondo.setIcon(new ImageIcon(Plantilla.class.getResource("/img/fondoLogin2  - copia.jpg")));
+		lblFondo.setBounds(0, 0, 283, 539);
+		background.add(lblFondo);
+		lblBarraMoverVentana = new JLabel("");
+		lblBarraMoverVentana.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				int xPantalla = e.getXOnScreen();
+				int yPantalla = e.getYOnScreen();
+				setLocation(xPantalla - xMouse, yPantalla - yMouse);
+			}
+		});
+
+		lblBarraMoverVentana.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				xMouse = e.getX();
+				yMouse = e.getY();
+			}
+		});
+		lblBarraMoverVentana.setBounds(0, 0, 918, 23);
+		background.add(lblBarraMoverVentana);
 
 	}
 

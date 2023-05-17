@@ -17,6 +17,8 @@ import modelo.Modelo;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+
 import javax.swing.JTextField;
 
 public class _05_UnirseLiga extends JFrame implements Vista {
@@ -39,6 +41,8 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 	private JButton btnApostar;
 	private JButton btnSignOut;
 	private JTextField textField;
+	private JLabel lblBarraMoverVentana;
+	private int xMouse, yMouse;
 
 	// Constructor
 	public _05_UnirseLiga() {
@@ -362,11 +366,30 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 		JButton btnNewButton_1 = new JButton("Crear Equipo");
 		btnNewButton_1.setBounds(878, 504, 109, 21);
 		background.add(btnNewButton_1);
-		
-				lblFondo = new JLabel("");
-				lblFondo.setIcon(new ImageIcon(Plantilla.class.getResource("/img/fondoLogin2  - copia.jpg")));
-				lblFondo.setBounds(0, 0, 283, 539);
-				background.add(lblFondo);
+
+		lblFondo = new JLabel("");
+		lblFondo.setIcon(new ImageIcon(Plantilla.class.getResource("/img/fondoLogin2  - copia.jpg")));
+		lblFondo.setBounds(0, 0, 283, 539);
+		background.add(lblFondo);
+		lblBarraMoverVentana = new JLabel("");
+		lblBarraMoverVentana.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				int xPantalla = e.getXOnScreen();
+				int yPantalla = e.getYOnScreen();
+				setLocation(xPantalla - xMouse, yPantalla - yMouse);
+			}
+		});
+
+		lblBarraMoverVentana.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				xMouse = e.getX();
+				yMouse = e.getY();
+			}
+		});
+		lblBarraMoverVentana.setBounds(0, 0, 918, 23);
+		background.add(lblBarraMoverVentana);
 
 	}
 
