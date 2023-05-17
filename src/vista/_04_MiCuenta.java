@@ -175,7 +175,7 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		btnVerLigas = new JButton("VER LIGAS");
 		btnVerLigas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(14, 9);
+				miControlador.cambiarVentana(4, 9);
 			}
 		});
 		btnVerLigas.addMouseListener(new MouseAdapter() {
@@ -205,7 +205,7 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		btnCrearLiga = new JButton("CREAR LIGA");
 		btnCrearLiga.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(14, 7);
+				miControlador.cambiarVentana(4, 7);
 			}
 		});
 		btnCrearLiga.addMouseListener(new MouseAdapter() {
@@ -235,7 +235,7 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		btnUnirseALiga = new JButton("UNIRSE A LIGA");
 		btnUnirseALiga.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(14, 5);
+				miControlador.cambiarVentana(4, 5);
 			}
 		});
 		btnUnirseALiga.addMouseListener(new MouseAdapter() {
@@ -265,7 +265,7 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		btnCrearEquipo = new JButton("CREAR EQUIPO");
 		btnCrearEquipo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(14, 8);
+				miControlador.cambiarVentana(4, 8);
 			}
 		});
 		btnCrearEquipo.addMouseListener(new MouseAdapter() {
@@ -295,7 +295,7 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		btnUnirseAEquipo = new JButton("UNIRSE A EQUIPO");
 		btnUnirseAEquipo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(14, 6);
+				miControlador.cambiarVentana(4, 6);
 			}
 		});
 		btnUnirseAEquipo.addMouseListener(new MouseAdapter() {
@@ -325,7 +325,7 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		btnMisApuestas = new JButton("MIS APUESTAS");
 		btnMisApuestas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(14, 12);
+				miControlador.cambiarVentana(4, 12);
 				}
 		});
 		btnMisApuestas.addMouseListener(new MouseAdapter() {

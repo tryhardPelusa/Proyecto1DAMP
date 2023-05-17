@@ -116,7 +116,7 @@ public class _03_RecuperarCuenta extends JFrame implements Vista {
 		btnIniciarSesion = new JButton("INICIAR SESION");
 		btnIniciarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(14, 1);
+				miControlador.cambiarVentana(3, 1);
 			}
 		});
 		btnIniciarSesion.addMouseListener(new MouseAdapter() {
@@ -136,7 +136,7 @@ public class _03_RecuperarCuenta extends JFrame implements Vista {
 				btnPaginaPrincipal = new JButton("PAGINA PRINCIPAL");
 				btnPaginaPrincipal.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						miControlador.cambiarVentana(14, 0);
+						miControlador.cambiarVentana(3, 0);
 					}
 				});
 				btnPaginaPrincipal.addMouseListener(new MouseAdapter() {
