@@ -76,6 +76,7 @@ public class _07_CrearLigas2 extends JFrame implements Vista {
 	private JSpinner spinnerVictoria;
 	private JSpinner spinnerEmpate;
 	private JSpinner spinnerDerrota;
+	private JButton btnCrear;
 
 	// Constructor
 	public _07_CrearLigas2() {
@@ -464,17 +465,17 @@ public class _07_CrearLigas2 extends JFrame implements Vista {
         
         lblPremio = new Label("Premio");
         lblPremio.setFont(new Font("Britannic Bold", Font.BOLD, 13));
-        lblPremio.setBounds(678, 338, 60, 24);
+        lblPremio.setBounds(678, 332, 60, 24);
         background.add(lblPremio);
         
         chckbxPremio = new JCheckBox("");
         chckbxPremio.setBackground(new Color(0, 128, 192));
         chckbxPremio.setHorizontalAlignment(SwingConstants.CENTER);
-        chckbxPremio.setBounds(742, 339, 23, 23);
+        chckbxPremio.setBounds(742, 333, 23, 23);
         background.add(chckbxPremio);
         
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(773, 345, 189, 126);
+        scrollPane.setBounds(771, 338, 189, 126);
         background.add(scrollPane);
         
         txtPremio = new JTextArea();
@@ -518,6 +519,11 @@ public class _07_CrearLigas2 extends JFrame implements Vista {
         spinnerEmpate.setModel(new SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(0), null, Integer.valueOf(1)));
         spinnerEmpate.setBounds(902, 270, 60, 20);
         background.add(spinnerEmpate);
+        
+        btnCrear = new JButton("Crear Liga");
+        btnCrear.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
+        btnCrear.setBounds(773, 478, 107, 41);
+        background.add(btnCrear);
         
 
 	}
