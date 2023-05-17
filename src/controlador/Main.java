@@ -11,13 +11,10 @@ import vista._02_Registro;
 import vista._03_RecuperarCuenta;
 import vista._04_MiCuenta;
 import vista._05_UnirseLiga;
-<<<<<<< HEAD
 import vista._06_UnirseEquipo2;
 import vista._07_CrearLigas;
-=======
 import vista._06_UnirseEquipo;
 import vista._07_CrearLigas2;
->>>>>>> refs/remotes/Tarea16/Turi
 import vista._08_CrearEquipos;
 import vista._09_LigaEspecifica2;
 import vista._10_EquipoEspecifico;
