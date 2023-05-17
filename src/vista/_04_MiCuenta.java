@@ -462,7 +462,7 @@ public class _04_MiCuenta extends JFrame implements Vista {
 					public void actionPerformed(ActionEvent e) {
 					}
 				});
-				dateChooser.setBounds(824, 238, 146, 26);
+				dateChooser.setBounds(824, 240, 145, 26);
 				background.add(dateChooser);
 				
 				txtNombre = new JTextField();

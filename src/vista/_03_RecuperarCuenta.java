@@ -216,7 +216,7 @@ public class _03_RecuperarCuenta extends JFrame implements Vista {
 		
 		txtUsuario = new JTextField();
 		txtUsuario.setBackground(new Color(0, 128, 192));
-		txtUsuario.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		txtUsuario.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
 		txtUsuario.setText("          Introduzca el usuario");
 		txtUsuario.setBounds(601, 207, 268, 40);
 		background.add(txtUsuario);
@@ -230,7 +230,7 @@ public class _03_RecuperarCuenta extends JFrame implements Vista {
 		txtCorreoElectronico = new JTextField();
 		txtCorreoElectronico.setBackground(new Color(0, 128, 192));
 		txtCorreoElectronico.setText("Introduzca el correo electronico");
-		txtCorreoElectronico.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		txtCorreoElectronico.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
 		txtCorreoElectronico.setColumns(10);
 		txtCorreoElectronico.setBounds(601, 280, 268, 40);
 		background.add(txtCorreoElectronico);
@@ -247,7 +247,7 @@ public class _03_RecuperarCuenta extends JFrame implements Vista {
 			}
 		});
 		btnRecuperarCuenta.setBackground(new Color(255, 128, 0));
-		btnRecuperarCuenta.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		btnRecuperarCuenta.setFont(new Font("Britannic Bold", Font.PLAIN, 18));
 		btnRecuperarCuenta.setBounds(601, 365, 268, 40);
 		background.add(btnRecuperarCuenta);
 		
