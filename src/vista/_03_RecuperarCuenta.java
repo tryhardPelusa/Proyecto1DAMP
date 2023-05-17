@@ -248,7 +248,7 @@ public class _03_RecuperarCuenta extends JFrame implements Vista {
 		});
 		btnRecuperarCuenta.setBackground(new Color(255, 128, 0));
 		btnRecuperarCuenta.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		btnRecuperarCuenta.setBounds(601, 365, 179, 40);
+		btnRecuperarCuenta.setBounds(601, 365, 268, 40);
 		background.add(btnRecuperarCuenta);
 		
 		lblRevise = new JLabel("");
