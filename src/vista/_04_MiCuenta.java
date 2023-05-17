@@ -20,6 +20,8 @@ import modelo.Modelo;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
@@ -61,7 +63,7 @@ public class _04_MiCuenta extends JFrame implements Vista {
 	private JTextField txtCorreo;
 	private JLabel lblWyllop;
 	private JButton btnCambiarDatos;
-
+	private int xMouse, yMouse;
 	// Constructor
 	public _04_MiCuenta() {
 		setTitle("Plantilla");
@@ -141,6 +143,23 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		        btnMiCuenta.setBackground(null);
 		        btnMiCuenta.setOpaque(false);
 		    }
+		});
+		JLabel lblBarraMoverVentana = new JLabel("");
+		lblBarraMoverVentana.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				int xPantalla = e.getXOnScreen();
+				int yPantalla = e.getYOnScreen();
+				setLocation(xPantalla - xMouse, yPantalla - yMouse);
+			}
+		});
+		
+		lblBarraMoverVentana.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				xMouse = e.getX();
+				yMouse = e.getY();
+			}
 		});
 
 		btnMiCuenta.setHorizontalAlignment(SwingConstants.LEFT);
