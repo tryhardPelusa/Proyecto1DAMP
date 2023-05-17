@@ -22,6 +22,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class _06_UnirseEquipo2 extends JFrame implements Vista {
 
@@ -65,11 +67,6 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 		contentPane.add(background);
 		background.setLayout(null);
 
-		lblFondo = new JLabel("");
-		lblFondo.setIcon(new ImageIcon(_06_UnirseEquipo2.class.getResource("/img/fondoLogin2  - copia.jpg")));
-		lblFondo.setBounds(0, 0, 283, 539);
-		background.add(lblFondo);
-
 		lblLogo = new JLabel("");
 		lblLogo.setIcon(new ImageIcon(_06_UnirseEquipo2.class.getResource("/img/logo.png")));
 		lblLogo.setBounds(290, 11, 150, 64);
@@ -92,12 +89,14 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 		    public void mouseEntered(MouseEvent e) {
 				lblBtnCerrar.setBackground(Color.RED);
 				lblBtnCerrar.setOpaque(true);
+				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		    }
 
 		    @Override
 		    public void mouseExited(MouseEvent e) {
 		    	lblBtnCerrar.setBackground(null);
 		    	lblBtnCerrar.setOpaque(false);
+		    	setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		    }
 		});
 		lblBtnCerrar.setIcon(new ImageIcon(_06_UnirseEquipo2.class.getResource("/img/close.png")));
@@ -110,12 +109,25 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 			public void mouseClicked(MouseEvent e) {
 				setState(JFrame.ICONIFIED);
 			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			}
 		});
 		lblBtnMinimizar.setIcon(new ImageIcon(_06_UnirseEquipo2.class.getResource("/img/minimize.png")));
 		lblBtnMinimizar.setBounds(928, 0, 34, 40);
 		background.add(lblBtnMinimizar);
 
 		btnMiCuenta = new JButton("MI CUENTA");
+		btnMiCuenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(6, 4);
+			}
+		});
 		btnMiCuenta.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
@@ -142,6 +154,11 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 		background.setComponentZOrder(btnMiCuenta, 0);
 		
 		btnVerLigas = new JButton("VER LIGAS");
+		btnVerLigas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(6, 0);
+			}
+		});
 		btnVerLigas.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
@@ -167,6 +184,11 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 		background.setComponentZOrder(btnVerLigas, 0);
 		
 		btnCrearLiga = new JButton("CREAR LIGA");
+		btnCrearLiga.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(6, 7);
+			}
+		});
 		btnCrearLiga.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
@@ -192,6 +214,11 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 		background.setComponentZOrder(btnCrearLiga, 0);
 		
 		btnUnirseALiga = new JButton("UNIRSE A LIGA");
+		btnUnirseALiga.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(6, 5);
+			}
+		});
 		btnUnirseALiga.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
@@ -217,6 +244,11 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 		background.setComponentZOrder(btnUnirseALiga, 0);
 		
 		btnCrearEquipo = new JButton("CREAR EQUIPO");
+		btnCrearEquipo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(6, 8);
+			}
+		});
 		btnCrearEquipo.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
@@ -242,6 +274,11 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 		background.setComponentZOrder(btnCrearEquipo, 0);
 		
 		btnUnirseAEquipo = new JButton("UNIRSE A EQUIPO");
+		btnUnirseAEquipo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(6, 6);
+			}
+		});
 		btnUnirseAEquipo.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
@@ -267,6 +304,11 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 		background.setComponentZOrder(btnUnirseAEquipo, 0);
 		
 		btnMisApuestas = new JButton("MIS APUESTAS");
+		btnMisApuestas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(6, 12);
+			}
+		});
 		btnMisApuestas.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
@@ -292,6 +334,11 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 		background.setComponentZOrder(btnMisApuestas, 0);
 		
 		btnApostar = new JButton("APOSTAR");
+		btnApostar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(6, 11);
+			}
+		});
 		btnApostar.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
@@ -317,6 +364,11 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 		background.setComponentZOrder(btnApostar, 0);
 		
 		btnSignOut = new JButton("Sign Out");
+		btnSignOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(6, 1);
+			}
+		});
 		btnSignOut.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
@@ -377,6 +429,11 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 		textField.setBounds(555, 271, 213, 20);
 		background.add(textField);
 		textField.setColumns(10);
+		
+				lblFondo = new JLabel("");
+				lblFondo.setIcon(new ImageIcon(_06_UnirseEquipo2.class.getResource("/img/fondoLogin2  - copia.jpg")));
+				lblFondo.setBounds(0, 0, 283, 539);
+				background.add(lblFondo);
 		
 
 	}

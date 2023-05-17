@@ -3,36 +3,28 @@
  */
 package vista;
 
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import modelo.Modelo;
-
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
-import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.ImageIcon;
-import javax.swing.border.TitledBorder;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 import controlador.Controlador;
-
-import javax.swing.DropMode;
-import javax.swing.JSeparator;
+import modelo.Modelo;
 
 public class _01_InicioSesion2 extends JFrame implements Vista {
 
@@ -108,11 +100,22 @@ public class _01_InicioSesion2 extends JFrame implements Vista {
 		background.add(passwordField);
 
 		lblContraseniaOlvidada = new JLabel("\u00BFHas olvidado tu contrase\u00F1a?");
+		lblContraseniaOlvidada.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				miControlador.cambiarVentana(1, 3);
+			}
+		});
 		lblContraseniaOlvidada.setForeground(new Color(255, 128, 0));
 		lblContraseniaOlvidada.setBounds(100, 393, 283, 14);
 		background.add(lblContraseniaOlvidada);
 
 		btnAcceder = new JButton("ACCEDER");
+		btnAcceder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(1, 0);
+			}
+		});
 		btnAcceder.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
 		btnAcceder.setBackground(new Color(255, 128, 0));
 		btnAcceder.setBounds(100, 440, 101, 39);
@@ -131,12 +134,22 @@ public class _01_InicioSesion2 extends JFrame implements Vista {
 		background.add(lblPregunta);
 
 		JButton btnRegistrate = new JButton("REGISTRATE");
+		btnRegistrate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(1, 2);
+			}
+		});
 		btnRegistrate.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
 		btnRegistrate.setBackground(new Color(255, 128, 0));
 		btnRegistrate.setBounds(539, 243, 119, 39);
 		background.add(btnRegistrate);
 
 		JButton btnInvitado = new JButton("INVITADO");
+		btnInvitado.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(1, 0);
+			}
+		});
 		btnInvitado.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
 		btnInvitado.setBackground(new Color(255, 128, 0));
 		btnInvitado.setBounds(539, 349, 119, 39);
@@ -161,7 +174,7 @@ public class _01_InicioSesion2 extends JFrame implements Vista {
 		});
 		lblBarraMoverVentana.setBounds(0, 0, 918, 23);
 		background.add(lblBarraMoverVentana);
-		
+
 		lblBtnCerrar = new JLabel("");
 		lblBtnCerrar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -173,33 +186,43 @@ public class _01_InicioSesion2 extends JFrame implements Vista {
 			public void mouseEntered(MouseEvent e) {
 				lblBtnCerrar.setBackground(Color.RED);
 				lblBtnCerrar.setOpaque(true);
+				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
 				lblBtnCerrar.setBackground(null);
 				lblBtnCerrar.setOpaque(false);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
 		lblBtnCerrar.setIcon(new ImageIcon(Plantilla.class.getResource("/img/close.png")));
 		lblBtnCerrar.setBounds(970, 0, 40, 40);
 		background.add(lblBtnCerrar);
-		
+
 		lblBtnMinimizar = new JLabel("");
 		lblBtnMinimizar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				setState(JFrame.ICONIFIED);
 			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			}
 		});
 		lblBtnMinimizar.setIcon(new ImageIcon(Plantilla.class.getResource("/img/minimize.png")));
 		lblBtnMinimizar.setBounds(928, 0, 34, 40);
 		background.add(lblBtnMinimizar);
-		
-				lblFondo = new JLabel("");
-				lblFondo.setIcon(new ImageIcon(_01_InicioSesion2.class.getResource("/img/fondoLogin2  - copia.jpg")));
-				lblFondo.setBounds(725, 0, 283, 537);
-				background.add(lblFondo);
+
+		lblFondo = new JLabel("");
+		lblFondo.setIcon(new ImageIcon(_01_InicioSesion2.class.getResource("/img/fondoLogin2  - copia.jpg")));
+		lblFondo.setBounds(725, 0, 283, 537);
+		background.add(lblFondo);
 	}
 
 	@Override

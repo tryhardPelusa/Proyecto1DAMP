@@ -12,8 +12,6 @@ import vista._03_RecuperarCuenta;
 import vista._04_MiCuenta;
 import vista._05_UnirseLiga;
 import vista._06_UnirseEquipo2;
-import vista._07_CrearLigas;
-import vista._06_UnirseEquipo;
 import vista._07_CrearLigas2;
 import vista._08_CrearEquipos;
 import vista._09_LigaEspecifica2;
@@ -54,7 +52,7 @@ public class Main {
 			vista.setControlador(miControlador);
 		}
 
-		((JFrame) misVistas[13]).setVisible(true);
+		((JFrame) misVistas[0]).setVisible(true);
 	}
 
 }
