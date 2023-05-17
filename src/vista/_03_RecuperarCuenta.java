@@ -154,8 +154,8 @@ public class _03_RecuperarCuenta extends JFrame implements Vista {
 				});
 				
 						btnPaginaPrincipal.setHorizontalAlignment(SwingConstants.LEFT);
-						btnPaginaPrincipal.setFont(new Font("Dialog", Font.BOLD, 25));
-						btnPaginaPrincipal.setBounds(10, 182, 285, 49);
+						btnPaginaPrincipal.setFont(new Font("Britannic Bold", Font.BOLD, 25));
+						btnPaginaPrincipal.setBounds(10, 215, 285, 49);
 						btnPaginaPrincipal.setBorderPainted(false); 
 						btnPaginaPrincipal.setContentAreaFilled(false); 
 						btnPaginaPrincipal.setOpaque(false);
@@ -169,7 +169,7 @@ public class _03_RecuperarCuenta extends JFrame implements Vista {
 		btnIniciarSesion.setFocusPainted(false);
 		btnIniciarSesion.setContentAreaFilled(false);
 		btnIniciarSesion.setBorderPainted(false);
-		btnIniciarSesion.setBounds(10, 242, 260, 49);
+		btnIniciarSesion.setBounds(10, 265, 260, 49);
 		btnIniciarSesion.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		background.add(btnIniciarSesion);
 		background.setComponentZOrder(btnIniciarSesion, 0);
@@ -217,7 +217,7 @@ public class _03_RecuperarCuenta extends JFrame implements Vista {
 		txtUsuario = new JTextField();
 		txtUsuario.setBackground(new Color(235, 108, 46));
 		txtUsuario.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		txtUsuario.setText("        Introduzca el usuario");
+		txtUsuario.setText("          Introduzca el usuario");
 		txtUsuario.setBounds(601, 207, 268, 40);
 		background.add(txtUsuario);
 		txtUsuario.setColumns(10);
@@ -246,13 +246,13 @@ public class _03_RecuperarCuenta extends JFrame implements Vista {
 				lblRevise.setText("Revise su correo electronico");
 			}
 		});
-		btnRecuperarCuenta.setBackground(Color.ORANGE);
+		btnRecuperarCuenta.setBackground(new Color(255, 128, 0));
 		btnRecuperarCuenta.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
 		btnRecuperarCuenta.setBounds(588, 370, 179, 40);
 		background.add(btnRecuperarCuenta);
 		
 		lblRevise = new JLabel("");
-		lblRevise.setForeground(new Color(235, 108, 46));
+		lblRevise.setForeground(new Color(255, 128, 0));
 		lblRevise.setBackground(Color.WHITE);
 		lblRevise.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 16));
 		lblRevise.setBounds(564, 333, 249, 25);

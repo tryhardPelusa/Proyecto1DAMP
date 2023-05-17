@@ -395,17 +395,17 @@ public class _04_MiCuenta extends JFrame implements Vista {
 				background.add(lblFondo);
 				
 				lblMiCuenta = new JLabel("Mi Cuenta");
-				lblMiCuenta.setFont(new Font("Kannada MN", Font.PLAIN, 30));
+				lblMiCuenta.setFont(new Font("Britannic Bold", Font.BOLD, 30));
 				lblMiCuenta.setBounds(600, 40, 159, 33);
 				background.add(lblMiCuenta);
 				
 				lblUsuario = new JLabel("Usuario:");
-				lblUsuario.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+				lblUsuario.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
 				lblUsuario.setBounds(357, 140, 85, 20);
 				background.add(lblUsuario);
 				
 				lblNombre = new JLabel("Nombre:");
-				lblNombre.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+				lblNombre.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
 				lblNombre.setBounds(352, 190, 85, 20);
 				background.add(lblNombre);
 				
@@ -414,32 +414,32 @@ public class _04_MiCuenta extends JFrame implements Vista {
 				background.add(lbliconoobligatorio);
 				
 				JLabel lblApellido1 = new JLabel("1\u00BA Apellido:");
-				lblApellido1.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+				lblApellido1.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
 				lblApellido1.setBounds(322, 240, 118, 25);
 				background.add(lblApellido1);
 				
 				lblApellido2 = new JLabel("2\u00BA Apellido:");
-				lblApellido2.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+				lblApellido2.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
 				lblApellido2.setBounds(322, 290, 118, 25);
 				background.add(lblApellido2);
 				
 				lblTelefono = new JLabel("Telefono:");
-				lblTelefono.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+				lblTelefono.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
 				lblTelefono.setBounds(345, 340, 90, 25);
 				background.add(lblTelefono);
 				
 				lblCorreo = new JLabel("Correo:");
-				lblCorreo.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+				lblCorreo.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
 				lblCorreo.setBounds(739, 190, 85, 20);
 				background.add(lblCorreo);
 				
 				lblPassword = new JLabel("Password:");
-				lblPassword.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+				lblPassword.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
 				lblPassword.setBounds(717, 140, 101, 20);
 				background.add(lblPassword);
 				
 				lblFechaNacimiento = new JLabel("Fecha nacimiento:");
-				lblFechaNacimiento.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+				lblFechaNacimiento.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
 				lblFechaNacimiento.setBounds(659, 240, 178, 20);
 				background.add(lblFechaNacimiento);
 				
@@ -452,51 +452,62 @@ public class _04_MiCuenta extends JFrame implements Vista {
 				background.add(dateChooser);
 				
 				txtNombre = new JTextField();
+				txtNombre.setBackground(new Color(0, 128, 192));
 				txtNombre.setText("Guillermo");
 				txtNombre.setBounds(440, 188, 130, 30);
 				background.add(txtNombre);
 				txtNombre.setColumns(10);
 				
 				txtApellido1 = new JTextField();
+				txtApellido1.setBackground(new Color(0, 128, 192));
 				txtApellido1.setText("Callizaya");
 				txtApellido1.setColumns(10);
 				txtApellido1.setBounds(440, 238, 130, 30);
 				background.add(txtApellido1);
 				
 				txtApellido2 = new JTextField();
+				txtApellido2.setBackground(new Color(0, 128, 192));
 				txtApellido2.setText("Fernandez");
 				txtApellido2.setColumns(10);
 				txtApellido2.setBounds(440, 288, 130, 30);
 				background.add(txtApellido2);
 				
 				txtTelefono = new JTextField();
+				txtTelefono.setBackground(new Color(0, 128, 192));
 				txtTelefono.setText("666666666");
 				txtTelefono.setColumns(10);
 				txtTelefono.setBounds(440, 338, 130, 30);
 				background.add(txtTelefono);
 				
 				txtPassword = new JTextField();
+				txtPassword.setBackground(new Color(0, 128, 192));
 				txtPassword.setText("RosaMelano");
 				txtPassword.setColumns(10);
 				txtPassword.setBounds(819, 138, 155, 30);
 				background.add(txtPassword);
 				
 				txtCorreo = new JTextField();
+				txtCorreo.setBackground(new Color(0, 128, 192));
 				txtCorreo.setText("rosamelano@utad.com");
 				txtCorreo.setColumns(10);
 				txtCorreo.setBounds(819, 188, 155, 30);
 				background.add(txtCorreo);
 				
 				lblWyllop = new JLabel("Wyllop");
-				lblWyllop.setForeground(new Color(235, 108, 46));
+				lblWyllop.setForeground(new Color(255, 128, 0));
 				lblWyllop.setBackground(Color.LIGHT_GRAY);
 				lblWyllop.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 				lblWyllop.setBounds(445, 135, 69, 29);
 				background.add(lblWyllop);
 				
 				btnCambiarDatos = new JButton("Cambiar datos");
-				btnCambiarDatos.setForeground(new Color(235, 108, 46));
-				btnCambiarDatos.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+				btnCambiarDatos.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
+				btnCambiarDatos.setBackground(new Color(255, 128, 0));
+				btnCambiarDatos.setForeground(Color.BLACK);
+				btnCambiarDatos.setFont(new Font("Britannic Bold", Font.PLAIN, 18));
 				btnCambiarDatos.setBounds(820, 332, 150, 44);
 				background.add(btnCambiarDatos);
 				
