@@ -1,5 +1,5 @@
 /*
- * @Guillermo Callizaya F
+ * @Author Javier Turienzo
  */
 package vista;
 
@@ -21,13 +21,14 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
-
-import com.toedter.calendar.JDateChooser;
 import javax.swing.JTextField;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class _04_MiCuenta extends JFrame implements Vista {
+public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 
 	// Atributos
 	private Controlador miControlador;
@@ -46,30 +47,18 @@ public class _04_MiCuenta extends JFrame implements Vista {
 	private JButton btnMisApuestas;
 	private JButton btnApostar;
 	private JButton btnSignOut;
-	private JLabel lblMiCuenta;
-	private JLabel lblUsuario;
-	private JLabel lblNombre;
-	private JLabel lblApellido2;
-	private JLabel lblTelefono;
-	private JLabel lblCorreo;
-	private JLabel lblPassword;
-	private JLabel lblFechaNacimiento;
-	private JTextField txtNombre;
-	private JTextField txtApellido1;
-	private JTextField txtApellido2;
-	private JTextField txtTelefono;
-	private JTextField txtPassword;
-	private JTextField txtCorreo;
-	private JLabel lblWyllop;
-	private JButton btnCambiarDatos;
+	private JLabel lblBarraMoverVentana;
 	private int xMouse, yMouse;
+	private JLabel lblBuscarLigas;
+	private JTextField textField;
+	private JTable tableLigasPublicas;
+	private JTable tableLigasPrivadas;
+
 	// Constructor
-	public _04_MiCuenta() {
+	public _00_PaginaPrincipal2() {
 		setTitle("Plantilla");
 		setResizable(false);
 		setUndecorated(true);
-		setLocationRelativeTo(null);
-		setLocationByPlatform(rootPaneCheckingEnabled);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1010, 539);
 		contentPane = new JPanel();
@@ -85,7 +74,7 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		background.setLayout(null);
 
 		lblLogo = new JLabel("");
-		lblLogo.setIcon(new ImageIcon(_04_MiCuenta.class.getResource("/img/logo.png")));
+		lblLogo.setIcon(new ImageIcon(_00_PaginaPrincipal2.class.getResource("/img/logo.png")));
 		lblLogo.setBounds(290, 11, 150, 64);
 		background.add(lblLogo);
 
@@ -106,15 +95,17 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		    public void mouseEntered(MouseEvent e) {
 				lblBtnCerrar.setBackground(Color.RED);
 				lblBtnCerrar.setOpaque(true);
+				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		    }
 
 		    @Override
 		    public void mouseExited(MouseEvent e) {
 		    	lblBtnCerrar.setBackground(null);
 		    	lblBtnCerrar.setOpaque(false);
+		    	setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		    }
 		});
-		lblBtnCerrar.setIcon(new ImageIcon(_04_MiCuenta.class.getResource("/img/close.png")));
+		lblBtnCerrar.setIcon(new ImageIcon(_00_PaginaPrincipal2.class.getResource("/img/close.png")));
 		lblBtnCerrar.setBounds(970, 0, 40, 40);
 		background.add(lblBtnCerrar);
 
@@ -124,12 +115,25 @@ public class _04_MiCuenta extends JFrame implements Vista {
 			public void mouseClicked(MouseEvent e) {
 				setState(JFrame.ICONIFIED);
 			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			}
 		});
-		lblBtnMinimizar.setIcon(new ImageIcon(_04_MiCuenta.class.getResource("/img/minimize.png")));
+		lblBtnMinimizar.setIcon(new ImageIcon(_00_PaginaPrincipal2.class.getResource("/img/minimize.png")));
 		lblBtnMinimizar.setBounds(928, 0, 34, 40);
 		background.add(lblBtnMinimizar);
 
 		btnMiCuenta = new JButton("MI CUENTA");
+		btnMiCuenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(0, 4);
+			}
+		});
 		btnMiCuenta.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
@@ -142,23 +146,6 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		        btnMiCuenta.setBackground(null);
 		        btnMiCuenta.setOpaque(false);
 		    }
-		});
-		JLabel lblBarraMoverVentana = new JLabel("");
-		lblBarraMoverVentana.addMouseMotionListener(new MouseMotionAdapter() {
-			@Override
-			public void mouseDragged(MouseEvent e) {
-				int xPantalla = e.getXOnScreen();
-				int yPantalla = e.getYOnScreen();
-				setLocation(xPantalla - xMouse, yPantalla - yMouse);
-			}
-		});
-		
-		lblBarraMoverVentana.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				xMouse = e.getX();
-				yMouse = e.getY();
-			}
 		});
 
 		btnMiCuenta.setHorizontalAlignment(SwingConstants.LEFT);
@@ -175,7 +162,7 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		btnVerLigas = new JButton("VER LIGAS");
 		btnVerLigas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(4, 9);
+				miControlador.cambiarVentana(0, 0);
 			}
 		});
 		btnVerLigas.addMouseListener(new MouseAdapter() {
@@ -205,7 +192,7 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		btnCrearLiga = new JButton("CREAR LIGA");
 		btnCrearLiga.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(4, 7);
+				miControlador.cambiarVentana(0, 7);
 			}
 		});
 		btnCrearLiga.addMouseListener(new MouseAdapter() {
@@ -235,7 +222,7 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		btnUnirseALiga = new JButton("UNIRSE A LIGA");
 		btnUnirseALiga.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(4, 5);
+				miControlador.cambiarVentana(0, 5);
 			}
 		});
 		btnUnirseALiga.addMouseListener(new MouseAdapter() {
@@ -265,7 +252,7 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		btnCrearEquipo = new JButton("CREAR EQUIPO");
 		btnCrearEquipo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(4, 8);
+				miControlador.cambiarVentana(0, 8);
 			}
 		});
 		btnCrearEquipo.addMouseListener(new MouseAdapter() {
@@ -295,7 +282,7 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		btnUnirseAEquipo = new JButton("UNIRSE A EQUIPO");
 		btnUnirseAEquipo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(4, 6);
+				miControlador.cambiarVentana(0, 6);
 			}
 		});
 		btnUnirseAEquipo.addMouseListener(new MouseAdapter() {
@@ -317,7 +304,7 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		btnUnirseAEquipo.setFocusPainted(false);
 		btnUnirseAEquipo.setContentAreaFilled(false);
 		btnUnirseAEquipo.setBorderPainted(false);
-		btnUnirseAEquipo.setBounds(10, 302, 273, 49);
+		btnUnirseAEquipo.setBounds(10, 302, 262, 49);
 		btnUnirseAEquipo.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		background.add(btnUnirseAEquipo);
 		background.setComponentZOrder(btnUnirseAEquipo, 0);
@@ -325,8 +312,8 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		btnMisApuestas = new JButton("MIS APUESTAS");
 		btnMisApuestas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(4, 12);
-				}
+				miControlador.cambiarVentana(0, 12);
+			}
 		});
 		btnMisApuestas.addMouseListener(new MouseAdapter() {
 		    @Override
@@ -355,7 +342,7 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		btnApostar = new JButton("APOSTAR");
 		btnApostar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(14, 11);
+				miControlador.cambiarVentana(0, 11);
 			}
 		});
 		btnApostar.addMouseListener(new MouseAdapter() {
@@ -383,6 +370,11 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		background.setComponentZOrder(btnApostar, 0);
 		
 		btnSignOut = new JButton("Sign Out");
+		btnSignOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(0, 1);
+			}
+		});
 		btnSignOut.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
@@ -407,124 +399,113 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		background.add(btnSignOut);
 		background.setComponentZOrder(btnSignOut, 0);
 		
+		lblBarraMoverVentana = new JLabel("");
+		lblBarraMoverVentana.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				int xPantalla = e.getXOnScreen();
+				int yPantalla = e.getYOnScreen();
+				setLocation(xPantalla - xMouse, yPantalla - yMouse);
+			}
+		});
+		
+		lblBarraMoverVentana.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				xMouse = e.getX();
+				yMouse = e.getY();
+			}
+		});
+		lblBarraMoverVentana.setBounds(0, 0, 918, 23);
+		background.add(lblBarraMoverVentana);
+		
+		lblBuscarLigas = new JLabel("Buscar Ligas:");
+		lblBuscarLigas.setFont(new Font("Britannic Bold", Font.PLAIN, 15));
+		lblBuscarLigas.setBounds(335, 94, 106, 23);
+		background.add(lblBuscarLigas);
+		
+		textField = new JTextField();
+		textField.setBackground(new Color(0, 128, 192));
+		textField.setBounds(429, 96, 121, 20);
+		background.add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblLupa = new JLabel("");
+		lblLupa.setIcon(new ImageIcon(_00_PaginaPrincipal2.class.getResource("/img/lupa.png")));
+		lblLupa.setBounds(554, 92, 26, 30);
+		background.add(lblLupa);
+		
+		JScrollPane scrollPaneLigasPublicas = new JScrollPane();
+		scrollPaneLigasPublicas.setBounds(335, 147, 275, 372);
+		background.add(scrollPaneLigasPublicas);
+		
+		tableLigasPublicas = new JTable();
+		tableLigasPublicas.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
+		tableLigasPublicas.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"Liga 1"},
+				{"Liga 2"},
+				{"Liga 3"},
+				{"Liga 4"},
+				{"Liga 5"},
+				{"Liga 6"},
+				{"Liga 7"},
+				{"Liga 8"},
+				{"Liga 9"},
+				{"Liga 10"},
+				{"Liga 11"},
+				{"Liga 12"},
+				{"Liga 13"},
+				{"Liga 14"},
+				{"Liga 15"},
+			},
+			new String[] {
+				"Ligas Públicas"
+			}
+		));
+		tableLigasPublicas.setRowHeight(40);
+		scrollPaneLigasPublicas.setViewportView(tableLigasPublicas);
+		
+		JScrollPane scrollPaneTusLigas = new JScrollPane();
+		scrollPaneTusLigas.setBounds(687, 147, 275, 372);
+		background.add(scrollPaneTusLigas);
+		
+		tableLigasPrivadas = new JTable();
+		tableLigasPrivadas.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
+		tableLigasPrivadas.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"Liga 1"},
+				{"Liga 2"},
+				{"Liga 3"},
+				{"Liga 4"},
+				{"Liga 5"},
+				{"Liga 6"},
+				{"Liga 7"},
+				{"Liga 8"},
+				{"Liga 9"},
+				{"Liga 10"},
+				{"Liga 11"},
+				{null},
+			},
+			new String[] {
+				"Tus Ligas"
+			}
+		));
+		tableLigasPrivadas.setRowHeight(40);
+		scrollPaneTusLigas.setViewportView(tableLigasPrivadas);
+		
+		JSeparator separatorLigas = new JSeparator();
+		separatorLigas.setBackground(new Color(255, 128, 0));
+		separatorLigas.setForeground(new Color(255, 128, 0));
+		separatorLigas.setOrientation(SwingConstants.VERTICAL);
+		separatorLigas.setBounds(634, 516, 26, -369);
+		background.add(separatorLigas);
+		
 				lblFondo = new JLabel("");
-				lblFondo.setIcon(new ImageIcon(_04_MiCuenta.class.getResource("/img/fondoLogin2  - copia.jpg")));
+				lblFondo.setIcon(new ImageIcon(_00_PaginaPrincipal2.class.getResource("/img/fondoLogin2  - copia.jpg")));
 				lblFondo.setBounds(0, 0, 283, 539);
 				background.add(lblFondo);
-				
-				lblMiCuenta = new JLabel("Mi Cuenta");
-				lblMiCuenta.setFont(new Font("Britannic Bold", Font.BOLD, 30));
-				lblMiCuenta.setBounds(600, 40, 159, 33);
-				background.add(lblMiCuenta);
-				
-				lblUsuario = new JLabel("Usuario:");
-				lblUsuario.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-				lblUsuario.setBounds(358, 140, 85, 20);
-				background.add(lblUsuario);
-				
-				lblNombre = new JLabel("Nombre:");
-				lblNombre.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-				lblNombre.setBounds(358, 190, 85, 20);
-				background.add(lblNombre);
-				
-				JLabel lblApellido1 = new JLabel("1\u00BA Apellido:");
-				lblApellido1.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-				lblApellido1.setBounds(331, 240, 118, 25);
-				background.add(lblApellido1);
-				
-				lblApellido2 = new JLabel("2\u00BA Apellido:");
-				lblApellido2.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-				lblApellido2.setBounds(331, 290, 118, 25);
-				background.add(lblApellido2);
-				
-				lblTelefono = new JLabel("Telefono:");
-				lblTelefono.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-				lblTelefono.setBounds(350, 340, 90, 25);
-				background.add(lblTelefono);
-				
-				lblCorreo = new JLabel("Correo:");
-				lblCorreo.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-				lblCorreo.setBounds(740, 190, 85, 20);
-				background.add(lblCorreo);
-				
-				lblPassword = new JLabel("Password:");
-				lblPassword.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-				lblPassword.setBounds(717, 140, 101, 20);
-				background.add(lblPassword);
-				
-				lblFechaNacimiento = new JLabel("Fecha nacimiento:");
-				lblFechaNacimiento.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-				lblFechaNacimiento.setBounds(644, 240, 168, 20);
-				background.add(lblFechaNacimiento);
-				
-				JDateChooser dateChooser = new JDateChooser();
-				dateChooser.getCalendarButton().addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-					}
-				});
-				dateChooser.setBounds(824, 240, 145, 26);
-				background.add(dateChooser);
-				
-				txtNombre = new JTextField();
-				txtNombre.setBackground(new Color(0, 128, 192));
-				txtNombre.setText("Guillermo");
-				txtNombre.setBounds(440, 188, 130, 30);
-				background.add(txtNombre);
-				txtNombre.setColumns(10);
-				
-				txtApellido1 = new JTextField();
-				txtApellido1.setBackground(new Color(0, 128, 192));
-				txtApellido1.setText("Callizaya");
-				txtApellido1.setColumns(10);
-				txtApellido1.setBounds(440, 238, 130, 30);
-				background.add(txtApellido1);
-				
-				txtApellido2 = new JTextField();
-				txtApellido2.setBackground(new Color(0, 128, 192));
-				txtApellido2.setText("Fernandez");
-				txtApellido2.setColumns(10);
-				txtApellido2.setBounds(440, 288, 130, 30);
-				background.add(txtApellido2);
-				
-				txtTelefono = new JTextField();
-				txtTelefono.setBackground(new Color(0, 128, 192));
-				txtTelefono.setText("666666666");
-				txtTelefono.setColumns(10);
-				txtTelefono.setBounds(440, 338, 130, 30);
-				background.add(txtTelefono);
-				
-				txtPassword = new JTextField();
-				txtPassword.setBackground(new Color(0, 128, 192));
-				txtPassword.setText("RosaMelano");
-				txtPassword.setColumns(10);
-				txtPassword.setBounds(819, 138, 155, 30);
-				background.add(txtPassword);
-				
-				txtCorreo = new JTextField();
-				txtCorreo.setBackground(new Color(0, 128, 192));
-				txtCorreo.setText("rosamelano@utad.com");
-				txtCorreo.setColumns(10);
-				txtCorreo.setBounds(819, 188, 155, 30);
-				background.add(txtCorreo);
-				
-				lblWyllop = new JLabel("Wyllop");
-				lblWyllop.setForeground(new Color(255, 128, 0));
-				lblWyllop.setBackground(Color.LIGHT_GRAY);
-				lblWyllop.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-				lblWyllop.setBounds(445, 135, 69, 29);
-				background.add(lblWyllop);
-				
-				btnCambiarDatos = new JButton("Cambiar datos");
-				btnCambiarDatos.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-					}
-				});
-				btnCambiarDatos.setBackground(new Color(255, 128, 0));
-				btnCambiarDatos.setForeground(Color.BLACK);
-				btnCambiarDatos.setFont(new Font("Britannic Bold", Font.PLAIN, 18));
-				btnCambiarDatos.setBounds(811, 332, 159, 44);
-				background.add(btnCambiarDatos);
-				
+		
 
 	}
 

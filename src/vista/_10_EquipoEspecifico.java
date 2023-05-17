@@ -1,185 +1,419 @@
-/*@autor: Raúl Fernández*/
 package vista;
 
+import java.awt.Color;
+import java.awt.Cursor;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import controlador.Controlador;
 import modelo.Modelo;
-
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JComboBox;
-import javax.swing.JTextArea;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import javax.swing.JTextPane;
-import javax.swing.DropMode;
-import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class _10_EquipoEspecifico extends JFrame implements Vista {
 
+	// Atributos
 	private Controlador miControlador;
 	private Modelo miModelo;
-
 	private JPanel contentPane;
-	private JMenuBar menuNavegacion;
-	private JMenu mnNewMenu;
-	private JMenu mnNewMenu_1;
-	private JMenu mnNewMenu_2;
-	private JMenuItem mntmNewMenuItem;
-	private JMenuItem mntmNewMenuItem_1;
-	private JMenuItem mntmNewMenuItem_3;
-	private JMenuItem mntmNewMenuItem_4;
-	private JMenuItem mntmNewMenuItem_5;
-	private JMenuItem mntmNewMenuItem_6;
-	private JMenuItem mntmNewMenuItem_7;
+	private JLabel lblFondo;
+	private JLabel lblLogo;
+	private JPanel background;
 	private JButton btnMiCuenta;
+	private JButton btnVerLigas;
+	private JButton btnCrearLiga;
+	private JButton btnUnirseALiga;
+	private JButton btnCrearEquipo;
+	private JButton btnUnirseAEquipo;
+	private JButton btnMisApuestas;
+	private JButton btnApostar;
 	private JButton btnSignOut;
-	private JLabel lblIntegrantes;
-	private JTextArea txtparticipantes;
-	private JPanel panel;
-	private JTextArea txtdeportes;
-	private JLabel lblSede;
-	private JLabel lblLigas;
-	private JTextArea txtrligas;
+	private JScrollPane scrollJugadores;
+	private JTable table;
+	private JScrollPane scrollPane;
+	private JTable table_1;
+	private JScrollPane scrollPane_1;
+	private JTable table_2;
+	private JScrollPane scrollPane_2;
+	private JTable table_3;
+	private JLabel lblBarraMoverVentana;
+	private int xMouse, yMouse;
 
+	// Constructor
 	public _10_EquipoEspecifico() {
-		setTitle("Equipo Especifico");
+		setTitle("Plantilla");
+		setResizable(false);
+		setUndecorated(true);
+		setLocationRelativeTo(null);
+		setLocationByPlatform(rootPaneCheckingEnabled);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 1024, 576);
-
-		menuNavegacion = new JMenuBar();
-		setJMenuBar(menuNavegacion);
-		// creamos todos los menus de la barra superior
-		mnNewMenu = new JMenu("Ligas");
-		menuNavegacion.add(mnNewMenu);
-
-		mntmNewMenuItem = new JMenuItem("Ver ligas");
-		mnNewMenu.add(mntmNewMenuItem);
-
-		mntmNewMenuItem_5 = new JMenuItem("Crear liga");
-		mnNewMenu.add(mntmNewMenuItem_5);
-
-		mntmNewMenuItem_6 = new JMenuItem("Unirse a liga");
-		mnNewMenu.add(mntmNewMenuItem_6);
-
-		mnNewMenu_1 = new JMenu("Apuestas");
-		menuNavegacion.add(mnNewMenu_1);
-
-		mntmNewMenuItem_1 = new JMenuItem("Mis apuestas");
-		mnNewMenu_1.add(mntmNewMenuItem_1);
-
-		mntmNewMenuItem_7 = new JMenuItem("Apostar");
-		mnNewMenu_1.add(mntmNewMenuItem_7);
-
-		mnNewMenu_2 = new JMenu("Equipos");
-		menuNavegacion.add(mnNewMenu_2);
-
-		mntmNewMenuItem_3 = new JMenuItem("Unirse a equipo");
-		mnNewMenu_2.add(mntmNewMenuItem_3);
-
-		mntmNewMenuItem_4 = new JMenuItem("Crear equipo");
-		mnNewMenu_2.add(mntmNewMenuItem_4);
+		setBounds(0, 0, 1010, 539);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(0, 128, 192));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		btnMiCuenta = new JButton("Mi cuenta");
-		btnMiCuenta.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		background = new JPanel();
+		background.setBorder(null);
+		background.setBackground(new Color(0, 128, 192));
+		background.setBounds(0, 0, 1010, 539);
+		contentPane.add(background);
+		background.setLayout(null);
+
+		lblLogo = new JLabel("");
+		lblLogo.setIcon(new ImageIcon(Plantilla.class.getResource("/img/logo.png")));
+		lblLogo.setBounds(290, 11, 150, 64);
+		background.add(lblLogo);
+
+		JSeparator separator = new JSeparator();
+		separator.setForeground(new Color(160, 160, 160));
+		separator.setBackground(new Color(0, 0, 0));
+		separator.setOrientation(SwingConstants.VERTICAL);
+		separator.setBounds(282, 0, 13, 537);
+		background.add(separator);
+
+		JLabel lblBtnCerrar = new JLabel("");
+		lblBtnCerrar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.exit(0);
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblBtnCerrar.setBackground(Color.RED);
+				lblBtnCerrar.setOpaque(true);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblBtnCerrar.setBackground(null);
+				lblBtnCerrar.setOpaque(false);
 			}
 		});
-		btnMiCuenta.setBounds(873, 19, 109, 23);
-		contentPane.add(btnMiCuenta);
+		lblBtnCerrar.setIcon(new ImageIcon(Plantilla.class.getResource("/img/close.png")));
+		lblBtnCerrar.setBounds(970, 0, 40, 40);
+		background.add(lblBtnCerrar);
 
-		btnSignOut = new JButton("Sign out");
-		btnSignOut.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		JLabel lblBtnMinimizar = new JLabel("");
+		lblBtnMinimizar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setState(JFrame.ICONIFIED);
 			}
 		});
-		btnSignOut.setBounds(873, 53, 109, 23);
-		contentPane.add(btnSignOut);
-		// titulo de la pagina
-		JLabel lbltitulo = new JLabel("Equipo Especifico");
-		lbltitulo.setFont(new Font("Tahoma", Font.PLAIN, 40));
-		lbltitulo.setBounds(355, 53, 339, 97);
-		contentPane.add(lbltitulo);
-		// hacemos un jpanel en el que metemos los integrantes del equipo
-		panel = new JPanel();
-		panel.setBackground(new Color(128, 128, 192));
-		panel.setBounds(40, 201, 277, 303);
-		contentPane.add(panel);
-		panel.setLayout(null);
+		lblBtnMinimizar.setIcon(new ImageIcon(Plantilla.class.getResource("/img/minimize.png")));
+		lblBtnMinimizar.setBounds(928, 0, 34, 40);
+		background.add(lblBtnMinimizar);
 
-		lblIntegrantes = new JLabel("Integrantes del Equipo");
-		lblIntegrantes.setBounds(63, 10, 159, 14);
-		panel.add(lblIntegrantes);
+		btnMiCuenta = new JButton("MI CUENTA");
+		btnMiCuenta.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnMiCuenta.setBackground(Color.yellow);
+				btnMiCuenta.setOpaque(true);
+			}
 
-		// creamos un jTextArea par introducir el nombre de los integrantes del equipo
-		txtparticipantes = new JTextArea();
-		txtparticipantes.setBackground(new Color(128, 0, 128));
-		txtparticipantes.setEditable(false);
-		txtparticipantes.setText(
-				"-Paco\r\n- Juan\r\n- Rodolfo\r\n- Guillermo\r\n- kike\r\n- Ra\u00FAl\r\n- Daniel\r\n- Alejandro\r\n- Sergio\r\n- Miguel");
-		txtparticipantes.setBounds(36, 36, 210, 256);
-		panel.add(txtparticipantes);
-		// hacemos un Jpanel en el que meteremos las deportes que se juegasn aparte de
-		// la sede del equipo si tiene
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(128, 128, 192));
-		panel_1.setBounds(355, 201, 284, 303);
-		contentPane.add(panel_1);
-		panel_1.setLayout(null);
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnMiCuenta.setBackground(null);
+				btnMiCuenta.setOpaque(false);
+			}
+		});
 
-		txtdeportes = new JTextArea();
-		txtdeportes.setBackground(new Color(128, 0, 128));
-		txtdeportes.setText("-Baloncesto\r\n-futbol\r\n-golf");
-		txtdeportes.setEditable(false);
-		txtdeportes.setBounds(40, 34, 210, 98);
-		panel_1.add(txtdeportes);
+		btnMiCuenta.setHorizontalAlignment(SwingConstants.LEFT);
+		btnMiCuenta.setFont(new Font("Britannic Bold", Font.BOLD, 25));
+		btnMiCuenta.setBounds(10, 13, 262, 49);
+		btnMiCuenta.setBorderPainted(false);
+		btnMiCuenta.setContentAreaFilled(false);
+		btnMiCuenta.setOpaque(false);
+		btnMiCuenta.setFocusPainted(false);
+		btnMiCuenta.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		background.add(btnMiCuenta);
+		background.setComponentZOrder(btnMiCuenta, 0);
 
-		JLabel lbldeportes = new JLabel("Deportes Participados");
-		lbldeportes.setBounds(74, 9, 149, 14);
-		panel_1.add(lbldeportes);
+		btnVerLigas = new JButton("VER LIGAS");
+		btnVerLigas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnVerLigas.setBackground(Color.yellow);
+				btnVerLigas.setOpaque(true);
+			}
 
-		lblSede = new JLabel("Sede");
-		lblSede.setBounds(133, 172, 39, 14);
-		panel_1.add(lblSede);
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnVerLigas.setBackground(null);
+				btnVerLigas.setOpaque(false);
+			}
+		});
+		btnVerLigas.setHorizontalAlignment(SwingConstants.LEFT);
+		btnVerLigas.setOpaque(false);
+		btnVerLigas.setFont(new Font("Britannic Bold", Font.BOLD, 25));
+		btnVerLigas.setFocusPainted(false);
+		btnVerLigas.setContentAreaFilled(false);
+		btnVerLigas.setBorderPainted(false);
+		btnVerLigas.setBounds(10, 62, 262, 49);
+		btnVerLigas.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		background.add(btnVerLigas);
+		background.setComponentZOrder(btnVerLigas, 0);
 
-		JTextArea txtrCavenidaDeMargarita = new JTextArea();
-		txtrCavenidaDeMargarita.setBackground(new Color(128, 0, 128));
-		txtrCavenidaDeMargarita.setText("C/avenida de margarita n\u00BA5");
-		txtrCavenidaDeMargarita.setEditable(false);
-		txtrCavenidaDeMargarita.setBounds(40, 197, 210, 44);
-		panel_1.add(txtrCavenidaDeMargarita);
-		// jPanel en el que se introduce las ligas en las que participan los equipos
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(128, 128, 192));
-		panel_2.setBounds(688, 201, 277, 303);
-		contentPane.add(panel_2);
-		panel_2.setLayout(null);
+		btnCrearLiga = new JButton("CREAR LIGA");
+		btnCrearLiga.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnCrearLiga.setBackground(Color.yellow);
+				btnCrearLiga.setOpaque(true);
+			}
 
-		lblLigas = new JLabel("Ligas en las que Participan");
-		lblLigas.setBounds(48, 5, 179, 14);
-		panel_2.add(lblLigas);
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnCrearLiga.setBackground(null);
+				btnCrearLiga.setOpaque(false);
+			}
+		});
+		btnCrearLiga.setHorizontalAlignment(SwingConstants.LEFT);
+		btnCrearLiga.setOpaque(false);
+		btnCrearLiga.setFont(new Font("Britannic Bold", Font.BOLD, 25));
+		btnCrearLiga.setFocusPainted(false);
+		btnCrearLiga.setContentAreaFilled(false);
+		btnCrearLiga.setBorderPainted(false);
+		btnCrearLiga.setBounds(10, 122, 260, 49);
+		btnCrearLiga.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		background.add(btnCrearLiga);
+		background.setComponentZOrder(btnCrearLiga, 0);
 
-		txtrligas = new JTextArea();
-		txtrligas.setBackground(new Color(128, 0, 128));
-		txtrligas.setLineWrap(true);
-		txtrligas.setEditable(false);
-		txtrligas.setText("-liga A\r\n-Liga B\r\n-Liga C\r\n-Liga D");
-		txtrligas.setBounds(36, 36, 210, 256);
-		panel_2.add(txtrligas);
+		btnUnirseALiga = new JButton("UNIRSE A LIGA");
+		btnUnirseALiga.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnUnirseALiga.setBackground(Color.yellow);
+				btnUnirseALiga.setOpaque(true);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnUnirseALiga.setBackground(null);
+				btnUnirseALiga.setOpaque(false);
+			}
+		});
+		btnUnirseALiga.setHorizontalAlignment(SwingConstants.LEFT);
+		btnUnirseALiga.setOpaque(false);
+		btnUnirseALiga.setFont(new Font("Britannic Bold", Font.BOLD, 25));
+		btnUnirseALiga.setFocusPainted(false);
+		btnUnirseALiga.setContentAreaFilled(false);
+		btnUnirseALiga.setBorderPainted(false);
+		btnUnirseALiga.setBounds(10, 182, 260, 49);
+		btnUnirseALiga.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		background.add(btnUnirseALiga);
+		background.setComponentZOrder(btnUnirseALiga, 0);
+
+		btnCrearEquipo = new JButton("CREAR EQUIPO");
+		btnCrearEquipo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnCrearEquipo.setBackground(Color.yellow);
+				btnCrearEquipo.setOpaque(true);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnCrearEquipo.setBackground(null);
+				btnCrearEquipo.setOpaque(false);
+			}
+		});
+		btnCrearEquipo.setHorizontalAlignment(SwingConstants.LEFT);
+		btnCrearEquipo.setOpaque(false);
+		btnCrearEquipo.setFont(new Font("Britannic Bold", Font.BOLD, 25));
+		btnCrearEquipo.setFocusPainted(false);
+		btnCrearEquipo.setContentAreaFilled(false);
+		btnCrearEquipo.setBorderPainted(false);
+		btnCrearEquipo.setBounds(10, 242, 260, 49);
+		btnCrearEquipo.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		background.add(btnCrearEquipo);
+		background.setComponentZOrder(btnCrearEquipo, 0);
+
+		btnUnirseAEquipo = new JButton("UNIRSE A EQUIPO");
+		btnUnirseAEquipo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnUnirseAEquipo.setBackground(Color.yellow);
+				btnUnirseAEquipo.setOpaque(true);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnUnirseAEquipo.setBackground(null);
+				btnUnirseAEquipo.setOpaque(false);
+			}
+		});
+		btnUnirseAEquipo.setHorizontalAlignment(SwingConstants.LEFT);
+		btnUnirseAEquipo.setOpaque(false);
+		btnUnirseAEquipo.setFont(new Font("Britannic Bold", Font.BOLD, 25));
+		btnUnirseAEquipo.setFocusPainted(false);
+		btnUnirseAEquipo.setContentAreaFilled(false);
+		btnUnirseAEquipo.setBorderPainted(false);
+		btnUnirseAEquipo.setBounds(10, 302, 262, 49);
+		btnUnirseAEquipo.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		background.add(btnUnirseAEquipo);
+		background.setComponentZOrder(btnUnirseAEquipo, 0);
+
+		btnMisApuestas = new JButton("MIS APUESTAS");
+		btnMisApuestas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnMisApuestas.setBackground(Color.yellow);
+				btnMisApuestas.setOpaque(true);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnMisApuestas.setBackground(null);
+				btnMisApuestas.setOpaque(false);
+			}
+		});
+		btnMisApuestas.setHorizontalAlignment(SwingConstants.LEFT);
+		btnMisApuestas.setOpaque(false);
+		btnMisApuestas.setFont(new Font("Britannic Bold", Font.BOLD, 25));
+		btnMisApuestas.setFocusPainted(false);
+		btnMisApuestas.setContentAreaFilled(false);
+		btnMisApuestas.setBorderPainted(false);
+		btnMisApuestas.setBounds(10, 362, 262, 49);
+		btnMisApuestas.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		background.add(btnMisApuestas);
+		background.setComponentZOrder(btnMisApuestas, 0);
+
+		btnApostar = new JButton("APOSTAR");
+		btnApostar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnApostar.setBackground(Color.yellow);
+				btnApostar.setOpaque(true);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnApostar.setBackground(null);
+				btnApostar.setOpaque(false);
+			}
+		});
+		btnApostar.setHorizontalAlignment(SwingConstants.LEFT);
+		btnApostar.setOpaque(false);
+		btnApostar.setFont(new Font("Britannic Bold", Font.BOLD, 25));
+		btnApostar.setFocusPainted(false);
+		btnApostar.setContentAreaFilled(false);
+		btnApostar.setBorderPainted(false);
+		btnApostar.setBounds(10, 422, 260, 49);
+		btnApostar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		background.add(btnApostar);
+		background.setComponentZOrder(btnApostar, 0);
+
+		btnSignOut = new JButton("Sign Out");
+		btnSignOut.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnSignOut.setBackground(Color.yellow);
+				btnSignOut.setOpaque(true);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnSignOut.setBackground(null);
+				btnSignOut.setOpaque(false);
+			}
+		});
+		btnSignOut.setHorizontalAlignment(SwingConstants.LEFT);
+		btnSignOut.setOpaque(false);
+		btnSignOut.setFont(new Font("Britannic Bold", Font.BOLD, 15));
+		btnSignOut.setFocusPainted(false);
+		btnSignOut.setContentAreaFilled(false);
+		btnSignOut.setBorderPainted(false);
+		btnSignOut.setBounds(10, 470, 262, 49);
+		btnSignOut.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		background.add(btnSignOut);
+		background.setComponentZOrder(btnSignOut, 0);
+
+		scrollJugadores = new JScrollPane();
+		scrollJugadores.setBounds(293, 228, 183, 263);
+		background.add(scrollJugadores);
+
+		table = new JTable();
+		table.setEnabled(false);
+		table.setModel(new DefaultTableModel(new Object[][] { { "Juan" }, { "Roberto" }, { "Antonio" }, { "Jesus" },
+				{ "Pedro" }, { "Raul" }, { "Fernando" }, { "Jonathan" }, }, new String[] { "Jugadores del Equipo" }));
+		scrollJugadores.setViewportView(table);
+
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(521, 228, 183, 151);
+		background.add(scrollPane);
+
+		table_1 = new JTable();
+		table_1.setEnabled(false);
+		table_1.setModel(new DefaultTableModel(new Object[][] { { "Futball" }, { "Baloncesto" }, { "Rugby" }, },
+				new String[] { "Deportes" }));
+		scrollPane.setViewportView(table_1);
+
+		scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(521, 427, 180, 64);
+		background.add(scrollPane_1);
+
+		table_2 = new JTable();
+		table_2.setEnabled(false);
+		table_2.setModel(
+				new DefaultTableModel(new Object[][] { { "C/avenida de margarita nº5" }, }, new String[] { "Sede" }));
+		scrollPane_1.setViewportView(table_2);
+
+		scrollPane_2 = new JScrollPane();
+		scrollPane_2.setBounds(736, 242, 226, 249);
+		background.add(scrollPane_2);
+
+		table_3 = new JTable();
+		table_3.setEnabled(false);
+		table_3.setModel(new DefaultTableModel(
+				new Object[][] { { "Liga A" }, { "Liga B" }, { "Liga C" }, { "Liga D" }, }, new String[] { "Ligas" }));
+		scrollPane_2.setViewportView(table_3);
+
+		JLabel lblEquipoEspecifico = new JLabel("Real Madrid");
+		lblEquipoEspecifico.setFont(new Font("Britannic Bold", Font.PLAIN, 27));
+		lblEquipoEspecifico.setBounds(539, 108, 215, 74);
+		background.add(lblEquipoEspecifico);
+
+		lblFondo = new JLabel("");
+		lblFondo.setIcon(new ImageIcon(Plantilla.class.getResource("/img/fondoLogin2  - copia.jpg")));
+		lblFondo.setBounds(0, 0, 283, 539);
+		background.add(lblFondo);
+		lblBarraMoverVentana = new JLabel("");
+		lblBarraMoverVentana.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				int xPantalla = e.getXOnScreen();
+				int yPantalla = e.getYOnScreen();
+				setLocation(xPantalla - xMouse, yPantalla - yMouse);
+			}
+		});
+
+		lblBarraMoverVentana.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				xMouse = e.getX();
+				yMouse = e.getY();
+			}
+		});
+		lblBarraMoverVentana.setBounds(0, 0, 918, 23);
+		background.add(lblBarraMoverVentana);
+
 	}
 
 	@Override

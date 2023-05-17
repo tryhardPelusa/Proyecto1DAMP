@@ -1,10 +1,14 @@
 /*
- * @Guillermo Callizaya F
+ * @Author Javier Turienzo
  */
 package vista;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,22 +21,23 @@ import javax.swing.border.EmptyBorder;
 
 import controlador.Controlador;
 import modelo.Modelo;
-import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
-
-import com.toedter.calendar.JDateChooser;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.CompoundBorder;
 
-public class _04_MiCuenta extends JFrame implements Vista {
+public class _12_MisApuestas2 extends JFrame implements Vista {
 
 	// Atributos
 	private Controlador miControlador;
 	private Modelo miModelo;
 
+	private JLabel lblBarraMoverVentana;
+    private int xMouse, yMouse;
 	private JPanel contentPane;
 	private JLabel lblFondo;
 	private JLabel lblLogo;
@@ -46,25 +51,18 @@ public class _04_MiCuenta extends JFrame implements Vista {
 	private JButton btnMisApuestas;
 	private JButton btnApostar;
 	private JButton btnSignOut;
-	private JLabel lblMiCuenta;
-	private JLabel lblUsuario;
-	private JLabel lblNombre;
-	private JLabel lblApellido2;
-	private JLabel lblTelefono;
-	private JLabel lblCorreo;
-	private JLabel lblPassword;
-	private JLabel lblFechaNacimiento;
-	private JTextField txtNombre;
-	private JTextField txtApellido1;
-	private JTextField txtApellido2;
-	private JTextField txtTelefono;
-	private JTextField txtPassword;
-	private JTextField txtCorreo;
-	private JLabel lblWyllop;
-	private JButton btnCambiarDatos;
-	private int xMouse, yMouse;
+	private JTabbedPane tabbedPane;
+	private JPanel panelCurso;
+	private JScrollPane scrollPaneCurso;
+	private JTable tblCurso;
+	private JPanel panelFinalizadas;
+	private JScrollPane scrollPaneFinalizadas;
+	private JTable tblFinalizadas;
+	private JTextField txtbuscar;
+	private JButton btnBuscar;
+
 	// Constructor
-	public _04_MiCuenta() {
+	public _12_MisApuestas2() {
 		setTitle("Plantilla");
 		setResizable(false);
 		setUndecorated(true);
@@ -84,8 +82,13 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		contentPane.add(background);
 		background.setLayout(null);
 
+		lblFondo = new JLabel("");
+		lblFondo.setIcon(new ImageIcon(_12_MisApuestas2.class.getResource("/img/fondoLogin2  - copia.jpg")));
+		lblFondo.setBounds(0, 0, 283, 539);
+		background.add(lblFondo);
+
 		lblLogo = new JLabel("");
-		lblLogo.setIcon(new ImageIcon(_04_MiCuenta.class.getResource("/img/logo.png")));
+		lblLogo.setIcon(new ImageIcon(_12_MisApuestas2.class.getResource("/img/logo.png")));
 		lblLogo.setBounds(290, 11, 150, 64);
 		background.add(lblLogo);
 
@@ -114,7 +117,7 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		    	lblBtnCerrar.setOpaque(false);
 		    }
 		});
-		lblBtnCerrar.setIcon(new ImageIcon(_04_MiCuenta.class.getResource("/img/close.png")));
+		lblBtnCerrar.setIcon(new ImageIcon(_12_MisApuestas2.class.getResource("/img/close.png")));
 		lblBtnCerrar.setBounds(970, 0, 40, 40);
 		background.add(lblBtnCerrar);
 
@@ -125,7 +128,7 @@ public class _04_MiCuenta extends JFrame implements Vista {
 				setState(JFrame.ICONIFIED);
 			}
 		});
-		lblBtnMinimizar.setIcon(new ImageIcon(_04_MiCuenta.class.getResource("/img/minimize.png")));
+		lblBtnMinimizar.setIcon(new ImageIcon(_12_MisApuestas2.class.getResource("/img/minimize.png")));
 		lblBtnMinimizar.setBounds(928, 0, 34, 40);
 		background.add(lblBtnMinimizar);
 
@@ -143,23 +146,6 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		        btnMiCuenta.setOpaque(false);
 		    }
 		});
-		JLabel lblBarraMoverVentana = new JLabel("");
-		lblBarraMoverVentana.addMouseMotionListener(new MouseMotionAdapter() {
-			@Override
-			public void mouseDragged(MouseEvent e) {
-				int xPantalla = e.getXOnScreen();
-				int yPantalla = e.getYOnScreen();
-				setLocation(xPantalla - xMouse, yPantalla - yMouse);
-			}
-		});
-		
-		lblBarraMoverVentana.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				xMouse = e.getX();
-				yMouse = e.getY();
-			}
-		});
 
 		btnMiCuenta.setHorizontalAlignment(SwingConstants.LEFT);
 		btnMiCuenta.setFont(new Font("Britannic Bold", Font.BOLD, 25));
@@ -173,11 +159,6 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		background.setComponentZOrder(btnMiCuenta, 0);
 		
 		btnVerLigas = new JButton("VER LIGAS");
-		btnVerLigas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(4, 9);
-			}
-		});
 		btnVerLigas.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
@@ -203,11 +184,6 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		background.setComponentZOrder(btnVerLigas, 0);
 		
 		btnCrearLiga = new JButton("CREAR LIGA");
-		btnCrearLiga.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(4, 7);
-			}
-		});
 		btnCrearLiga.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
@@ -233,11 +209,6 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		background.setComponentZOrder(btnCrearLiga, 0);
 		
 		btnUnirseALiga = new JButton("UNIRSE A LIGA");
-		btnUnirseALiga.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(4, 5);
-			}
-		});
 		btnUnirseALiga.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
@@ -263,11 +234,6 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		background.setComponentZOrder(btnUnirseALiga, 0);
 		
 		btnCrearEquipo = new JButton("CREAR EQUIPO");
-		btnCrearEquipo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(4, 8);
-			}
-		});
 		btnCrearEquipo.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
@@ -293,11 +259,6 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		background.setComponentZOrder(btnCrearEquipo, 0);
 		
 		btnUnirseAEquipo = new JButton("UNIRSE A EQUIPO");
-		btnUnirseAEquipo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(4, 6);
-			}
-		});
 		btnUnirseAEquipo.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
@@ -317,17 +278,12 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		btnUnirseAEquipo.setFocusPainted(false);
 		btnUnirseAEquipo.setContentAreaFilled(false);
 		btnUnirseAEquipo.setBorderPainted(false);
-		btnUnirseAEquipo.setBounds(10, 302, 273, 49);
+		btnUnirseAEquipo.setBounds(10, 302, 262, 49);
 		btnUnirseAEquipo.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		background.add(btnUnirseAEquipo);
 		background.setComponentZOrder(btnUnirseAEquipo, 0);
 		
 		btnMisApuestas = new JButton("MIS APUESTAS");
-		btnMisApuestas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(4, 12);
-				}
-		});
 		btnMisApuestas.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
@@ -353,11 +309,6 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		background.setComponentZOrder(btnMisApuestas, 0);
 		
 		btnApostar = new JButton("APOSTAR");
-		btnApostar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(14, 11);
-			}
-		});
 		btnApostar.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
@@ -407,124 +358,117 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		background.add(btnSignOut);
 		background.setComponentZOrder(btnSignOut, 0);
 		
-				lblFondo = new JLabel("");
-				lblFondo.setIcon(new ImageIcon(_04_MiCuenta.class.getResource("/img/fondoLogin2  - copia.jpg")));
-				lblFondo.setBounds(0, 0, 283, 539);
-				background.add(lblFondo);
-				
-				lblMiCuenta = new JLabel("Mi Cuenta");
-				lblMiCuenta.setFont(new Font("Britannic Bold", Font.BOLD, 30));
-				lblMiCuenta.setBounds(600, 40, 159, 33);
-				background.add(lblMiCuenta);
-				
-				lblUsuario = new JLabel("Usuario:");
-				lblUsuario.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-				lblUsuario.setBounds(358, 140, 85, 20);
-				background.add(lblUsuario);
-				
-				lblNombre = new JLabel("Nombre:");
-				lblNombre.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-				lblNombre.setBounds(358, 190, 85, 20);
-				background.add(lblNombre);
-				
-				JLabel lblApellido1 = new JLabel("1\u00BA Apellido:");
-				lblApellido1.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-				lblApellido1.setBounds(331, 240, 118, 25);
-				background.add(lblApellido1);
-				
-				lblApellido2 = new JLabel("2\u00BA Apellido:");
-				lblApellido2.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-				lblApellido2.setBounds(331, 290, 118, 25);
-				background.add(lblApellido2);
-				
-				lblTelefono = new JLabel("Telefono:");
-				lblTelefono.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-				lblTelefono.setBounds(350, 340, 90, 25);
-				background.add(lblTelefono);
-				
-				lblCorreo = new JLabel("Correo:");
-				lblCorreo.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-				lblCorreo.setBounds(740, 190, 85, 20);
-				background.add(lblCorreo);
-				
-				lblPassword = new JLabel("Password:");
-				lblPassword.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-				lblPassword.setBounds(717, 140, 101, 20);
-				background.add(lblPassword);
-				
-				lblFechaNacimiento = new JLabel("Fecha nacimiento:");
-				lblFechaNacimiento.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-				lblFechaNacimiento.setBounds(644, 240, 168, 20);
-				background.add(lblFechaNacimiento);
-				
-				JDateChooser dateChooser = new JDateChooser();
-				dateChooser.getCalendarButton().addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-					}
-				});
-				dateChooser.setBounds(824, 240, 145, 26);
-				background.add(dateChooser);
-				
-				txtNombre = new JTextField();
-				txtNombre.setBackground(new Color(0, 128, 192));
-				txtNombre.setText("Guillermo");
-				txtNombre.setBounds(440, 188, 130, 30);
-				background.add(txtNombre);
-				txtNombre.setColumns(10);
-				
-				txtApellido1 = new JTextField();
-				txtApellido1.setBackground(new Color(0, 128, 192));
-				txtApellido1.setText("Callizaya");
-				txtApellido1.setColumns(10);
-				txtApellido1.setBounds(440, 238, 130, 30);
-				background.add(txtApellido1);
-				
-				txtApellido2 = new JTextField();
-				txtApellido2.setBackground(new Color(0, 128, 192));
-				txtApellido2.setText("Fernandez");
-				txtApellido2.setColumns(10);
-				txtApellido2.setBounds(440, 288, 130, 30);
-				background.add(txtApellido2);
-				
-				txtTelefono = new JTextField();
-				txtTelefono.setBackground(new Color(0, 128, 192));
-				txtTelefono.setText("666666666");
-				txtTelefono.setColumns(10);
-				txtTelefono.setBounds(440, 338, 130, 30);
-				background.add(txtTelefono);
-				
-				txtPassword = new JTextField();
-				txtPassword.setBackground(new Color(0, 128, 192));
-				txtPassword.setText("RosaMelano");
-				txtPassword.setColumns(10);
-				txtPassword.setBounds(819, 138, 155, 30);
-				background.add(txtPassword);
-				
-				txtCorreo = new JTextField();
-				txtCorreo.setBackground(new Color(0, 128, 192));
-				txtCorreo.setText("rosamelano@utad.com");
-				txtCorreo.setColumns(10);
-				txtCorreo.setBounds(819, 188, 155, 30);
-				background.add(txtCorreo);
-				
-				lblWyllop = new JLabel("Wyllop");
-				lblWyllop.setForeground(new Color(255, 128, 0));
-				lblWyllop.setBackground(Color.LIGHT_GRAY);
-				lblWyllop.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-				lblWyllop.setBounds(445, 135, 69, 29);
-				background.add(lblWyllop);
-				
-				btnCambiarDatos = new JButton("Cambiar datos");
-				btnCambiarDatos.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-					}
-				});
-				btnCambiarDatos.setBackground(new Color(255, 128, 0));
-				btnCambiarDatos.setForeground(Color.BLACK);
-				btnCambiarDatos.setFont(new Font("Britannic Bold", Font.PLAIN, 18));
-				btnCambiarDatos.setBounds(811, 332, 159, 44);
-				background.add(btnCambiarDatos);
-				
+		lblBarraMoverVentana = new JLabel("");
+        lblBarraMoverVentana.addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                int xPantalla = e.getXOnScreen();
+                int yPantalla = e.getYOnScreen();
+                setLocation(xPantalla - xMouse, yPantalla - yMouse);
+            }
+        });
+
+        lblBarraMoverVentana.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                xMouse = e.getX();
+                yMouse = e.getY();
+            }
+        });
+        lblBarraMoverVentana.setBounds(0, 0, 918, 23);
+        background.add(lblBarraMoverVentana);
+        
+        tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+        tabbedPane.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
+        tabbedPane.setBorder(null);
+        tabbedPane.setBackground(new Color(0, 128, 200));
+        tabbedPane.setBounds(329, 111, 620, 390);
+        background.add(tabbedPane);
+        
+        panelCurso = new JPanel();
+        panelCurso.setBorder(null);
+        panelCurso.setBackground(new Color(0, 128, 200));
+        tabbedPane.addTab("En curso", null, panelCurso, null);
+        panelCurso.setLayout(null);
+        
+        scrollPaneCurso = new JScrollPane();
+        scrollPaneCurso.setBounds(0, 0, 615, 362);
+        scrollPaneCurso.getViewport().setBackground(new Color(0, 128, 192));
+        panelCurso.add(scrollPaneCurso);
+        
+        tblCurso = new JTable();
+        tblCurso.setBorder(null);
+        tblCurso.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
+        tblCurso.setModel(new DefaultTableModel(
+        	new Object[][] {
+        		{"Real Madrid - Barcelona", "Real Madrid", new Integer(120), "27/05"},
+        		{"Almeria - Getafe", "Almeria", new Integer(50), "14/06"},
+        	},
+        	new String[] {
+        		"Partido", "Apuesta", "Cantidad", "Fecha"
+        	}
+        ) {
+        	boolean[] columnEditables = new boolean[] {
+        		false, false, false, false
+        	};
+        	public boolean isCellEditable(int row, int column) {
+        		return columnEditables[column];
+        	}
+        });
+        tblCurso.getColumnModel().getColumn(0).setPreferredWidth(190);
+        tblCurso.getColumnModel().getColumn(1).setPreferredWidth(190);
+        tblCurso.getColumnModel().getColumn(2).setPreferredWidth(100);
+        tblCurso.getColumnModel().getColumn(3).setPreferredWidth(160);
+        scrollPaneCurso.setViewportView(tblCurso);
+        
+        panelFinalizadas = new JPanel();
+        panelFinalizadas.setBorder(null);
+        tabbedPane.addTab("Finalizadas", null, panelFinalizadas, null);
+        panelFinalizadas.setLayout(null);
+        
+        scrollPaneFinalizadas = new JScrollPane();
+        scrollPaneFinalizadas.setBounds(0, 0, 615, 362);
+        scrollPaneFinalizadas.getViewport().setBackground(new Color(0, 128, 192));
+        panelFinalizadas.add(scrollPaneFinalizadas);
+        
+        tblFinalizadas = new JTable();
+        tblFinalizadas.setBorder(null);
+        tblFinalizadas.setModel(new DefaultTableModel(
+        	new Object[][] {
+        		{"Real Madrid - Betis", "Real Madrid", 100, "10/03", "Acertada"},
+        		{"Barcelona - Betis", "Betis", 30, "23/01", "Acertada"},
+        		{"Real Sociedad - Sevilla", "Sevilla", 200, "19/04", "Fallida"},
+        	},
+        	new String[] {
+        		"Partido", "Apuesta", "Cantidad", "Fecha", "Resultado"
+        	}
+        ) {
+        	boolean[] columnEditables = new boolean[] {
+        		false, false, false, false, false
+        	};
+        	public boolean isCellEditable(int row, int column) {
+        		return columnEditables[column];
+        	}
+        });
+        tblFinalizadas.getColumnModel().getColumn(0).setPreferredWidth(190);
+        tblFinalizadas.getColumnModel().getColumn(1).setPreferredWidth(190);
+        tblFinalizadas.getColumnModel().getColumn(2).setPreferredWidth(100);
+        tblFinalizadas.getColumnModel().getColumn(3).setPreferredWidth(160);
+        tblFinalizadas.getColumnModel().getColumn(4).setPreferredWidth(160);
+        tblFinalizadas.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
+        scrollPaneFinalizadas.setViewportView(tblFinalizadas);
+        
+        txtbuscar = new JTextField();
+        txtbuscar.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
+        txtbuscar.setBounds(724, 80, 119, 20);
+        background.add(txtbuscar);
+        txtbuscar.setColumns(10);
+        
+        btnBuscar = new JButton("Buscar");
+        btnBuscar.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
+        btnBuscar.setBounds(853, 79, 89, 23);
+        background.add(btnBuscar);
+		
 
 	}
 

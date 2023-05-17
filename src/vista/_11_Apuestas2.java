@@ -5,7 +5,12 @@ package vista;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 
+import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,17 +22,21 @@ import javax.swing.border.EmptyBorder;
 
 import controlador.Controlador;
 import modelo.Modelo;
-import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
+import javax.swing.JCheckBox;
+import javax.swing.JSpinner;
+import javax.swing.JScrollPane;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
-public class Plantilla extends JFrame implements Vista {
+public class _11_Apuestas2 extends JFrame implements Vista {
 
 	// Atributos
 	private Controlador miControlador;
 	private Modelo miModelo;
 
+	private JLabel lblBarraMoverVentana;
+	private int xMouse, yMouse;
 	private JPanel contentPane;
 	private JLabel lblFondo;
 	private JLabel lblLogo;
@@ -41,16 +50,31 @@ public class Plantilla extends JFrame implements Vista {
 	private JButton btnMisApuestas;
 	private JButton btnApostar;
 	private JButton btnSignOut;
-	private JLabel lblBarraMoverVentana;
-	private int xMouse, yMouse;
-	private JLabel lblBtnMinimizar;
-	private JLabel lblBtnCerrar;
+	private JScrollPane scrollPaneApuestas;
+	private JScrollPane scrollPaneListado;
+	private JPanel panelListado;
+	private JLabel lblApuesta;
+	private JLabel lblRealMadridtokens;
+	private JSeparator separator_Hor_4;
+	private JLabel lblAlmeriagetafe;
+	private JLabel lblalmeriaTokens;
+	private JSeparator separator_Hor_5;
+	private JSeparator separator_Hor_6;
+	private JLabel lblTotal;
+	private JButton btnConfirmar;
+	private JButton btnAnterior;
+	private JButton btnSiguiente;
+	private JLabel lblJornada;
+	private JTable tblApuestas;
+	private JSpinner spinnerCantidad;
 
 	// Constructor
-	public Plantilla() {
+	public _11_Apuestas2() {
 		setTitle("Plantilla");
 		setResizable(false);
 		setUndecorated(true);
+		setLocationRelativeTo(null);
+		setLocationByPlatform(rootPaneCheckingEnabled);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1010, 539);
 		contentPane = new JPanel();
@@ -65,8 +89,13 @@ public class Plantilla extends JFrame implements Vista {
 		contentPane.add(background);
 		background.setLayout(null);
 
+		lblFondo = new JLabel("");
+		lblFondo.setIcon(new ImageIcon(_11_Apuestas2.class.getResource("/img/fondoLogin2  - copia.jpg")));
+		lblFondo.setBounds(0, 0, 283, 539);
+		background.add(lblFondo);
+
 		lblLogo = new JLabel("");
-		lblLogo.setIcon(new ImageIcon(Plantilla.class.getResource("/img/logo.png")));
+		lblLogo.setIcon(new ImageIcon(_11_Apuestas2.class.getResource("/img/logo.png")));
 		lblLogo.setBounds(290, 11, 150, 64);
 		background.add(lblLogo);
 
@@ -77,7 +106,7 @@ public class Plantilla extends JFrame implements Vista {
 		separator.setBounds(282, 0, 13, 537);
 		background.add(separator);
 
-		lblBtnCerrar = new JLabel("");
+		JLabel lblBtnCerrar = new JLabel("");
 		lblBtnCerrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -96,18 +125,18 @@ public class Plantilla extends JFrame implements Vista {
 				lblBtnCerrar.setOpaque(false);
 			}
 		});
-		lblBtnCerrar.setIcon(new ImageIcon(Plantilla.class.getResource("/img/close.png")));
+		lblBtnCerrar.setIcon(new ImageIcon(_11_Apuestas2.class.getResource("/img/close.png")));
 		lblBtnCerrar.setBounds(970, 0, 40, 40);
 		background.add(lblBtnCerrar);
 
-		lblBtnMinimizar = new JLabel("");
+		JLabel lblBtnMinimizar = new JLabel("");
 		lblBtnMinimizar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				setState(JFrame.ICONIFIED);
 			}
 		});
-		lblBtnMinimizar.setIcon(new ImageIcon(Plantilla.class.getResource("/img/minimize.png")));
+		lblBtnMinimizar.setIcon(new ImageIcon(_11_Apuestas2.class.getResource("/img/minimize.png")));
 		lblBtnMinimizar.setBounds(928, 0, 34, 40);
 		background.add(lblBtnMinimizar);
 
@@ -357,10 +386,115 @@ public class Plantilla extends JFrame implements Vista {
 		lblBarraMoverVentana.setBounds(0, 0, 918, 23);
 		background.add(lblBarraMoverVentana);
 
-		lblFondo = new JLabel("");
-		lblFondo.setIcon(new ImageIcon(Plantilla.class.getResource("/img/fondoLogin2  - copia.jpg")));
-		lblFondo.setBounds(0, 0, 283, 539);
-		background.add(lblFondo);
+		scrollPaneApuestas = new JScrollPane();
+		scrollPaneApuestas.setBackground(new Color(0, 128, 192));
+		scrollPaneApuestas.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
+		scrollPaneApuestas.setBounds(305, 109, 464, 410);
+		scrollPaneApuestas.getViewport().setBackground(new Color(0, 128, 192));
+		background.add(scrollPaneApuestas);
+
+		tblApuestas = new JTable();
+		tblApuestas.setShowGrid(false);
+		tblApuestas.setRowSelectionAllowed(false);
+		tblApuestas.setOpaque(false);
+		tblApuestas.setShowVerticalLines(false);
+		tblApuestas.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
+		tblApuestas.setModel(new DefaultTableModel(
+				new Object[][] { { "Real Madrid", true, 0, null, "Barcelona" }, { "Almeria", true, 0, null, "Getafe" },
+						{ "Betis", null, 0, null, "Valencia" }, { "Valladolid", null, 0, null, "Valencia" }, },
+				new String[] { "Local", "", "Cantidad", "", "Visitante" }) {
+			boolean[] columnEditables = new boolean[] { false, true, false, true, false };
+
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		tblApuestas.getColumnModel().getColumn(1).setCellRenderer(tblApuestas.getDefaultRenderer(Boolean.class));
+		tblApuestas.getColumnModel().getColumn(1).setCellEditor(tblApuestas.getDefaultEditor(Boolean.class));
+
+		tblApuestas.getColumnModel().getColumn(3).setCellRenderer(tblApuestas.getDefaultRenderer(Boolean.class));
+		tblApuestas.getColumnModel().getColumn(3).setCellEditor(tblApuestas.getDefaultEditor(Boolean.class));
+
+		tblApuestas.getColumnModel().getColumn(0).setPreferredWidth(174);
+		tblApuestas.getColumnModel().getColumn(1).setPreferredWidth(26);
+		tblApuestas.getColumnModel().getColumn(2).setPreferredWidth(92);
+		tblApuestas.getColumnModel().getColumn(3).setPreferredWidth(31);
+		tblApuestas.getColumnModel().getColumn(4).setPreferredWidth(174);
+
+		scrollPaneApuestas.setViewportView(tblApuestas);
+
+		scrollPaneListado = new JScrollPane();
+		scrollPaneListado.setBounds(787, 109, 213, 410);
+		background.add(scrollPaneListado);
+
+		panelListado = new JPanel();
+		panelListado.setBackground(new Color(0, 128, 192));
+		scrollPaneListado.setViewportView(panelListado);
+		panelListado.setLayout(null);
+
+		lblApuesta = new JLabel("Real Madrid - Barcelona");
+		lblApuesta.setFont(new Font("Britannic Bold", Font.PLAIN, 15));
+		lblApuesta.setBounds(10, 0, 191, 27);
+		panelListado.add(lblApuesta);
+
+		lblRealMadridtokens = new JLabel("(Real Madrid) 120 tokens");
+		lblRealMadridtokens.setVerticalAlignment(SwingConstants.TOP);
+		lblRealMadridtokens.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblRealMadridtokens.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
+		lblRealMadridtokens.setBounds(10, 29, 191, 27);
+		panelListado.add(lblRealMadridtokens);
+
+		separator_Hor_4 = new JSeparator();
+		separator_Hor_4.setBounds(20, 54, 183, 8);
+		panelListado.add(separator_Hor_4);
+
+		lblAlmeriagetafe = new JLabel("Almeria - Getafe");
+		lblAlmeriagetafe.setFont(new Font("Britannic Bold", Font.PLAIN, 15));
+		lblAlmeriagetafe.setBounds(10, 67, 191, 27);
+		panelListado.add(lblAlmeriagetafe);
+
+		lblalmeriaTokens = new JLabel("(Almeria) 50 tokens");
+		lblalmeriaTokens.setVerticalAlignment(SwingConstants.TOP);
+		lblalmeriaTokens.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblalmeriaTokens.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
+		lblalmeriaTokens.setBounds(10, 96, 191, 27);
+		panelListado.add(lblalmeriaTokens);
+
+		separator_Hor_5 = new JSeparator();
+		separator_Hor_5.setBounds(20, 121, 183, 8);
+		panelListado.add(separator_Hor_5);
+
+		separator_Hor_6 = new JSeparator();
+		separator_Hor_6.setForeground(Color.BLACK);
+		separator_Hor_6.setBounds(10, 304, 201, 8);
+		panelListado.add(separator_Hor_6);
+
+		lblTotal = new JLabel("TOTAL: 170 tokens");
+		lblTotal.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblTotal.setFont(new Font("Britannic Bold", Font.PLAIN, 15));
+		lblTotal.setBounds(10, 323, 193, 23);
+		panelListado.add(lblTotal);
+
+		btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.setFont(new Font("Britannic Bold", Font.PLAIN, 15));
+		btnConfirmar.setBounds(63, 357, 102, 37);
+		panelListado.add(btnConfirmar);
+
+		btnAnterior = new JButton("Anterior");
+		btnAnterior.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
+		btnAnterior.setBounds(323, 84, 89, 23);
+		background.add(btnAnterior);
+
+		btnSiguiente = new JButton("Siguiente");
+		btnSiguiente.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
+		btnSiguiente.setBounds(663, 84, 89, 23);
+		background.add(btnSiguiente);
+
+		lblJornada = new JLabel("Jornada 7");
+		lblJornada.setHorizontalAlignment(SwingConstants.CENTER);
+		lblJornada.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
+		lblJornada.setBounds(469, 77, 126, 34);
+		background.add(lblJornada);
 
 	}
 
