@@ -22,6 +22,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -131,70 +132,71 @@ public class _02_Registro extends JFrame implements Vista {
 		separator.setForeground(new Color(255, 128, 0));
 		separator.setBounds(381, 105, 2, 292);
 		background.add(separator);
-		
+
 		lblNombre = new JLabel("NOMBRE* :");
 		lblNombre.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
 		lblNombre.setBounds(398, 212, 183, 29);
 		background.add(lblNombre);
-		
+
 		textField_1 = new JTextField();
 		textField_1.setForeground(Color.WHITE);
 		textField_1.setColumns(10);
 		textField_1.setBackground(new Color(0, 128, 192));
 		textField_1.setBounds(498, 219, 217, 20);
 		background.add(textField_1);
-		
+
 		lblApellido1 = new JLabel("Apellido1* :");
 		lblApellido1.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
 		lblApellido1.setBounds(398, 252, 183, 29);
 		background.add(lblApellido1);
-		
+
 		lblApellido2 = new JLabel("Apellido2  :");
 		lblApellido2.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
 		lblApellido2.setBounds(398, 292, 183, 29);
 		background.add(lblApellido2);
-		
+
 		JLabel lblFecha = new JLabel("Fecha de Nacimiento* :");
 		lblFecha.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
 		lblFecha.setBounds(10, 287, 232, 29);
 		background.add(lblFecha);
-		
+
 		dateNacimiento = new JDateChooser();
 		dateNacimiento.setBounds(219, 296, 108, 20);
 		background.add(dateNacimiento);
-		
+
 		lblCorreo = new JLabel("CORREO* :");
 		lblCorreo.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
 		lblCorreo.setBounds(10, 331, 141, 29);
 		background.add(lblCorreo);
-		
+
 		textField_2 = new JTextField();
 		textField_2.setForeground(Color.WHITE);
 		textField_2.setColumns(10);
 		textField_2.setBackground(new Color(0, 128, 192));
 		textField_2.setBounds(110, 338, 217, 20);
 		background.add(textField_2);
-		
+
 		monedas = new JTextArea();
-		monedas.setText("se a\u00F1adiran 300 monedas una \r\nvez se halla registrado, una cierta \r\ncantidad de monedas se renovaran \r\ndiariamente");
+		monedas.setText(
+				"se a\u00F1adiran 300 monedas una \r\nvez se halla registrado, una cierta \r\ncantidad de monedas se renovaran \r\ndiariamente");
 		monedas.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
 		monedas.setBounds(259, 408, 238, 78);
 		background.add(monedas);
-		
+
 		txtApellido1 = new JTextField();
 		txtApellido1.setForeground(Color.WHITE);
 		txtApellido1.setColumns(10);
 		txtApellido1.setBackground(new Color(0, 128, 192));
 		txtApellido1.setBounds(508, 259, 208, 20);
 		background.add(txtApellido1);
-		
+
 		txtApellido2 = new JTextField();
 		txtApellido2.setForeground(Color.WHITE);
 		txtApellido2.setColumns(10);
 		txtApellido2.setBackground(new Color(0, 128, 192));
 		txtApellido2.setBounds(507, 299, 208, 20);
 		background.add(txtApellido2);
-		
+
 		lblBarraMoverVentana = new JLabel("");
 		lblBarraMoverVentana.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
@@ -214,8 +216,8 @@ public class _02_Registro extends JFrame implements Vista {
 		});
 		lblBarraMoverVentana.setBounds(0, 0, 918, 23);
 		background.add(lblBarraMoverVentana);
-		
-		lblBtnCerrar = new JLabel("");
+
+		JLabel lblBtnCerrar = new JLabel("");
 		lblBtnCerrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -226,37 +228,53 @@ public class _02_Registro extends JFrame implements Vista {
 			public void mouseEntered(MouseEvent e) {
 				lblBtnCerrar.setBackground(Color.RED);
 				lblBtnCerrar.setOpaque(true);
+				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
 				lblBtnCerrar.setBackground(null);
 				lblBtnCerrar.setOpaque(false);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
-		lblBtnCerrar.setIcon(new ImageIcon(Plantilla.class.getResource("/img/close.png")));
+		lblBtnCerrar.setIcon(new ImageIcon(_00_PaginaPrincipal2.class.getResource("/img/close.png")));
 		lblBtnCerrar.setBounds(970, 0, 40, 40);
 		background.add(lblBtnCerrar);
-		
-		lblBtnMinimizar = new JLabel("");
+
+		JLabel lblBtnMinimizar = new JLabel("");
 		lblBtnMinimizar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				setState(JFrame.ICONIFIED);
 			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblBtnMinimizar.setBackground(Color.BLUE);
+				lblBtnMinimizar.setOpaque(true);
+				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblBtnMinimizar.setBackground(null);
+				lblBtnMinimizar.setOpaque(false);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			}
 		});
-		lblBtnMinimizar.setIcon(new ImageIcon(Plantilla.class.getResource("/img/minimize.png")));
-		lblBtnMinimizar.setBounds(928, 0, 34, 40);
+		lblBtnMinimizar.setIcon(new ImageIcon(_00_PaginaPrincipal2.class.getResource("/img/minimize.png")));
+		lblBtnMinimizar.setBounds(928, 0, 40, 40);
 		background.add(lblBtnMinimizar);
-		
-				lblFondo = new JLabel("");
-				lblFondo.setIcon(new ImageIcon(_01_InicioSesion2.class.getResource("/img/fondoLogin2  - copia.jpg")));
-				lblFondo.setBounds(725, 0, 283, 537);
-				background.add(lblFondo);
-				lblFondo = new JLabel("");
-				lblFondo.setIcon(new ImageIcon(_01_InicioSesion2.class.getResource("/img/fondoLogin2  - copia.jpg")));
-				lblFondo.setBounds(725, 0, 283, 537);
-				background.add(lblFondo);
+
+		lblFondo = new JLabel("");
+		lblFondo.setIcon(new ImageIcon(_01_InicioSesion2.class.getResource("/img/fondoLogin2  - copia.jpg")));
+		lblFondo.setBounds(725, 0, 283, 537);
+		background.add(lblFondo);
+		lblFondo = new JLabel("");
+		lblFondo.setIcon(new ImageIcon(_01_InicioSesion2.class.getResource("/img/fondoLogin2  - copia.jpg")));
+		lblFondo.setBounds(725, 0, 283, 537);
+		background.add(lblFondo);
 	}
 
 	@Override

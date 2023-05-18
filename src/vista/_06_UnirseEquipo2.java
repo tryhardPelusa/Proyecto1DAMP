@@ -99,7 +99,7 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 		    	setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		    }
 		});
-		lblBtnCerrar.setIcon(new ImageIcon(_06_UnirseEquipo2.class.getResource("/img/close.png")));
+		lblBtnCerrar.setIcon(new ImageIcon(_00_PaginaPrincipal2.class.getResource("/img/close.png")));
 		lblBtnCerrar.setBounds(970, 0, 40, 40);
 		background.add(lblBtnCerrar);
 
@@ -111,15 +111,19 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
+				lblBtnMinimizar.setBackground(Color.BLUE);
+				lblBtnMinimizar.setOpaque(true);
 				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
+				lblBtnMinimizar.setBackground(null);
+		    	lblBtnMinimizar.setOpaque(false);
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
-		lblBtnMinimizar.setIcon(new ImageIcon(_06_UnirseEquipo2.class.getResource("/img/minimize.png")));
-		lblBtnMinimizar.setBounds(928, 0, 34, 40);
+		lblBtnMinimizar.setIcon(new ImageIcon(_00_PaginaPrincipal2.class.getResource("/img/minimize.png")));
+		lblBtnMinimizar.setBounds(928, 0, 40, 40);
 		background.add(lblBtnMinimizar);
 
 		btnMiCuenta = new JButton("MI CUENTA");
