@@ -12,6 +12,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -326,35 +327,18 @@ public class _12_MisApuestas2 extends JFrame implements Vista {
 		background.add(btnUnirseAEquipo);
 		background.setComponentZOrder(btnUnirseAEquipo, 0);
 		
-		btnMisApuestas = new JButton("MIS APUESTAS");
-		btnMisApuestas.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mouseEntered(MouseEvent e) {
-		    	btnMisApuestas.setBackground(Color.yellow);
-		    	btnMisApuestas.setOpaque(true);
-		    }
-
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		    	btnMisApuestas.setBackground(null);
-		    	btnMisApuestas.setOpaque(false);
-		    }
-		});
-		
-		btnMisApuestas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(12, 12);
-			}
-		});
-		
+		btnMisApuestas = new JButton("  MIS APUESTAS");
+		btnMisApuestas.setBounds(10, 362, 262, 49);
 		btnMisApuestas.setHorizontalAlignment(SwingConstants.LEFT);
-		btnMisApuestas.setOpaque(false);
 		btnMisApuestas.setFont(new Font("Britannic Bold", Font.BOLD, 25));
 		btnMisApuestas.setFocusPainted(false);
 		btnMisApuestas.setContentAreaFilled(false);
 		btnMisApuestas.setBorderPainted(false);
-		btnMisApuestas.setBounds(10, 362, 262, 49);
 		btnMisApuestas.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnMisApuestas.setEnabled(false);
+		btnMisApuestas.setBackground(new Color(220, 220, 220));
+		btnMisApuestas.setForeground(new Color(128, 128, 128));
+		btnMisApuestas.setBorder(BorderFactory.createLineBorder(new Color(128, 128, 128)));
 		background.add(btnMisApuestas);
 		background.setComponentZOrder(btnMisApuestas, 0);
 		

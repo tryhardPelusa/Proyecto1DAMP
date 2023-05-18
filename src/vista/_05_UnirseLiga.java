@@ -3,6 +3,7 @@ package vista;
 import java.awt.Color;
 import java.awt.Cursor;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -187,28 +188,18 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 		background.add(btnCrearLiga);
 		background.setComponentZOrder(btnCrearLiga, 0);
 
-		btnUnirseALiga = new JButton("UNIRSE A LIGA");
-		btnUnirseALiga.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				btnUnirseALiga.setBackground(Color.yellow);
-				btnUnirseALiga.setOpaque(true);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				btnUnirseALiga.setBackground(null);
-				btnUnirseALiga.setOpaque(false);
-			}
-		});
+		btnUnirseALiga = new JButton("  UNIRSE A LIGA");
 		btnUnirseALiga.setHorizontalAlignment(SwingConstants.LEFT);
-		btnUnirseALiga.setOpaque(false);
 		btnUnirseALiga.setFont(new Font("Britannic Bold", Font.BOLD, 25));
 		btnUnirseALiga.setFocusPainted(false);
 		btnUnirseALiga.setContentAreaFilled(false);
 		btnUnirseALiga.setBorderPainted(false);
-		btnUnirseALiga.setBounds(10, 182, 260, 49);
 		btnUnirseALiga.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnUnirseALiga.setEnabled(false);
+		btnUnirseALiga.setBackground(new Color(220, 220, 220));
+		btnUnirseALiga.setForeground(new Color(128, 128, 128));
+		btnUnirseALiga.setBorder(BorderFactory.createLineBorder(new Color(128, 128, 128)));
+		btnUnirseALiga.setBounds(10, 182, 260, 49);
 		background.add(btnUnirseALiga);
 		background.setComponentZOrder(btnUnirseALiga, 0);
 

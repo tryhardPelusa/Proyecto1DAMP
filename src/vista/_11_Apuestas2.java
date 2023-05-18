@@ -12,6 +12,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -368,35 +369,18 @@ public class _11_Apuestas2 extends JFrame implements Vista {
 		background.add(btnMisApuestas);
 		background.setComponentZOrder(btnMisApuestas, 0);
 
-		btnApostar = new JButton("APOSTAR");
-		btnApostar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				btnApostar.setBackground(Color.yellow);
-				btnApostar.setOpaque(true);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				btnApostar.setBackground(null);
-				btnApostar.setOpaque(false);
-			}
-		});
-		
-		btnApostar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(11, 11);
-			}
-		});
-		
+		btnApostar = new JButton("  APOSTAR");
+		btnApostar.setBounds(10, 422, 260, 49);
 		btnApostar.setHorizontalAlignment(SwingConstants.LEFT);
-		btnApostar.setOpaque(false);
 		btnApostar.setFont(new Font("Britannic Bold", Font.BOLD, 25));
 		btnApostar.setFocusPainted(false);
 		btnApostar.setContentAreaFilled(false);
 		btnApostar.setBorderPainted(false);
-		btnApostar.setBounds(10, 422, 260, 49);
 		btnApostar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnApostar.setEnabled(false);
+		btnApostar.setBackground(new Color(220, 220, 220));
+		btnApostar.setForeground(new Color(128, 128, 128));
+		btnApostar.setBorder(BorderFactory.createLineBorder(new Color(128, 128, 128)));
 		background.add(btnApostar);
 		background.setComponentZOrder(btnApostar, 0);
 

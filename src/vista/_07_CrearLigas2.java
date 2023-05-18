@@ -13,6 +13,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -216,33 +217,17 @@ public class _07_CrearLigas2 extends JFrame implements Vista {
 		background.add(btnVerLigas);
 		background.setComponentZOrder(btnVerLigas, 0);
 
-		btnCrearLiga = new JButton("CREAR LIGA");
-		btnCrearLiga.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				btnCrearLiga.setBackground(Color.yellow);
-				btnCrearLiga.setOpaque(true);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				btnCrearLiga.setBackground(null);
-				btnCrearLiga.setOpaque(false);
-			}
-		});
-
-		btnCrearLiga.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(7, 7);
-			}
-		});
-
+		btnCrearLiga = new JButton("  CREAR LIGA");
 		btnCrearLiga.setHorizontalAlignment(SwingConstants.LEFT);
-		btnCrearLiga.setOpaque(false);
 		btnCrearLiga.setFont(new Font("Britannic Bold", Font.BOLD, 25));
 		btnCrearLiga.setFocusPainted(false);
 		btnCrearLiga.setContentAreaFilled(false);
 		btnCrearLiga.setBorderPainted(false);
+		btnCrearLiga.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnCrearLiga.setEnabled(false);
+		btnCrearLiga.setBackground(new Color(220, 220, 220));
+		btnCrearLiga.setForeground(new Color(128, 128, 128));
+		btnCrearLiga.setBorder(BorderFactory.createLineBorder(new Color(128, 128, 128)));
 		btnCrearLiga.setBounds(10, 122, 260, 49);
 		btnCrearLiga.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		background.add(btnCrearLiga);

@@ -42,7 +42,7 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 	// Atributos
 	private Controlador miControlador;
 	private Modelo miModelo;
-
+	
 	private JPanel contentPane;
 	private JLabel lblFondo;
 	private JLabel lblLogo;

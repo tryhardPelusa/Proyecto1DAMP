@@ -6,6 +6,7 @@ package vista;
 import java.awt.Color;
 import java.awt.Cursor;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -273,33 +274,18 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 		background.add(btnCrearEquipo);
 		background.setComponentZOrder(btnCrearEquipo, 0);
 		
-		btnUnirseAEquipo = new JButton("UNIRSE A EQUIPO");
-		btnUnirseAEquipo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(6, 6);
-			}
-		});
-		btnUnirseAEquipo.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mouseEntered(MouseEvent e) {
-		    	btnUnirseAEquipo.setBackground(Color.yellow);
-		    	btnUnirseAEquipo.setOpaque(true);
-		    }
-
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		    	btnUnirseAEquipo.setBackground(null);
-		    	btnUnirseAEquipo.setOpaque(false);
-		    }
-		});
+		btnUnirseAEquipo = new JButton("  UNIRSE A EQUIPO");
+		btnUnirseAEquipo.setBounds(10, 302, 262, 49);
 		btnUnirseAEquipo.setHorizontalAlignment(SwingConstants.LEFT);
-		btnUnirseAEquipo.setOpaque(false);
 		btnUnirseAEquipo.setFont(new Font("Britannic Bold", Font.BOLD, 25));
 		btnUnirseAEquipo.setFocusPainted(false);
 		btnUnirseAEquipo.setContentAreaFilled(false);
 		btnUnirseAEquipo.setBorderPainted(false);
-		btnUnirseAEquipo.setBounds(10, 302, 262, 49);
 		btnUnirseAEquipo.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnUnirseAEquipo.setEnabled(false);
+		btnUnirseAEquipo.setBackground(new Color(220, 220, 220));
+		btnUnirseAEquipo.setForeground(new Color(128, 128, 128));
+		btnUnirseAEquipo.setBorder(BorderFactory.createLineBorder(new Color(128, 128, 128)));
 		background.add(btnUnirseAEquipo);
 		background.setComponentZOrder(btnUnirseAEquipo, 0);
 		

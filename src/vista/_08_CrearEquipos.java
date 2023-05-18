@@ -11,6 +11,7 @@ import modelo.Modelo;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -253,33 +254,18 @@ public class _08_CrearEquipos extends JFrame implements Vista {
 		background.add(btnUnirseALiga);
 		background.setComponentZOrder(btnUnirseALiga, 0);
 		
-		btnCrearEquipo = new JButton("CREAR EQUIPO");
-		btnCrearEquipo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(8, 8);
-			}
-		});
-		btnCrearEquipo.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mouseEntered(MouseEvent e) {
-		    	btnCrearEquipo.setBackground(Color.yellow);
-		    	btnCrearEquipo.setOpaque(true);
-		    }
-
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		    	btnCrearEquipo.setBackground(null);
-		    	btnCrearEquipo.setOpaque(false);
-		    }
-		});
+		btnCrearEquipo = new JButton("  CREAR EQUIPO");
 		btnCrearEquipo.setHorizontalAlignment(SwingConstants.LEFT);
-		btnCrearEquipo.setOpaque(false);
 		btnCrearEquipo.setFont(new Font("Britannic Bold", Font.BOLD, 25));
 		btnCrearEquipo.setFocusPainted(false);
 		btnCrearEquipo.setContentAreaFilled(false);
 		btnCrearEquipo.setBorderPainted(false);
-		btnCrearEquipo.setBounds(10, 242, 260, 49);
 		btnCrearEquipo.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnCrearEquipo.setEnabled(false);
+		btnCrearEquipo.setBackground(new Color(220, 220, 220));
+		btnCrearEquipo.setForeground(new Color(128, 128, 128));
+		btnCrearEquipo.setBorder(BorderFactory.createLineBorder(new Color(128, 128, 128)));
+		btnCrearEquipo.setBounds(10, 242, 260, 49);
 		background.add(btnCrearEquipo);
 		background.setComponentZOrder(btnCrearEquipo, 0);
 		
@@ -433,7 +419,7 @@ public class _08_CrearEquipos extends JFrame implements Vista {
 		btnCrear = new JButton("Crear");
 		btnCrear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				miControlador.cambiarVentana(8, 10);
 			}
 		});
 		btnCrear.setFont(new Font("Britannic Bold", Font.PLAIN, 16));

@@ -6,6 +6,7 @@ package vista;
 import java.awt.Color;
 import java.awt.Cursor;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -129,20 +130,20 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		lblBtnMinimizar.setBounds(928, 0, 34, 40);
 		background.add(lblBtnMinimizar);
 
-		btnMiCuenta = new JButton("MI CUENTA");
-		btnMiCuenta.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mouseEntered(MouseEvent e) {
-		        btnMiCuenta.setBackground(Color.yellow);
-		        btnMiCuenta.setOpaque(true);
-		    }
-
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		        btnMiCuenta.setBackground(null);
-		        btnMiCuenta.setOpaque(false);
-		    }
-		});
+		btnMiCuenta = new JButton("  MI CUENTA");
+//		btnMiCuenta.addMouseListener(new MouseAdapter() {
+//		    @Override
+//		    public void mouseEntered(MouseEvent e) {
+//		        btnMiCuenta.setBackground(Color.yellow);
+//		        btnMiCuenta.setOpaque(true);
+//		    }
+//
+//		    @Override
+//		    public void mouseExited(MouseEvent e) {
+//		        btnMiCuenta.setBackground(null);
+//		        btnMiCuenta.setOpaque(false);
+//		    }
+//		});
 		JLabel lblBarraMoverVentana = new JLabel("");
 		lblBarraMoverVentana.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
@@ -161,14 +162,27 @@ public class _04_MiCuenta extends JFrame implements Vista {
 			}
 		});
 
+//		btnMiCuenta.setHorizontalAlignment(SwingConstants.LEFT); Este es el codigo corercto
+//		btnMiCuenta.setFont(new Font("Britannic Bold", Font.BOLD, 25));
+//		btnMiCuenta.setBounds(10, 13, 262, 49);
+//		btnMiCuenta.setBorderPainted(false); 
+//        btnMiCuenta.setContentAreaFilled(false); 
+//		btnMiCuenta.setOpaque(false);
+//		btnMiCuenta.setFocusPainted(false);
+//		btnMiCuenta.setCursor(new Cursor(Cursor.HAND_CURSOR)); FIN 
+
 		btnMiCuenta.setHorizontalAlignment(SwingConstants.LEFT);
 		btnMiCuenta.setFont(new Font("Britannic Bold", Font.BOLD, 25));
 		btnMiCuenta.setBounds(10, 13, 262, 49);
-		btnMiCuenta.setBorderPainted(false); 
-        btnMiCuenta.setContentAreaFilled(false); 
+		btnMiCuenta.setBorderPainted(false);
+		btnMiCuenta.setContentAreaFilled(false);
 		btnMiCuenta.setOpaque(false);
 		btnMiCuenta.setFocusPainted(false);
 		btnMiCuenta.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnMiCuenta.setEnabled(false);
+		btnMiCuenta.setBackground(new Color(220, 220, 220));
+		btnMiCuenta.setForeground(new Color(128, 128, 128));
+		btnMiCuenta.setBorder(BorderFactory.createLineBorder(new Color(128, 128, 128)));
 		background.add(btnMiCuenta);
 		background.setComponentZOrder(btnMiCuenta, 0);
 		
