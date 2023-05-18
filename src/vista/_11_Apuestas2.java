@@ -6,6 +6,8 @@ package vista;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -67,6 +69,7 @@ public class _11_Apuestas2 extends JFrame implements Vista {
 	private JLabel lblJornada;
 	private JTable tblApuestas;
 	private JSpinner spinnerCantidad;
+	private JSeparator separator;
 
 	// Constructor
 	public _11_Apuestas2() {
@@ -99,7 +102,7 @@ public class _11_Apuestas2 extends JFrame implements Vista {
 		lblLogo.setBounds(290, 11, 150, 64);
 		background.add(lblLogo);
 
-		JSeparator separator = new JSeparator();
+		separator = new JSeparator();
 		separator.setForeground(new Color(160, 160, 160));
 		separator.setBackground(new Color(0, 0, 0));
 		separator.setOrientation(SwingConstants.VERTICAL);
@@ -154,6 +157,13 @@ public class _11_Apuestas2 extends JFrame implements Vista {
 				btnMiCuenta.setOpaque(false);
 			}
 		});
+		
+		btnMiCuenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(11, 4);
+			}
+		});
+		
 
 		btnMiCuenta.setHorizontalAlignment(SwingConstants.LEFT);
 		btnMiCuenta.setFont(new Font("Britannic Bold", Font.BOLD, 25));
@@ -180,6 +190,13 @@ public class _11_Apuestas2 extends JFrame implements Vista {
 				btnVerLigas.setOpaque(false);
 			}
 		});
+		
+		btnVerLigas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(11, 0);
+			}
+		});
+		
 		btnVerLigas.setHorizontalAlignment(SwingConstants.LEFT);
 		btnVerLigas.setOpaque(false);
 		btnVerLigas.setFont(new Font("Britannic Bold", Font.BOLD, 25));
@@ -205,6 +222,13 @@ public class _11_Apuestas2 extends JFrame implements Vista {
 				btnCrearLiga.setOpaque(false);
 			}
 		});
+		
+		btnCrearLiga.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(11, 7);
+			}
+		});
+		
 		btnCrearLiga.setHorizontalAlignment(SwingConstants.LEFT);
 		btnCrearLiga.setOpaque(false);
 		btnCrearLiga.setFont(new Font("Britannic Bold", Font.BOLD, 25));
@@ -230,6 +254,13 @@ public class _11_Apuestas2 extends JFrame implements Vista {
 				btnUnirseALiga.setOpaque(false);
 			}
 		});
+		
+		btnUnirseALiga.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(11, 5);
+			}
+		});
+		
 		btnUnirseALiga.setHorizontalAlignment(SwingConstants.LEFT);
 		btnUnirseALiga.setOpaque(false);
 		btnUnirseALiga.setFont(new Font("Britannic Bold", Font.BOLD, 25));
@@ -255,6 +286,13 @@ public class _11_Apuestas2 extends JFrame implements Vista {
 				btnCrearEquipo.setOpaque(false);
 			}
 		});
+		
+		btnCrearEquipo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(11, 8);
+			}
+		});
+		
 		btnCrearEquipo.setHorizontalAlignment(SwingConstants.LEFT);
 		btnCrearEquipo.setOpaque(false);
 		btnCrearEquipo.setFont(new Font("Britannic Bold", Font.BOLD, 25));
@@ -280,6 +318,13 @@ public class _11_Apuestas2 extends JFrame implements Vista {
 				btnUnirseAEquipo.setOpaque(false);
 			}
 		});
+		
+		btnUnirseAEquipo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(11, 6);
+			}
+		});
+		
 		btnUnirseAEquipo.setHorizontalAlignment(SwingConstants.LEFT);
 		btnUnirseAEquipo.setOpaque(false);
 		btnUnirseAEquipo.setFont(new Font("Britannic Bold", Font.BOLD, 25));
@@ -305,6 +350,13 @@ public class _11_Apuestas2 extends JFrame implements Vista {
 				btnMisApuestas.setOpaque(false);
 			}
 		});
+		
+		btnMisApuestas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(11, 12);
+			}
+		});
+		
 		btnMisApuestas.setHorizontalAlignment(SwingConstants.LEFT);
 		btnMisApuestas.setOpaque(false);
 		btnMisApuestas.setFont(new Font("Britannic Bold", Font.BOLD, 25));
@@ -330,6 +382,13 @@ public class _11_Apuestas2 extends JFrame implements Vista {
 				btnApostar.setOpaque(false);
 			}
 		});
+		
+		btnApostar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(11, 11);
+			}
+		});
+		
 		btnApostar.setHorizontalAlignment(SwingConstants.LEFT);
 		btnApostar.setOpaque(false);
 		btnApostar.setFont(new Font("Britannic Bold", Font.BOLD, 25));
@@ -355,6 +414,13 @@ public class _11_Apuestas2 extends JFrame implements Vista {
 				btnSignOut.setOpaque(false);
 			}
 		});
+		
+		btnSignOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(11, 1);
+			}
+		});
+		
 		btnSignOut.setHorizontalAlignment(SwingConstants.LEFT);
 		btnSignOut.setOpaque(false);
 		btnSignOut.setFont(new Font("Britannic Bold", Font.BOLD, 15));
