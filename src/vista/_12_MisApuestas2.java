@@ -464,9 +464,10 @@ public class _12_MisApuestas2 extends JFrame implements Vista {
         background.add(txtbuscar);
         txtbuscar.setColumns(10);
         
-        btnBuscar = new JButton("Buscar");
-        btnBuscar.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
-        btnBuscar.setBounds(853, 79, 89, 23);
+        btnBuscar = new JButton("BUSCAR");
+        btnBuscar.setFont(new Font("Britannic Bold", Font.PLAIN, 14));
+        btnBuscar.setBackground(new Color(255, 128, 0));
+        btnBuscar.setBounds(853, 79, 101, 23);
         background.add(btnBuscar);
 		
 
