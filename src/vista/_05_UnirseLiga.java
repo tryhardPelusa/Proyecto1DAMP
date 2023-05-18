@@ -47,6 +47,10 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 	private JLabel lblBarraMoverVentana;
 	private int xMouse, yMouse;
 	private JTextPane txtpnUnirseAUna;
+	private JLabel lblunirse;
+	private JButton btnUnion;
+	private JButton btnUnirEqui;
+	private JButton btnCrearEquip;
 
 	// Constructor
 	public _05_UnirseLiga() {
@@ -394,7 +398,7 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 		background.add(btnSignOut);
 		background.setComponentZOrder(btnSignOut, 0);
 
-		JLabel lblunirse = new JLabel("Introduzca  c\u00F3digo de uni\u00F3n:");
+		lblunirse = new JLabel("Introduzca  c\u00F3digo de uni\u00F3n:");
 		lblunirse.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
 		lblunirse.setBounds(375, 247, 316, 39);
 		background.add(lblunirse);
@@ -405,7 +409,7 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 		textField.setBounds(653, 260, 219, 19);
 		background.add(textField);
 
-		JButton btnUnion = new JButton("Unirse");
+		btnUnion = new JButton("Unirse");
 		btnUnion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				miControlador.cambiarVentana(5, 9);
@@ -416,33 +420,34 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 		btnUnion.setBounds(787, 290, 85, 21);
 		background.add(btnUnion);
 
-		JButton btnNewButton = new JButton("Unirse equipo");
-		btnNewButton.addActionListener(new ActionListener() {
+		btnUnirEqui = new JButton("Unirse equipo");
+		btnUnirEqui.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				miControlador.cambiarVentana(5, 6);
 			}
 		});
-		btnNewButton.setBackground(new Color(255, 128, 0));
-		btnNewButton.setBounds(751, 504, 115, 21);
-		background.add(btnNewButton);
+		btnUnirEqui.setBackground(new Color(255, 128, 0));
+		btnUnirEqui.setBounds(751, 504, 115, 21);
+		background.add(btnUnirEqui);
 
-		JLabel lblNewLabel = new JLabel("\u00BFNo tienes equipo?, crea o unete a uno :D ");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
-		lblNewLabel.setBounds(440, 496, 322, 32);
-		lblNewLabel.setFont(new Font("Britannic Bold", Font.PLAIN, 14));
-		lblNewLabel.setBounds(440, 496, 322, 32);
-		background.add(lblNewLabel);
+		
 
-		JButton btnNewButton_1 = new JButton("Crear Equipo");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JLabel lblNoEquipo = new JLabel("\u00BFNo tienes equipo?, crea o unete a uno :D ");
+		lblNoEquipo.setFont(new Font("Britannic Bold", Font.PLAIN, 14));
+		lblNoEquipo.setBounds(440, 496, 322, 32);
+		background.add(lblNoEquipo);
+
+
+		btnCrearEquip = new JButton("Crear Equipo");
+		btnCrearEquip.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				miControlador.cambiarVentana(5, 8);
 			}
 		});
-		btnNewButton_1.setBackground(new Color(255, 128, 0));
-		btnNewButton_1.setBounds(878, 504, 109, 21);
-		background.add(btnNewButton_1);
+		btnCrearEquip.setBackground(new Color(255, 128, 0));
+		btnCrearEquip.setBounds(878, 504, 109, 21);
+		background.add(btnCrearEquip);
 
 		lblFondo = new JLabel("");
 		lblFondo.setIcon(new ImageIcon(Plantilla.class.getResource("/img/fondoLogin2  - copia.jpg")));

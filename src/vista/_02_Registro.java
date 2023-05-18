@@ -40,17 +40,17 @@ public class _02_Registro extends JFrame implements Vista {
 	private JLabel lblLogo;
 	private JPanel background;
 	private JLabel lblRegistro;
-	private JTextField textField;
-	private JPasswordField passwordField;
+	private JTextField txtUser;
+	private JPasswordField txtPwd;
 	private JSeparator separator;
 	private JButton btnRegistrarse;
-	private JTextField textField_1;
+	private JTextField txtNombre;
 	private JLabel lblApellido2;
 	private JLabel lblApellido1;
 	private JLabel lblNombre;
 	private JLabel lblUsuario;
 	private JLabel lblCorreo;
-	private JTextField textField_2;
+	private JTextField txtCorreo;
 	private JTextArea monedas;
 	private JTextField txtApellido1;
 	private JTextField txtApellido2;
@@ -93,18 +93,18 @@ public class _02_Registro extends JFrame implements Vista {
 		lblUsuario.setBounds(10, 207, 141, 29);
 		background.add(lblUsuario);
 
-		textField = new JTextField();
-		textField.setForeground(new Color(255, 255, 255));
-		textField.setBackground(new Color(0, 128, 192));
-		textField.setBounds(110, 214, 217, 20);
-		background.add(textField);
-		textField.setColumns(10);
+		txtUser = new JTextField();
+		txtUser.setForeground(new Color(255, 255, 255));
+		txtUser.setBackground(new Color(0, 128, 192));
+		txtUser.setBounds(110, 214, 217, 20);
+		background.add(txtUser);
+		txtUser.setColumns(10);
 
-		passwordField = new JPasswordField();
-		passwordField.setForeground(new Color(255, 255, 255));
-		passwordField.setBackground(new Color(0, 128, 192));
-		passwordField.setBounds(110, 254, 217, 20);
-		background.add(passwordField);
+		txtPwd = new JPasswordField();
+		txtPwd.setForeground(new Color(255, 255, 255));
+		txtPwd.setBackground(new Color(0, 128, 192));
+		txtPwd.setBounds(110, 254, 217, 20);
+		background.add(txtPwd);
 
 		btnRegistrarse = new JButton("Registrarse");
 		btnRegistrarse.addActionListener(new ActionListener() {
@@ -128,16 +128,13 @@ public class _02_Registro extends JFrame implements Vista {
 		lblNombre.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
 		lblNombre.setBounds(398, 212, 183, 29);
 		background.add(lblNombre);
-
-		textField_1 = new JTextField();
-		textField_1.setForeground(Color.WHITE);
-		textField_1.setColumns(10);
-		textField_1.setBackground(new Color(0, 128, 192));
-		textField_1.setBounds(498, 219, 217, 20);
-		background.add(textField_1);
-
-		lblApellido1 = new JLabel("Apellido1* :");
-		lblApellido1.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
+		
+		txtNombre = new JTextField();
+		txtNombre.setForeground(Color.WHITE);
+		txtNombre.setColumns(10);
+		txtNombre.setBackground(new Color(0, 128, 192));
+		txtNombre.setBounds(498, 219, 217, 20);
+		background.add(txtNombre);
 
 		lblApellido1 = new JLabel("APELLIDO1*:");
 		lblApellido1.setFont(new Font("Britannic Bold", Font.PLAIN, 17));
@@ -165,13 +162,13 @@ public class _02_Registro extends JFrame implements Vista {
 		lblCorreo.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
 		lblCorreo.setBounds(10, 331, 141, 29);
 		background.add(lblCorreo);
-
-		textField_2 = new JTextField();
-		textField_2.setForeground(Color.WHITE);
-		textField_2.setColumns(10);
-		textField_2.setBackground(new Color(0, 128, 192));
-		textField_2.setBounds(110, 338, 217, 20);
-		background.add(textField_2);
+		
+		txtCorreo = new JTextField();
+		txtCorreo.setForeground(Color.WHITE);
+		txtCorreo.setColumns(10);
+		txtCorreo.setBackground(new Color(0, 128, 192));
+		txtCorreo.setBounds(110, 338, 217, 20);
+		background.add(txtCorreo);
 
 		monedas = new JTextArea();
 		monedas.setText(
