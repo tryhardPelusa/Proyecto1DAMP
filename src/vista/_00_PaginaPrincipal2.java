@@ -6,6 +6,7 @@ package vista;
 import java.awt.Color;
 import java.awt.Cursor;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -164,33 +165,44 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 		background.add(btnMiCuenta);
 		background.setComponentZOrder(btnMiCuenta, 0);
 		
-		btnVerLigas = new JButton("VER LIGAS");
-		btnVerLigas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(0, 0);
-			}
-		});
-		btnVerLigas.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mouseEntered(MouseEvent e) {
-		    	btnVerLigas.setBackground(Color.yellow);
-		    	btnVerLigas.setOpaque(true);
-		    }
-
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		    	btnVerLigas.setBackground(null);
-		    	btnVerLigas.setOpaque(false);
-		    }
-		});
+		btnVerLigas = new JButton("  VER LIGAS");
+		btnVerLigas.setBounds(10, 62, 262, 49);
 		btnVerLigas.setHorizontalAlignment(SwingConstants.LEFT);
-		btnVerLigas.setOpaque(false);
 		btnVerLigas.setFont(new Font("Britannic Bold", Font.BOLD, 25));
 		btnVerLigas.setFocusPainted(false);
 		btnVerLigas.setContentAreaFilled(false);
 		btnVerLigas.setBorderPainted(false);
-		btnVerLigas.setBounds(10, 62, 262, 49);
 		btnVerLigas.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnVerLigas.setEnabled(false);
+		btnVerLigas.setBackground(new Color(220, 220, 220));
+		btnVerLigas.setForeground(new Color(128, 128, 128));
+		btnVerLigas.setBorder(BorderFactory.createLineBorder(new Color(128, 128, 128)));
+//		btnVerLigas.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				miControlador.cambiarVentana(0, 0);
+//			}
+//		});
+//		btnVerLigas.addMouseListener(new MouseAdapter() {
+//		    @Override
+//		    public void mouseEntered(MouseEvent e) {
+//		    	btnVerLigas.setBackground(Color.yellow);
+//		    	btnVerLigas.setOpaque(true);
+//		    }
+//
+//		    @Override
+//		    public void mouseExited(MouseEvent e) {
+//		    	btnVerLigas.setBackground(null);
+//		    	btnVerLigas.setOpaque(false);
+//		    }
+//		});
+//		btnVerLigas.setHorizontalAlignment(SwingConstants.LEFT);
+//		btnVerLigas.setOpaque(false);
+//		btnVerLigas.setFont(new Font("Britannic Bold", Font.BOLD, 25));
+//		btnVerLigas.setFocusPainted(false);
+//		btnVerLigas.setContentAreaFilled(false);
+//		btnVerLigas.setBorderPainted(false);
+//		btnVerLigas.setBounds(10, 62, 262, 49);
+//		btnVerLigas.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		background.add(btnVerLigas);
 		background.setComponentZOrder(btnVerLigas, 0);
 		
