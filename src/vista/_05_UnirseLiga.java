@@ -393,12 +393,23 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 		background.add(textField);
 
 		JButton btnUnion = new JButton("Unirse");
-		btnUnion.setBackground(new Color(255, 255, 255));
-		btnUnion.setBounds(571, 302, 85, 21);
+		btnUnion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(5, 9);
+
+			}
+		});
+		btnUnion.setBackground(new Color(255, 128, 0));
+		btnUnion.setBounds(787, 290, 85, 21);
 		background.add(btnUnion);
 
 		JButton btnNewButton = new JButton("Unirse equipo");
-		btnNewButton.setBackground(new Color(255, 255, 255));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(5, 6);
+			}
+		});
+		btnNewButton.setBackground(new Color(255, 128, 0));
 		btnNewButton.setBounds(751, 504, 115, 21);
 		background.add(btnNewButton);
 
@@ -408,6 +419,12 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 		background.add(lblNewLabel);
 
 		JButton btnNewButton_1 = new JButton("Crear Equipo");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(5, 8);
+			}
+		});
+		btnNewButton_1.setBackground(new Color(255, 128, 0));
 		btnNewButton_1.setBounds(878, 504, 109, 21);
 		background.add(btnNewButton_1);
 
