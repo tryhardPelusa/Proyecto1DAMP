@@ -108,7 +108,7 @@ public class _02_Registro extends JFrame implements Vista {
 		btnRegistrarse = new JButton("Registrarse");
 		btnRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				miControlador.cambiarVentana(2, 0);
 			}
 		});
 		btnRegistrarse.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
