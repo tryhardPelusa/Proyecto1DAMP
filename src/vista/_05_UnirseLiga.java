@@ -374,6 +374,11 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 		background.setComponentZOrder(btnApostar, 0);
 
 		btnSignOut = new JButton("Sign Out");
+		btnSignOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(5, 1);
+			}
+		});
 		btnSignOut.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
