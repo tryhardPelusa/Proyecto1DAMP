@@ -188,6 +188,7 @@ public class _02_Registro extends JFrame implements Vista {
 				background.add(lblFondo);
 				
 				JTextArea txtrFechaDeNacimiento = new JTextArea();
+				txtrFechaDeNacimiento.setEditable(false);
 				txtrFechaDeNacimiento.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
 				txtrFechaDeNacimiento.setBackground(new Color(0, 128, 192));
 				txtrFechaDeNacimiento.setText("FECHA DE\r\n NACIMIENTO * :");
@@ -195,6 +196,7 @@ public class _02_Registro extends JFrame implements Vista {
 				background.add(txtrFechaDeNacimiento);
 				
 				JTextArea txtrContraSea = new JTextArea();
+				txtrContraSea.setEditable(false);
 				txtrContraSea.setText("CONTRASE\u00D1A*:");
 				txtrContraSea.setFont(new Font("Britannic Bold", Font.PLAIN, 15));
 				txtrContraSea.setBackground(new Color(0, 128, 192));
