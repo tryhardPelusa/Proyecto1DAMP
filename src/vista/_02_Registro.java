@@ -3,39 +3,31 @@
  */
 package vista;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import modelo.Modelo;
-
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.ImageIcon;
-import javax.swing.border.TitledBorder;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JSeparator;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import com.toedter.calendar.JDateChooser;
 
 import controlador.Controlador;
-
-import javax.swing.DropMode;
-import javax.swing.JSeparator;
-import com.toedter.calendar.JDateChooser;
-import javax.swing.JTextArea;
+import modelo.Modelo;
 
 public class _02_Registro extends JFrame implements Vista {
 
@@ -56,7 +48,6 @@ public class _02_Registro extends JFrame implements Vista {
 	private JLabel lblApellido2;
 	private JLabel lblApellido1;
 	private JLabel lblNombre;
-	private JLabel lblContrasenia;
 	private JLabel lblUsuario;
 	private JLabel lblCorreo;
 	private JTextField textField_2;
@@ -109,18 +100,18 @@ public class _02_Registro extends JFrame implements Vista {
 		background.add(textField);
 		textField.setColumns(10);
 
-		lblContrasenia = new JLabel("CONTRASE\u00D1A* :");
-		lblContrasenia.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-		lblContrasenia.setBounds(10, 247, 183, 29);
-		background.add(lblContrasenia);
-
 		passwordField = new JPasswordField();
 		passwordField.setForeground(new Color(255, 255, 255));
 		passwordField.setBackground(new Color(0, 128, 192));
-		passwordField.setBounds(151, 254, 176, 20);
+		passwordField.setBounds(110, 254, 217, 20);
 		background.add(passwordField);
 
 		btnRegistrarse = new JButton("Registrarse");
+		btnRegistrarse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(2, 0);
+			}
+		});
 		btnRegistrarse.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
 		btnRegistrarse.setBackground(new Color(255, 128, 0));
 		btnRegistrarse.setBounds(852, 487, 132, 39);
@@ -147,11 +138,17 @@ public class _02_Registro extends JFrame implements Vista {
 
 		lblApellido1 = new JLabel("Apellido1* :");
 		lblApellido1.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
+
+		lblApellido1 = new JLabel("APELLIDO1*:");
+		lblApellido1.setFont(new Font("Britannic Bold", Font.PLAIN, 17));
 		lblApellido1.setBounds(398, 252, 183, 29);
 		background.add(lblApellido1);
 
 		lblApellido2 = new JLabel("Apellido2  :");
 		lblApellido2.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
+
+		lblApellido2 = new JLabel("APELLIDO2 :");
+		lblApellido2.setFont(new Font("Britannic Bold", Font.PLAIN, 17));
 		lblApellido2.setBounds(398, 292, 183, 29);
 		background.add(lblApellido2);
 
@@ -161,7 +158,7 @@ public class _02_Registro extends JFrame implements Vista {
 		background.add(lblFecha);
 
 		dateNacimiento = new JDateChooser();
-		dateNacimiento.setBounds(219, 296, 108, 20);
+		dateNacimiento.setBounds(110, 301, 217, 20);
 		background.add(dateNacimiento);
 
 		lblCorreo = new JLabel("CORREO* :");
@@ -179,6 +176,10 @@ public class _02_Registro extends JFrame implements Vista {
 		monedas = new JTextArea();
 		monedas.setText(
 				"se a\u00F1adiran 300 monedas una \r\nvez se halla registrado, una cierta \r\ncantidad de monedas se renovaran \r\ndiariamente");
+
+		monedas.setBackground(new Color(0, 128, 192));
+		monedas.setText(
+				"se a\u00F1adiran 300 monedas una \r\nvez se halla registrado, una cierta \r\ncantidad de monedas se renovaran \r\ndiariamente");
 		monedas.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
 		monedas.setBounds(259, 408, 238, 78);
 		background.add(monedas);
@@ -187,15 +188,14 @@ public class _02_Registro extends JFrame implements Vista {
 		txtApellido1.setForeground(Color.WHITE);
 		txtApellido1.setColumns(10);
 		txtApellido1.setBackground(new Color(0, 128, 192));
-		txtApellido1.setBounds(508, 259, 208, 20);
+		txtApellido1.setBounds(498, 259, 218, 20);
 		background.add(txtApellido1);
 
 		txtApellido2 = new JTextField();
 		txtApellido2.setForeground(Color.WHITE);
 		txtApellido2.setColumns(10);
 		txtApellido2.setBackground(new Color(0, 128, 192));
-		txtApellido2.setBounds(507, 299, 208, 20);
-		background.add(txtApellido2);
+		txtApellido2.setBounds(498, 299, 217, 20);
 
 		lblBarraMoverVentana = new JLabel("");
 		lblBarraMoverVentana.addMouseMotionListener(new MouseMotionAdapter() {
@@ -275,6 +275,25 @@ public class _02_Registro extends JFrame implements Vista {
 		lblFondo.setIcon(new ImageIcon(_01_InicioSesion2.class.getResource("/img/fondoLogin2  - copia.jpg")));
 		lblFondo.setBounds(725, 0, 283, 537);
 		background.add(lblFondo);
+
+		lblFondo = new JLabel("");
+		lblFondo.setIcon(new ImageIcon(_01_InicioSesion2.class.getResource("/img/fondoLogin2  - copia.jpg")));
+		lblFondo.setBounds(725, 0, 283, 537);
+		background.add(lblFondo);
+
+		JTextArea txtrFechaDeNacimiento = new JTextArea();
+		txtrFechaDeNacimiento.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
+		txtrFechaDeNacimiento.setBackground(new Color(0, 128, 192));
+		txtrFechaDeNacimiento.setText("FECHA DE\r\n NACIMIENTO * :");
+		txtrFechaDeNacimiento.setBounds(10, 287, 98, 78);
+		background.add(txtrFechaDeNacimiento);
+
+		JTextArea txtrContraSea = new JTextArea();
+		txtrContraSea.setText("CONTRASE\u00D1A*:");
+		txtrContraSea.setFont(new Font("Britannic Bold", Font.PLAIN, 15));
+		txtrContraSea.setBackground(new Color(0, 128, 192));
+		txtrContraSea.setBounds(10, 253, 98, 78);
+		background.add(txtrContraSea);
 	}
 
 	@Override

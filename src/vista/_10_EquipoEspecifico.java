@@ -22,6 +22,8 @@ import java.awt.event.MouseMotionAdapter;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class _10_EquipoEspecifico extends JFrame implements Vista {
 
@@ -114,6 +116,7 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				setState(JFrame.ICONIFIED);
+				miControlador.cambiarVentana(10, 4);
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -133,6 +136,10 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 		background.add(lblBtnMinimizar);
 
 		btnMiCuenta = new JButton("MI CUENTA");
+		btnMiCuenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnMiCuenta.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -159,6 +166,11 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 		background.setComponentZOrder(btnMiCuenta, 0);
 
 		btnVerLigas = new JButton("VER LIGAS");
+		btnVerLigas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(10, 0);
+			}
+		});
 		btnVerLigas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -184,6 +196,11 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 		background.setComponentZOrder(btnVerLigas, 0);
 
 		btnCrearLiga = new JButton("CREAR LIGA");
+		btnCrearLiga.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(10, 7);
+			}
+		});
 		btnCrearLiga.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -209,6 +226,11 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 		background.setComponentZOrder(btnCrearLiga, 0);
 
 		btnUnirseALiga = new JButton("UNIRSE A LIGA");
+		btnUnirseALiga.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(10, 5);
+			}
+		});
 		btnUnirseALiga.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -234,6 +256,11 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 		background.setComponentZOrder(btnUnirseALiga, 0);
 
 		btnCrearEquipo = new JButton("CREAR EQUIPO");
+		btnCrearEquipo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(10, 8);
+			}
+		});
 		btnCrearEquipo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -259,6 +286,11 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 		background.setComponentZOrder(btnCrearEquipo, 0);
 
 		btnUnirseAEquipo = new JButton("UNIRSE A EQUIPO");
+		btnUnirseAEquipo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(10, 6);
+			}
+		});
 		btnUnirseAEquipo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -284,6 +316,11 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 		background.setComponentZOrder(btnUnirseAEquipo, 0);
 
 		btnMisApuestas = new JButton("MIS APUESTAS");
+		btnMisApuestas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(10, 12);
+			}
+		});
 		btnMisApuestas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -309,6 +346,11 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 		background.setComponentZOrder(btnMisApuestas, 0);
 
 		btnApostar = new JButton("APOSTAR");
+		btnApostar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(10, 11);
+			}
+		});
 		btnApostar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -363,9 +405,32 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 		background.add(scrollJugadores);
 
 		table = new JTable();
+		table.setBackground(new Color(223, 255, 234));
+		table.setForeground(new Color(0, 0, 0));
+		table.setFont(new Font("Britannic Bold", Font.PLAIN, 11));
 		table.setEnabled(false);
-		table.setModel(new DefaultTableModel(new Object[][] { { "Juan" }, { "Roberto" }, { "Antonio" }, { "Jesus" },
-				{ "Pedro" }, { "Raul" }, { "Fernando" }, { "Jonathan" }, }, new String[] { "Jugadores del Equipo" }));
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"Juan"},
+				{"Roberto"},
+				{"Antonio"},
+				{"Jesus"},
+				{"Pedro"},
+				{"Raul"},
+				{"Fernando"},
+				{"Jonathan"},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+			},
+			new String[] {
+				"Jugadores del Equipo"
+			}
+		));
 		scrollJugadores.setViewportView(table);
 
 		scrollPane = new JScrollPane();
@@ -373,19 +438,45 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 		background.add(scrollPane);
 
 		table_1 = new JTable();
+		table_1.setBackground(new Color(223, 255, 234));
+		table_1.setFont(new Font("Britannic Bold", Font.PLAIN, 11));
 		table_1.setEnabled(false);
-		table_1.setModel(new DefaultTableModel(new Object[][] { { "Futball" }, { "Baloncesto" }, { "Rugby" }, },
-				new String[] { "Deportes" }));
+		table_1.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"Futball"},
+				{"Baloncesto"},
+				{"Rugby"},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+			},
+			new String[] {
+				"Deportes"
+			}
+		));
 		scrollPane.setViewportView(table_1);
 
 		scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(521, 427, 180, 64);
+		scrollPane_1.setBounds(521, 427, 183, 58);
 		background.add(scrollPane_1);
 
 		table_2 = new JTable();
+		table_2.setBackground(new Color(223, 255, 234));
+		table_2.setFont(new Font("Britannic Bold", Font.PLAIN, 11));
 		table_2.setEnabled(false);
 		table_2.setModel(
-				new DefaultTableModel(new Object[][] { { "C/avenida de margarita nº5" }, }, new String[] { "Sede" }));
+				new DefaultTableModel(
+			new Object[][] {
+				{"C/avenida de margarita n\u00BA5"},
+				{null},
+				{null},
+			},
+			new String[] {
+				"Sede"
+			}
+		));
 		scrollPane_1.setViewportView(table_2);
 
 		scrollPane_2 = new JScrollPane();
@@ -393,9 +484,30 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 		background.add(scrollPane_2);
 
 		table_3 = new JTable();
+		table_3.setBackground(new Color(223, 255, 234));
+		table_3.setFont(new Font("Britannic Bold", Font.PLAIN, 11));
 		table_3.setEnabled(false);
 		table_3.setModel(new DefaultTableModel(
-				new Object[][] { { "Liga A" }, { "Liga B" }, { "Liga C" }, { "Liga D" }, }, new String[] { "Ligas" }));
+			new Object[][] {
+				{"Liga A"},
+				{"Liga B"},
+				{"Liga C"},
+				{"Liga D"},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+			},
+			new String[] {
+				"Ligas"
+			}
+		));
 		scrollPane_2.setViewportView(table_3);
 
 		JLabel lblEquipoEspecifico = new JLabel("Real Madrid");
