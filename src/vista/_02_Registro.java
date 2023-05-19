@@ -189,6 +189,7 @@ public class _02_Registro extends JFrame implements Vista {
 		txtApellido2.setBackground(new Color(0, 128, 192));
 		txtApellido2.setBounds(498, 299, 217, 20);
 
+
 		lblBarraMoverVentana = new JLabel("");
 		lblBarraMoverVentana.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
@@ -286,6 +287,7 @@ public class _02_Registro extends JFrame implements Vista {
 		txtrContraSea.setBackground(new Color(0, 128, 192));
 		txtrContraSea.setBounds(10, 253, 98, 78);
 		background.add(txtrContraSea);
+
 	}
 
 	@Override
