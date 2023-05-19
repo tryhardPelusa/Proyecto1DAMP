@@ -149,11 +149,6 @@ public class _02_Registro extends JFrame implements Vista {
 		lblApellido2.setBounds(398, 292, 183, 29);
 		background.add(lblApellido2);
 
-		JLabel lblFecha = new JLabel("Fecha de Nacimiento* :");
-		lblFecha.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-		lblFecha.setBounds(10, 287, 232, 29);
-		background.add(lblFecha);
-
 		dateNacimiento = new JDateChooser();
 		dateNacimiento.setBounds(110, 301, 217, 20);
 		background.add(dateNacimiento);
