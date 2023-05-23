@@ -45,7 +45,6 @@ public class _02_Registro extends JFrame implements Vista {
 	private JSeparator separator;
 	private JButton btnRegistrarse;
 	private JTextField txtNombre;
-	private JLabel lblApellido2;
 	private JLabel lblApellido1;
 	private JLabel lblNombre;
 	private JLabel lblUsuario;
@@ -53,12 +52,13 @@ public class _02_Registro extends JFrame implements Vista {
 	private JTextField txtCorreo;
 	private JTextArea monedas;
 	private JTextField txtApellido1;
-	private JTextField txtApellido2;
 	private JDateChooser dateNacimiento;
 	private JLabel lblBarraMoverVentana;
 	private int xMouse, yMouse;
 	private JLabel lblBtnCerrar;
 	private JLabel lblBtnMinimizar;
+	private JLabel lblApellido2;
+	private JTextField txtApellido2;
 
 	// Constructor
 	public _02_Registro() {
@@ -141,14 +141,6 @@ public class _02_Registro extends JFrame implements Vista {
 		lblApellido1.setBounds(398, 252, 183, 29);
 		background.add(lblApellido1);
 
-		lblApellido2 = new JLabel("Apellido2  :");
-		lblApellido2.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-
-		lblApellido2 = new JLabel("APELLIDO2 :");
-		lblApellido2.setFont(new Font("Britannic Bold", Font.PLAIN, 17));
-		lblApellido2.setBounds(398, 292, 183, 29);
-		background.add(lblApellido2);
-
 		dateNacimiento = new JDateChooser();
 		dateNacimiento.setBounds(110, 301, 217, 20);
 		background.add(dateNacimiento);
@@ -182,12 +174,6 @@ public class _02_Registro extends JFrame implements Vista {
 		txtApellido1.setBackground(new Color(0, 128, 192));
 		txtApellido1.setBounds(498, 259, 218, 20);
 		background.add(txtApellido1);
-
-		txtApellido2 = new JTextField();
-		txtApellido2.setForeground(Color.WHITE);
-		txtApellido2.setColumns(10);
-		txtApellido2.setBackground(new Color(0, 128, 192));
-		txtApellido2.setBounds(498, 299, 217, 20);
 
 		lblBarraMoverVentana = new JLabel("");
 		lblBarraMoverVentana.addMouseMotionListener(new MouseMotionAdapter() {
@@ -287,6 +273,18 @@ public class _02_Registro extends JFrame implements Vista {
 		txtrContraSea.setBounds(10, 253, 98, 78);
 		background.add(txtrContraSea);
 
+		txtApellido2 = new JTextField();
+		txtApellido2.setForeground(Color.WHITE);
+		txtApellido2.setColumns(10);
+		txtApellido2.setBackground(new Color(0, 128, 192));
+		txtApellido2.setBounds(498, 298, 217, 20);
+		background.add(txtApellido2);
+
+		lblApellido2 = new JLabel("APELLIDO2*:");
+		lblApellido2.setFont(new Font("Britannic Bold", Font.PLAIN, 17));
+		lblApellido2.setBounds(398, 292, 183, 29);
+		background.add(lblApellido2);
+
 	}
 
 	@Override
@@ -300,4 +298,31 @@ public class _02_Registro extends JFrame implements Vista {
 		this.miControlador = miControlador;
 	}
 
+	public String getNombre() {
+		return txtNombre.getText();
+	}
+
+	public String getApellido1() {
+		return txtApellido1.getText();
+	}
+
+	public String getApellido2() {
+		return txtApellido2.getText();
+	}
+
+	public String getCorreo() {
+		return txtCorreo.getText();
+	}
+
+	public String getPwd() {
+		return String.valueOf(txtPwd.getPassword());
+	}
+
+	public String getfecha() {
+		return dateNacimiento.getDateFormatString();
+	}
+
+	public String getUser() {
+		return txtUser.getText();
+	}
 }

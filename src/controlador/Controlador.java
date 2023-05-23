@@ -26,6 +26,12 @@ public class Controlador {
 	}
 
 	public void registro() {
-		
+		String nombre = registro.getUser();
+		String apellido1 = registro.getApellido1();
+		String apellido2 = registro.getApellido2();
+		String correo = registro.getCorreo();
+		String fecha = registro.getfecha();
+		String Pwd = registro.getPwd();
+		String User = registro.getUser();
 	}
 }
