@@ -128,7 +128,7 @@ public class _02_Registro extends JFrame implements Vista {
 		lblNombre.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
 		lblNombre.setBounds(398, 212, 183, 29);
 		background.add(lblNombre);
-		
+
 		txtNombre = new JTextField();
 		txtNombre.setForeground(Color.WHITE);
 		txtNombre.setColumns(10);
@@ -157,7 +157,7 @@ public class _02_Registro extends JFrame implements Vista {
 		lblCorreo.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
 		lblCorreo.setBounds(10, 331, 141, 29);
 		background.add(lblCorreo);
-		
+
 		txtCorreo = new JTextField();
 		txtCorreo.setForeground(Color.WHITE);
 		txtCorreo.setColumns(10);
@@ -188,7 +188,6 @@ public class _02_Registro extends JFrame implements Vista {
 		txtApellido2.setColumns(10);
 		txtApellido2.setBackground(new Color(0, 128, 192));
 		txtApellido2.setBounds(498, 299, 217, 20);
-
 
 		lblBarraMoverVentana = new JLabel("");
 		lblBarraMoverVentana.addMouseMotionListener(new MouseMotionAdapter() {
@@ -300,4 +299,5 @@ public class _02_Registro extends JFrame implements Vista {
 	public void setControlador(Controlador miControlador) {
 		this.miControlador = miControlador;
 	}
+
 }
