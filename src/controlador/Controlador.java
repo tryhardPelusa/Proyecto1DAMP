@@ -22,6 +22,12 @@ public class Controlador {
 	private String url = "jdbc:mysql://localhost/" + db
 			+ "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	private Connection conexion;
+	
+	
+	
+	public void setRegistro(_02_Registro registro) {
+		this.registro = registro;
+	}
 
 	public void setVista(Vista[] misVistas) {
 		this.misVistas = misVistas;
@@ -35,8 +41,9 @@ public class Controlador {
 		((JFrame) misVistas[desde]).setVisible(false);
 		((JFrame) misVistas[hasta]).setVisible(true);
 	}
-
+	
 	public void registro() {
+		
 		String nombre = registro.getNombre();
 		String apellido1 = registro.getApellido1();
 		String apellido2 = registro.getApellido2();
@@ -46,18 +53,20 @@ public class Controlador {
 		String User = registro.getUser();
 		ConexionMySQL();
 		registrarse(nombre, apellido1, apellido2, correo, fecha, Pwd, User);
-
+		
 	}
+
 
 	public int registrarse(String nombre, String apellido1, String apellido2, String correo, String fecha, String Pwd,
 			String User) {
 		int resultado = 0;
 		try {
-			String insert = "INSERT INTO Usuario (nombre,Apellido1,Apellido2,monedas,Edad,Correo,contraseña,Usuario) VALUES (?,?,?,50,?,?,?,?)";
+			String insert = "INSERT INTO Usuario (nombre,Apellido1,Apellido2,monedas,Edad,Correo,contraseña,Usuario) VALUES (?,?,?,?,?,?,?,?)";
 			PreparedStatement proI = conexion.prepareStatement(insert);
 			proI.setString(1, nombre);
 			proI.setString(2, apellido1);
 			proI.setString(3, apellido2);
+			proI.setString(4, "50");
 			proI.setString(5, fecha);
 			proI.setString(6, correo);
 			proI.setString(7, Pwd);

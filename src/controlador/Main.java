@@ -26,7 +26,7 @@ public class Main {
 
 		Modelo miModelo = new Modelo();
 		Controlador miControlador = new Controlador();
-
+		
 		Vista[] misVistas = new Vista[15];
 		misVistas[0] = new _00_PaginaPrincipal2();
 		misVistas[1] = new _01_InicioSesion2();
@@ -53,6 +53,7 @@ public class Main {
 		}
 
 		((JFrame) misVistas[0]).setVisible(true);
-	}
+		miControlador.setRegistro((_02_Registro) misVistas[2]);
+	}	
 
 }
