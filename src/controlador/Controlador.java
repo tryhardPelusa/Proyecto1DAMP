@@ -2,6 +2,7 @@ package controlador;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import javax.swing.JFrame;
@@ -45,11 +46,28 @@ public class Controlador {
 		String User = registro.getUser();
 		ConexionMySQL();
 		registrarse(nombre, apellido1, apellido2, correo, fecha, Pwd, User);
+
 	}
 
-	public void registrarse(String nombre, String apellido1, String apellido2, String correo, String fecha, String Pwd,
+	public int registrarse(String nombre, String apellido1, String apellido2, String correo, String fecha, String Pwd,
 			String User) {
-
+		int resultado = 0;
+		try {
+			String insert = "INSERT INTO Usuario (nombre,Apellido1,Apellido2,monedas,Edad,Correo,contraseña,Usuario) VALUES (?,?,?,50,?,?,?,?)";
+			PreparedStatement proI = conexion.prepareStatement(insert);
+			proI.setString(1, nombre);
+			proI.setString(2, apellido1);
+			proI.setString(3, apellido2);
+			proI.setString(5, fecha);
+			proI.setString(6, correo);
+			proI.setString(7, Pwd);
+			proI.setString(8, User);
+			resultado = proI.executeUpdate();
+			proI.close();
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+		}
+		return resultado;
 	}
 
 	public void ConexionMySQL() {
