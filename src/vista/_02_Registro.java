@@ -68,7 +68,7 @@ public class _02_Registro extends JFrame implements Vista {
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationByPlatform(true);;
-		setSize(1010, 539);
+		setSize(1007, 536);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -281,7 +281,7 @@ public class _02_Registro extends JFrame implements Vista {
 
 		monedas = new JTextArea();
 		monedas.setText(
-				"se a\u00F1adiran 50 monedas una \r\nvez se halla registrado, una cierta \r\ncantidad de monedas se renovaran \r\ndiariamente");
+				"Se a\u00F1adiran 50 monedas una vez se halla registrado");
 
 		monedas.setBackground(new Color(0, 128, 192));
 		monedas.setText(

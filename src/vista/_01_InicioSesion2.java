@@ -55,7 +55,7 @@ public class _01_InicioSesion2 extends JFrame implements Vista {
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationByPlatform(true);;
-		setSize(1010, 539);
+		setSize(1007, 536);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -120,7 +120,7 @@ public class _01_InicioSesion2 extends JFrame implements Vista {
 		});
 		btnAcceder.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
 		btnAcceder.setBackground(new Color(255, 128, 0));
-		btnAcceder.setBounds(100, 440, 101, 39);
+		btnAcceder.setBounds(100, 440, 141, 39);
 		background.add(btnAcceder);
 
 		separator = new JSeparator();
@@ -143,7 +143,7 @@ public class _01_InicioSesion2 extends JFrame implements Vista {
 		});
 		btnRegistrate.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
 		btnRegistrate.setBackground(new Color(255, 128, 0));
-		btnRegistrate.setBounds(539, 243, 119, 39);
+		btnRegistrate.setBounds(539, 243, 141, 39);
 		background.add(btnRegistrate);
 
 		JButton btnInvitado = new JButton("INVITADO");
@@ -154,7 +154,7 @@ public class _01_InicioSesion2 extends JFrame implements Vista {
 		});
 		btnInvitado.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
 		btnInvitado.setBackground(new Color(255, 128, 0));
-		btnInvitado.setBounds(539, 349, 119, 39);
+		btnInvitado.setBounds(539, 349, 141, 39);
 		background.add(btnInvitado);
 
 		lblBarraMoverVentana = new JLabel("");

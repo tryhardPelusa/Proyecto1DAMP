@@ -55,7 +55,7 @@ public class Main {
 			vista.setControlador(miControlador);
 		}
 
-		((JFrame) misVistas[0]).setVisible(true);
+		((JFrame) misVistas[1]).setVisible(true);
 	}
 
 }
