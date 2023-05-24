@@ -61,7 +61,7 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 		setResizable(false);
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationByPlatform(true);;
+		setLocationByPlatform(true);
 		setSize(1010, 539);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
