@@ -19,6 +19,8 @@ import vista._10_EquipoEspecifico;
 import vista._11_Apuestas2;
 import vista._12_MisApuestas2;
 import vista._13_Lanzadera;
+import vista._15_ErrorRegistro;
+import vista._16_RegistroCorrecto;
 
 public class Main {
 
@@ -43,6 +45,8 @@ public class Main {
 		misVistas[12] = new _12_MisApuestas2();
 		misVistas[13] = new _13_Lanzadera();
 		misVistas[14] = new Plantilla();
+		misVistas[15] = new _15_ErrorRegistro();
+		misVistas[16] = new _16_RegistroCorrecto();
 
 		miControlador.setVista(misVistas);
 		miControlador.setModelo(miModelo);
