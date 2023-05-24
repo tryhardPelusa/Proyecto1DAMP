@@ -80,7 +80,8 @@ public class _11_Apuestas2 extends JFrame implements Vista {
 		setLocationRelativeTo(null);
 		setLocationByPlatform(rootPaneCheckingEnabled);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 1010, 539);
+		setLocationByPlatform(true);;
+		setSize(1010, 539);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

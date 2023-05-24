@@ -55,7 +55,8 @@ public class _03_RecuperarCuenta extends JFrame implements Vista {
 		setResizable(false);
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 1010, 539);
+		setLocationByPlatform(true);;
+		setSize(1010, 539);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
