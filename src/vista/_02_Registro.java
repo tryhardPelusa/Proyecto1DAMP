@@ -166,11 +166,19 @@ public class _02_Registro extends JFrame implements Vista {
 		btnRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (miControlador.registro()) {
-					miControlador.nuevaVentana(15);
-					System.out.println("Se ha registrado correctamente");
-				} else {
 					miControlador.nuevaVentana(16);
-					System.out.println("El usuario o correo introducido ya existe");
+					txtUser.setText("");
+					txtPwd.setText("");
+					dateNacimiento.setDate(null);
+					txtCorreo.setText("");
+					txtNombre.setText("");
+					txtApellido1.setText("");
+					txtApellido2.setText("");
+				} else {
+					miControlador.nuevaVentana(15);
+					txtUser.setText("");
+					txtPwd.setText("");
+					txtCorreo.setText("");
 				}
 			}
 		});
