@@ -60,7 +60,7 @@ public class Modelo {
 			String User) {
 		boolean resultado;
 		try {
-			String comprobarSiExiste = "SELECT correo, usuario FROM usuario WHERE correo=? AND usuario=?";
+			String comprobarSiExiste = "SELECT correo, usuario FROM usuario WHERE correo=? OR usuario=?";
 			PreparedStatement proII = conexion.prepareStatement(comprobarSiExiste);
 			proII.setString(1, correo);
 			proII.setString(2, User);

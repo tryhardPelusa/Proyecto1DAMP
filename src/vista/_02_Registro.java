@@ -111,9 +111,11 @@ public class _02_Registro extends JFrame implements Vista {
 			public void actionPerformed(ActionEvent e) {
 				if (miControlador.registro()) {
 					miControlador.cambiarVentana(2, 0);
-					//Añadir pantalla satisfactoria
+					//miControlador.nuevaVentana(15);
+					System.out.println("Se ha registrado correctamente");
 				} else {
-					// Añadir pantalla erronea
+					//miControlador.nuevaVentana(14);
+					System.out.println("El usuario o correo introducido ya existe");
 				}
 			}
 		});
