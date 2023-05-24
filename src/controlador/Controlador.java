@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 
 import modelo.Modelo;
 import vista.Vista;
+import vista._01_InicioSesion2;
 
 public class Controlador {
 
@@ -26,6 +27,18 @@ public class Controlador {
 	public void registro() {
 		miModelo.setVista(misVistas[2]);
 		miModelo.registro();
+	}
+
+	public boolean login() {
+		miModelo.setVista(misVistas[1]);
+		String usr = ((_01_InicioSesion2) misVistas[1]).getUser();
+		String pwd = ((_01_InicioSesion2) misVistas[1]).getPwd();
+		if(miModelo.login(usr, pwd)) {
+			cambiarVentana(1, 0);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

@@ -3,9 +3,11 @@ package modelo;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import vista.Vista;
+import vista._01_InicioSesion2;
 import vista._02_Registro;
 
 public class Modelo {
@@ -55,7 +57,7 @@ public class Modelo {
 
 	}
 
-	public int registrarse(String nombre, String apellido1, String apellido2, String correo, String fecha, String Pwd,
+	private int registrarse(String nombre, String apellido1, String apellido2, String correo, String fecha, String Pwd,
 			String User) {
 		int resultado = 0;
 		try {
@@ -76,5 +78,28 @@ public class Modelo {
 		}
 		return resultado;
 	}
+
+	public boolean login(String usr, String pwd) {
+		ConexionMySQL();
+		try {
+			
+			String insert = "Select usuario, contraseña from usuario";
+			PreparedStatement proI = conexion.prepareStatement(insert);
+			ResultSet rset = proI.executeQuery();
+			while(rset.next()) {
+				if (rset.getString(1).equals(usr) && rset.getString(2).equals(pwd)) {
+					proI.close();
+					return true;
+				}
+			}
+			proI.close();
+			((_01_InicioSesion2)miVista).actualizar(false);
+			return false;
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			return false;
+		}
+	}
+
 
 }
