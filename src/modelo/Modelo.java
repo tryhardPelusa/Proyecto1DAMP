@@ -3,6 +3,7 @@ package modelo;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import vista.Vista;
@@ -41,7 +42,7 @@ public class Modelo {
 		}
 	}
 
-	public void registro() {
+	public boolean registro() {
 
 		String nombre = ((_02_Registro) miVista).getNombre();
 		String apellido1 = ((_02_Registro) miVista).getApellido1();
@@ -51,29 +52,47 @@ public class Modelo {
 		String Pwd = ((_02_Registro) miVista).getPwd();
 		String User = ((_02_Registro) miVista).getUser();
 		ConexionMySQL();
-		registrarse(nombre, apellido1, apellido2, correo, fecha, Pwd, User);
+		return registrarse(nombre, apellido1, apellido2, correo, fecha, Pwd, User);
 
 	}
 
-	public int registrarse(String nombre, String apellido1, String apellido2, String correo, String fecha, String Pwd,
+	public boolean registrarse(String nombre, String apellido1, String apellido2, String correo, String fecha, String Pwd,
 			String User) {
-		int resultado = 0;
+		boolean resultado;
 		try {
-			String insert = "INSERT INTO Usuario (nombre,Apellido1,Apellido2,monedas,Edad,Correo,contraseña,Usuario) VALUES (?,?,?,?,?,?,?,?)";
-			PreparedStatement proI = conexion.prepareStatement(insert);
-			proI.setString(1, nombre);
-			proI.setString(2, apellido1);
-			proI.setString(3, apellido2);
-			proI.setString(4, "50");
-			proI.setString(5, fecha);
-			proI.setString(6, correo);
-			proI.setString(7, Pwd);
-			proI.setString(8, User);
-			resultado = proI.executeUpdate();
-			proI.close();
-		} catch (SQLException e) {
-			System.err.println(e.getMessage());
+			String comprobarSiExiste = "SELECT correo, usuario FROM usuario WHERE correo=? AND usuario=?";
+			PreparedStatement proII = conexion.prepareStatement(comprobarSiExiste);
+			proII.setString(1, correo);
+			proII.setString(2, User);
+			ResultSet UsuarioExiste = proII.executeQuery();
+			if ( !UsuarioExiste.next() ) {
+				try {
+					String insert = "INSERT INTO Usuario (nombre,Apellido1,Apellido2,monedas,Edad,Correo,contraseña,Usuario) VALUES (?,?,?,?,?,?,?,?)";
+					PreparedStatement proI = conexion.prepareStatement(insert);
+					proI.setString(1, nombre);
+					proI.setString(2, apellido1);
+					proI.setString(3, apellido2);
+					proI.setString(4, "50");
+					proI.setString(5, fecha);
+					proI.setString(6, correo);
+					proI.setString(7, Pwd);
+					proI.setString(8, User);
+					proI.executeUpdate();
+					proI.close();
+					resultado = true;
+				} catch (SQLException e) {
+					System.err.println(e.getMessage());
+					resultado = false;
+				}
+			} else {
+				resultado = false;
+			}
+			proII.close();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+			resultado = false;
 		}
+
 		return resultado;
 	}
 

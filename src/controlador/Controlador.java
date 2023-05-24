@@ -23,9 +23,10 @@ public class Controlador {
 		((JFrame) misVistas[hasta]).setVisible(true);
 	}
 
-	public void registro() {
+	public boolean registro() {
 		miModelo.setVista(misVistas[2]);
-		miModelo.registro();
+		return miModelo.registro();
+		
 	}
 
 }
