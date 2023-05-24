@@ -96,11 +96,11 @@ public class _15_ErrorRegistro extends JFrame implements Vista {
 		lblError.setBounds(208, 22, 165, 51);
 		background.add(lblError);
 		
-		lblMensajeError = new JLabel("El usuario o contraseña introducidos ya existen \n Por favor, intentalo de nuevo");
+		lblMensajeError = new JLabel("El usuario o correo introducidos ya existen.");
 		lblMensajeError.setForeground(new Color(255, 0, 0));
 		lblMensajeError.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMensajeError.setFont(new Font("Britannic Bold", Font.PLAIN, 14));
-		lblMensajeError.setBounds(135, 66, 336, 40);
+		lblMensajeError.setBounds(135, 66, 333, 55);
 		background.add(lblMensajeError);
 		
 		btnRegistrarse = new JButton("Volver a intentarlo");

@@ -285,7 +285,7 @@ public class _02_Registro extends JFrame implements Vista {
 
 		monedas.setBackground(new Color(0, 128, 192));
 		monedas.setText(
-				"se a\u00F1adiran 300 monedas una \r\nvez se halla registrado, una cierta \r\ncantidad de monedas se renovaran \r\ndiariamente");
+				"Se a\u00F1adiran 50 monedas una \r\nvez se halla registrado, una cierta \r\ncantidad de monedas se renovaran \r\ndiariamente");
 		monedas.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
 		monedas.setBounds(259, 408, 238, 78);
 		background.add(monedas);
