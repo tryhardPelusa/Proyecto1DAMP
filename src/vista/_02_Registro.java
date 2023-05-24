@@ -23,6 +23,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -94,6 +96,32 @@ public class _02_Registro extends JFrame implements Vista {
 		background.add(lblUsuario);
 
 		txtUser = new JTextField();
+		txtUser.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				btnRegistrarse.setEnabled(miModelo.comprobarTodosRellenos(txtNombre.getText().isEmpty(),
+						txtCorreo.getText().isEmpty(), txtUser.getText().isEmpty(), txtPwd.getPassword().length,
+						txtApellido1.getText().isEmpty()));
+
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				btnRegistrarse.setEnabled(miModelo.comprobarTodosRellenos(txtNombre.getText().isEmpty(),
+						txtCorreo.getText().isEmpty(), txtUser.getText().isEmpty(), txtPwd.getPassword().length,
+						txtApellido1.getText().isEmpty()));
+
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				btnRegistrarse.setEnabled(miModelo.comprobarTodosRellenos(txtNombre.getText().isEmpty(),
+						txtCorreo.getText().isEmpty(), txtUser.getText().isEmpty(), txtPwd.getPassword().length,
+						txtApellido1.getText().isEmpty()));
+
+			}
+		});
 		txtUser.setForeground(new Color(255, 255, 255));
 		txtUser.setBackground(new Color(0, 128, 192));
 		txtUser.setBounds(110, 214, 217, 20);
@@ -101,20 +129,47 @@ public class _02_Registro extends JFrame implements Vista {
 		txtUser.setColumns(10);
 
 		txtPwd = new JPasswordField();
+		txtPwd.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				btnRegistrarse.setEnabled(miModelo.comprobarTodosRellenos(txtNombre.getText().isEmpty(),
+						txtCorreo.getText().isEmpty(), txtUser.getText().isEmpty(), txtPwd.getPassword().length,
+						txtApellido1.getText().isEmpty()));
+
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				btnRegistrarse.setEnabled(miModelo.comprobarTodosRellenos(txtNombre.getText().isEmpty(),
+						txtCorreo.getText().isEmpty(), txtUser.getText().isEmpty(), txtPwd.getPassword().length,
+						txtApellido1.getText().isEmpty()));
+
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				btnRegistrarse.setEnabled(miModelo.comprobarTodosRellenos(txtNombre.getText().isEmpty(),
+						txtCorreo.getText().isEmpty(), txtUser.getText().isEmpty(), txtPwd.getPassword().length,
+						txtApellido1.getText().isEmpty()));
+
+			}
+		});
 		txtPwd.setForeground(new Color(255, 255, 255));
 		txtPwd.setBackground(new Color(0, 128, 192));
 		txtPwd.setBounds(110, 254, 217, 20);
 		background.add(txtPwd);
 
 		btnRegistrarse = new JButton("Registrarse");
+		btnRegistrarse.setEnabled(false);
 		btnRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (miControlador.registro()) {
 					miControlador.cambiarVentana(2, 0);
-					//miControlador.nuevaVentana(15);
+					// miControlador.nuevaVentana(15);
 					System.out.println("Se ha registrado correctamente");
 				} else {
-					//miControlador.nuevaVentana(14);
+					// miControlador.nuevaVentana(14);
 					System.out.println("El usuario o correo introducido ya existe");
 				}
 			}
@@ -137,6 +192,32 @@ public class _02_Registro extends JFrame implements Vista {
 		background.add(lblNombre);
 
 		txtNombre = new JTextField();
+		txtNombre.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				btnRegistrarse.setEnabled(miModelo.comprobarTodosRellenos(txtNombre.getText().isEmpty(),
+						txtCorreo.getText().isEmpty(), txtUser.getText().isEmpty(), txtPwd.getPassword().length,
+						txtApellido1.getText().isEmpty()));
+
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				btnRegistrarse.setEnabled(miModelo.comprobarTodosRellenos(txtNombre.getText().isEmpty(),
+						txtCorreo.getText().isEmpty(), txtUser.getText().isEmpty(), txtPwd.getPassword().length,
+						txtApellido1.getText().isEmpty()));
+
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				btnRegistrarse.setEnabled(miModelo.comprobarTodosRellenos(txtNombre.getText().isEmpty(),
+						txtCorreo.getText().isEmpty(), txtUser.getText().isEmpty(), txtPwd.getPassword().length,
+						txtApellido1.getText().isEmpty()));
+
+			}
+		});
 		txtNombre.setForeground(Color.WHITE);
 		txtNombre.setColumns(10);
 		txtNombre.setBackground(new Color(0, 128, 192));
@@ -158,6 +239,32 @@ public class _02_Registro extends JFrame implements Vista {
 		background.add(lblCorreo);
 
 		txtCorreo = new JTextField();
+		txtCorreo.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				btnRegistrarse.setEnabled(miModelo.comprobarTodosRellenos(txtNombre.getText().isEmpty(),
+						txtCorreo.getText().isEmpty(), txtUser.getText().isEmpty(), txtPwd.getPassword().length,
+						txtApellido1.getText().isEmpty()));
+
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				btnRegistrarse.setEnabled(miModelo.comprobarTodosRellenos(txtNombre.getText().isEmpty(),
+						txtCorreo.getText().isEmpty(), txtUser.getText().isEmpty(), txtPwd.getPassword().length,
+						txtApellido1.getText().isEmpty()));
+
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				btnRegistrarse.setEnabled(miModelo.comprobarTodosRellenos(txtNombre.getText().isEmpty(),
+						txtCorreo.getText().isEmpty(), txtUser.getText().isEmpty(), txtPwd.getPassword().length,
+						txtApellido1.getText().isEmpty()));
+
+			}
+		});
 		txtCorreo.setForeground(Color.WHITE);
 		txtCorreo.setColumns(10);
 		txtCorreo.setBackground(new Color(0, 128, 192));
@@ -166,7 +273,7 @@ public class _02_Registro extends JFrame implements Vista {
 
 		monedas = new JTextArea();
 		monedas.setText(
-				"se a\u00F1adiran 300 monedas una \r\nvez se halla registrado, una cierta \r\ncantidad de monedas se renovaran \r\ndiariamente");
+				"se a\u00F1adiran 50 monedas una \r\nvez se halla registrado, una cierta \r\ncantidad de monedas se renovaran \r\ndiariamente");
 
 		monedas.setBackground(new Color(0, 128, 192));
 		monedas.setText(
@@ -176,6 +283,32 @@ public class _02_Registro extends JFrame implements Vista {
 		background.add(monedas);
 
 		txtApellido1 = new JTextField();
+		txtApellido1.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				btnRegistrarse.setEnabled(miModelo.comprobarTodosRellenos(txtNombre.getText().isEmpty(),
+						txtCorreo.getText().isEmpty(), txtUser.getText().isEmpty(), txtPwd.getPassword().length,
+						txtApellido1.getText().isEmpty()));
+
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				btnRegistrarse.setEnabled(miModelo.comprobarTodosRellenos(txtNombre.getText().isEmpty(),
+						txtCorreo.getText().isEmpty(), txtUser.getText().isEmpty(), txtPwd.getPassword().length,
+						txtApellido1.getText().isEmpty()));
+
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				btnRegistrarse.setEnabled(miModelo.comprobarTodosRellenos(txtNombre.getText().isEmpty(),
+						txtCorreo.getText().isEmpty(), txtUser.getText().isEmpty(), txtPwd.getPassword().length,
+						txtApellido1.getText().isEmpty()));
+
+			}
+		});
 		txtApellido1.setForeground(Color.WHITE);
 		txtApellido1.setColumns(10);
 		txtApellido1.setBackground(new Color(0, 128, 192));
@@ -287,7 +420,7 @@ public class _02_Registro extends JFrame implements Vista {
 		txtApellido2.setBounds(498, 298, 217, 20);
 		background.add(txtApellido2);
 
-		lblApellido2 = new JLabel("APELLIDO2*:");
+		lblApellido2 = new JLabel("APELLIDO2:");
 		lblApellido2.setFont(new Font("Britannic Bold", Font.PLAIN, 17));
 		lblApellido2.setBounds(398, 292, 183, 29);
 		background.add(lblApellido2);

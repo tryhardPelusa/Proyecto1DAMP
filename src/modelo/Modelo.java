@@ -95,5 +95,14 @@ public class Modelo {
 
 		return resultado;
 	}
+	// Comprobamos que se puede pulsar el boton registrarse
+	public boolean comprobarTodosRellenos(boolean nombre, boolean correo, boolean user, int password, boolean apellido1) {
+		boolean todoRelleno = true;
+		if (nombre || correo || user || apellido1 || password == 0) {
+			todoRelleno = false;
+		}
+		
+		return todoRelleno;
+	}
 
 }
