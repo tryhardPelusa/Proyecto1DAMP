@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import vista.Vista;
+import vista._01_InicioSesion2;
 import vista._02_Registro;
 
 public class Modelo {
@@ -56,8 +57,8 @@ public class Modelo {
 
 	}
 
-	public boolean registrarse(String nombre, String apellido1, String apellido2, String correo, String fecha, String Pwd,
-			String User) {
+	public boolean registrarse(String nombre, String apellido1, String apellido2, String correo, String fecha,
+			String Pwd, String User) {
 		boolean resultado;
 		try {
 			String comprobarSiExiste = "SELECT correo, usuario FROM usuario WHERE correo=? OR usuario=?";
@@ -65,7 +66,7 @@ public class Modelo {
 			proII.setString(1, correo);
 			proII.setString(2, User);
 			ResultSet UsuarioExiste = proII.executeQuery();
-			if ( !UsuarioExiste.next() ) {
+			if (!UsuarioExiste.next()) {
 				try {
 					String insert = "INSERT INTO Usuario (nombre,Apellido1,Apellido2,monedas,Edad,Correo,contraseña,Usuario) VALUES (?,?,?,?,?,?,?,?)";
 					PreparedStatement proI = conexion.prepareStatement(insert);
@@ -95,14 +96,38 @@ public class Modelo {
 
 		return resultado;
 	}
+
 	// Comprobamos que se puede pulsar el boton registrarse
-	public boolean comprobarTodosRellenos(boolean nombre, boolean correo, boolean user, int password, boolean apellido1) {
+	public boolean comprobarTodosRellenos(boolean nombre, boolean correo, boolean user, int password,
+			boolean apellido1) {
 		boolean todoRelleno = true;
 		if (nombre || correo || user || apellido1 || password == 0) {
 			todoRelleno = false;
 		}
-		
+
 		return todoRelleno;
+	}
+
+	public boolean login(String usr, String pwd) {
+		ConexionMySQL();
+		try {
+
+			String insert = "Select usuario, contraseña from usuario";
+			PreparedStatement proI = conexion.prepareStatement(insert);
+			ResultSet rset = proI.executeQuery();
+			while (rset.next()) {
+				if (rset.getString(1).equals(usr) && rset.getString(2).equals(pwd)) {
+					proI.close();
+					return true;
+				}
+			}
+			proI.close();
+			((_01_InicioSesion2) miVista).actualizar(false);
+			return false;
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			return false;
+		}
 	}
 
 }

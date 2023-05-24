@@ -37,7 +37,7 @@ public class _01_InicioSesion2 extends JFrame implements Vista {
 	private JLabel lblLogo;
 	private JPanel background;
 	private JLabel lblIniciarSesion;
-	private JTextField textField;
+	private JTextField txtUser;
 	private JPasswordField passwordField;
 	private JLabel lblContraseniaOlvidada;
 	private JLabel lblPregunta;
@@ -47,6 +47,7 @@ public class _01_InicioSesion2 extends JFrame implements Vista {
 	private int xMouse, yMouse;
 	private JLabel lblBtnCerrar;
 	private JLabel lblBtnMinimizar;
+	private JLabel lblIncorrecto;
 
 	// Constructor
 	public _01_InicioSesion2() {
@@ -81,12 +82,12 @@ public class _01_InicioSesion2 extends JFrame implements Vista {
 		lblUsuario.setBounds(100, 237, 141, 29);
 		background.add(lblUsuario);
 
-		textField = new JTextField();
-		textField.setForeground(new Color(255, 255, 255));
-		textField.setBackground(new Color(0, 128, 192));
-		textField.setBounds(100, 278, 283, 20);
-		background.add(textField);
-		textField.setColumns(10);
+		txtUser = new JTextField();
+		txtUser.setForeground(new Color(255, 255, 255));
+		txtUser.setBackground(new Color(0, 128, 192));
+		txtUser.setBounds(100, 278, 283, 20);
+		background.add(txtUser);
+		txtUser.setColumns(10);
 
 		JLabel lblContrasenia = new JLabel("CONTRASE\u00D1A");
 		lblContrasenia.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
@@ -113,7 +114,7 @@ public class _01_InicioSesion2 extends JFrame implements Vista {
 		btnAcceder = new JButton("ACCEDER");
 		btnAcceder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(1, 0);
+				miControlador.login();
 			}
 		});
 		btnAcceder.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
@@ -181,19 +182,20 @@ public class _01_InicioSesion2 extends JFrame implements Vista {
 			public void mouseClicked(MouseEvent e) {
 				System.exit(0);
 			}
+
 			@Override
-		    public void mouseEntered(MouseEvent e) {
+			public void mouseEntered(MouseEvent e) {
 				lblBtnCerrar.setBackground(Color.RED);
 				lblBtnCerrar.setOpaque(true);
 				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		    }
+			}
 
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		    	lblBtnCerrar.setBackground(null);
-		    	lblBtnCerrar.setOpaque(false);
-		    	setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		    }
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblBtnCerrar.setBackground(null);
+				lblBtnCerrar.setOpaque(false);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			}
 		});
 		lblBtnCerrar.setIcon(new ImageIcon(_00_PaginaPrincipal2.class.getResource("/img/close.png")));
 		lblBtnCerrar.setBounds(970, 0, 40, 40);
@@ -205,16 +207,18 @@ public class _01_InicioSesion2 extends JFrame implements Vista {
 			public void mouseClicked(MouseEvent e) {
 				setState(JFrame.ICONIFIED);
 			}
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				lblBtnMinimizar.setBackground(Color.BLUE);
 				lblBtnMinimizar.setOpaque(true);
 				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				lblBtnMinimizar.setBackground(null);
-		    	lblBtnMinimizar.setOpaque(false);
+				lblBtnMinimizar.setOpaque(false);
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
@@ -226,6 +230,12 @@ public class _01_InicioSesion2 extends JFrame implements Vista {
 		lblFondo.setIcon(new ImageIcon(_01_InicioSesion2.class.getResource("/img/fondoLogin2  - copia.jpg")));
 		lblFondo.setBounds(725, 0, 283, 537);
 		background.add(lblFondo);
+
+		lblIncorrecto = new JLabel("");
+		lblIncorrecto.setForeground(new Color(255, 32, 32));
+		lblIncorrecto.setFont(new Font("Britannic Bold", Font.PLAIN, 15));
+		lblIncorrecto.setBounds(211, 454, 297, 14);
+		background.add(lblIncorrecto);
 	}
 
 	@Override
@@ -237,5 +247,20 @@ public class _01_InicioSesion2 extends JFrame implements Vista {
 	@Override
 	public void setControlador(Controlador miControlador) {
 		this.miControlador = miControlador;
+	}
+
+	public String getPwd() {
+		return String.valueOf(passwordField.getPassword());
+	}
+
+	public String getUser() {
+		return txtUser.getText();
+	}
+
+	public void actualizar(boolean esCorrecto) {
+		if (!esCorrecto) {
+			lblIncorrecto.setText("Usuario o contraseña incorrectos");
+
+		}
 	}
 }
