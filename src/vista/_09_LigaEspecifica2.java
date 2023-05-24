@@ -558,6 +558,7 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 	 btnModificar.setBounds(733, 419, 111, 23);
 	 background.add(btnModificar);
 		
+	 setLocationRelativeTo(null);
     }
 
     @Override

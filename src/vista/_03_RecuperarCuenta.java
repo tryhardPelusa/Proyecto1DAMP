@@ -273,7 +273,7 @@ public class _03_RecuperarCuenta extends JFrame implements Vista {
 		lblRevise.setBounds(601, 328, 249, 25);
 		background.add(lblRevise);
 		
-
+		setLocationRelativeTo(null);
 	}
 
 	@Override

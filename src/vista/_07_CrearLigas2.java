@@ -595,6 +595,7 @@ public class _07_CrearLigas2 extends JFrame implements Vista {
 		btnCrear.setBounds(773, 478, 107, 41);
 		background.add(btnCrear);
 
+		setLocationRelativeTo(null);
 	}
 
 	@Override

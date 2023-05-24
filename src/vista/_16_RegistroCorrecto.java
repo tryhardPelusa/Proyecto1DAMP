@@ -4,6 +4,7 @@
 package vista;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 
 import javax.swing.BorderFactory;
@@ -25,6 +26,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 
 
@@ -37,11 +39,11 @@ public class _16_RegistroCorrecto extends JFrame implements Vista {
 	private JPanel contentPane;
 	private JLabel lblFondo;
 	private JPanel background;
-	private JButton btnApostar;
-	private JButton btnSignOut;
 	private JLabel lblBarraMoverVentana;
 	private int xMouse, yMouse;
-	private JButton btnRegistrarse;
+	private JButton btnIrLigas;
+	private JLabel lblBienvenido;
+	private JLabel lblMensajeBienvenida;
 
 
 	// Constructor
@@ -51,7 +53,7 @@ public class _16_RegistroCorrecto extends JFrame implements Vista {
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationByPlatform(true);;
-		setSize(1010, 539);
+		setSize(536, 200);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -63,63 +65,6 @@ public class _16_RegistroCorrecto extends JFrame implements Vista {
 		background.setBounds(0, 0, 536, 200);
 		contentPane.add(background);
 		background.setLayout(null);
-
-		btnApostar = new JButton("BIENVENID@");
-		btnApostar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		
-		btnApostar.setForeground(new Color(0, 0, 0));
-		btnApostar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				btnApostar.setBackground(Color.yellow);
-				btnApostar.setOpaque(true);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				btnApostar.setBackground(null);
-				btnApostar.setOpaque(false);
-			}
-		});
-		btnApostar.setHorizontalAlignment(SwingConstants.LEFT);
-		btnApostar.setOpaque(false);
-		btnApostar.setFont(new Font("Britannic Bold", Font.BOLD, 25));
-		btnApostar.setFocusPainted(false);
-		btnApostar.setContentAreaFilled(false);
-		btnApostar.setBorderPainted(false);
-		btnApostar.setBounds(201, 11, 186, 49);
-		btnApostar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		background.add(btnApostar);
-		background.setComponentZOrder(btnApostar, 0);
-
-		btnSignOut = new JButton("Enhorabuena!, ya puedes disfrutar de League Master");
-		btnSignOut.setForeground(new Color(0, 0, 0));
-		btnSignOut.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				btnSignOut.setBackground(Color.yellow);
-				btnSignOut.setOpaque(true);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				btnSignOut.setBackground(null);
-				btnSignOut.setOpaque(false);
-			}
-		});
-		btnSignOut.setHorizontalAlignment(SwingConstants.LEFT);
-		btnSignOut.setOpaque(false);
-		btnSignOut.setFont(new Font("Britannic Bold", Font.BOLD, 15));
-		btnSignOut.setFocusPainted(false);
-		btnSignOut.setContentAreaFilled(false);
-		btnSignOut.setBorderPainted(false);
-		btnSignOut.setBounds(89, 58, 415, 49);
-		btnSignOut.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		background.add(btnSignOut);
-		background.setComponentZOrder(btnSignOut, 0);
 
 		lblBarraMoverVentana = new JLabel("");
 		lblBarraMoverVentana.addMouseMotionListener(new MouseMotionAdapter() {
@@ -138,7 +83,7 @@ public class _16_RegistroCorrecto extends JFrame implements Vista {
 				yMouse = e.getY();
 			}
 		});
-		lblBarraMoverVentana.setBounds(0, 0, 918, 23);
+		lblBarraMoverVentana.setBounds(0, 0, 536, 23);
 		background.add(lblBarraMoverVentana);
 		
 		int width = 85;  // Anchura del JLabel
@@ -150,19 +95,31 @@ public class _16_RegistroCorrecto extends JFrame implements Vista {
 		lblFondo.setBounds(0, 0, 79, 200);
 		background.add(lblFondo);
 		
-		btnRegistrarse = new JButton("Ir a Mis Ligas");
-		btnRegistrarse.addActionListener(new ActionListener() {
+		lblBienvenido = new JLabel("Bienvenid@");
+		lblBienvenido.setHorizontalAlignment(SwingConstants.CENTER);
+		lblBienvenido.setFont(new Font("Britannic Bold", Font.BOLD, 28));
+		lblBienvenido.setBounds(208, 22, 165, 51);
+		background.add(lblBienvenido);
+		
+		lblMensajeBienvenida = new JLabel("Enhorabuena!, ya puedes disfrutar de League Master");
+		lblMensajeBienvenida.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMensajeBienvenida.setFont(new Font("Britannic Bold", Font.PLAIN, 14));
+		lblMensajeBienvenida.setBounds(135, 66, 336, 40);
+		background.add(lblMensajeBienvenida);
+		
+		btnIrLigas = new JButton("Ir a Mis Ligas");
+		btnIrLigas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				miControlador.cerrarVentana(16);
 				miControlador.cambiarVentana(2, 0);
 			}
 		});
-		btnRegistrarse.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
-		btnRegistrarse.setBackground(new Color(255, 128, 0));
-		btnRegistrarse.setBounds(221, 128, 138, 39);
-		background.add(btnRegistrarse);
+		btnIrLigas.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
+		btnIrLigas.setBackground(new Color(255, 128, 0));
+		btnIrLigas.setBounds(221, 128, 138, 39);
+		background.add(btnIrLigas);
 
-		
+		setLocationRelativeTo(null);
 
 	}
 

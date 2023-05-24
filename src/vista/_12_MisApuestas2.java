@@ -533,7 +533,7 @@ public class _12_MisApuestas2 extends JFrame implements Vista {
         btnBuscar.setBounds(853, 79, 101, 23);
         background.add(btnBuscar);
 		
-
+        setLocationRelativeTo(null);
 	}
 
 	@Override

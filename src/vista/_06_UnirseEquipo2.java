@@ -353,7 +353,7 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 		btnApostar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		background.add(btnApostar);
 		background.setComponentZOrder(btnApostar, 0);
-		
+
 		btnSignOut = new JButton("Sign Out");
 		btnSignOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -361,17 +361,17 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 			}
 		});
 		btnSignOut.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mouseEntered(MouseEvent e) {
-		    	btnSignOut.setBackground(Color.yellow);
-		    	btnSignOut.setOpaque(true);
-		    }
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnSignOut.setBackground(Color.yellow);
+				btnSignOut.setOpaque(true);
+			}
 
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		    	btnSignOut.setBackground(null);
-		    	btnSignOut.setOpaque(false);
-		    }
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnSignOut.setBackground(null);
+				btnSignOut.setOpaque(false);
+			}
 		});
 		btnSignOut.setHorizontalAlignment(SwingConstants.LEFT);
 		btnSignOut.setOpaque(false);
@@ -383,7 +383,7 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 		btnSignOut.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		background.add(btnSignOut);
 		background.setComponentZOrder(btnSignOut, 0);
-		
+
 		lblBarraMoverVentana = new JLabel("");
 		lblBarraMoverVentana.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
@@ -393,7 +393,7 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 				setLocation(xPantalla - xMouse, yPantalla - yMouse);
 			}
 		});
-		
+
 		lblBarraMoverVentana.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -403,30 +403,30 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 		});
 		lblBarraMoverVentana.setBounds(0, 0, 918, 23);
 		background.add(lblBarraMoverVentana);
-		
+
 		JLabel lblTitulo = new JLabel("UNETE A UN EQUIPO");
 		lblTitulo.setFont(new Font("Britannic Bold", Font.BOLD, 40));
 		lblTitulo.setBounds(483, 81, 381, 85);
 		background.add(lblTitulo);
-		
+
 		JLabel lblIdEquipo = new JLabel("Introduce el ID del equipo:");
 		lblIdEquipo.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
 		lblIdEquipo.setBounds(545, 218, 241, 40);
 		background.add(lblIdEquipo);
-		
+
 		textField = new JTextField();
 		textField.setBackground(new Color(0, 128, 192));
 		textField.setFont(new Font("Britannic Bold", Font.BOLD, 16));
 		textField.setBounds(555, 271, 213, 20);
 		background.add(textField);
 		textField.setColumns(10);
-		
-				lblFondo = new JLabel("");
-				lblFondo.setIcon(new ImageIcon(_06_UnirseEquipo2.class.getResource("/img/fondoLogin2  - copia.jpg")));
-				lblFondo.setBounds(0, 0, 283, 539);
-				background.add(lblFondo);
-		
 
+		lblFondo = new JLabel("");
+		lblFondo.setIcon(new ImageIcon(_06_UnirseEquipo2.class.getResource("/img/fondoLogin2  - copia.jpg")));
+		lblFondo.setBounds(0, 0, 283, 539);
+		background.add(lblFondo);
+
+		setLocationRelativeTo(null);
 	}
 
 	@Override

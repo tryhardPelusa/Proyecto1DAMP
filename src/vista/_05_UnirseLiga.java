@@ -492,6 +492,7 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 		txtpnUnirseAUna.setBounds(504, 111, 290, 125);
 		background.add(txtpnUnirseAUna);
 
+		setLocationRelativeTo(null);
 	}
 
 	@Override

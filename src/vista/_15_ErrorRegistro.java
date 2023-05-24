@@ -37,11 +37,11 @@ public class _15_ErrorRegistro extends JFrame implements Vista {
 	private JPanel contentPane;
 	private JLabel lblFondo;
 	private JPanel background;
-	private JButton btnApostar;
-	private JButton btnSignOut;
 	private JLabel lblBarraMoverVentana;
 	private int xMouse, yMouse;
 	private JButton btnRegistrarse;
+	private JLabel lblError;
+	private JLabel lblMensajeError;
 
 
 	// Constructor
@@ -51,7 +51,7 @@ public class _15_ErrorRegistro extends JFrame implements Vista {
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationByPlatform(true);;
-		setSize(1010, 539);
+		setSize(536, 200);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -63,58 +63,6 @@ public class _15_ErrorRegistro extends JFrame implements Vista {
 		background.setBounds(0, 0, 536, 200);
 		contentPane.add(background);
 		background.setLayout(null);
-
-		btnApostar = new JButton("ERROR");
-		btnApostar.setForeground(new Color(241, 14, 14));
-		btnApostar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				btnApostar.setBackground(Color.yellow);
-				btnApostar.setOpaque(true);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				btnApostar.setBackground(null);
-				btnApostar.setOpaque(false);
-			}
-		});
-		btnApostar.setHorizontalAlignment(SwingConstants.LEFT);
-		btnApostar.setOpaque(false);
-		btnApostar.setFont(new Font("Britannic Bold", Font.BOLD, 25));
-		btnApostar.setFocusPainted(false);
-		btnApostar.setContentAreaFilled(false);
-		btnApostar.setBorderPainted(false);
-		btnApostar.setBounds(247, 11, 124, 49);
-		btnApostar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		background.add(btnApostar);
-		background.setComponentZOrder(btnApostar, 0);
-
-		btnSignOut = new JButton("El usuario o el correo ya existen en League Master");
-		btnSignOut.setForeground(new Color(241, 14, 14));
-		btnSignOut.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				btnSignOut.setBackground(Color.yellow);
-				btnSignOut.setOpaque(true);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				btnSignOut.setBackground(null);
-				btnSignOut.setOpaque(false);
-			}
-		});
-		btnSignOut.setHorizontalAlignment(SwingConstants.LEFT);
-		btnSignOut.setOpaque(false);
-		btnSignOut.setFont(new Font("Britannic Bold", Font.BOLD, 15));
-		btnSignOut.setFocusPainted(false);
-		btnSignOut.setContentAreaFilled(false);
-		btnSignOut.setBorderPainted(false);
-		btnSignOut.setBounds(103, 58, 401, 49);
-		btnSignOut.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		background.add(btnSignOut);
-		background.setComponentZOrder(btnSignOut, 0);
 
 		lblBarraMoverVentana = new JLabel("");
 		lblBarraMoverVentana.addMouseMotionListener(new MouseMotionAdapter() {
@@ -133,21 +81,32 @@ public class _15_ErrorRegistro extends JFrame implements Vista {
 				yMouse = e.getY();
 			}
 		});
-		lblBarraMoverVentana.setBounds(0, 0, 918, 23);
+		lblBarraMoverVentana.setBounds(0, 0, 536, 23);
 		background.add(lblBarraMoverVentana);
-		
-		int width = 85;  // Anchura del JLabel
-		int height = 70; // Altura del JLabel
 
 		lblFondo = new JLabel("");
 		lblFondo.setIcon(new ImageIcon(Plantilla.class.getResource("/img/fondoLogin2  - copia.jpg")));
 		lblFondo.setBounds(0, 0, 79, 200);
 		background.add(lblFondo);
 		
+		lblError = new JLabel("ERROR");
+		lblError.setForeground(new Color(255, 0, 0));
+		lblError.setHorizontalAlignment(SwingConstants.CENTER);
+		lblError.setFont(new Font("Britannic Bold", Font.BOLD, 28));
+		lblError.setBounds(208, 22, 165, 51);
+		background.add(lblError);
+		
+		lblMensajeError = new JLabel("El usuario o contraseña introducidos ya existen \n Por favor, intentalo de nuevo");
+		lblMensajeError.setForeground(new Color(255, 0, 0));
+		lblMensajeError.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMensajeError.setFont(new Font("Britannic Bold", Font.PLAIN, 14));
+		lblMensajeError.setBounds(135, 66, 336, 40);
+		background.add(lblMensajeError);
+		
 		btnRegistrarse = new JButton("Volver a intentarlo");
 		btnRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				miControlador.cerrarVentana(14);
+				miControlador.cerrarVentana(15);
 			}
 		});
 		btnRegistrarse.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
@@ -155,7 +114,7 @@ public class _15_ErrorRegistro extends JFrame implements Vista {
 		btnRegistrarse.setBounds(217, 132, 174, 39);
 		background.add(btnRegistrarse);
 
-		
+		setLocationRelativeTo(null);
 
 	}
 

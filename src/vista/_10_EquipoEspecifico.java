@@ -540,6 +540,7 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 		lblBarraMoverVentana.setBounds(0, 0, 918, 23);
 		background.add(lblBarraMoverVentana);
 
+		setLocationRelativeTo(null);
 	}
 
 	@Override

@@ -563,6 +563,7 @@ public class _11_Apuestas2 extends JFrame implements Vista {
 		btnAnterior.setBounds(320, 79, 101, 23);
 		background.add(btnAnterior);
 
+		setLocationRelativeTo(null);
 	}
 
 	@Override

@@ -475,7 +475,7 @@ public class _08_CrearEquipos extends JFrame implements Vista {
 		lblDeporte.setBounds(401, 332, 67, 40);
 		background.add(lblDeporte);
 		
-		
+		setLocationRelativeTo(null);
 	}
 
 	@Override

@@ -425,6 +425,7 @@ public class _02_Registro extends JFrame implements Vista {
 		lblApellido2.setBounds(398, 292, 183, 29);
 		background.add(lblApellido2);
 
+		setLocationRelativeTo(null);
 	}
 
 	@Override

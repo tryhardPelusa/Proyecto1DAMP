@@ -492,13 +492,13 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 		separatorLigas.setOrientation(SwingConstants.VERTICAL);
 		separatorLigas.setBounds(634, 516, 26, -369);
 		background.add(separatorLigas);
-		
-				lblFondo = new JLabel("");
-				lblFondo.setIcon(new ImageIcon(_00_PaginaPrincipal2.class.getResource("/img/fondoLogin2  - copia.jpg")));
-				lblFondo.setBounds(0, 0, 283, 539);
-				background.add(lblFondo);
-		
 
+		lblFondo = new JLabel("");
+		lblFondo.setIcon(new ImageIcon(_00_PaginaPrincipal2.class.getResource("/img/fondoLogin2  - copia.jpg")));
+		lblFondo.setBounds(0, 0, 283, 539);
+		background.add(lblFondo);
+		
+		setLocationRelativeTo(null);
 	}
 
 	@Override
