@@ -27,6 +27,11 @@ public class Controlador {
 	public void nuevaVentana(int nueva) {
 		((JFrame) misVistas[nueva]).setVisible(true);
 	}
+	
+	public void cerrarVentana(int ventanaActual) {
+		((JFrame) misVistas[ventanaActual]).setVisible(false);
+
+	}
 
 	public boolean registro() {
 		miModelo.setVista(misVistas[2]);

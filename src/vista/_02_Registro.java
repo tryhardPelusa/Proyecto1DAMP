@@ -67,7 +67,8 @@ public class _02_Registro extends JFrame implements Vista {
 		setResizable(false);
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 1008, 537);
+		setLocationByPlatform(true);;
+		setSize(1010, 539);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -165,11 +166,10 @@ public class _02_Registro extends JFrame implements Vista {
 		btnRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (miControlador.registro()) {
-					miControlador.cambiarVentana(2, 0);
-					// miControlador.nuevaVentana(15);
+					miControlador.nuevaVentana(15);
 					System.out.println("Se ha registrado correctamente");
 				} else {
-					// miControlador.nuevaVentana(14);
+					miControlador.nuevaVentana(16);
 					System.out.println("El usuario o correo introducido ya existe");
 				}
 			}

@@ -42,7 +42,8 @@ public class _13_Lanzadera extends JFrame implements Vista {
 	public _13_Lanzadera() {
 		// Configuración de la ventana
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 1024, 576);
+		setLocationByPlatform(true);;
+		setSize(1010, 539);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
