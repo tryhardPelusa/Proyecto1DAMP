@@ -437,11 +437,12 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 		tableLigasPublicas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				
 			}
 		});
 		tableLigasPublicas.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
 		tableLigasPublicas.setModel(new DefaultTableModel(
-			new Object[][] {
+			new String[][] {
 				{"Liga 1"},
 				{"Liga 2"},
 				{"Liga 3"},
@@ -479,7 +480,7 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 		tableLigasPrivadas = new JTable();
 		tableLigasPrivadas.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
 		tableLigasPrivadas.setModel(new DefaultTableModel(
-			new Object[][] {
+			new String[][] {
 				{"Liga 1"},
 				{"Liga 2"},
 				{"Liga 3"},
