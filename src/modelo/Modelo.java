@@ -13,6 +13,7 @@ import vista._02_Registro;
 public class Modelo {
 
 	private Vista miVista;
+	private String usuario;
 
 	// Atributos para la conexion mysql
 	private String db = "ProyectoIntegrador";
@@ -81,6 +82,7 @@ public class Modelo {
 					proI.executeUpdate();
 					proI.close();
 					resultado = true;
+					setUsuario(User);
 				} catch (SQLException e) {
 					System.err.println(e.getMessage());
 					resultado = false;
@@ -118,6 +120,7 @@ public class Modelo {
 			while (rset.next()) {
 				if (rset.getString(1).equals(usr) && rset.getString(2).equals(pwd)) {
 					proI.close();
+					setUsuario(usr);
 					return true;
 				}
 			}
@@ -128,6 +131,14 @@ public class Modelo {
 			System.err.println(e.getMessage());
 			return false;
 		}
+	}
+	
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
 }
