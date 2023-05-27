@@ -5,6 +5,12 @@ package vista;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -12,22 +18,17 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import controlador.Controlador;
 import modelo.Modelo;
-import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
-import javax.swing.JTextField;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 
@@ -56,6 +57,7 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 	private JTable tableLigasPrivadas;
 
 	// Constructor
+	@SuppressWarnings("serial")
 	public _00_PaginaPrincipal2() {
 		setTitle("Plantilla");
 		setResizable(false);
@@ -432,6 +434,11 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 		background.add(scrollPaneLigasPublicas);
 		
 		tableLigasPublicas = new JTable();
+		tableLigasPublicas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
 		tableLigasPublicas.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
 		tableLigasPublicas.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -454,8 +461,15 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 			new String[] {
 				"Ligas Públicas"
 			}
-		));
+		) {
+			@Override
+            public boolean isCellEditable(int row, int column) {
+                // Devuelve false para deshabilitar la edición de todas las celdas
+                return false;
+            }
+		});
 		tableLigasPublicas.setRowHeight(40);
+		tableLigasPublicas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPaneLigasPublicas.setViewportView(tableLigasPublicas);
 		
 		JScrollPane scrollPaneTusLigas = new JScrollPane();
@@ -482,8 +496,15 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 			new String[] {
 				"Tus Ligas"
 			}
-		));
+		) {
+			@Override
+            public boolean isCellEditable(int row, int column) {
+                // Devuelve false para deshabilitar la edición de todas las celdas
+                return false;
+            }
+		});
 		tableLigasPrivadas.setRowHeight(40);
+		tableLigasPrivadas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPaneTusLigas.setViewportView(tableLigasPrivadas);
 		
 		JSeparator separatorLigas = new JSeparator();
