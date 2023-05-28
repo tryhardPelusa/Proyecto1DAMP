@@ -58,7 +58,8 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 
 	// Constructor
 	@SuppressWarnings("serial")
-	public _00_PaginaPrincipal2() {
+	public _00_PaginaPrincipal2(Modelo miModelo2) {
+		setModelo(miModelo2);
 		setTitle("Plantilla");
 		setResizable(false);
 		setUndecorated(true);
@@ -441,34 +442,6 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 			}
 		});
 		tableLigasPublicas.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
-//		tableLigasPublicas.setModel(new DefaultTableModel(
-//			new String[][] {
-//				{"Liga 1"},
-//				{"Liga 2"},
-//				{"Liga 3"},
-//				{"Liga 4"},
-//				{"Liga 5"},
-//				{"Liga 6"},
-//				{"Liga 7"},
-//				{"Liga 8"},
-//				{"Liga 9"},
-//				{"Liga 10"},
-//				{"Liga 11"},
-//				{"Liga 12"},
-//				{"Liga 13"},
-//				{"Liga 14"},
-//				{"Liga 15"},
-//			},
-//			new String[] {
-//				"Ligas Públicas"
-//			}
-//		) {
-//			@Override
-//            public boolean isCellEditable(int row, int column) {
-//                // Devuelve false para deshabilitar la edición de todas las celdas
-//                return false;
-//            }
-//		});
 		tableLigasPublicas.setModel(miModelo.getLigasPublicas());
 		tableLigasPublicas.setRowHeight(40);
 		tableLigasPublicas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -480,31 +453,7 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 		
 		tableLigasPrivadas = new JTable();
 		tableLigasPrivadas.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
-		tableLigasPrivadas.setModel(new DefaultTableModel(
-			new String[][] {
-				{"Liga 1"},
-				{"Liga 2"},
-				{"Liga 3"},
-				{"Liga 4"},
-				{"Liga 5"},
-				{"Liga 6"},
-				{"Liga 7"},
-				{"Liga 8"},
-				{"Liga 9"},
-				{"Liga 10"},
-				{"Liga 11"},
-				{null},
-			},
-			new String[] {
-				"Tus Ligas"
-			}
-		) {
-			@Override
-            public boolean isCellEditable(int row, int column) {
-                // Devuelve false para deshabilitar la edición de todas las celdas
-                return false;
-            }
-		});
+		tableLigasPrivadas.setModel(miModelo.getLigasPrivadas());
 		tableLigasPrivadas.setRowHeight(40);
 		tableLigasPrivadas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPaneTusLigas.setViewportView(tableLigasPrivadas);

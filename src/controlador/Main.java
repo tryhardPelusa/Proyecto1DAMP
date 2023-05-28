@@ -30,7 +30,7 @@ public class Main {
 		Controlador miControlador = new Controlador();
 
 		Vista[] misVistas = new Vista[17];
-		misVistas[0] = new _00_PaginaPrincipal2();
+		misVistas[0] = new _00_PaginaPrincipal2(miModelo);
 		misVistas[1] = new _01_InicioSesion2();
 		misVistas[2] = new _02_Registro();
 		misVistas[3] = new _03_RecuperarCuenta();

@@ -114,18 +114,22 @@ public class Modelo {
 
 	public boolean login(String usr, String pwd) {
 		ConexionMySQL();
+		String id;
 		try {
 
-			String insert = "Select usuario, contraseña from usuario";
+			String insert = "Select id, usuario, contraseña from usuario";
 			PreparedStatement proI = conexion.prepareStatement(insert);
 			ResultSet rset = proI.executeQuery();
 			while (rset.next()) {
-				if (rset.getString(1).equals(usr) && rset.getString(2).equals(pwd)) {
+				if (rset.getString(2).equals(usr) && rset.getString(3).equals(pwd)) {
+					id = rset.getString(1);
+					setUsuario(id);
+					rset.close();
 					proI.close();
-					setUsuario(usr);
 					return true;
 				}
 			}
+			rset.close();
 			proI.close();
 			((_01_InicioSesion2) miVista).actualizar(false);
 			return false;
@@ -146,30 +150,50 @@ public class Modelo {
 	public DefaultTableModel getLigasPublicas() {
 		DefaultTableModel model = new DefaultTableModel();
 
-		String consulta = "SELECT nombre FROM ligas WHERE idadmin=0";
+		String consulta = "SELECT nombre FROM ligas WHERE idadmin=1";
 
 		try {
-			// Establecer conexión con la base de datos
 			Connection con = DriverManager.getConnection(url, usuario, pwd);
-
-			// Crear una sentencia preparada con la consulta SQL
 			PreparedStatement stmt = con.prepareStatement(consulta);
-
-			// Ejecutar la consulta y obtener el resultado
 			ResultSet rs = stmt.executeQuery();
 
-			// Obtener la información de las columnas
-			int columnCount = rs.getMetaData().getColumnCount();
-			for (int i = 1; i <= columnCount; i++) {
-				String columnName = rs.getMetaData().getColumnName(i);
-				model.addColumn(columnName);
-			}
+			model.addColumn("Ligas Públicas");
+
 			// Obtener los datos de las filas
 			while (rs.next()) {
-				Object[] rowData = new Object[columnCount];
-				for (int i = 1; i <= columnCount; i++) {
-					rowData[i - 1] = rs.getObject(i);
-				}
+				String[] rowData = new String[1];
+				rowData[0] = rs.getString(1);
+				model.addRow(rowData);
+			}
+
+			// Cerrar la conexión y liberar recursos
+			rs.close();
+			stmt.close();
+			con.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return model;
+	}
+
+	public DefaultTableModel getLigasPrivadas() {
+		DefaultTableModel model = new DefaultTableModel();
+
+		String consulta = "SELECT nombre FROM ligas WHERE idadmin = ?";
+
+		try {
+			Connection con = DriverManager.getConnection(url, usuario, pwd);
+			PreparedStatement stmt = con.prepareStatement(consulta);
+			stmt.setString(1, usuario);
+			ResultSet rs = stmt.executeQuery();
+
+			model.addColumn("Ligas Privadas");
+
+			// Obtener los datos de las filas
+			while (rs.next()) {
+				String[] rowData = new String[1];
+				rowData[0] = rs.getString(1);
 				model.addRow(rowData);
 			}
 
