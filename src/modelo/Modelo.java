@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Random;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
@@ -240,6 +241,42 @@ public class Modelo {
 			e.printStackTrace();
 		}
 		return model;
+	}
+	
+	public String getCodigoEquipo() {
+		String codigo = "";
+		Random random = new Random();
+	    
+	    // Generar los números aleatorios
+	    int numero1 = random.nextInt(10); // Número entre 0 y 9
+	    int numero2 = random.nextInt(10); // Número entre 0 y 9
+	    
+	    // Generar las letras aleatorias
+	    char letra1 = (char) (random.nextInt(26) + 'A'); // Letra mayúscula entre A y Z
+	    char letra2 = (char) (random.nextInt(26) + 'A'); // Letra mayúscula entre A y Z
+	    char letra3 = (char) (random.nextInt(26) + 'A'); // Letra mayúscula entre A y Z
+	    
+	    // Construir el código combinando los números y las letras
+	    codigo += numero1 + numero2 + letra1 + letra2 + letra3;
+		return codigo;
+	}
+	
+	public String getCodigoLiga() {
+		String codigo = "";
+		Random random = new Random();
+	    
+	    // Generar los números aleatorios
+	    int numero1 = random.nextInt(10); // Número entre 0 y 9
+	    int numero2 = random.nextInt(10); // Número entre 0 y 9
+	    
+	    // Generar las letras aleatorias
+	    char letra1 = (char) (random.nextInt(26) + 'A'); // Letra mayúscula entre A y Z
+	    char letra2 = (char) (random.nextInt(26) + 'A'); // Letra mayúscula entre A y Z
+	    char letra3 = (char) (random.nextInt(26) + 'A'); // Letra mayúscula entre A y Z
+	    
+	    // Construir el código combinando los números y las letras
+	    codigo += letra1 + letra2 + letra3 + numero1 + numero2;
+		return codigo;
 	}
 
 }
