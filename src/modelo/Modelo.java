@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Iterator;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -206,6 +207,34 @@ public class Modelo {
 			e.printStackTrace();
 		}
 		return model;
+	}
+	
+	public String[] getMiCuenta() {
+
+		String consulta = "SELECT usuario,nombre,apellido1,apellido2,contraseña,correo FROM usuario WHERE id = ?";
+		String[] datos = new String[6];
+
+		try {
+			Connection con = DriverManager.getConnection(url, usuario, pwd);
+			PreparedStatement stmt = con.prepareStatement(consulta);
+			stmt.setString(1, usuario);
+			ResultSet rs = stmt.executeQuery();
+
+
+			// Obtener los datos del usuario y guardarlos en el array datos
+				for (int i = 0; i < datos.length; i++) {
+					datos[i] = rs.getString(i+1);
+				}
+
+			// Liberar recursos
+			rs.close();
+			stmt.close();
+			con.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return datos;
 	}
 
 }

@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import modelo.Modelo;
 import vista.Vista;
 import vista._01_InicioSesion2;
+import vista._04_MiCuenta;
 
 public class Controlador {
 
@@ -49,6 +50,11 @@ public class Controlador {
 		} else {
 			return false;
 		}
+	}
+	
+	public void cargarMiCuenta() {
+		miModelo.setVista(misVistas[4]);
+		((_04_MiCuenta) misVistas[4]).actualizarDatos(miModelo.getMiCuenta());
 	}
 
 }
