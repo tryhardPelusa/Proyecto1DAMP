@@ -27,7 +27,7 @@ public class Modelo {
 	private String url = "jdbc:mysql://localhost/" + db
 			+ "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	private Connection conexion;
-
+ 
 	public void setVista(Vista miVista) {
 		this.miVista = miVista;
 	}
