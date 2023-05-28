@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 import vista.Vista;
@@ -126,6 +128,7 @@ public class Modelo {
 					setUsuario(id);
 					rset.close();
 					proI.close();
+					System.out.println(usuario);
 					return true;
 				}
 			}
@@ -149,12 +152,11 @@ public class Modelo {
 
 	public DefaultTableModel getLigasPublicas() {
 		DefaultTableModel model = new DefaultTableModel();
-
+		ConexionMySQL();
 		String consulta = "SELECT nombre FROM ligas WHERE idadmin=1";
 
 		try {
-			Connection con = DriverManager.getConnection(url, usuario, pwd);
-			PreparedStatement stmt = con.prepareStatement(consulta);
+			PreparedStatement stmt = conexion.prepareStatement(consulta);
 			ResultSet rs = stmt.executeQuery();
 
 			model.addColumn("Ligas Públicas");
@@ -169,7 +171,6 @@ public class Modelo {
 			// Cerrar la conexión y liberar recursos
 			rs.close();
 			stmt.close();
-			con.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -179,12 +180,11 @@ public class Modelo {
 
 	public DefaultTableModel getLigasPrivadas() {
 		DefaultTableModel model = new DefaultTableModel();
-
+		ConexionMySQL();
 		String consulta = "SELECT nombre FROM ligas WHERE idadmin = ?";
 
 		try {
-			Connection con = DriverManager.getConnection(url, usuario, pwd);
-			PreparedStatement stmt = con.prepareStatement(consulta);
+			PreparedStatement stmt = conexion.prepareStatement(consulta);
 			stmt.setString(1, usuario);
 			ResultSet rs = stmt.executeQuery();
 
@@ -200,7 +200,38 @@ public class Modelo {
 			// Cerrar la conexión y liberar recursos
 			rs.close();
 			stmt.close();
-			con.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return model;
+	}
+
+	public ComboBoxModel<String> getEquiposUsuario() {
+		DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+		ConexionMySQL();
+		String consulta = "SELECT Equipos.Nombre\r\n" + "FROM Usuario\r\n"
+				+ "INNER JOIN Usuario_PertEquipo ON Usuario.ID = Usuario_PertEquipo.IDUsuario\r\n"
+				+ "INNER JOIN Equipos ON Usuario_PertEquipo.IDEquipo = Equipos.IDEquipo\r\n"
+				+ "WHERE Usuario.ID = ?\r\n" + "";
+
+		try {
+
+			PreparedStatement stmt = conexion.prepareStatement(consulta);
+
+			stmt.setString(1, usuario);
+			ResultSet rs = stmt.executeQuery();
+
+			// Obtener los datos de las filas
+			System.out.println(usuario);
+			while (rs.next()) {
+				String rowData = rs.getString("Nombre");
+				model.addElement(rowData);
+				System.out.println(rowData);
+			}
+
+			// Cerrar la conexión y liberar recursos
+			rs.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
