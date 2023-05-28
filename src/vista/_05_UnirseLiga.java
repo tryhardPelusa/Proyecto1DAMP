@@ -501,15 +501,16 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 		background.add(lblunirse_1);
 
 		listaEquipos = new JComboBox<>();
-		listaEquipos.addMouseListener(new MouseAdapter() {
+		listaEquipos.setModel(miModelo.getEquiposUsuario());
+		listaEquipos.setBounds(653, 259, 219, 19);
+		background.add(listaEquipos);
+		
+		lblLogo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				listaEquipos.setModel(miModelo.getEquiposUsuario());
 			}
 		});
-		listaEquipos.setModel(miModelo.getEquiposUsuario());
-		listaEquipos.setBounds(653, 259, 219, 19);
-		background.add(listaEquipos);
 
 		setLocationRelativeTo(null);
 	}

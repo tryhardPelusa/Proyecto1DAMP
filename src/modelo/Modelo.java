@@ -181,7 +181,13 @@ public class Modelo {
 	public DefaultTableModel getLigasPrivadas() {
 		DefaultTableModel model = new DefaultTableModel();
 		ConexionMySQL();
-		String consulta = "SELECT nombre FROM ligas WHERE idadmin = ?";
+		String consulta = "SELECT Ligas.Nombre AS NombreLiga\r\n"
+				+ "FROM Ligas\r\n"
+				+ "JOIN Equipo_Pert_Liga ON Ligas.ID = Equipo_Pert_Liga.IDLiga\r\n"
+				+ "JOIN Equipos ON Equipo_Pert_Liga.IDEquipo = Equipos.IDEquipo\r\n"
+				+ "JOIN Usuario_PertEquipo ON Equipos.IDEquipo = Usuario_PertEquipo.IDEquipo\r\n"
+				+ "JOIN Usuario ON Usuario_PertEquipo.IDUsuario = Usuario.ID\r\n"
+				+ "WHERE Usuario.ID = ?";
 
 		try {
 			PreparedStatement stmt = conexion.prepareStatement(consulta);
@@ -221,16 +227,13 @@ public class Modelo {
 
 			stmt.setString(1, usuario);
 			ResultSet rs = stmt.executeQuery();
-
-			// Obtener los datos de las filas
+			
 			System.out.println(usuario);
 			while (rs.next()) {
 				String rowData = rs.getString("Nombre");
 				model.addElement(rowData);
 				System.out.println(rowData);
 			}
-
-			// Cerrar la conexión y liberar recursos
 			rs.close();
 
 		} catch (SQLException e) {
