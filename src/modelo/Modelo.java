@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.table.DefaultTableModel;
+
 import vista.Vista;
 import vista._01_InicioSesion2;
 import vista._02_Registro;
@@ -132,13 +134,54 @@ public class Modelo {
 			return false;
 		}
 	}
-	
+
 	public String getUsuario() {
 		return usuario;
 	}
 
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
+	}
+
+	public DefaultTableModel getLigasPublicas() {
+		DefaultTableModel model = new DefaultTableModel();
+
+		String consulta = "SELECT nombre FROM ligas WHERE idadmin=0";
+
+		try {
+			// Establecer conexión con la base de datos
+			Connection con = DriverManager.getConnection(url, usuario, pwd);
+
+			// Crear una sentencia preparada con la consulta SQL
+			PreparedStatement stmt = con.prepareStatement(consulta);
+
+			// Ejecutar la consulta y obtener el resultado
+			ResultSet rs = stmt.executeQuery();
+
+			// Obtener la información de las columnas
+			int columnCount = rs.getMetaData().getColumnCount();
+			for (int i = 1; i <= columnCount; i++) {
+				String columnName = rs.getMetaData().getColumnName(i);
+				model.addColumn(columnName);
+			}
+			// Obtener los datos de las filas
+			while (rs.next()) {
+				Object[] rowData = new Object[columnCount];
+				for (int i = 1; i <= columnCount; i++) {
+					rowData[i - 1] = rs.getObject(i);
+				}
+				model.addRow(rowData);
+			}
+
+			// Cerrar la conexión y liberar recursos
+			rs.close();
+			stmt.close();
+			con.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return model;
 	}
 
 }

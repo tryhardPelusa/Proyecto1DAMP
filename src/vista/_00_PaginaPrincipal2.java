@@ -441,34 +441,35 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 			}
 		});
 		tableLigasPublicas.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
-		tableLigasPublicas.setModel(new DefaultTableModel(
-			new String[][] {
-				{"Liga 1"},
-				{"Liga 2"},
-				{"Liga 3"},
-				{"Liga 4"},
-				{"Liga 5"},
-				{"Liga 6"},
-				{"Liga 7"},
-				{"Liga 8"},
-				{"Liga 9"},
-				{"Liga 10"},
-				{"Liga 11"},
-				{"Liga 12"},
-				{"Liga 13"},
-				{"Liga 14"},
-				{"Liga 15"},
-			},
-			new String[] {
-				"Ligas Públicas"
-			}
-		) {
-			@Override
-            public boolean isCellEditable(int row, int column) {
-                // Devuelve false para deshabilitar la edición de todas las celdas
-                return false;
-            }
-		});
+//		tableLigasPublicas.setModel(new DefaultTableModel(
+//			new String[][] {
+//				{"Liga 1"},
+//				{"Liga 2"},
+//				{"Liga 3"},
+//				{"Liga 4"},
+//				{"Liga 5"},
+//				{"Liga 6"},
+//				{"Liga 7"},
+//				{"Liga 8"},
+//				{"Liga 9"},
+//				{"Liga 10"},
+//				{"Liga 11"},
+//				{"Liga 12"},
+//				{"Liga 13"},
+//				{"Liga 14"},
+//				{"Liga 15"},
+//			},
+//			new String[] {
+//				"Ligas Públicas"
+//			}
+//		) {
+//			@Override
+//            public boolean isCellEditable(int row, int column) {
+//                // Devuelve false para deshabilitar la edición de todas las celdas
+//                return false;
+//            }
+//		});
+		tableLigasPublicas.setModel(miModelo.getLigasPublicas());
 		tableLigasPublicas.setRowHeight(40);
 		tableLigasPublicas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPaneLigasPublicas.setViewportView(tableLigasPublicas);
