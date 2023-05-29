@@ -51,17 +51,15 @@ public class _04_MiCuenta extends JFrame implements Vista {
 	private JLabel lblUsuario;
 	private JLabel lblNombre;
 	private JLabel lblApellido2;
-	private JLabel lblTelefono;
 	private JLabel lblCorreo;
 	private JLabel lblPassword;
 	private JLabel lblFechaNacimiento;
 	private JTextField txtNombre;
 	private JTextField txtApellido1;
 	private JTextField txtApellido2;
-	private JTextField txtTelefono;
 	private JTextField txtPassword;
 	private JTextField txtCorreo;
-	private JLabel lblWyllop;
+	private JLabel lblUser;
 	private JButton btnCambiarDatos;
 	private int xMouse, yMouse;
 	// Constructor
@@ -466,11 +464,6 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		lblApellido2.setBounds(331, 290, 118, 25);
 		background.add(lblApellido2);
 
-		lblTelefono = new JLabel("Telefono:");
-		lblTelefono.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-		lblTelefono.setBounds(350, 340, 90, 25);
-		background.add(lblTelefono);
-
 		lblCorreo = new JLabel("Correo:");
 		lblCorreo.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
 		lblCorreo.setBounds(740, 190, 85, 20);
@@ -515,13 +508,6 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		txtApellido2.setBounds(440, 288, 130, 30);
 		background.add(txtApellido2);
 
-		txtTelefono = new JTextField();
-		txtTelefono.setBackground(new Color(0, 128, 192));
-		txtTelefono.setText("666666666");
-		txtTelefono.setColumns(10);
-		txtTelefono.setBounds(440, 338, 130, 30);
-		background.add(txtTelefono);
-
 		txtPassword = new JTextField();
 		txtPassword.setBackground(new Color(0, 128, 192));
 		txtPassword.setText("RosaMelano");
@@ -536,12 +522,12 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		txtCorreo.setBounds(819, 188, 155, 30);
 		background.add(txtCorreo);
 
-		lblWyllop = new JLabel("Wyllop");
-		lblWyllop.setForeground(new Color(255, 128, 0));
-		lblWyllop.setBackground(Color.LIGHT_GRAY);
-		lblWyllop.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		lblWyllop.setBounds(445, 135, 69, 29);
-		background.add(lblWyllop);
+		lblUser = new JLabel("Wyllop");
+		lblUser.setForeground(new Color(255, 128, 0));
+		lblUser.setBackground(Color.LIGHT_GRAY);
+		lblUser.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		lblUser.setBounds(445, 135, 69, 29);
+		background.add(lblUser);
 
 		btnCambiarDatos = new JButton("Cambiar datos");
 		btnCambiarDatos.addActionListener(new ActionListener() {
@@ -566,5 +552,14 @@ public class _04_MiCuenta extends JFrame implements Vista {
 	@Override
 	public void setControlador(Controlador miControlador) {
 		this.miControlador = miControlador;
+	}
+	
+	public void actualizarDatos(String[] datos) {
+		lblUser.setText(datos[0]);
+		txtNombre.setText(datos[1]);
+		txtApellido1.setText(datos[2]);
+		txtApellido2.setText(datos[3]);
+		txtPassword.setText(datos[4]);
+		txtCorreo.setText(datos[5]);
 	}
 }
