@@ -8,8 +8,6 @@ import java.sql.SQLException;
 
 import java.util.Random;
 
-import java.util.Iterator;
-
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
@@ -221,12 +219,12 @@ public class Modelo {
 		String[] datos = new String[6];
 
 		try {
-			Connection con = DriverManager.getConnection(url, usuario, pwd);
-			PreparedStatement stmt = con.prepareStatement(consulta);
+			PreparedStatement stmt = conexion.prepareStatement(consulta);
 			stmt.setString(1, usuario);
 			ResultSet rs = stmt.executeQuery();
 
 			// Obtener los datos del usuario y guardarlos en el array datos
+			rs.next();
 			for (int i = 0; i < datos.length; i++) {
 				datos[i] = rs.getString(i + 1);
 			}
@@ -234,12 +232,37 @@ public class Modelo {
 			// Liberar recursos
 			rs.close();
 			stmt.close();
-			con.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return datos;
+	}
+	
+	public int actualizarCuenta(String[] datos) {
+		
+		String consulta = "UPDATE usuario SET nombre = ?, apellido1 = ?, apellido2 = ?, contraseña = ?, correo = ? WHERE id = ?";
+		
+		try {
+			PreparedStatement stmt = conexion.prepareStatement(consulta);
+			stmt.setString(1, datos[0]);
+			stmt.setString(2, datos[1]);
+			stmt.setString(3, datos[2]);
+			stmt.setString(4, datos[3]);
+			stmt.setString(5, datos[4]);
+			stmt.setString(6, usuario);
+			int res = stmt.executeUpdate();
+
+			// Liberar recursos
+			stmt.close();
+			
+			// Devolver el número de cambios
+			return res;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
 	}
 
 	public ComboBoxModel<String> getEquiposUsuario() {

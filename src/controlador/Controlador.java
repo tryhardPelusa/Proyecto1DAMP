@@ -57,4 +57,11 @@ public class Controlador {
 		((_04_MiCuenta) misVistas[4]).actualizarDatos(miModelo.getMiCuenta());
 	}
 
+	public void actualizarCuenta(String[] datos) {
+		miModelo.setVista(misVistas[4]);
+		if (miModelo.actualizarCuenta(datos) > 0) {
+			((_04_MiCuenta) misVistas[4]).mostrarUpdateCorrecto();
+		}
+	}
+
 }
