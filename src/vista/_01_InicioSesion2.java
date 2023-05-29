@@ -149,6 +149,7 @@ public class _01_InicioSesion2 extends JFrame implements Vista {
 		JButton btnInvitado = new JButton("INVITADO");
 		btnInvitado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				miModelo.setUsuario("invitado");
 				miControlador.cambiarVentana(1, 0);
 			}
 		});

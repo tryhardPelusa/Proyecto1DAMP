@@ -5,6 +5,14 @@ package vista;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -12,22 +20,17 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import controlador.Controlador;
 import modelo.Modelo;
-import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
-import javax.swing.JTextField;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 
@@ -56,6 +59,7 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 	private JTable tableLigasPrivadas;
 
 	// Constructor
+	@SuppressWarnings("serial")
 	public _00_PaginaPrincipal2() {
 		setTitle("Plantilla");
 		setResizable(false);
@@ -432,30 +436,15 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 		background.add(scrollPaneLigasPublicas);
 		
 		tableLigasPublicas = new JTable();
-		tableLigasPublicas.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
-		tableLigasPublicas.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Liga 1"},
-				{"Liga 2"},
-				{"Liga 3"},
-				{"Liga 4"},
-				{"Liga 5"},
-				{"Liga 6"},
-				{"Liga 7"},
-				{"Liga 8"},
-				{"Liga 9"},
-				{"Liga 10"},
-				{"Liga 11"},
-				{"Liga 12"},
-				{"Liga 13"},
-				{"Liga 14"},
-				{"Liga 15"},
-			},
-			new String[] {
-				"Ligas Públicas"
+		tableLigasPublicas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
 			}
-		));
+		});
+		tableLigasPublicas.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
 		tableLigasPublicas.setRowHeight(40);
+		tableLigasPublicas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPaneLigasPublicas.setViewportView(tableLigasPublicas);
 		
 		JScrollPane scrollPaneTusLigas = new JScrollPane();
@@ -464,26 +453,8 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 		
 		tableLigasPrivadas = new JTable();
 		tableLigasPrivadas.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
-		tableLigasPrivadas.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Liga 1"},
-				{"Liga 2"},
-				{"Liga 3"},
-				{"Liga 4"},
-				{"Liga 5"},
-				{"Liga 6"},
-				{"Liga 7"},
-				{"Liga 8"},
-				{"Liga 9"},
-				{"Liga 10"},
-				{"Liga 11"},
-				{null},
-			},
-			new String[] {
-				"Tus Ligas"
-			}
-		));
 		tableLigasPrivadas.setRowHeight(40);
+		tableLigasPrivadas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPaneTusLigas.setViewportView(tableLigasPrivadas);
 		
 		JSeparator separatorLigas = new JSeparator();
@@ -498,7 +469,22 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 		lblFondo.setBounds(0, 0, 283, 539);
 		background.add(lblFondo);
 		
+		lblLogo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				tableLigasPrivadas.setModel(miModelo.getLigasPrivadas());
+			}
+		});
+		
 		setLocationRelativeTo(null);
+		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent e) {
+				tableLigasPrivadas.setModel(miControlador.getLigasPrivadas());
+				tableLigasPublicas.setModel(miControlador.getLigasPublicas());
+			}
+		});
 	}
 
 	@Override
