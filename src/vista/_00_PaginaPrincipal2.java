@@ -11,6 +11,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -58,8 +60,7 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 
 	// Constructor
 	@SuppressWarnings("serial")
-	public _00_PaginaPrincipal2(Modelo miModelo2) {
-		setModelo(miModelo2);
+	public _00_PaginaPrincipal2() {
 		setTitle("Plantilla");
 		setResizable(false);
 		setUndecorated(true);
@@ -442,7 +443,6 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 			}
 		});
 		tableLigasPublicas.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
-		tableLigasPublicas.setModel(miModelo.getLigasPublicas());
 		tableLigasPublicas.setRowHeight(40);
 		tableLigasPublicas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPaneLigasPublicas.setViewportView(tableLigasPublicas);
@@ -453,7 +453,6 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 		
 		tableLigasPrivadas = new JTable();
 		tableLigasPrivadas.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
-		tableLigasPrivadas.setModel(miModelo.getLigasPrivadas());
 		tableLigasPrivadas.setRowHeight(40);
 		tableLigasPrivadas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPaneTusLigas.setViewportView(tableLigasPrivadas);
@@ -478,6 +477,14 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 		});
 		
 		setLocationRelativeTo(null);
+		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent e) {
+				tableLigasPrivadas.setModel(miControlador.getLigasPrivadas());
+				tableLigasPublicas.setModel(miControlador.getLigasPublicas());
+			}
+		});
 	}
 
 	@Override

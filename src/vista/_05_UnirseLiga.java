@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -56,8 +58,7 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 	private JComboBox<String> listaEquipos;
 
 	// Constructor
-	public _05_UnirseLiga(Modelo miModelo2) {
-		setModelo(miModelo2);
+	public _05_UnirseLiga() {
 		setTitle("Unirse a liga");
 		setResizable(false);
 		setUndecorated(true);
@@ -501,18 +502,17 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 		background.add(lblunirse_1);
 
 		listaEquipos = new JComboBox<>();
-		listaEquipos.setModel(miModelo.getEquiposUsuario());
 		listaEquipos.setBounds(653, 259, 219, 19);
 		background.add(listaEquipos);
-		
-		lblLogo.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				listaEquipos.setModel(miModelo.getEquiposUsuario());
-			}
-		});
 
 		setLocationRelativeTo(null);
+		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent e) {
+				listaEquipos.setModel(miControlador.getEquiposUsuario());
+			}
+		});
 	}
 
 	@Override
