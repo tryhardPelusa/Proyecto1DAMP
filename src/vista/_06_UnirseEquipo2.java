@@ -48,6 +48,7 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 	private JLabel lblBarraMoverVentana;
 	private int xMouse, yMouse;
 	private JTextField textField;
+	private JButton btnUnion;
 
 	// Constructor
 	public _06_UnirseEquipo2() {
@@ -425,6 +426,11 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 		lblFondo.setIcon(new ImageIcon(_06_UnirseEquipo2.class.getResource("/img/fondoLogin2  - copia.jpg")));
 		lblFondo.setBounds(0, 0, 283, 539);
 		background.add(lblFondo);
+		
+		btnUnion = new JButton("Unirse");
+		btnUnion.setBackground(new Color(255, 128, 0));
+		btnUnion.setBounds(679, 316, 85, 21);
+		background.add(btnUnion);
 
 		setLocationRelativeTo(null);
 	}

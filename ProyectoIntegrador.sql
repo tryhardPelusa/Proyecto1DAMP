@@ -28,6 +28,7 @@ IDEquipo integer auto_increment NOT NULL,
 Nombre Varchar (50) NOT NULL,
 Deporte varchar(50) Not NULL,
 Estadio varchar (50) DEFAULT NULL,
+CodEquipo varchar(10) NOT NULL,
 primary key (IDEquipo)
 )engine=innodb;
 
@@ -41,6 +42,7 @@ fechaInicio date NOT NULL,
 privacidad enum('privado','publico') NOT NULL,
 deporte varchar(50) NOT NULL,
 IDAdmin Integer NOT NULL,
+CodLiga varchar(10) NOT NULL,
 FOREIGN KEY (IDAdmin) REFERENCES usuario(ID) ON DELETE CASCADE ON UPDATE CASCADE,
  PRIMARY KEY (ID)
 ) engine=innodb;
@@ -80,7 +82,7 @@ FOREIGN KEY (IDApuesta) references Apuestas(IDApuestas) ON DELETE CASCADE ON UPD
 FOREIGN KEY (IDUsuario) references Usuario(ID) ON DELETE CASCADE ON UPDATE CASCADE
 ) engine=innodb;
 
-CREATE TABLE Participan(
+CREATE TABLE Equipo_Pert_Liga(
 IDEquipo INTEGER NOT NULL,
 IDLiga INTEGER NOT NULL,
 FOREIGN KEY (IDEquipo) references Equipos(IDEquipo) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -119,27 +121,50 @@ INSERT INTO Usuario (Nombre, Apellido1, Apellido2, monedas, Edad, Correo, contra
 INSERT INTO Usuario (Nombre, Apellido1, Apellido2, monedas, Edad, Correo, contraseña, Usuario) VALUES ('David', 'González', 'Ramírez', 2000, '31', 'david.gonzalez@gmail.com', '1234ijkl', 'david_gonzalez');
 INSERT INTO Usuario (Nombre, Apellido1, Apellido2, monedas, Edad, Correo, contraseña, Usuario) VALUES ('Admin', 'Admin', 'Admin', 1000, '30', 'admin@gmail.com', '1234', 'admin');
 
-INSERT INTO Equipos (Nombre, Deporte, Estadio) VALUES ('Equipo A', 'Fútbol', 'Estadio 1');
-INSERT INTO Equipos (Nombre, Deporte, Estadio) VALUES ('Equipo B', 'Fútbol', 'Estadio 2');
-INSERT INTO Equipos (Nombre, Deporte, Estadio) VALUES ('Equipo C', 'Basket', 'Estadio 3');
-INSERT INTO Equipos (Nombre, Deporte, Estadio) VALUES ('Equipo D', 'Basket', 'Estadio 4');
-INSERT INTO Equipos (Nombre, Deporte, Estadio) VALUES ('Equipo E', 'Fútbol', 'Estadio 5');
+INSERT INTO Equipos (Nombre, Deporte, Estadio, CodEquipo) VALUES ('Real Madrid', 'Fútbol', 'Estadio 6', '11ABC');
+INSERT INTO Equipos (Nombre, Deporte, Estadio, CodEquipo) VALUES ('Atletico de Madrid', 'Fútbol', 'Estadio 7', '11ABD');
+INSERT INTO Equipos (Nombre, Deporte, Estadio, CodEquipo) VALUES ('Barcelona FC', 'Fútbol', 'Estadio 8', '11ABE');
+INSERT INTO Equipos (Nombre, Deporte, Estadio, CodEquipo) VALUES ('Manchester City', 'Fútbol', 'Estadio 9', '11ABF');
+INSERT INTO Equipos (Nombre, Deporte, Estadio, CodEquipo) VALUES ('Arsenal', 'Fútbol', 'Estadio 10', '11ABG');
+INSERT INTO Equipos (Nombre, Deporte, Estadio, CodEquipo) VALUES ('Chelsea', 'Fútbol', 'Estadio 11', '11ABH');
+INSERT INTO Equipos (Nombre, Deporte, Estadio, CodEquipo) VALUES ('Lakers', 'Basket', 'Estadio 12', '11ABI');
+INSERT INTO Equipos (Nombre, Deporte, Estadio, CodEquipo) VALUES ('Los angeles', 'Basket', 'Estadio 13', '11ABJ');
+INSERT INTO Equipos (Nombre, Deporte, Estadio, CodEquipo) VALUES ('Las Palmas FC', 'Fútbol', 'Estadio 14', '11ABK');
+INSERT INTO Equipos (Nombre, Deporte, Estadio, CodEquipo) VALUES ('Granada FC', 'Fútbol', 'Estadio 15', '11ABL');
 
-INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin) VALUES (5000, 'La Liga', 'Sede 1', '2023-05-26', 'publico', 'Fútbol', 1);
-INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin) VALUES (6000, 'Liga 123', 'Sede 2', '2023-06-01', 'publico', 'Fútbol', 1);
-INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin) VALUES (7000, 'NBA', 'Sede 3', '2023-06-05', 'privado', 'Basket', 1);
-INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin) VALUES (8000, 'Major League Baseball', 'Sede 4', '2023-06-10', 'publico', 'Basket', 1);
-INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin) VALUES (9000, 'National Hockey League', 'Sede 5', '2023-06-15', 'privado', 'Fútbol', 1);
-INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin) VALUES (10000, 'Premier League', 'Sede 6', '2023-06-20', 'publico', 'Fútbol', 1);
-INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin) VALUES (11000, 'Bundesliga', 'Sede 7', '2023-06-25', 'publico', 'Fútbol', 1);
-INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin) VALUES (12000, 'Ligue 1', 'Sede 8', '2023-06-30', 'privado', 'Basket', 1);
-INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin) VALUES (13000, 'Liga MX', 'Sede 9', '2023-07-05', 'publico', 'Basket', 1);
-INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin) VALUES (14000, 'Liga ACB', 'Sede 10', '2023-07-10', 'privado', 'Fútbol', 1);
-INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin) VALUES (15000, 'National Rugby League', 'Sede 11', '2023-07-15', 'publico', 'Fútbol', 1);
-INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin) VALUES (16000, 'Major League Soccer', 'Sede 12', '2023-07-20', 'publico', 'Basket', 1);
-INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin) VALUES (17000, 'Indian Premier League', 'Sede 13', '2023-07-25', 'privado', 'Basket', 1);
-INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin) VALUES (18000, 'Professional Golfers Association', 'Sede 14', '2023-07-30', 'publico', 'Fútbol', 1);
-INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin) VALUES (19000, 'National Football League', 'Sede 15', '2023-08-05', 'privado', 'Fútbol', 1);
+INSERT INTO usuario_pertequipo (IDUsuario, IDEquipo) VALUES (2, 1);
+INSERT INTO usuario_pertequipo (IDUsuario, IDEquipo) VALUES (2, 4);
+INSERT INTO usuario_pertequipo (IDUsuario, IDEquipo) VALUES (2, 7);
+INSERT INTO usuario_pertequipo (IDUsuario, IDEquipo) VALUES (3, 2);
+INSERT INTO usuario_pertequipo (IDUsuario, IDEquipo) VALUES (3, 5);
+INSERT INTO usuario_pertequipo (IDUsuario, IDEquipo) VALUES (3, 8);
+
+INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin, CodLiga) VALUES (5000, 'La Liga', 'Sede 1', '2023-05-26', 'publico', 'Fútbol', 1, "ABC11");
+INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin, CodLiga) VALUES (6000, 'Liga 123', 'Sede 2', '2023-06-01', 'publico', 'Fútbol', 1, 'ABC12');
+INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin, CodLiga) VALUES (7000, 'NBA', 'Sede 3', '2023-06-05', 'privado', 'Basket', 1, 'ABC13');
+INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin, CodLiga) VALUES (8000, 'Major League Baseball', 'Sede 4', '2023-06-10', 'publico', 'Basket', 1, 'ABC14');
+INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin, CodLiga) VALUES (9000, 'National Hockey League', 'Sede 5', '2023-06-15', 'privado', 'Fútbol', 1, 'ABC15');
+INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin, CodLiga) VALUES (10000, 'Premier League', 'Sede 6', '2023-06-20', 'publico', 'Fútbol', 1, 'ABC16');
+INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin, CodLiga) VALUES (11000, 'Bundesliga', 'Sede 7', '2023-06-25', 'publico', 'Fútbol', 1, 'ABC17');
+INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin, CodLiga) VALUES (12000, 'Ligue 1', 'Sede 8', '2023-06-30', 'privado', 'Basket', 1, 'ABC18');
+INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin, CodLiga) VALUES (13000, 'Liga MX', 'Sede 9', '2023-07-05', 'publico', 'Basket', 1, 'ABC19');
+INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin, CodLiga) VALUES (14000, 'Liga ACB', 'Sede 10', '2023-07-10', 'privado', 'Fútbol', 1, 'ABC20');
+INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin, CodLiga) VALUES (15000, 'National Rugby League', 'Sede 11', '2023-07-15', 'publico', 'Fútbol', 1, 'ABC21');
+INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin, CodLiga) VALUES (16000, 'Major League Soccer', 'Sede 12', '2023-07-20', 'publico', 'Basket', 1, 'ABC22');
+INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin, CodLiga) VALUES (17000, 'Indian Premier League', 'Sede 13', '2023-07-25', 'privado', 'Basket', 1, 'ABC23');
+INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin, CodLiga) VALUES (18000, 'Professional Golfers Association', 'Sede 14', '2023-07-30', 'publico', 'Fútbol', 1, 'ABC24');
+INSERT INTO Ligas (Premio, Nombre, Sede, fechaInicio, privacidad, deporte, IDAdmin, CodLiga) VALUES (19000, 'National Football League', 'Sede 15', '2023-08-05', 'privado', 'Fútbol', 1, 'ABC25');
+
+INSERT INTO Equipo_Pert_Liga (IDEquipo, IDLiga) VALUES (1, 1);
+INSERT INTO Equipo_Pert_Liga (IDEquipo, IDLiga) VALUES (2, 1);
+INSERT INTO Equipo_Pert_Liga (IDEquipo, IDLiga) VALUES (3, 1);
+INSERT INTO Equipo_Pert_Liga (IDEquipo, IDLiga) VALUES (4, 6);
+INSERT INTO Equipo_Pert_Liga (IDEquipo, IDLiga) VALUES (5, 6);
+INSERT INTO Equipo_Pert_Liga (IDEquipo, IDLiga) VALUES (6, 6);
+INSERT INTO Equipo_Pert_Liga (IDEquipo, IDLiga) VALUES (7, 3);
+INSERT INTO Equipo_Pert_Liga (IDEquipo, IDLiga) VALUES (8, 3);
+INSERT INTO Equipo_Pert_Liga (IDEquipo, IDLiga) VALUES (9, 2);
+INSERT INTO Equipo_Pert_Liga (IDEquipo, IDLiga) VALUES (10, 2);
 
 INSERT INTO Partidos (EquipLocal, EquipVisitante, Lugar, Fecha, IDLiga) VALUES ('Equipo A', 'Equipo B', 'Estadio 1', '2023-06-26', 1);
 INSERT INTO Partidos (EquipLocal, EquipVisitante, Lugar, Fecha, IDLiga) VALUES ('Equipo C', 'Equipo D', 'Estadio 3', '2023-07-01', 1);
@@ -156,17 +181,6 @@ INSERT INTO Partidos (EquipLocal, EquipVisitante, Lugar, Fecha, IDLiga) VALUES (
 INSERT INTO Partidos (EquipLocal, EquipVisitante, Lugar, Fecha, IDLiga) VALUES ('Equipo O', 'Equipo K', 'Estadio 15', '2023-08-25', 3);
 INSERT INTO Partidos (EquipLocal, EquipVisitante, Lugar, Fecha, IDLiga) VALUES ('Equipo L', 'Equipo M', 'Estadio 12', '2023-08-30', 3);
 INSERT INTO Partidos (EquipLocal, EquipVisitante, Lugar, Fecha, IDLiga) VALUES ('Equipo N', 'Equipo O', 'Estadio 14', '2023-09-05', 3);
-
-INSERT INTO Equipos (Nombre, Deporte, Estadio) VALUES ('Equipo F', 'Fútbol', 'Estadio 6');
-INSERT INTO Equipos (Nombre, Deporte, Estadio) VALUES ('Equipo G', 'Fútbol', 'Estadio 7');
-INSERT INTO Equipos (Nombre, Deporte, Estadio) VALUES ('Equipo H', 'Basket', 'Estadio 8');
-INSERT INTO Equipos (Nombre, Deporte, Estadio) VALUES ('Equipo I', 'Basket', 'Estadio 9');
-INSERT INTO Equipos (Nombre, Deporte, Estadio) VALUES ('Equipo J', 'Fútbol', 'Estadio 10');
-INSERT INTO Equipos (Nombre, Deporte, Estadio) VALUES ('Equipo K', 'Fútbol', 'Estadio 11');
-INSERT INTO Equipos (Nombre, Deporte, Estadio) VALUES ('Equipo L', 'Basket', 'Estadio 12');
-INSERT INTO Equipos (Nombre, Deporte, Estadio) VALUES ('Equipo M', 'Basket', 'Estadio 13');
-INSERT INTO Equipos (Nombre, Deporte, Estadio) VALUES ('Equipo N', 'Fútbol', 'Estadio 14');
-INSERT INTO Equipos (Nombre, Deporte, Estadio) VALUES ('Equipo O', 'Fútbol', 'Estadio 15');
 
 INSERT INTO resultado (PuntosVisitante, PuntosLocales, Fecha, EquipLocal, EquipVisitante, IDPartido) VALUES (3, 2, '2023-06-26', 'Equipo A', 'Equipo B', 1);
 INSERT INTO resultado (PuntosVisitante, PuntosLocales, Fecha, EquipLocal, EquipVisitante, IDPartido) VALUES (1, 3, '2023-07-01', 'Equipo C', 'Equipo D', 2);
