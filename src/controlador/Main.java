@@ -35,7 +35,7 @@ public class Main {
 		misVistas[2] = new _02_Registro();
 		misVistas[3] = new _03_RecuperarCuenta();
 		misVistas[4] = new _04_MiCuenta();
-		misVistas[5] = new _05_UnirseLiga();
+		misVistas[5] = new _05_UnirseLiga(miModelo);
 		misVistas[6] = new _06_UnirseEquipo2();
 		misVistas[7] = new _07_CrearLigas2();
 		misVistas[8] = new _08_CrearEquipos();

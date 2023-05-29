@@ -5,7 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Random;
 
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 import vista.Vista;
@@ -24,7 +27,7 @@ public class Modelo {
 	private String url = "jdbc:mysql://localhost/" + db
 			+ "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	private Connection conexion;
-
+ 
 	public void setVista(Vista miVista) {
 		this.miVista = miVista;
 	}
@@ -126,6 +129,7 @@ public class Modelo {
 					setUsuario(id);
 					rset.close();
 					proI.close();
+					System.out.println(usuario);
 					return true;
 				}
 			}
@@ -149,12 +153,11 @@ public class Modelo {
 
 	public DefaultTableModel getLigasPublicas() {
 		DefaultTableModel model = new DefaultTableModel();
-
+		ConexionMySQL();
 		String consulta = "SELECT nombre FROM ligas WHERE idadmin=1";
 
 		try {
-			Connection con = DriverManager.getConnection(url, usuario, pwd);
-			PreparedStatement stmt = con.prepareStatement(consulta);
+			PreparedStatement stmt = conexion.prepareStatement(consulta);
 			ResultSet rs = stmt.executeQuery();
 
 			model.addColumn("Ligas Públicas");
@@ -169,7 +172,6 @@ public class Modelo {
 			// Cerrar la conexión y liberar recursos
 			rs.close();
 			stmt.close();
-			con.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -179,12 +181,17 @@ public class Modelo {
 
 	public DefaultTableModel getLigasPrivadas() {
 		DefaultTableModel model = new DefaultTableModel();
-
-		String consulta = "SELECT nombre FROM ligas WHERE idadmin = ?";
+		ConexionMySQL();
+		String consulta = "SELECT Ligas.Nombre AS NombreLiga\r\n"
+				+ "FROM Ligas\r\n"
+				+ "JOIN Equipo_Pert_Liga ON Ligas.ID = Equipo_Pert_Liga.IDLiga\r\n"
+				+ "JOIN Equipos ON Equipo_Pert_Liga.IDEquipo = Equipos.IDEquipo\r\n"
+				+ "JOIN Usuario_PertEquipo ON Equipos.IDEquipo = Usuario_PertEquipo.IDEquipo\r\n"
+				+ "JOIN Usuario ON Usuario_PertEquipo.IDUsuario = Usuario.ID\r\n"
+				+ "WHERE Usuario.ID = ?";
 
 		try {
-			Connection con = DriverManager.getConnection(url, usuario, pwd);
-			PreparedStatement stmt = con.prepareStatement(consulta);
+			PreparedStatement stmt = conexion.prepareStatement(consulta);
 			stmt.setString(1, usuario);
 			ResultSet rs = stmt.executeQuery();
 
@@ -200,12 +207,76 @@ public class Modelo {
 			// Cerrar la conexión y liberar recursos
 			rs.close();
 			stmt.close();
-			con.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return model;
+	}
+
+	public ComboBoxModel<String> getEquiposUsuario() {
+		DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+		ConexionMySQL();
+		String consulta = "SELECT Equipos.Nombre\r\n" + "FROM Usuario\r\n"
+				+ "INNER JOIN Usuario_PertEquipo ON Usuario.ID = Usuario_PertEquipo.IDUsuario\r\n"
+				+ "INNER JOIN Equipos ON Usuario_PertEquipo.IDEquipo = Equipos.IDEquipo\r\n"
+				+ "WHERE Usuario.ID = ?\r\n" + "";
+
+		try {
+
+			PreparedStatement stmt = conexion.prepareStatement(consulta);
+
+			stmt.setString(1, usuario);
+			ResultSet rs = stmt.executeQuery();
+			
+			System.out.println(usuario);
+			while (rs.next()) {
+				String rowData = rs.getString("Nombre");
+				model.addElement(rowData);
+				System.out.println(rowData);
+			}
+			rs.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return model;
+	}
+	
+	public String getCodigoEquipo() {
+		String codigo = "";
+		Random random = new Random();
+	    
+	    // Generar los números aleatorios
+	    int numero1 = random.nextInt(10); // Número entre 0 y 9
+	    int numero2 = random.nextInt(10); // Número entre 0 y 9
+	    
+	    // Generar las letras aleatorias
+	    char letra1 = (char) (random.nextInt(26) + 'A'); // Letra mayúscula entre A y Z
+	    char letra2 = (char) (random.nextInt(26) + 'A'); // Letra mayúscula entre A y Z
+	    char letra3 = (char) (random.nextInt(26) + 'A'); // Letra mayúscula entre A y Z
+	    
+	    // Construir el código combinando los números y las letras
+	    codigo += numero1 + numero2 + letra1 + letra2 + letra3;
+		return codigo;
+	}
+	
+	public String getCodigoLiga() {
+		String codigo = "";
+		Random random = new Random();
+	    
+	    // Generar los números aleatorios
+	    int numero1 = random.nextInt(10); // Número entre 0 y 9
+	    int numero2 = random.nextInt(10); // Número entre 0 y 9
+	    
+	    // Generar las letras aleatorias
+	    char letra1 = (char) (random.nextInt(26) + 'A'); // Letra mayúscula entre A y Z
+	    char letra2 = (char) (random.nextInt(26) + 'A'); // Letra mayúscula entre A y Z
+	    char letra3 = (char) (random.nextInt(26) + 'A'); // Letra mayúscula entre A y Z
+	    
+	    // Construir el código combinando los números y las letras
+	    codigo += letra1 + letra2 + letra3 + numero1 + numero2;
+		return codigo;
 	}
 
 }

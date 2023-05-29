@@ -2,28 +2,29 @@ package vista;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import controlador.Controlador;
 import modelo.Modelo;
-import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
-
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.DefaultComboBoxModel;
 
 public class _05_UnirseLiga extends JFrame implements Vista {
 
@@ -52,16 +53,19 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 	private JButton btnUnion;
 	private JButton btnUnirEqui;
 	private JButton btnCrearEquip;
+	private JComboBox<String> listaEquipos;
 
 	// Constructor
-	public _05_UnirseLiga() {
+	public _05_UnirseLiga(Modelo miModelo2) {
+		setModelo(miModelo2);
 		setTitle("Unirse a liga");
 		setResizable(false);
 		setUndecorated(true);
 		setLocationRelativeTo(null);
 		setLocationByPlatform(rootPaneCheckingEnabled);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationByPlatform(true);;
+		setLocationByPlatform(true);
+		;
 		setSize(1010, 539);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -93,19 +97,20 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 			public void mouseClicked(MouseEvent e) {
 				System.exit(0);
 			}
+
 			@Override
-		    public void mouseEntered(MouseEvent e) {
+			public void mouseEntered(MouseEvent e) {
 				lblBtnCerrar.setBackground(Color.RED);
 				lblBtnCerrar.setOpaque(true);
 				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		    }
+			}
 
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		    	lblBtnCerrar.setBackground(null);
-		    	lblBtnCerrar.setOpaque(false);
-		    	setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		    }
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblBtnCerrar.setBackground(null);
+				lblBtnCerrar.setOpaque(false);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			}
 		});
 		lblBtnCerrar.setIcon(new ImageIcon(_00_PaginaPrincipal2.class.getResource("/img/close.png")));
 		lblBtnCerrar.setBounds(970, 0, 40, 40);
@@ -117,16 +122,18 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 			public void mouseClicked(MouseEvent e) {
 				setState(JFrame.ICONIFIED);
 			}
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				lblBtnMinimizar.setBackground(Color.BLUE);
 				lblBtnMinimizar.setOpaque(true);
 				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				lblBtnMinimizar.setBackground(null);
-		    	lblBtnMinimizar.setOpaque(false);
+				lblBtnMinimizar.setOpaque(false);
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
@@ -409,7 +416,7 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 		background.add(btnSignOut);
 		background.setComponentZOrder(btnSignOut, 0);
 
-		lblunirse = new JLabel("Introduzca  c\u00F3digo de uni\u00F3n:");
+		lblunirse = new JLabel("Elige tu equipo:");
 		lblunirse.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
 		lblunirse.setBounds(375, 247, 316, 39);
 		background.add(lblunirse);
@@ -417,7 +424,7 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 		textField = new JTextField();
 		textField.setColumns(10);
 		textField.setBackground(new Color(255, 255, 255));
-		textField.setBounds(653, 260, 219, 19);
+		textField.setBounds(653, 347, 219, 19);
 		background.add(textField);
 
 		btnUnion = new JButton("Unirse");
@@ -428,7 +435,7 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 			}
 		});
 		btnUnion.setBackground(new Color(255, 128, 0));
-		btnUnion.setBounds(787, 290, 85, 21);
+		btnUnion.setBounds(787, 390, 85, 21);
 		background.add(btnUnion);
 
 		btnUnirEqui = new JButton("Unirse equipo");
@@ -441,14 +448,10 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 		btnUnirEqui.setBounds(751, 504, 115, 21);
 		background.add(btnUnirEqui);
 
-
-		
-
 		JLabel lblNoEquipo = new JLabel("\u00BFNo tienes equipo?, crea o unete a uno :D ");
 		lblNoEquipo.setFont(new Font("Britannic Bold", Font.PLAIN, 14));
 		lblNoEquipo.setBounds(440, 496, 322, 32);
 		background.add(lblNoEquipo);
-
 
 		btnCrearEquip = new JButton("Crear Equipo");
 		btnCrearEquip.addActionListener(new ActionListener() {
@@ -483,7 +486,7 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 		});
 		lblBarraMoverVentana.setBounds(0, 0, 918, 23);
 		background.add(lblBarraMoverVentana);
-		
+
 		txtpnUnirseAUna = new JTextPane();
 		txtpnUnirseAUna.setFont(new Font("Britannic Bold", Font.PLAIN, 19));
 		txtpnUnirseAUna.setText("UNIRSE A UNA LIGA ATRAVES \r\nDE CODIGO DE INVITACION");
@@ -491,6 +494,23 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 		txtpnUnirseAUna.setEditable(false);
 		txtpnUnirseAUna.setBounds(504, 111, 290, 125);
 		background.add(txtpnUnirseAUna);
+
+		JLabel lblunirse_1 = new JLabel("Introduzca  c\u00F3digo de uni\u00F3n:");
+		lblunirse_1.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
+		lblunirse_1.setBounds(375, 335, 316, 39);
+		background.add(lblunirse_1);
+
+		listaEquipos = new JComboBox<>();
+		listaEquipos.setModel(miModelo.getEquiposUsuario());
+		listaEquipos.setBounds(653, 259, 219, 19);
+		background.add(listaEquipos);
+		
+		lblLogo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				listaEquipos.setModel(miModelo.getEquiposUsuario());
+			}
+		});
 
 		setLocationRelativeTo(null);
 	}

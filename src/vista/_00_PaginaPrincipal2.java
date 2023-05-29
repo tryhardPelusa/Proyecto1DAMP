@@ -470,6 +470,13 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 		lblFondo.setBounds(0, 0, 283, 539);
 		background.add(lblFondo);
 		
+		lblLogo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				tableLigasPrivadas.setModel(miModelo.getLigasPrivadas());
+			}
+		});
+		
 		setLocationRelativeTo(null);
 	}
 
