@@ -231,7 +231,7 @@ public class Modelo {
 			
 			System.out.println(usuario);
 			while (rs.next()) {
-				String rowData = rs.getString("Nombre");
+				String rowData = 	rs.getString("Nombre");
 				model.addElement(rowData);
 				System.out.println(rowData);
 			}
@@ -278,5 +278,33 @@ public class Modelo {
 	    codigo += letra1 + letra2 + letra3 + numero1 + numero2;
 		return codigo;
 	}
+	
+	public boolean verificarCodEquipo(String codEquipo) {
+	    ConexionMySQL();
+	    String consulta = "SELECT CodEquipo FROM Equipos WHERE CodEquipo = ?";
+
+	    try {
+	        PreparedStatement stmt = conexion.prepareStatement(consulta);
+	        stmt.setString(1, codEquipo);
+	        ResultSet rs = stmt.executeQuery();
+
+	        // Verificar si existe una fila con el CodEquipo proporcionado
+	        boolean existeEquipo = rs.next();
+
+	        // Cerrar la conexión y liberar recursos
+	        rs.close();
+	        stmt.close();
+
+	        return existeEquipo;
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return false; // En caso de error o si no se encuentra el CodEquipo
+	}
+
+
+
 
 }

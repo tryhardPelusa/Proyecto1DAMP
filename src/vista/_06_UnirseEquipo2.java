@@ -428,10 +428,15 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 		background.add(lblFondo);
 		
 		btnUnion = new JButton("Unirse");
+		btnUnion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		btnUnion.setBackground(new Color(255, 128, 0));
 		btnUnion.setBounds(679, 316, 85, 21);
 		background.add(btnUnion);
-
+		
 		setLocationRelativeTo(null);
 	}
 
