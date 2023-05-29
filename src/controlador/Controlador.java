@@ -68,5 +68,11 @@ public class Controlador {
 		miModelo.setVista(misVistas[6]);
 		return miModelo.getEquiposUsuario();
 	}
+	
+	public DefaultTableModel obtenerEquiposDePartidos() {
+	    miModelo.setVista(misVistas[12]); 
+	    return miModelo.obtenerEquiposDePartidos();
+	}
+
 
 }

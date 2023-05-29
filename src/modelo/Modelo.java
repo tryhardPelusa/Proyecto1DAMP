@@ -278,5 +278,42 @@ public class Modelo {
 	    codigo += letra1 + letra2 + letra3 + numero1 + numero2;
 		return codigo;
 	}
+	
+	public DefaultTableModel obtenerEquiposDePartidos() {
+	    DefaultTableModel model = new DefaultTableModel();
+	    ConexionMySQL();
+	    String consulta = "SELECT EquipLocal, EquipVisitante FROM Partidos";
+
+	    try {
+	        PreparedStatement stmt = conexion.prepareStatement(consulta);
+	        ResultSet rs = stmt.executeQuery();
+
+	        model.addColumn("Equipo Local");
+	        model.addColumn("");
+	        model.addColumn("");
+	        model.addColumn("");
+	        model.addColumn("Equipo Visitante");
+
+	        // Obtener los datos de las filas
+	        while (rs.next()) {
+	            Object[] rowData = new Object[5];
+	            rowData[0] = rs.getString(1); // Equipo Local
+	            rowData[1] = null;
+	            rowData[2] = 0;
+	            rowData[3] = null;
+	            rowData[4] = rs.getString(2); // Equipo Visitante
+	            model.addRow(rowData);
+	        }
+
+	        // Cerrar la conexión y liberar recursos
+	        rs.close();
+	        stmt.close();
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return model;
+	}
+
 
 }
