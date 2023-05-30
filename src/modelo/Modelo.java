@@ -33,6 +33,7 @@ public class Modelo {
 	private String url = "jdbc:mysql://localhost/" + db
 			+ "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	private Connection conexion;
+	private DefaultTableModel apuestaActual;
 
 	public void setVista(Vista miVista) {
 		this.miVista = miVista;
@@ -611,15 +612,17 @@ public class Modelo {
 		}
 		return Codigo;
 	}
+	
+	public DefaultTableModel obtenerEquiposDePartidos(String[] datosApuesta) {
+	    DefaultTableModel model = new DefaultTableModel();
+	    ConexionMySQL();
+	    String consulta = "SELECT EquipLocal, EquipVisitante FROM Partidos WHERE EquipLocal=? AND EquipVisitante=?";
 
-	public DefaultTableModel obtenerEquiposDePartidos() {
-		DefaultTableModel model = new DefaultTableModel();
-		ConexionMySQL();
-		String consulta = "SELECT EquipLocal, EquipVisitante FROM Partidos WHERE Fecha = '2023-07-01'";
-
-		try {
-			PreparedStatement stmt = conexion.prepareStatement(consulta);
-			ResultSet rs = stmt.executeQuery();
+	    try {
+	        PreparedStatement stmt = conexion.prepareStatement(consulta);
+	        stmt.setString(1, datosApuesta[0]);
+	        stmt.setString(2, datosApuesta[1]);
+	        ResultSet rs = stmt.executeQuery();
 
 			model.addColumn("Equipo Local");
 			model.addColumn("Gana");
@@ -642,10 +645,17 @@ public class Modelo {
 			rs.close();
 			stmt.close();
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return model;
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    apuestaActual = model;
+	    return model;
+
+	}
+
+	
+	public DefaultTableModel getApuestaActual() {
+		return apuestaActual;
 	}
 
 	public DefaultTableModel obtenerPartidosLigaEspecifica() {
@@ -718,6 +728,7 @@ public class Modelo {
 		}
 	}
 
+
 	public Object obtenerEquipoDeTable(String string) {
 		String consulta = "select IDEquipo from equipos where Nombre = ?";
 		PreparedStatement proI;
@@ -733,5 +744,6 @@ public class Modelo {
 		}
 		return IdEquipo;
 	}
+
 
 }

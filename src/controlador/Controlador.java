@@ -132,9 +132,9 @@ public class Controlador {
 		return miModelo.verificarCodEquipo(codigoIngresado);
 	}
 	
-	public DefaultTableModel obtenerEquiposDePartidos() {
-	    miModelo.setVista(misVistas[12]); 
-	    return miModelo.obtenerEquiposDePartidos();
+	public DefaultTableModel obtenerEquiposDePartidos(String[] apuesta) {
+	    miModelo.setVista(misVistas[11]); 
+	    return miModelo.obtenerEquiposDePartidos(apuesta);
 	}
 
 	public DefaultTableModel obtenerPartidosLigaEspecifica() {
@@ -142,9 +142,13 @@ public class Controlador {
 	    return miModelo.obtenerPartidosLigaEspecifica();
 	}
 
+
 	public Object getEquipoDeTabla(String string) {
 		 miModelo.setVista(misVistas[9]); 
 		    return miModelo.obtenerEquipoDeTable(string);
-		
+	}
+			public DefaultTableModel getApuesta() {
+		miModelo.setVista(misVistas[11]);
+		return miModelo.getApuestaActual();
 	}
 }
