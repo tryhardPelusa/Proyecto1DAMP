@@ -435,7 +435,14 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 		scrollPaneLigasPublicas.setBounds(335, 147, 275, 372);
 		background.add(scrollPaneLigasPublicas);
 		
-		tableLigasPublicas = new JTable();
+		tableLigasPublicas = new JTable() {
+	            @Override
+	            public boolean isCellEditable(int row, int column) {
+	                return false;
+	            }
+	        };
+		tableLigasPublicas.setEnabled(true);
+		tableLigasPublicas.setCellSelectionEnabled(true);
 		tableLigasPublicas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -451,7 +458,13 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 		scrollPaneTusLigas.setBounds(687, 147, 275, 372);
 		background.add(scrollPaneTusLigas);
 		
-		tableLigasPrivadas = new JTable();
+		tableLigasPrivadas = new JTable(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+		tableLigasPrivadas.setEnabled(true);
 		tableLigasPrivadas.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
 		tableLigasPrivadas.setRowHeight(40);
 		tableLigasPrivadas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
