@@ -1,6 +1,8 @@
 package controlador;
 
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import modelo.Modelo;
 import vista.Vista;
@@ -23,11 +25,11 @@ public class Controlador {
 		((JFrame) misVistas[desde]).setVisible(false);
 		((JFrame) misVistas[hasta]).setVisible(true);
 	}
-	
+
 	public void nuevaVentana(int nueva) {
 		((JFrame) misVistas[nueva]).setVisible(true);
 	}
-	
+
 	public void cerrarVentana(int ventanaActual) {
 		((JFrame) misVistas[ventanaActual]).setVisible(false);
 
@@ -36,19 +38,55 @@ public class Controlador {
 	public boolean registro() {
 		miModelo.setVista(misVistas[2]);
 		return miModelo.registro();
-		
+
 	}
 
 	public boolean login() {
 		miModelo.setVista(misVistas[1]);
 		String usr = ((_01_InicioSesion2) misVistas[1]).getUser();
 		String pwd = ((_01_InicioSesion2) misVistas[1]).getPwd();
-		if(miModelo.login(usr, pwd)) {
+		if (miModelo.login(usr, pwd)) {
 			cambiarVentana(1, 0);
 			return true;
 		} else {
 			return false;
 		}
+	}
+
+	public void InsertEquipo() {
+		miModelo.setVista(misVistas[8]);
+		miModelo.InsertEquipo();
+
+	}
+
+	public DefaultTableModel getLigasDeEquipo(String equipoActual) {
+		miModelo.setVista(misVistas[10]);
+		return miModelo.getLigasDeEquipo(equipoActual);
+	}
+
+	public TableModel getUsuariosPorEquipo(String equipoActual) {
+		miModelo.setVista(misVistas[10]);
+		return miModelo.getUsuarioDeLiga(equipoActual);
+	}
+
+	public String getSede(String equipoActual) {
+		miModelo.setVista(misVistas[10]);
+		return miModelo.getSede(equipoActual);
+	}
+
+	public String getdeporte(String equipoActual) {
+		miModelo.setVista(misVistas[10]);
+		return miModelo.getdeporte(equipoActual);
+	}
+
+	public String getEquipo(String equipoActual) {
+		miModelo.setVista(misVistas[10]);
+		return miModelo.getEquipo(equipoActual);
+	}
+
+	public String getCodigo(String equipoActual) {
+		miModelo.setVista(misVistas[10]);
+		return miModelo.getCodigo(equipoActual);
 	}
 
 }
