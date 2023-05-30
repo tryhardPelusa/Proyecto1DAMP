@@ -282,16 +282,16 @@ public class Modelo {
 	public DefaultTableModel obtenerEquiposDePartidos() {
 	    DefaultTableModel model = new DefaultTableModel();
 	    ConexionMySQL();
-	    String consulta = "SELECT EquipLocal, EquipVisitante FROM Partidos";
+	    String consulta = "SELECT EquipLocal, EquipVisitante FROM Partidos WHERE Fecha = '2023-07-01'";
 
 	    try {
 	        PreparedStatement stmt = conexion.prepareStatement(consulta);
 	        ResultSet rs = stmt.executeQuery();
 
 	        model.addColumn("Equipo Local");
-	        model.addColumn("");
-	        model.addColumn("");
-	        model.addColumn("");
+	        model.addColumn("Gana");
+	        model.addColumn("Cantidad");
+	        model.addColumn("Gana");
 	        model.addColumn("Equipo Visitante");
 
 	        // Obtener los datos de las filas
@@ -314,6 +314,41 @@ public class Modelo {
 	    }
 	    return model;
 	}
+	
+	public DefaultTableModel obtenerPartidosLigaEspecifica() {
+	    DefaultTableModel model = new DefaultTableModel();
+	    ConexionMySQL();
+	    String consulta = "SELECT Fecha, EquipLocal, EquipVisitante, Lugar FROM Partidos WHERE IDLiga = 1";
+
+	    try {
+	        PreparedStatement stmt = conexion.prepareStatement(consulta);
+	        ResultSet rs = stmt.executeQuery();
+
+	        model.addColumn("Fecha");
+	        model.addColumn("Equipo Local");
+	        model.addColumn("Equipo Visitante");
+	        model.addColumn("Sede");
+
+	        // Obtener los datos de las filas
+	        while (rs.next()) {
+	            Object[] rowData = new Object[4];
+	            rowData[0] = rs.getDate(1); // Fecha
+	            rowData[1] = rs.getString(2); // Equipo Local
+	            rowData[2] = rs.getString(3); // Equipo Visitante
+	            rowData[3] = rs.getString(4); // Sede
+	            model.addRow(rowData);
+	        }
+
+	        // Cerrar la conexión y liberar recursos
+	        rs.close();
+	        stmt.close();
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return model;
+	}
+
 
 
 }

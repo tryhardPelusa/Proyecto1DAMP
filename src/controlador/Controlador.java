@@ -74,5 +74,8 @@ public class Controlador {
 	    return miModelo.obtenerEquiposDePartidos();
 	}
 
-
+	public DefaultTableModel obtenerPartidosLigaEspecifica() {
+	    miModelo.setVista(misVistas[9]); 
+	    return miModelo.obtenerPartidosLigaEspecifica();
+	}
 }
