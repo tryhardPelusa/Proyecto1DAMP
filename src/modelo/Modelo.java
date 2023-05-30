@@ -6,6 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Random;
 
 import javax.swing.ComboBoxModel;
@@ -117,6 +120,15 @@ public class Modelo {
 		return todoRelleno;
 	}
 
+	public boolean comprobarTodosRellenos(boolean nombre, boolean deporte, Date fecha) {
+		boolean todoRelleno = true;
+		if (nombre || deporte || fecha == null) {
+			todoRelleno = false;
+		}
+
+		return todoRelleno;
+	}
+
 	public boolean login(String usr, String pwd) {
 		ConexionMySQL();
 		String id;
@@ -212,6 +224,59 @@ public class Modelo {
 			e.printStackTrace();
 		}
 		return model;
+	}
+
+	public String[] getMiCuenta() {
+
+		String consulta = "SELECT usuario,nombre,apellido1,apellido2,contraseña,correo,edad FROM usuario WHERE id = ?";
+		String[] datos = new String[7];
+
+		try {
+			PreparedStatement stmt = conexion.prepareStatement(consulta);
+			stmt.setString(1, usuario);
+			ResultSet rs = stmt.executeQuery();
+
+			// Obtener los datos del usuario y guardarlos en el array datos
+			rs.next();
+			for (int i = 0; i < datos.length; i++) {
+				datos[i] = rs.getString(i + 1);
+			}
+
+			// Liberar recursos
+			rs.close();
+			stmt.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return datos;
+	}
+
+	public int actualizarCuenta(String[] datos) {
+
+		String consulta = "UPDATE usuario SET nombre = ?, apellido1 = ?, apellido2 = ?, contraseña = ?, correo = ?, edad = ? WHERE id = ?";
+
+		try {
+			PreparedStatement stmt = conexion.prepareStatement(consulta);
+			stmt.setString(1, datos[0]);
+			stmt.setString(2, datos[1]);
+			stmt.setString(3, datos[2]);
+			stmt.setString(4, datos[3]);
+			stmt.setString(5, datos[4]);
+			stmt.setString(6, datos[5]);
+			stmt.setString(7, usuario);
+			int res = stmt.executeUpdate();
+
+			// Liberar recursos
+			stmt.close();
+
+			// Devolver el número de cambios
+			return res;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
 	}
 
 	public ComboBoxModel<String> getEquiposUsuario() {
@@ -618,5 +683,41 @@ public class Modelo {
 	}
 
 
+
+	public String crearLiga(String[] datos) {
+
+		String consulta = "INSERT INTO ligas (premio,nombre,sede,fechaInicio,privacidad,deporte,idAdmin,CodLiga) VALUES (?,?,?,?,?,?,?,?)";
+		String codigo = getCodigoLiga();
+		try {
+			PreparedStatement stmt = conexion.prepareStatement(consulta);
+			stmt.setInt(1, Integer.parseInt(datos[5]));
+			stmt.setString(2, datos[0]);
+			stmt.setString(3, datos[4]);
+			// Convertir el String de fecha a LocalDate
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			LocalDate localDate = LocalDate.parse(datos[2], formatter);
+
+			// Convertir LocalDate a java.sql.Date
+			java.sql.Date sqlDate = java.sql.Date.valueOf(localDate);
+
+			stmt.setDate(4, sqlDate);
+			stmt.setString(5, datos[3]);
+			stmt.setString(6, datos[1]);
+			stmt.setString(7, usuario);
+			stmt.setString(8, codigo);
+			int res = stmt.executeUpdate();
+
+			// Liberar recursos
+			stmt.close();
+			if (res > 0)
+				return codigo;
+			else
+				return "";
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return "";
+		}
+	}
 
 }

@@ -8,6 +8,8 @@ import javax.swing.table.TableModel;
 import modelo.Modelo;
 import vista.Vista;
 import vista._01_InicioSesion2;
+import vista._04_MiCuenta;
+import vista._07_CrearLigas2;
 
 public class Controlador {
 
@@ -52,6 +54,26 @@ public class Controlador {
 		} else {
 			return false;
 		}
+	}
+	
+	public void cargarMiCuenta() {
+		miModelo.setVista(misVistas[4]);
+		((_04_MiCuenta) misVistas[4]).actualizarDatos(miModelo.getMiCuenta());
+	}
+
+	public void actualizarCuenta(String[] datos) {
+		miModelo.setVista(misVistas[4]);
+		if (miModelo.actualizarCuenta(datos) > 0) {
+			((_04_MiCuenta) misVistas[4]).mostrarUpdateCorrecto();
+		}
+	}
+
+	public void crearliga(String[] datos) {
+		miModelo.setVista(misVistas[7]);
+		String codigo = miModelo.crearLiga(datos);
+		if (!codigo.isEmpty())
+			((_07_CrearLigas2) misVistas[7]).mostrarCorrecto(codigo);
+		
 	}
 
 	public DefaultTableModel getLigasPublicas() {
