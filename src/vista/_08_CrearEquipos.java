@@ -52,7 +52,6 @@ public class _08_CrearEquipos extends JFrame implements Vista {
 	private JButton btnCrearEquipo;
 	private JButton btnUnirseAEquipo;
 	private JButton btnMisApuestas;
-	private JButton btnApostar;
 	private JButton btnSignOut;
 	private JLabel lblBarraMoverVentana;
 	private int xMouse, yMouse;
@@ -174,7 +173,7 @@ public class _08_CrearEquipos extends JFrame implements Vista {
 
 		btnMiCuenta.setHorizontalAlignment(SwingConstants.LEFT);
 		btnMiCuenta.setFont(new Font("Britannic Bold", Font.BOLD, 25));
-		btnMiCuenta.setBounds(10, 13, 262, 49);
+		btnMiCuenta.setBounds(10, 43, 260, 49);
 		btnMiCuenta.setBorderPainted(false);
 		btnMiCuenta.setContentAreaFilled(false);
 		btnMiCuenta.setOpaque(false);
@@ -208,7 +207,7 @@ public class _08_CrearEquipos extends JFrame implements Vista {
 		btnVerLigas.setFocusPainted(false);
 		btnVerLigas.setContentAreaFilled(false);
 		btnVerLigas.setBorderPainted(false);
-		btnVerLigas.setBounds(10, 62, 262, 49);
+		btnVerLigas.setBounds(10, 94, 260, 49);
 		btnVerLigas.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		background.add(btnVerLigas);
 		background.setComponentZOrder(btnVerLigas, 0);
@@ -238,7 +237,7 @@ public class _08_CrearEquipos extends JFrame implements Vista {
 		btnCrearLiga.setFocusPainted(false);
 		btnCrearLiga.setContentAreaFilled(false);
 		btnCrearLiga.setBorderPainted(false);
-		btnCrearLiga.setBounds(10, 122, 260, 49);
+		btnCrearLiga.setBounds(10, 154, 260, 49);
 		btnCrearLiga.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		background.add(btnCrearLiga);
 		background.setComponentZOrder(btnCrearLiga, 0);
@@ -268,7 +267,7 @@ public class _08_CrearEquipos extends JFrame implements Vista {
 		btnUnirseALiga.setFocusPainted(false);
 		btnUnirseALiga.setContentAreaFilled(false);
 		btnUnirseALiga.setBorderPainted(false);
-		btnUnirseALiga.setBounds(10, 182, 260, 49);
+		btnUnirseALiga.setBounds(10, 217, 260, 49);
 		btnUnirseALiga.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		background.add(btnUnirseALiga);
 		background.setComponentZOrder(btnUnirseALiga, 0);
@@ -284,7 +283,7 @@ public class _08_CrearEquipos extends JFrame implements Vista {
 		btnCrearEquipo.setBackground(new Color(220, 220, 220));
 		btnCrearEquipo.setForeground(new Color(128, 128, 128));
 		btnCrearEquipo.setBorder(BorderFactory.createLineBorder(new Color(128, 128, 128)));
-		btnCrearEquipo.setBounds(10, 242, 260, 49);
+		btnCrearEquipo.setBounds(10, 277, 260, 49);
 		background.add(btnCrearEquipo);
 		background.setComponentZOrder(btnCrearEquipo, 0);
 
@@ -313,7 +312,7 @@ public class _08_CrearEquipos extends JFrame implements Vista {
 		btnUnirseAEquipo.setFocusPainted(false);
 		btnUnirseAEquipo.setContentAreaFilled(false);
 		btnUnirseAEquipo.setBorderPainted(false);
-		btnUnirseAEquipo.setBounds(10, 302, 262, 49);
+		btnUnirseAEquipo.setBounds(10, 337, 260, 49);
 		btnUnirseAEquipo.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		background.add(btnUnirseAEquipo);
 		background.setComponentZOrder(btnUnirseAEquipo, 0);
@@ -343,40 +342,10 @@ public class _08_CrearEquipos extends JFrame implements Vista {
 		btnMisApuestas.setFocusPainted(false);
 		btnMisApuestas.setContentAreaFilled(false);
 		btnMisApuestas.setBorderPainted(false);
-		btnMisApuestas.setBounds(10, 362, 262, 49);
+		btnMisApuestas.setBounds(10, 397, 260, 49);
 		btnMisApuestas.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		background.add(btnMisApuestas);
 		background.setComponentZOrder(btnMisApuestas, 0);
-
-		btnApostar = new JButton("APOSTAR");
-		btnApostar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(8, 11);
-			}
-		});
-		btnApostar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				btnApostar.setBackground(Color.yellow);
-				btnApostar.setOpaque(true);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				btnApostar.setBackground(null);
-				btnApostar.setOpaque(false);
-			}
-		});
-		btnApostar.setHorizontalAlignment(SwingConstants.LEFT);
-		btnApostar.setOpaque(false);
-		btnApostar.setFont(new Font("Britannic Bold", Font.BOLD, 25));
-		btnApostar.setFocusPainted(false);
-		btnApostar.setContentAreaFilled(false);
-		btnApostar.setBorderPainted(false);
-		btnApostar.setBounds(10, 422, 260, 49);
-		btnApostar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		background.add(btnApostar);
-		background.setComponentZOrder(btnApostar, 0);
 
 		btnSignOut = new JButton("Sign Out");
 		btnSignOut.addActionListener(new ActionListener() {
@@ -403,7 +372,7 @@ public class _08_CrearEquipos extends JFrame implements Vista {
 		btnSignOut.setFocusPainted(false);
 		btnSignOut.setContentAreaFilled(false);
 		btnSignOut.setBorderPainted(false);
-		btnSignOut.setBounds(10, 470, 262, 49);
+		btnSignOut.setBounds(10, 457, 260, 40);
 		btnSignOut.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		background.add(btnSignOut);
 		background.setComponentZOrder(btnSignOut, 0);
