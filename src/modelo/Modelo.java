@@ -307,13 +307,13 @@ public class Modelo {
 	public DefaultTableModel getMisApuestas(int idUsuario) {
 	    DefaultTableModel model = new DefaultTableModel();
 	    ConexionMySQL();
-	    String consulta = "SELECT a.Cantidad, a.Pronostico FROM Apuestas a INNER JOIN USUARIO_APUESTA ua ON a.IDApuestas = ua.IDApuesta WHERE ua.IDUsuario = ?";
+	    String consulta = "SELECT * FROM Apuestas WHERE IDUsuario = ?";
 
 	    try {
 	        PreparedStatement stmt = conexion.prepareStatement(consulta);
 	        stmt.setInt(1, idUsuario);
 	        ResultSet rs = stmt.executeQuery();
-
+	        model.addColumn("Fecha");
 	        model.addColumn("Cantidad");
 	        model.addColumn("Pronóstico");
 
