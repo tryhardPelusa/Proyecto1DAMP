@@ -55,12 +55,9 @@ public class _12_MisApuestas2 extends JFrame implements Vista {
 	private JButton btnApostar;
 	private JButton btnSignOut;
 	private JTabbedPane tabbedPane;
-	private JPanel panelCurso;
-	private JScrollPane scrollPaneCurso;
-	private JTable tblCurso;
-	private JPanel panelFinalizadas;
-	private JScrollPane scrollPaneFinalizadas;
-	private JTable tblFinalizadas;
+	private JPanel panelApuestas;
+	private JScrollPane scrollPaneApuestas;
+	private JTable tblApuestas;
 	private JTextField txtbuscar;
 	private JButton btnBuscar;
 
@@ -442,27 +439,28 @@ public class _12_MisApuestas2 extends JFrame implements Vista {
         background.add(lblBarraMoverVentana);
         
         tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+        tabbedPane.setToolTipText("");
         tabbedPane.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
         tabbedPane.setBorder(null);
         tabbedPane.setBackground(new Color(0, 128, 200));
         tabbedPane.setBounds(329, 111, 620, 390);
         background.add(tabbedPane);
         
-        panelCurso = new JPanel();
-        panelCurso.setBorder(null);
-        panelCurso.setBackground(new Color(0, 128, 200));
-        tabbedPane.addTab("En curso", null, panelCurso, null);
-        panelCurso.setLayout(null);
+        panelApuestas = new JPanel();
+        panelApuestas.setBorder(null);
+        panelApuestas.setBackground(new Color(0, 128, 200));
+        tabbedPane.addTab("Apuestas", null, panelApuestas, null);
+        panelApuestas.setLayout(null);
         
-        scrollPaneCurso = new JScrollPane();
-        scrollPaneCurso.setBounds(0, 0, 615, 362);
-        scrollPaneCurso.getViewport().setBackground(new Color(0, 128, 192));
-        panelCurso.add(scrollPaneCurso);
+        scrollPaneApuestas = new JScrollPane();
+        scrollPaneApuestas.setBounds(0, 0, 615, 362);
+        scrollPaneApuestas.getViewport().setBackground(new Color(0, 128, 192));
+        panelApuestas.add(scrollPaneApuestas);
         
-        tblCurso = new JTable();
-        tblCurso.setBorder(null);
-        tblCurso.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
-        tblCurso.setModel(new DefaultTableModel(
+        tblApuestas = new JTable();
+        tblApuestas.setBorder(null);
+        tblApuestas.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
+        tblApuestas.setModel(new DefaultTableModel(
         	new Object[][] {
         		{"Real Madrid - Barcelona", "Real Madrid", new Integer(120), "27/05"},
         		{"Almeria - Getafe", "Almeria", new Integer(50), "14/06"},
@@ -478,48 +476,11 @@ public class _12_MisApuestas2 extends JFrame implements Vista {
         		return columnEditables[column];
         	}
         });
-        tblCurso.getColumnModel().getColumn(0).setPreferredWidth(190);
-        tblCurso.getColumnModel().getColumn(1).setPreferredWidth(190);
-        tblCurso.getColumnModel().getColumn(2).setPreferredWidth(100);
-        tblCurso.getColumnModel().getColumn(3).setPreferredWidth(160);
-        scrollPaneCurso.setViewportView(tblCurso);
-        
-        panelFinalizadas = new JPanel();
-        panelFinalizadas.setBorder(null);
-        tabbedPane.addTab("Finalizadas", null, panelFinalizadas, null);
-        panelFinalizadas.setLayout(null);
-        
-        scrollPaneFinalizadas = new JScrollPane();
-        scrollPaneFinalizadas.setBounds(0, 0, 615, 362);
-        scrollPaneFinalizadas.getViewport().setBackground(new Color(0, 128, 192));
-        panelFinalizadas.add(scrollPaneFinalizadas);
-        
-        tblFinalizadas = new JTable();
-        tblFinalizadas.setBorder(null);
-        tblFinalizadas.setModel(new DefaultTableModel(
-        	new Object[][] {
-        		{"Real Madrid - Betis", "Real Madrid", 100, "10/03", "Acertada"},
-        		{"Barcelona - Betis", "Betis", 30, "23/01", "Acertada"},
-        		{"Real Sociedad - Sevilla", "Sevilla", 200, "19/04", "Fallida"},
-        	},
-        	new String[] {
-        		"Partido", "Apuesta", "Cantidad", "Fecha", "Resultado"
-        	}
-        ) {
-        	boolean[] columnEditables = new boolean[] {
-        		false, false, false, false, false
-        	};
-        	public boolean isCellEditable(int row, int column) {
-        		return columnEditables[column];
-        	}
-        });
-        tblFinalizadas.getColumnModel().getColumn(0).setPreferredWidth(190);
-        tblFinalizadas.getColumnModel().getColumn(1).setPreferredWidth(190);
-        tblFinalizadas.getColumnModel().getColumn(2).setPreferredWidth(100);
-        tblFinalizadas.getColumnModel().getColumn(3).setPreferredWidth(160);
-        tblFinalizadas.getColumnModel().getColumn(4).setPreferredWidth(160);
-        tblFinalizadas.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
-        scrollPaneFinalizadas.setViewportView(tblFinalizadas);
+        tblApuestas.getColumnModel().getColumn(0).setPreferredWidth(190);
+        tblApuestas.getColumnModel().getColumn(1).setPreferredWidth(190);
+        tblApuestas.getColumnModel().getColumn(2).setPreferredWidth(100);
+        tblApuestas.getColumnModel().getColumn(3).setPreferredWidth(160);
+        scrollPaneApuestas.setViewportView(tblApuestas);
         
         txtbuscar = new JTextField();
         txtbuscar.setFont(new Font("Britannic Bold", Font.PLAIN, 13));

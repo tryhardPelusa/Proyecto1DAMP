@@ -104,4 +104,10 @@ public class Controlador {
 		return miModelo.getCodigo(equipoActual);
 	}
 
+	public boolean verificarCodEquipo(String codigoIngresado) {
+		miModelo.setVista(misVistas[6]);
+		return miModelo.verificarCodEquipo(codigoIngresado);
+
+	}
+
 }

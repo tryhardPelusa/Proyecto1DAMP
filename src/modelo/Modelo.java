@@ -231,7 +231,7 @@ public class Modelo {
 
 			System.out.println(usuario);
 			while (rs.next()) {
-				String rowData = rs.getString("Nombre");
+				String rowData = 	rs.getString("Nombre");
 				model.addElement(rowData);
 				System.out.println(rowData);
 			}
@@ -278,6 +278,64 @@ public class Modelo {
 		codigo += letra1 + "" + letra2 + "" + letra3 + "" + numero1 + "" + numero2;
 		return codigo;
 	}
+	
+	public boolean verificarCodEquipo(String codEquipo) {
+	    ConexionMySQL();
+	    String consulta = "SELECT CodEquipo FROM Equipos WHERE CodEquipo = ?";
+
+	    try {
+	        PreparedStatement stmt = conexion.prepareStatement(consulta);
+	        stmt.setString(1, codEquipo);
+	        ResultSet rs = stmt.executeQuery();
+
+	        // Verificar si existe una fila con el CodEquipo proporcionado
+	        boolean existeEquipo = rs.next();
+
+	        // Cerrar la conexión y liberar recursos
+	        rs.close();
+	        stmt.close();
+
+	        return existeEquipo;
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return false; // En caso de error o si no se encuentra el CodEquipo
+	}
+
+	public DefaultTableModel getMisApuestas(int idUsuario) {
+	    DefaultTableModel model = new DefaultTableModel();
+	    ConexionMySQL();
+	    String consulta = "SELECT * FROM Apuestas WHERE IDUsuario = ?";
+
+	    try {
+	        PreparedStatement stmt = conexion.prepareStatement(consulta);
+	        stmt.setInt(1, idUsuario);
+	        ResultSet rs = stmt.executeQuery();
+	        model.addColumn("Fecha");
+	        model.addColumn("Cantidad");
+	        model.addColumn("Pronóstico");
+
+	        // Obtener los datos de las filas
+	        while (rs.next()) {
+	            String[] rowData = new String[2];
+	            rowData[0] = String.valueOf(rs.getInt("Cantidad"));
+	            rowData[1] = rs.getString("Pronostico");
+	            model.addRow(rowData);
+	        }
+
+	        // Cerrar la conexión y liberar recursos
+	        rs.close();
+	        stmt.close();
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return model;
+	}
+
+
 
 	public void InsertEquipo() {
 		String codigo;
