@@ -102,7 +102,6 @@ public class Controlador {
 	public String getCodigo(String equipoActual) {
 		miModelo.setVista(misVistas[10]);
 		return miModelo.getCodigo(equipoActual);
->>>>>>> refs/remotes/MiGithub/Raul
 	}
 
 }
