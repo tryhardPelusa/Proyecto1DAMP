@@ -24,6 +24,7 @@ public class Modelo {
 
 	private Vista miVista;
 	private String usuario;
+	private String IdEquipo;
 
 	// Atributos para la conexion mysql
 	private String db = "ProyectoIntegrador";
@@ -296,7 +297,7 @@ public class Modelo {
 
 			System.out.println(usuario);
 			while (rs.next()) {
-				String rowData = 	rs.getString("Nombre");
+				String rowData = rs.getString("Nombre");
 				model.addElement(rowData);
 				System.out.println(rowData);
 			}
@@ -343,64 +344,62 @@ public class Modelo {
 		codigo += letra1 + "" + letra2 + "" + letra3 + "" + numero1 + "" + numero2;
 		return codigo;
 	}
-	
+
 	public boolean verificarCodEquipo(String codEquipo) {
-	    ConexionMySQL();
-	    String consulta = "SELECT CodEquipo FROM Equipos WHERE CodEquipo = ?";
+		ConexionMySQL();
+		String consulta = "SELECT CodEquipo FROM Equipos WHERE CodEquipo = ?";
 
-	    try {
-	        PreparedStatement stmt = conexion.prepareStatement(consulta);
-	        stmt.setString(1, codEquipo);
-	        ResultSet rs = stmt.executeQuery();
+		try {
+			PreparedStatement stmt = conexion.prepareStatement(consulta);
+			stmt.setString(1, codEquipo);
+			ResultSet rs = stmt.executeQuery();
 
-	        // Verificar si existe una fila con el CodEquipo proporcionado
-	        boolean existeEquipo = rs.next();
+			// Verificar si existe una fila con el CodEquipo proporcionado
+			boolean existeEquipo = rs.next();
 
-	        // Cerrar la conexión y liberar recursos
-	        rs.close();
-	        stmt.close();
+			// Cerrar la conexión y liberar recursos
+			rs.close();
+			stmt.close();
 
-	        return existeEquipo;
+			return existeEquipo;
 
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
-	    return false; // En caso de error o si no se encuentra el CodEquipo
+		return false; // En caso de error o si no se encuentra el CodEquipo
 	}
 
 	public DefaultTableModel getMisApuestas(int idUsuario) {
-	    DefaultTableModel model = new DefaultTableModel();
-	    ConexionMySQL();
-	    String consulta = "SELECT * FROM Apuestas WHERE IDUsuario = ?";
+		DefaultTableModel model = new DefaultTableModel();
+		ConexionMySQL();
+		String consulta = "SELECT * FROM Apuestas WHERE IDUsuario = ?";
 
-	    try {
-	        PreparedStatement stmt = conexion.prepareStatement(consulta);
-	        stmt.setInt(1, idUsuario);
-	        ResultSet rs = stmt.executeQuery();
-	        model.addColumn("Fecha");
-	        model.addColumn("Cantidad");
-	        model.addColumn("Pronóstico");
+		try {
+			PreparedStatement stmt = conexion.prepareStatement(consulta);
+			stmt.setInt(1, idUsuario);
+			ResultSet rs = stmt.executeQuery();
+			model.addColumn("Fecha");
+			model.addColumn("Cantidad");
+			model.addColumn("Pronóstico");
 
-	        // Obtener los datos de las filas
-	        while (rs.next()) {
-	            String[] rowData = new String[2];
-	            rowData[0] = String.valueOf(rs.getInt("Cantidad"));
-	            rowData[1] = rs.getString("Pronostico");
-	            model.addRow(rowData);
-	        }
+			// Obtener los datos de las filas
+			while (rs.next()) {
+				String[] rowData = new String[2];
+				rowData[0] = String.valueOf(rs.getInt("Cantidad"));
+				rowData[1] = rs.getString("Pronostico");
+				model.addRow(rowData);
+			}
 
-	        // Cerrar la conexión y liberar recursos
-	        rs.close();
-	        stmt.close();
+			// Cerrar la conexión y liberar recursos
+			rs.close();
+			stmt.close();
 
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
-	    return model;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return model;
 	}
-
-
 
 	public void InsertEquipo() {
 		String codigo;
@@ -465,7 +464,7 @@ public class Modelo {
 		}
 	}
 
-	public DefaultTableModel getLigasDeEquipo(String equipoActual) {
+	public DefaultTableModel getLigasDeEquipo() {
 		DefaultTableModel model = new DefaultTableModel();
 		ConexionMySQL();
 		String consulta = "select IDLiga from equipo_pert_liga WHERE IDEquipo = ?";
@@ -475,7 +474,7 @@ public class Modelo {
 
 		try {
 			proI = conexion.prepareStatement(consulta);
-			proI.setString(1, "1");
+			proI.setString(1, IdEquipo);
 			ResultSet rs = proI.executeQuery();
 
 			ArrayList<String> idLigaList = new ArrayList<>();
@@ -513,7 +512,7 @@ public class Modelo {
 
 		try {
 			proI = conexion.prepareStatement(consulta);
-			proI.setString(1, "1");
+			proI.setString(1, IdEquipo);
 			ResultSet rs = proI.executeQuery();
 
 			ArrayList<String> idUsuarios = new ArrayList<>();
@@ -523,7 +522,7 @@ public class Modelo {
 			}
 			String[] idLiga = idUsuarios.toArray(new String[0]);
 
-			model.addColumn("Ligas");
+			model.addColumn("Jugadores");
 			for (int i = 0; i < idLiga.length; i++) {
 				pro2 = conexion.prepareStatement(consultaNombreEquip);
 				pro2.setString(1, idLiga[i]);
@@ -547,7 +546,7 @@ public class Modelo {
 		String estadio = "";
 		try {
 			proI = conexion.prepareStatement(consulta);
-			proI.setString(1, "1");
+			proI.setString(1, IdEquipo);
 			ResultSet rs = proI.executeQuery();
 			rs.next();
 			estadio = rs.getString(1);
@@ -565,7 +564,7 @@ public class Modelo {
 		String deporte = "";
 		try {
 			proI = conexion.prepareStatement(consulta);
-			proI.setString(1, "1");
+			proI.setString(1, IdEquipo);
 			ResultSet rs = proI.executeQuery();
 			rs.next();
 			deporte = rs.getString(1);
@@ -583,7 +582,7 @@ public class Modelo {
 		String Equipo = "";
 		try {
 			proI = conexion.prepareStatement(consulta);
-			proI.setString(1, "1");
+			proI.setString(1, IdEquipo);
 			ResultSet rs = proI.executeQuery();
 			rs.next();
 			Equipo = rs.getString(1);
@@ -601,7 +600,7 @@ public class Modelo {
 		String Codigo = "";
 		try {
 			proI = conexion.prepareStatement(consulta);
-			proI.setString(1, "1");
+			proI.setString(1, IdEquipo);
 			ResultSet rs = proI.executeQuery();
 			rs.next();
 			Codigo = rs.getString(1);
@@ -612,77 +611,76 @@ public class Modelo {
 		}
 		return Codigo;
 	}
+
 	public DefaultTableModel obtenerEquiposDePartidos() {
-	    DefaultTableModel model = new DefaultTableModel();
-	    ConexionMySQL();
-	    String consulta = "SELECT EquipLocal, EquipVisitante FROM Partidos WHERE Fecha = '2023-07-01'";
+		DefaultTableModel model = new DefaultTableModel();
+		ConexionMySQL();
+		String consulta = "SELECT EquipLocal, EquipVisitante FROM Partidos WHERE Fecha = '2023-07-01'";
 
-	    try {
-	        PreparedStatement stmt = conexion.prepareStatement(consulta);
-	        ResultSet rs = stmt.executeQuery();
+		try {
+			PreparedStatement stmt = conexion.prepareStatement(consulta);
+			ResultSet rs = stmt.executeQuery();
 
-	        model.addColumn("Equipo Local");
-	        model.addColumn("Gana");
-	        model.addColumn("Cantidad");
-	        model.addColumn("Gana");
-	        model.addColumn("Equipo Visitante");
+			model.addColumn("Equipo Local");
+			model.addColumn("Gana");
+			model.addColumn("Cantidad");
+			model.addColumn("Gana");
+			model.addColumn("Equipo Visitante");
 
-	        // Obtener los datos de las filas
-	        while (rs.next()) {
-	            Object[] rowData = new Object[5];
-	            rowData[0] = rs.getString(1); // Equipo Local
-	            rowData[1] = null;
-	            rowData[2] = 0;
-	            rowData[3] = null;
-	            rowData[4] = rs.getString(2); // Equipo Visitante
-	            model.addRow(rowData);
-	        }
+			// Obtener los datos de las filas
+			while (rs.next()) {
+				Object[] rowData = new Object[5];
+				rowData[0] = rs.getString(1); // Equipo Local
+				rowData[1] = null;
+				rowData[2] = 0;
+				rowData[3] = null;
+				rowData[4] = rs.getString(2); // Equipo Visitante
+				model.addRow(rowData);
+			}
 
-	        // Cerrar la conexión y liberar recursos
-	        rs.close();
-	        stmt.close();
+			// Cerrar la conexión y liberar recursos
+			rs.close();
+			stmt.close();
 
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
-	    return model;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return model;
 	}
-	
+
 	public DefaultTableModel obtenerPartidosLigaEspecifica() {
-	    DefaultTableModel model = new DefaultTableModel();
-	    ConexionMySQL();
-	    String consulta = "SELECT Fecha, EquipLocal, EquipVisitante, Lugar FROM Partidos WHERE IDLiga = 1";
+		DefaultTableModel model = new DefaultTableModel();
+		ConexionMySQL();
+		String consulta = "SELECT Fecha, EquipLocal, EquipVisitante, Lugar FROM Partidos WHERE IDLiga = 1";
 
-	    try {
-	        PreparedStatement stmt = conexion.prepareStatement(consulta);
-	        ResultSet rs = stmt.executeQuery();
+		try {
+			PreparedStatement stmt = conexion.prepareStatement(consulta);
+			ResultSet rs = stmt.executeQuery();
 
-	        model.addColumn("Fecha");
-	        model.addColumn("Equipo Local");
-	        model.addColumn("Equipo Visitante");
-	        model.addColumn("Sede");
+			model.addColumn("Fecha");
+			model.addColumn("Equipo Local");
+			model.addColumn("Equipo Visitante");
+			model.addColumn("Sede");
 
-	        // Obtener los datos de las filas
-	        while (rs.next()) {
-	            Object[] rowData = new Object[4];
-	            rowData[0] = rs.getDate(1); // Fecha
-	            rowData[1] = rs.getString(2); // Equipo Local
-	            rowData[2] = rs.getString(3); // Equipo Visitante
-	            rowData[3] = rs.getString(4); // Sede
-	            model.addRow(rowData);
-	        }
+			// Obtener los datos de las filas
+			while (rs.next()) {
+				Object[] rowData = new Object[4];
+				rowData[0] = rs.getDate(1); // Fecha
+				rowData[1] = rs.getString(2); // Equipo Local
+				rowData[2] = rs.getString(3); // Equipo Visitante
+				rowData[3] = rs.getString(4); // Sede
+				model.addRow(rowData);
+			}
 
-	        // Cerrar la conexión y liberar recursos
-	        rs.close();
-	        stmt.close();
+			// Cerrar la conexión y liberar recursos
+			rs.close();
+			stmt.close();
 
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
-	    return model;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return model;
 	}
-
-
 
 	public String crearLiga(String[] datos) {
 
@@ -718,6 +716,22 @@ public class Modelo {
 			e.printStackTrace();
 			return "";
 		}
+	}
+
+	public Object obtenerEquipoDeTable(String string) {
+		String consulta = "select IDEquipo from equipos where Nombre = ?";
+		PreparedStatement proI;
+		try {
+			proI = conexion.prepareStatement(consulta);
+			proI.setString(1, string);
+			ResultSet rs = proI.executeQuery();
+			rs.next();
+			IdEquipo = rs.getString(1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return IdEquipo;
 	}
 
 }

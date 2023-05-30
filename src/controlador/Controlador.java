@@ -99,7 +99,7 @@ public class Controlador {
 
 	public DefaultTableModel getLigasDeEquipo(String equipoActual) {
 		miModelo.setVista(misVistas[10]);
-		return miModelo.getLigasDeEquipo(equipoActual);
+		return miModelo.getLigasDeEquipo();
 	}
 
 	public TableModel getUsuariosPorEquipo(String equipoActual) {
@@ -140,5 +140,11 @@ public class Controlador {
 	public DefaultTableModel obtenerPartidosLigaEspecifica() {
 	    miModelo.setVista(misVistas[9]); 
 	    return miModelo.obtenerPartidosLigaEspecifica();
+	}
+
+	public Object getEquipoDeTabla(String string) {
+		 miModelo.setVista(misVistas[9]); 
+		    return miModelo.obtenerEquipoDeTable(string);
+		
 	}
 }
