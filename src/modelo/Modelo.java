@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import vista.Vista;
 import vista._01_InicioSesion2;
 import vista._02_Registro;
+import vista._06_UnirseEquipo2;
 import vista._08_CrearEquipos;
 
 public class Modelo {
@@ -359,7 +360,7 @@ public class Modelo {
 	        // Cerrar la conexión y liberar recursos
 	        rs.close();
 	        stmt.close();
-
+	        ((_06_UnirseEquipo2) miVista).error(false);
 	        return existeEquipo;
 
 	    } catch (SQLException e) {
@@ -719,5 +720,41 @@ public class Modelo {
 			return "";
 		}
 	}
+	public DefaultTableModel obtenerApuestas() {
+	    DefaultTableModel model = new DefaultTableModel();
+	    ConexionMySQL();
+	    String consulta = "SELECT Fecha, Partido, Cantidad, Pronostico FROM Apuestas WHERE IDUsuario = ?";
+
+	    try {
+	        PreparedStatement stmt = conexion.prepareStatement(consulta);
+	        stmt.setInt(1,Integer.parseInt(getUsuario()));
+
+	        ResultSet rs = stmt.executeQuery();
+
+	        model.addColumn("Fecha");
+	        model.addColumn("Partido");
+	        model.addColumn("Cantidad");
+	        model.addColumn("Pronostico");
+
+	        // Obtener los datos de las filas
+	        while (rs.next()) {
+	            Object[] rowData = new Object[4];
+	            rowData[0] = rs.getDate("Fecha");      // Fecha
+	            rowData[1] = rs.getString("Partido");  // Partido
+	            rowData[2] = rs.getInt("Cantidad");    // Cantidad
+	            rowData[3] = rs.getString("Pronostico");// Pronostico
+	            model.addRow(rowData);
+	        }
+
+	        // Cerrar la conexión y liberar recursos
+	        rs.close();
+	        stmt.close();
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return model;
+	}
+
 
 }

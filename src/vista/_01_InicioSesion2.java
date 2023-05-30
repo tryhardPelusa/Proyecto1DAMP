@@ -236,7 +236,7 @@ public class _01_InicioSesion2 extends JFrame implements Vista {
 		lblIncorrecto = new JLabel("");
 		lblIncorrecto.setForeground(new Color(255, 32, 32));
 		lblIncorrecto.setFont(new Font("Britannic Bold", Font.PLAIN, 15));
-		lblIncorrecto.setBounds(211, 454, 297, 14);
+		lblIncorrecto.setBounds(246, 452, 297, 14);
 		background.add(lblIncorrecto);
 		
 		setLocationRelativeTo(null);

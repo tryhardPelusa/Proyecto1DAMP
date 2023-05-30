@@ -141,4 +141,11 @@ public class Controlador {
 	    miModelo.setVista(misVistas[9]); 
 	    return miModelo.obtenerPartidosLigaEspecifica();
 	}
+
+
+	public DefaultTableModel obtenerApuestas() {
+		miModelo.setVista(misVistas[12]);
+		return miModelo.obtenerApuestas();
+	}
+	
 }

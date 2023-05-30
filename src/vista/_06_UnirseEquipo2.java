@@ -47,8 +47,9 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 	private JButton btnSignOut;
 	private JLabel lblBarraMoverVentana;
 	private int xMouse, yMouse;
-	private JTextField textField;
+	private JTextField textFieldCodigo;
 	private JButton btnUnion;
+	private JLabel lblIncorrecto;
 
 	// Constructor
 	public _06_UnirseEquipo2() {
@@ -410,17 +411,17 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 		lblTitulo.setBounds(483, 81, 381, 85);
 		background.add(lblTitulo);
 
-		JLabel lblIdEquipo = new JLabel("Introduce el ID del equipo:");
+		JLabel lblIdEquipo = new JLabel("Introduce el c\u00F3digo del equipo:");
 		lblIdEquipo.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-		lblIdEquipo.setBounds(545, 218, 241, 40);
+		lblIdEquipo.setBounds(524, 218, 283, 40);
 		background.add(lblIdEquipo);
 
-		textField = new JTextField();
-		textField.setBackground(new Color(0, 128, 192));
-		textField.setFont(new Font("Britannic Bold", Font.BOLD, 16));
-		textField.setBounds(555, 271, 213, 20);
-		background.add(textField);
-		textField.setColumns(10);
+		textFieldCodigo = new JTextField();
+		textFieldCodigo.setBackground(new Color(0, 128, 192));
+		textFieldCodigo.setFont(new Font("Britannic Bold", Font.BOLD, 16));
+		textFieldCodigo.setBounds(555, 271, 213, 20);
+		background.add(textFieldCodigo);
+		textFieldCodigo.setColumns(10);
 
 		lblFondo = new JLabel("");
 		lblFondo.setIcon(new ImageIcon(_06_UnirseEquipo2.class.getResource("/img/fondoLogin2  - copia.jpg")));
@@ -430,19 +431,21 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 		btnUnion = new JButton("Unirse");
 		btnUnion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String codigoIngresado = textField.getText();
+				String codigoIngresado = textFieldCodigo.getText();
                 if (miControlador.verificarCodEquipo(codigoIngresado)) {
                     miControlador.cambiarVentana(6,0);
-                    System.out.println("Unirse al equipo");
-                } else {
-                    
-                    System.out.println("Código incorrecto");
                 }
 			}
 		});
 		btnUnion.setBackground(new Color(255, 128, 0));
-		btnUnion.setBounds(679, 316, 85, 21);
+		btnUnion.setBounds(679, 340, 85, 21);
 		background.add(btnUnion);
+		
+		lblIncorrecto = new JLabel("");
+		lblIncorrecto.setForeground(new Color(255, 32, 32));
+		lblIncorrecto.setFont(new Font("Britannic Bold", Font.PLAIN, 15));
+		lblIncorrecto.setBounds(524, 302, 297, 26);
+		background.add(lblIncorrecto);
 		
 		setLocationRelativeTo(null);
 	}
@@ -456,5 +459,11 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 	@Override
 	public void setControlador(Controlador miControlador) {
 		this.miControlador = miControlador;
+	}
+	public void error(boolean esCorrecto) {
+		
+		if (!esCorrecto) {
+			lblIncorrecto.setText("Código no coincide");
+	}
 	}
 }
