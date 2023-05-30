@@ -68,6 +68,7 @@ public class Controlador {
 		miModelo.setVista(misVistas[6]);
 		return miModelo.getEquiposUsuario();
 	}
+
 	public void InsertEquipo() {
 		miModelo.setVista(misVistas[8]);
 		miModelo.InsertEquipo();
@@ -107,7 +108,15 @@ public class Controlador {
 	public boolean verificarCodEquipo(String codigoIngresado) {
 		miModelo.setVista(misVistas[6]);
 		return miModelo.verificarCodEquipo(codigoIngresado);
-
+	}
+	
+	public DefaultTableModel obtenerEquiposDePartidos() {
+	    miModelo.setVista(misVistas[12]); 
+	    return miModelo.obtenerEquiposDePartidos();
 	}
 
+	public DefaultTableModel obtenerPartidosLigaEspecifica() {
+	    miModelo.setVista(misVistas[9]); 
+	    return miModelo.obtenerPartidosLigaEspecifica();
+	}
 }

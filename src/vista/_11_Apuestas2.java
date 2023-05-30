@@ -4,6 +4,7 @@
 package vista;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -11,6 +12,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultCellEditor;
@@ -463,22 +466,38 @@ public class _11_Apuestas2 extends JFrame implements Vista {
 		tblApuestas.setOpaque(false);
 		tblApuestas.setShowVerticalLines(false);
 		tblApuestas.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
-		tblApuestas.setModel(new DefaultTableModel(
-				new Object[][] { { "Real Madrid", true, 0, null, "Barcelona" }, { "Almeria", true, 0, null, "Getafe" },
-						{ "Betis", null, 0, null, "Valencia" }, { "Valladolid", null, 0, null, "Valencia" }, },
-				new String[] { "Local", "", "Cantidad", "", "Visitante" }) {
-			boolean[] columnEditables = new boolean[] { false, true, false, true, false };
+//		tblApuestas.setModel(new DefaultTableModel(
+//				new Object[][] { { "Real Madrid", true, 0, null, "Barcelona" }, { "Almeria", true, 0, null, "Getafe" },
+//						{ "Betis", null, 0, null, "Valencia" }, { "Valladolid", null, 0, null, "Valencia" }, },
+//				new String[] { "Local", "", "Cantidad", "", "Visitante" }) {
+//			boolean[] columnEditables = new boolean[] { false, true, false, true, false };
+//
+//			public boolean isCellEditable(int row, int column) {
+//				return columnEditables[column];
+//			}
+//		});
 
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
+		tblApuestas.setModel(
+				new DefaultTableModel(new Object[][] {}, new String[] { "Local", "", "Cantidad", "", "Visitante" }) {
+					Class<?>[] columnTypes = new Class<?>[] { Object.class, Boolean.class, Object.class, Boolean.class, Object.class };
+
+				    public Class<?> getColumnClass(int columnIndex) {
+				        return columnTypes[columnIndex];
+				    }
+					
+					boolean[] columnEditables = new boolean[] { false, true, true, true, false };
+
+					public boolean isCellEditable(int row, int column) {
+						return columnEditables[column];
+					}
+				});
 		tblApuestas.getColumnModel().getColumn(1).setCellRenderer(tblApuestas.getDefaultRenderer(Boolean.class));
 		tblApuestas.getColumnModel().getColumn(1).setCellEditor(tblApuestas.getDefaultEditor(Boolean.class));
 
 		tblApuestas.getColumnModel().getColumn(3).setCellRenderer(tblApuestas.getDefaultRenderer(Boolean.class));
 		tblApuestas.getColumnModel().getColumn(3).setCellEditor(tblApuestas.getDefaultEditor(Boolean.class));
 
+		tblApuestas.getColumnModel().getColumn(3).setCellEditor(new DefaultCellEditor(new JCheckBox()));
 		tblApuestas.getColumnModel().getColumn(0).setPreferredWidth(174);
 		tblApuestas.getColumnModel().getColumn(1).setPreferredWidth(26);
 		tblApuestas.getColumnModel().getColumn(2).setPreferredWidth(92);
@@ -564,6 +583,13 @@ public class _11_Apuestas2 extends JFrame implements Vista {
 		background.add(btnAnterior);
 
 		setLocationRelativeTo(null);
+		
+		 this.addWindowListener(new WindowAdapter() {
+	            @Override
+	            public void windowOpened(WindowEvent e) {
+	                tblApuestas.setModel(miControlador.obtenerEquiposDePartidos());
+	            }
+	        });
 	}
 
 	@Override

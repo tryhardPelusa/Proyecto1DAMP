@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 
@@ -511,15 +513,22 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 	  
 	  // Crea la tabla del calendario
 		tableCalendario = new JTable();
-		tableCalendario.setModel(new DefaultTableModel(
-				new Object[][] { { "2023-05-10", "Real Madrid", "Valencia", "Pista U-Tad" },
-						{ "2023-05-11", "Barcelona", "Cadiz", "Camp Nou" },
-						{ "2023-05-12", "Valencia", "Sevilla", "Old Trafford" }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null }, { null, null, null, null }, },
-				new String[] { "Fecha", "Equipo Local", "Equipo Visitante", "Sede" }));
+//		tableCalendario.setModel(new DefaultTableModel(
+//				new Object[][] { { "2023-05-10", "Real Madrid", "Valencia", "Pista U-Tad" },
+//						{ "2023-05-11", "Barcelona", "Cadiz", "Camp Nou" },
+//						{ "2023-05-12", "Valencia", "Sevilla", "Old Trafford" }, { null, null, null, null },
+//						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+//						{ null, null, null, null }, { null, null, null, null }, },
+//				new String[] { "Fecha", "Equipo Local", "Equipo Visitante", "Sede" }));
 		tableCalendario.setFont(new Font("Britannic Bold", Font.PLAIN, 11));
 		scrollPaneCalendario.setViewportView(tableCalendario);
+		
+		this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+            	tableCalendario.setModel(miControlador.obtenerPartidosLigaEspecifica());
+            }
+        });
 	
 		// Personaliza el estilo de las celdas de encabezado de la tabla
      JTableHeader headerCalendario = tableCalendario.getTableHeader();
