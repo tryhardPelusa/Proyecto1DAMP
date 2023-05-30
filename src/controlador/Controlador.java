@@ -51,4 +51,9 @@ public class Controlador {
 		}
 	}
 
+	public boolean verificarCodEquipo(String codigoIngresado) {
+		miModelo.setVista(misVistas[6]);
+		return miModelo.verificarCodEquipo(codigoIngresado);
+	}
+
 }

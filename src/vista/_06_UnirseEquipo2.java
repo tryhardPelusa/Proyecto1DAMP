@@ -431,7 +431,7 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 		btnUnion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String codigoIngresado = textField.getText();
-                if (miModelo.verificarCodEquipo(codigoIngresado)) {
+                if (miControlador.verificarCodEquipo(codigoIngresado)) {
                     miControlador.cambiarVentana(6,0);
                     System.out.println("Unirse al equipo");
                 } else {

@@ -304,6 +304,36 @@ public class Modelo {
 	    return false; // En caso de error o si no se encuentra el CodEquipo
 	}
 
+	public DefaultTableModel getMisApuestas(int idUsuario) {
+	    DefaultTableModel model = new DefaultTableModel();
+	    ConexionMySQL();
+	    String consulta = "SELECT a.Cantidad, a.Pronostico FROM Apuestas a INNER JOIN USUARIO_APUESTA ua ON a.IDApuestas = ua.IDApuesta WHERE ua.IDUsuario = ?";
+
+	    try {
+	        PreparedStatement stmt = conexion.prepareStatement(consulta);
+	        stmt.setInt(1, idUsuario);
+	        ResultSet rs = stmt.executeQuery();
+
+	        model.addColumn("Cantidad");
+	        model.addColumn("Pronóstico");
+
+	        // Obtener los datos de las filas
+	        while (rs.next()) {
+	            String[] rowData = new String[2];
+	            rowData[0] = String.valueOf(rs.getInt("Cantidad"));
+	            rowData[1] = rs.getString("Pronostico");
+	            model.addRow(rowData);
+	        }
+
+	        // Cerrar la conexión y liberar recursos
+	        rs.close();
+	        stmt.close();
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return model;
+	}
 
 
 
