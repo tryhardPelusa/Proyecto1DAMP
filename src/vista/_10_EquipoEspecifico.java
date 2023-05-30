@@ -2,28 +2,29 @@ package vista;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
+import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import controlador.Controlador;
 import modelo.Modelo;
-import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
-
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class _10_EquipoEspecifico extends JFrame implements Vista {
 
@@ -45,14 +46,18 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 	private JButton btnSignOut;
 	private JScrollPane scrollJugadores;
 	private JTable TableJugadores;
-	private JScrollPane scrollPane;
-	private JTable tableDeportes;
-	private JScrollPane scrollPane_1;
-	private JTable tableSede;
 	private JScrollPane scrollPane_2;
 	private JTable tableLigas;
 	private JLabel lblBarraMoverVentana;
 	private int xMouse, yMouse;
+	private JLabel lblcodigoEquip;
+	private String equipoActual;
+	private JLabel lblEquipoEspecifico;
+	private JLabel lbldeporte;
+	private JLabel lblsede;
+	private JLabel lblTituloDeporte;
+	private JLabel lblTituloSede;
+	private JLabel lblTituloCodigo;
 
 	// Constructor
 	public _10_EquipoEspecifico() {
@@ -62,7 +67,8 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 		setLocationRelativeTo(null);
 		setLocationByPlatform(rootPaneCheckingEnabled);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationByPlatform(true);;
+		setLocationByPlatform(true);
+		;
 		setSize(1010, 539);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -94,19 +100,20 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 			public void mouseClicked(MouseEvent e) {
 				System.exit(0);
 			}
+
 			@Override
-		    public void mouseEntered(MouseEvent e) {
+			public void mouseEntered(MouseEvent e) {
 				lblBtnCerrar.setBackground(Color.RED);
 				lblBtnCerrar.setOpaque(true);
 				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		    }
+			}
 
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		    	lblBtnCerrar.setBackground(null);
-		    	lblBtnCerrar.setOpaque(false);
-		    	setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		    }
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblBtnCerrar.setBackground(null);
+				lblBtnCerrar.setOpaque(false);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			}
 		});
 		lblBtnCerrar.setIcon(new ImageIcon(_00_PaginaPrincipal2.class.getResource("/img/close.png")));
 		lblBtnCerrar.setBounds(970, 0, 40, 40);
@@ -118,16 +125,18 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 			public void mouseClicked(MouseEvent e) {
 				setState(JFrame.ICONIFIED);
 			}
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				lblBtnMinimizar.setBackground(Color.BLUE);
 				lblBtnMinimizar.setOpaque(true);
 				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				lblBtnMinimizar.setBackground(null);
-		    	lblBtnMinimizar.setOpaque(false);
+				lblBtnMinimizar.setOpaque(false);
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
@@ -402,7 +411,7 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 		background.setComponentZOrder(btnSignOut, 0);
 
 		scrollJugadores = new JScrollPane();
-		scrollJugadores.setBounds(293, 228, 183, 263);
+		scrollJugadores.setBounds(305, 228, 232, 263);
 		background.add(scrollJugadores);
 
 		TableJugadores = new JTable();
@@ -410,108 +419,20 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 		TableJugadores.setForeground(new Color(0, 0, 0));
 		TableJugadores.setFont(new Font("Britannic Bold", Font.PLAIN, 11));
 		TableJugadores.setEnabled(false);
-		TableJugadores.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Juan"},
-				{"Roberto"},
-				{"Antonio"},
-				{"Jesus"},
-				{"Pedro"},
-				{"Raul"},
-				{"Fernando"},
-				{"Jonathan"},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-			},
-			new String[] {
-				"Jugadores del Equipo"
-			}
-		));
 		scrollJugadores.setViewportView(TableJugadores);
 
-		scrollPane = new JScrollPane();
-		scrollPane.setBounds(521, 228, 183, 151);
-		background.add(scrollPane);
-
-		tableDeportes = new JTable();
-		tableDeportes.setBackground(new Color(223, 255, 234));
-		tableDeportes.setFont(new Font("Britannic Bold", Font.PLAIN, 11));
-		tableDeportes.setEnabled(false);
-		tableDeportes.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Futball"},
-				{"Baloncesto"},
-				{"Rugby"},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-			},
-			new String[] {
-				"Deportes"
-			}
-		));
-		scrollPane.setViewportView(tableDeportes);
-
-		scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(521, 427, 183, 58);
-		background.add(scrollPane_1);
-
-		tableSede = new JTable();
-		tableSede.setBackground(new Color(223, 255, 234));
-		tableSede.setFont(new Font("Britannic Bold", Font.PLAIN, 11));
-		tableSede.setEnabled(false);
-		tableSede.setModel(
-				new DefaultTableModel(
-			new Object[][] {
-				{"C/avenida de margarita n\u00BA5"},
-				{null},
-				{null},
-			},
-			new String[] {
-				"Sede"
-			}
-		));
-		scrollPane_1.setViewportView(tableSede);
-
 		scrollPane_2 = new JScrollPane();
-		scrollPane_2.setBounds(736, 242, 226, 249);
+		scrollPane_2.setBounds(757, 228, 232, 263);
 		background.add(scrollPane_2);
 
 		tableLigas = new JTable();
 		tableLigas.setBackground(new Color(223, 255, 234));
 		tableLigas.setFont(new Font("Britannic Bold", Font.PLAIN, 11));
 		tableLigas.setEnabled(false);
-		tableLigas.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Liga A"},
-				{"Liga B"},
-				{"Liga C"},
-				{"Liga D"},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-				{null},
-			},
-			new String[] {
-				"Ligas"
-			}
-		));
+
 		scrollPane_2.setViewportView(tableLigas);
 
-		JLabel lblEquipoEspecifico = new JLabel("Real Madrid");
+		lblEquipoEspecifico = new JLabel("");
 		lblEquipoEspecifico.setFont(new Font("Britannic Bold", Font.PLAIN, 27));
 		lblEquipoEspecifico.setBounds(539, 108, 215, 74);
 		background.add(lblEquipoEspecifico);
@@ -540,7 +461,52 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 		lblBarraMoverVentana.setBounds(0, 0, 918, 23);
 		background.add(lblBarraMoverVentana);
 
+		lblcodigoEquip = new JLabel("");
+		lblcodigoEquip.setForeground(new Color(255, 128, 0));
+		lblcodigoEquip.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
+		lblcodigoEquip.setBounds(862, 122, 127, 40);
+		background.add(lblcodigoEquip);
+
+		lbldeporte = new JLabel("");
+		lbldeporte.setForeground(new Color(255, 128, 0));
+		lbldeporte.setFont(new Font("Britannic Bold", Font.PLAIN, 17));
+		lbldeporte.setBounds(554, 267, 193, 49);
+		background.add(lbldeporte);
+
+		lblsede = new JLabel("");
+		lblsede.setForeground(new Color(255, 128, 0));
+		lblsede.setFont(new Font("Britannic Bold", Font.PLAIN, 17));
+		lblsede.setBounds(554, 442, 193, 49);
+		background.add(lblsede);
+		
+		lblTituloDeporte = new JLabel("Deporte");
+		lblTituloDeporte.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
+		lblTituloDeporte.setBounds(605, 228, 107, 40);
+		background.add(lblTituloDeporte);
+		
+		lblTituloSede = new JLabel("Sede");
+		lblTituloSede.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
+		lblTituloSede.setBounds(605, 392, 107, 40);
+		background.add(lblTituloSede);
+		
+		lblTituloCodigo = new JLabel("Codigo");
+		lblTituloCodigo.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
+		lblTituloCodigo.setBounds(862, 83, 127, 40);
+		background.add(lblTituloCodigo);
+
 		setLocationRelativeTo(null);
+
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent e) {
+				tableLigas.setModel(miControlador.getLigasDeEquipo(equipoActual));
+				TableJugadores.setModel(miControlador.getUsuariosPorEquipo(equipoActual));
+				lblsede.setText(miControlador.getSede(equipoActual));
+				lbldeporte.setText(miControlador.getdeporte(equipoActual));
+				lblEquipoEspecifico.setText(miControlador.getEquipo(equipoActual));
+				lblcodigoEquip.setText(miControlador.getCodigo(equipoActual));
+			}
+		});
 	}
 
 	@Override
@@ -552,5 +518,9 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 	@Override
 	public void setControlador(Controlador miControlador) {
 		this.miControlador = miControlador;
+	}
+
+	public void setEquipoActual(String equipoActual) {
+		this.equipoActual = equipoActual;
 	}
 }

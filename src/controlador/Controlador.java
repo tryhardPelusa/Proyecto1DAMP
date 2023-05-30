@@ -68,5 +68,41 @@ public class Controlador {
 		miModelo.setVista(misVistas[6]);
 		return miModelo.getEquiposUsuario();
 	}
+	public void InsertEquipo() {
+		miModelo.setVista(misVistas[8]);
+		miModelo.InsertEquipo();
+
+	}
+
+	public DefaultTableModel getLigasDeEquipo(String equipoActual) {
+		miModelo.setVista(misVistas[10]);
+		return miModelo.getLigasDeEquipo(equipoActual);
+	}
+
+	public TableModel getUsuariosPorEquipo(String equipoActual) {
+		miModelo.setVista(misVistas[10]);
+		return miModelo.getUsuarioDeLiga(equipoActual);
+	}
+
+	public String getSede(String equipoActual) {
+		miModelo.setVista(misVistas[10]);
+		return miModelo.getSede(equipoActual);
+	}
+
+	public String getdeporte(String equipoActual) {
+		miModelo.setVista(misVistas[10]);
+		return miModelo.getdeporte(equipoActual);
+	}
+
+	public String getEquipo(String equipoActual) {
+		miModelo.setVista(misVistas[10]);
+		return miModelo.getEquipo(equipoActual);
+	}
+
+	public String getCodigo(String equipoActual) {
+		miModelo.setVista(misVistas[10]);
+		return miModelo.getCodigo(equipoActual);
+>>>>>>> refs/remotes/MiGithub/Raul
+	}
 
 }

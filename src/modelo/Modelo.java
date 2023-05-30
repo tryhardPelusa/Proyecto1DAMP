@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.ComboBoxModel;
@@ -14,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import vista.Vista;
 import vista._01_InicioSesion2;
 import vista._02_Registro;
+import vista._08_CrearEquipos;
 
 public class Modelo {
 
@@ -27,7 +29,7 @@ public class Modelo {
 	private String url = "jdbc:mysql://localhost/" + db
 			+ "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	private Connection conexion;
- 
+
 	public void setVista(Vista miVista) {
 		this.miVista = miVista;
 	}
@@ -182,13 +184,11 @@ public class Modelo {
 	public DefaultTableModel getLigasPrivadas() {
 		DefaultTableModel model = new DefaultTableModel();
 		ConexionMySQL();
-		String consulta = "SELECT Ligas.Nombre AS NombreLiga\r\n"
-				+ "FROM Ligas\r\n"
+		String consulta = "SELECT Ligas.Nombre AS NombreLiga\r\n" + "FROM Ligas\r\n"
 				+ "JOIN Equipo_Pert_Liga ON Ligas.ID = Equipo_Pert_Liga.IDLiga\r\n"
 				+ "JOIN Equipos ON Equipo_Pert_Liga.IDEquipo = Equipos.IDEquipo\r\n"
 				+ "JOIN Usuario_PertEquipo ON Equipos.IDEquipo = Usuario_PertEquipo.IDEquipo\r\n"
-				+ "JOIN Usuario ON Usuario_PertEquipo.IDUsuario = Usuario.ID\r\n"
-				+ "WHERE Usuario.ID = ?";
+				+ "JOIN Usuario ON Usuario_PertEquipo.IDUsuario = Usuario.ID\r\n" + "WHERE Usuario.ID = ?";
 
 		try {
 			PreparedStatement stmt = conexion.prepareStatement(consulta);
@@ -228,7 +228,7 @@ public class Modelo {
 
 			stmt.setString(1, usuario);
 			ResultSet rs = stmt.executeQuery();
-			
+
 			System.out.println(usuario);
 			while (rs.next()) {
 				String rowData = rs.getString("Nombre");
@@ -242,41 +242,252 @@ public class Modelo {
 		}
 		return model;
 	}
-	
+
 	public String getCodigoEquipo() {
 		String codigo = "";
 		Random random = new Random();
-	    
-	    // Generar los números aleatorios
-	    int numero1 = random.nextInt(10); // Número entre 0 y 9
-	    int numero2 = random.nextInt(10); // Número entre 0 y 9
-	    
-	    // Generar las letras aleatorias
-	    char letra1 = (char) (random.nextInt(26) + 'A'); // Letra mayúscula entre A y Z
-	    char letra2 = (char) (random.nextInt(26) + 'A'); // Letra mayúscula entre A y Z
-	    char letra3 = (char) (random.nextInt(26) + 'A'); // Letra mayúscula entre A y Z
-	    
-	    // Construir el código combinando los números y las letras
-	    codigo += numero1 + numero2 + letra1 + letra2 + letra3;
+
+		// Generar los números aleatorios
+		int numero1 = random.nextInt(10); // Número entre 0 y 9
+		int numero2 = random.nextInt(10); // Número entre 0 y 9
+
+		// Generar las letras aleatorias
+		char letra1 = (char) (random.nextInt(26) + 'A'); // Letra mayúscula entre A y Z
+		char letra2 = (char) (random.nextInt(26) + 'A'); // Letra mayúscula entre A y Z
+		char letra3 = (char) (random.nextInt(26) + 'A'); // Letra mayúscula entre A y Z
+
+		// Construir el código combinando los números y las letras
+		codigo += numero1 + "" + numero2 + "" + letra1 + "" + letra2 + "" + letra3;
 		return codigo;
 	}
-	
+
 	public String getCodigoLiga() {
 		String codigo = "";
 		Random random = new Random();
-	    
-	    // Generar los números aleatorios
-	    int numero1 = random.nextInt(10); // Número entre 0 y 9
-	    int numero2 = random.nextInt(10); // Número entre 0 y 9
-	    
-	    // Generar las letras aleatorias
-	    char letra1 = (char) (random.nextInt(26) + 'A'); // Letra mayúscula entre A y Z
-	    char letra2 = (char) (random.nextInt(26) + 'A'); // Letra mayúscula entre A y Z
-	    char letra3 = (char) (random.nextInt(26) + 'A'); // Letra mayúscula entre A y Z
-	    
-	    // Construir el código combinando los números y las letras
-	    codigo += letra1 + letra2 + letra3 + numero1 + numero2;
+
+		// Generar los números aleatorios
+		int numero1 = random.nextInt(10); // Número entre 0 y 9
+		int numero2 = random.nextInt(10); // Número entre 0 y 9
+
+		// Generar las letras aleatorias
+		char letra1 = (char) (random.nextInt(26) + 'A'); // Letra mayúscula entre A y Z
+		char letra2 = (char) (random.nextInt(26) + 'A'); // Letra mayúscula entre A y Z
+		char letra3 = (char) (random.nextInt(26) + 'A'); // Letra mayúscula entre A y Z
+
+		// Construir el código combinando los números y las letras
+		codigo += letra1 + "" + letra2 + "" + letra3 + "" + numero1 + "" + numero2;
 		return codigo;
+	}
+
+	public void InsertEquipo() {
+		String codigo;
+		String nombreEquip = ((_08_CrearEquipos) miVista).getNombreEquipo();
+		String sede = ((_08_CrearEquipos) miVista).getSede();
+		String deporte = ((_08_CrearEquipos) miVista).getDeporte();
+		do {
+			codigo = getCodigoEquipo();
+		} while (comprobarCodigoEquipo(codigo));
+		InsertarEquipo(nombreEquip, deporte, sede, codigo);
+
+	}
+
+	public Boolean comprobarCodigoEquipo(String codigo) {
+		String consulta = "SELECT nombre FROM Equipos WHERE CodEquipo=?";
+		PreparedStatement proI;
+		try {
+			proI = conexion.prepareStatement(consulta);
+			proI.setString(1, codigo);
+			ResultSet rs = proI.executeQuery();
+			if (rs.next()) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return true;
+		}
+
+	}
+
+	public void InsertarEquipo(String NombreEquipo, String Deporte, String Sede, String CodEquipo) {
+		ConexionMySQL();
+		String insert = "INSERT INTO Equipos (Nombre, Deporte, Estadio, CodEquipo) VALUES (?,?,?,?)";
+		String consulta = "select IDEquipo from equipos where CodEquipo = ?";
+		String Insert2 = "INSERT INTO usuario_pertequipo (IDUsuario, IDEquipo) VALUES (?,?)";
+		PreparedStatement proI;
+		PreparedStatement pro2;
+		PreparedStatement pro3;
+		try {
+			proI = conexion.prepareStatement(insert);
+			proI.setString(1, NombreEquipo);
+			proI.setString(2, Deporte);
+			proI.setString(3, Sede);
+			proI.setString(4, CodEquipo);
+			proI.executeUpdate();
+			proI.close();
+
+			pro2 = conexion.prepareStatement(consulta);
+			pro2.setString(1, CodEquipo);
+			ResultSet rs = pro2.executeQuery();
+			rs.next();
+			String IdEquipo = rs.getString(1);
+
+			pro3 = conexion.prepareStatement(Insert2);
+			pro3.setString(1, usuario);
+			pro3.setString(2, IdEquipo);
+			pro3.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public DefaultTableModel getLigasDeEquipo(String equipoActual) {
+		DefaultTableModel model = new DefaultTableModel();
+		ConexionMySQL();
+		String consulta = "select IDLiga from equipo_pert_liga WHERE IDEquipo = ?";
+		String consultaNombreEquip = "select Nombre from ligas where ID = ?";
+		PreparedStatement proI;
+		PreparedStatement pro2;
+
+		try {
+			proI = conexion.prepareStatement(consulta);
+			proI.setString(1, "1");
+			ResultSet rs = proI.executeQuery();
+
+			ArrayList<String> idLigaList = new ArrayList<>();
+			System.out.println(rs.getRow());
+			while (rs.next()) {
+				idLigaList.add(rs.getString(1));
+			}
+			String[] idLiga = idLigaList.toArray(new String[0]);
+
+			model.addColumn("Ligas");
+			for (int i = 0; i < idLiga.length; i++) {
+				pro2 = conexion.prepareStatement(consultaNombreEquip);
+				pro2.setString(1, idLiga[i]);
+				ResultSet re = pro2.executeQuery();
+				re.next();
+				String[] fila = new String[1];
+				fila[0] = re.getString(1);
+				model.addRow(fila);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return model;
+	}
+
+	public DefaultTableModel getUsuarioDeLiga(String equipoActual) {
+		DefaultTableModel model = new DefaultTableModel();
+		ConexionMySQL();
+		String consulta = "select IDUsuario from usuario_pertequipo where IDEquipo = ?;";
+		String consultaNombreEquip = "select Nombre from usuario where ID = ?;";
+		PreparedStatement proI;
+		PreparedStatement pro2;
+
+		try {
+			proI = conexion.prepareStatement(consulta);
+			proI.setString(1, "1");
+			ResultSet rs = proI.executeQuery();
+
+			ArrayList<String> idUsuarios = new ArrayList<>();
+			System.out.println(rs.getRow());
+			while (rs.next()) {
+				idUsuarios.add(rs.getString(1));
+			}
+			String[] idLiga = idUsuarios.toArray(new String[0]);
+
+			model.addColumn("Ligas");
+			for (int i = 0; i < idLiga.length; i++) {
+				pro2 = conexion.prepareStatement(consultaNombreEquip);
+				pro2.setString(1, idLiga[i]);
+				ResultSet re = pro2.executeQuery();
+				re.next();
+				String[] fila = new String[1];
+				fila[0] = re.getString(1);
+				model.addRow(fila);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return model;
+	}
+
+	public String getSede(String equipoActual) {
+		String consulta = "select Estadio from equipos where IDEquipo = ?;";
+		PreparedStatement proI;
+		String estadio = "";
+		try {
+			proI = conexion.prepareStatement(consulta);
+			proI.setString(1, "1");
+			ResultSet rs = proI.executeQuery();
+			rs.next();
+			estadio = rs.getString(1);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return estadio;
+	}
+
+	public String getdeporte(String equipoActual) {
+		String consulta = "select Deporte from equipos where IDEquipo = ?;";
+		PreparedStatement proI;
+		String deporte = "";
+		try {
+			proI = conexion.prepareStatement(consulta);
+			proI.setString(1, "1");
+			ResultSet rs = proI.executeQuery();
+			rs.next();
+			deporte = rs.getString(1);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return deporte;
+	}
+
+	public String getEquipo(String equipoActual) {
+		String consulta = "select Nombre from equipos where IDEquipo = ?;";
+		PreparedStatement proI;
+		String Equipo = "";
+		try {
+			proI = conexion.prepareStatement(consulta);
+			proI.setString(1, "1");
+			ResultSet rs = proI.executeQuery();
+			rs.next();
+			Equipo = rs.getString(1);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return Equipo;
+	}
+
+	public String getCodigo(String equipoActual) {
+		String consulta = "select CodEquipo from equipos where IDEquipo = ?;";
+		PreparedStatement proI;
+		String Codigo = "";
+		try {
+			proI = conexion.prepareStatement(consulta);
+			proI.setString(1, "1");
+			ResultSet rs = proI.executeQuery();
+			rs.next();
+			Codigo = rs.getString(1);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return Codigo;
 	}
 
 }
