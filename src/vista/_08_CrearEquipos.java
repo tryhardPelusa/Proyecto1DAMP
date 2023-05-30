@@ -438,6 +438,7 @@ public class _08_CrearEquipos extends JFrame implements Vista {
 		btnCrear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				miControlador.InsertEquipo();
+				miControlador.getEquipoDeTabla(getNombreEquipo());
 				miControlador.cambiarVentana(8, 10);
 			}
 		});
