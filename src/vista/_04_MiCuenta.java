@@ -55,7 +55,7 @@ public class _04_MiCuenta extends JFrame implements Vista {
 	private JLabel lblApellido2;
 	private JLabel lblCorreo;
 	private JLabel lblPassword;
-	private JLabel lblFechaNacimiento;
+	private JLabel lblEdad;
 	private JTextField txtNombre;
 	private JTextField txtApellido1;
 	private JTextField txtApellido2;
@@ -64,8 +64,8 @@ public class _04_MiCuenta extends JFrame implements Vista {
 	private JLabel lblUser;
 	private JButton btnCambiarDatos;
 	private int xMouse, yMouse;
-	private JDateChooser dateChooser;
 	private JLabel lblUpdate;
+	private JTextField txtEdad;
 
 	// Constructor
 	public _04_MiCuenta() {
@@ -483,18 +483,11 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		lblPassword.setBounds(717, 140, 101, 20);
 		background.add(lblPassword);
 
-		lblFechaNacimiento = new JLabel("Fecha nacimiento:");
-		lblFechaNacimiento.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-		lblFechaNacimiento.setBounds(644, 240, 168, 20);
-		background.add(lblFechaNacimiento);
-
-		dateChooser = new JDateChooser();
-		dateChooser.getCalendarButton().addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		dateChooser.setBounds(824, 240, 145, 26);
-		background.add(dateChooser);
+		lblEdad = new JLabel("Edad:");
+		lblEdad.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblEdad.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
+		lblEdad.setBounds(706, 242, 101, 20);
+		background.add(lblEdad);
 
 		txtNombre = new JTextField();
 		txtNombre.setBackground(new Color(0, 128, 192));
@@ -541,12 +534,13 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		btnCambiarDatos = new JButton("Cambiar datos");
 		btnCambiarDatos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String[] datos = new String[5];
+				String[] datos = new String[6];
 				datos[0] = txtNombre.getText();
 				datos[1] = txtApellido1.getText();
 				datos[2] = txtApellido2.getText();
 				datos[3] = txtPassword.getText();
 				datos[4] = txtCorreo.getText();
+				datos[5] = txtEdad.getText();
 				miControlador.actualizarCuenta(datos);
 			}
 		});
@@ -562,6 +556,13 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		lblUpdate.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
 		lblUpdate.setBounds(685, 391, 283, 20);
 		background.add(lblUpdate);
+		
+		txtEdad = new JTextField();
+		txtEdad.setText("25");
+		txtEdad.setColumns(10);
+		txtEdad.setBackground(new Color(0, 128, 192));
+		txtEdad.setBounds(819, 239, 155, 30);
+		background.add(txtEdad);
 
 		setLocationRelativeTo(null);
 
@@ -592,10 +593,12 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		txtApellido2.setText(datos[3]);
 		txtPassword.setText(datos[4]);
 		txtCorreo.setText(datos[5]);
+		txtEdad.setText(datos[6]);
 	}
 	
 
 	public void mostrarUpdateCorrecto() {
 		lblUpdate.setText("Datos actualizados correctamente");
+		
 	}
 }

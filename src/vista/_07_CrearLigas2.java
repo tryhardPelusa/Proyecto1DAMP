@@ -9,9 +9,15 @@ import java.awt.Font;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -22,14 +28,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JSpinner;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -71,15 +76,11 @@ public class _07_CrearLigas2 extends JFrame implements Vista {
 	private Label lblSede;
 	private JTextField txtSede;
 	private Label lblPremio;
-	private JTextArea txtPremio;
 	private JCheckBox chckbxPremio;
-	private Label lblVictoria;
-	private Label lblDerrota;
-	private Label lblEmpate;
-	private JSpinner spinnerVictoria;
-	private JSpinner spinnerEmpate;
-	private JSpinner spinnerDerrota;
 	private JButton btnCrear;
+	private JSpinner spnPremio;
+	private Label lblCorrecto;
+	private Label lblCodigo;
 
 	// Constructor
 	public _07_CrearLigas2() {
@@ -474,12 +475,60 @@ public class _07_CrearLigas2 extends JFrame implements Vista {
 		txtNombre.setBounds(456, 122, 150, 24);
 		background.add(txtNombre);
 		txtNombre.setColumns(10);
+		
+		txtNombre.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				btnCrear.setEnabled(miModelo.comprobarTodosRellenos(txtNombre.getText().isEmpty(),
+						txtDeporte.getText().isEmpty(), dateFecha.getDate()));
+
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				btnCrear.setEnabled(miModelo.comprobarTodosRellenos(txtNombre.getText().isEmpty(),
+						txtDeporte.getText().isEmpty(), dateFecha.getDate()));
+
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				btnCrear.setEnabled(miModelo.comprobarTodosRellenos(txtNombre.getText().isEmpty(),
+						txtDeporte.getText().isEmpty(), dateFecha.getDate()));
+
+			}
+		});
 
 		txtDeporte = new JTextField();
 		txtDeporte.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
 		txtDeporte.setColumns(10);
 		txtDeporte.setBounds(456, 195, 150, 24);
 		background.add(txtDeporte);
+		
+		txtDeporte.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				btnCrear.setEnabled(miModelo.comprobarTodosRellenos(txtNombre.getText().isEmpty(),
+						txtDeporte.getText().isEmpty(), dateFecha.getDate()));
+
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				btnCrear.setEnabled(miModelo.comprobarTodosRellenos(txtNombre.getText().isEmpty(),
+						txtDeporte.getText().isEmpty(), dateFecha.getDate()));
+
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				btnCrear.setEnabled(miModelo.comprobarTodosRellenos(txtNombre.getText().isEmpty(),
+						txtDeporte.getText().isEmpty(), dateFecha.getDate()));
+
+			}
+		});
 
 		lblDeporte = new Label("Deporte*");
 		lblDeporte.setFont(new Font("Britannic Bold", Font.BOLD, 13));
@@ -489,6 +538,16 @@ public class _07_CrearLigas2 extends JFrame implements Vista {
 		dateFecha = new JDateChooser();
 		dateFecha.setBounds(456, 265, 150, 24);
 		background.add(dateFecha);
+		
+		dateFecha.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+            	btnCrear.setEnabled(miModelo.comprobarTodosRellenos(txtNombre.getText().isEmpty(),
+						txtDeporte.getText().isEmpty(), dateFecha.getDate()));
+            }
+        });
+		
+		
 
 		lblFecha = new Label("Fecha de inicio*");
 		lblFecha.setFont(new Font("Britannic Bold", Font.BOLD, 13));
@@ -497,103 +556,107 @@ public class _07_CrearLigas2 extends JFrame implements Vista {
 
 		lblPrivacidad = new Label("Privacidad");
 		lblPrivacidad.setFont(new Font("Britannic Bold", Font.BOLD, 13));
-		lblPrivacidad.setBounds(333, 338, 117, 24);
+		lblPrivacidad.setBounds(678, 122, 117, 24);
 		background.add(lblPrivacidad);
 
 		privacidad = new ButtonGroup();
 
 		rdbtnPublica = new JRadioButton("P\u00FAblica");
 		rdbtnPublica.setBackground(new Color(0, 128, 192));
-		rdbtnPublica.setBounds(457, 338, 70, 23);
+		rdbtnPublica.setBounds(802, 122, 70, 23);
 		background.add(rdbtnPublica);
 		privacidad.add(rdbtnPublica);
 
 		rdbtnPrivada = new JRadioButton("Privada");
 		rdbtnPrivada.setSelected(true);
 		rdbtnPrivada.setBackground(new Color(0, 128, 192));
-		rdbtnPrivada.setBounds(536, 338, 70, 23);
+		rdbtnPrivada.setBounds(881, 122, 70, 23);
 		background.add(rdbtnPrivada);
 		privacidad.add(rdbtnPrivada);
 
 		lblSede = new Label("Sede");
 		lblSede.setFont(new Font("Britannic Bold", Font.BOLD, 13));
-		lblSede.setBounds(333, 418, 107, 24);
+		lblSede.setBounds(678, 195, 70, 24);
 		background.add(lblSede);
 
 		txtSede = new JTextField();
 		txtSede.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
 		txtSede.setColumns(10);
-		txtSede.setBounds(456, 418, 150, 24);
+		txtSede.setBounds(769, 195, 189, 24);
 		background.add(txtSede);
 
 		lblPremio = new Label("Premio");
 		lblPremio.setFont(new Font("Britannic Bold", Font.BOLD, 13));
-		lblPremio.setBounds(678, 332, 60, 24);
+		lblPremio.setBounds(678, 265, 60, 24);
 		background.add(lblPremio);
 
 		chckbxPremio = new JCheckBox("");
 		chckbxPremio.setBackground(new Color(0, 128, 192));
 		chckbxPremio.setHorizontalAlignment(SwingConstants.CENTER);
-		chckbxPremio.setBounds(742, 333, 23, 23);
+		chckbxPremio.setBounds(736, 266, 23, 23);
 		background.add(chckbxPremio);
-
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(771, 338, 189, 126);
-		background.add(scrollPane);
-
-		txtPremio = new JTextArea();
-		txtPremio.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
-		scrollPane.setViewportView(txtPremio);
+		
+		chckbxPremio.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+               if (chckbxPremio.isSelected())
+            	   spnPremio.setEnabled(true);
+               else {
+            	   spnPremio.setValue("");
+            	   spnPremio.setEnabled(false);
+               }
+            }
+        });
 
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setOrientation(SwingConstants.VERTICAL);
 		separator_1.setBounds(665, 122, 7, 356);
 		background.add(separator_1);
 
-		lblVictoria = new Label("Puntos por victoria");
-		lblVictoria.setFont(new Font("Britannic Bold", Font.BOLD, 13));
-		lblVictoria.setBounds(678, 122, 133, 24);
-		background.add(lblVictoria);
-
-		lblDerrota = new Label("Puntos por derrota");
-		lblDerrota.setFont(new Font("Britannic Bold", Font.BOLD, 13));
-		lblDerrota.setBounds(678, 195, 133, 24);
-		background.add(lblDerrota);
-
-		lblEmpate = new Label("Puntos por empate");
-		lblEmpate.setFont(new Font("Britannic Bold", Font.BOLD, 13));
-		lblEmpate.setBounds(678, 267, 133, 24);
-		background.add(lblEmpate);
-
-		spinnerVictoria = new JSpinner();
-		spinnerVictoria.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
-		spinnerVictoria
-				.setModel(new SpinnerNumberModel(Integer.valueOf(3), Integer.valueOf(0), null, Integer.valueOf(1)));
-		spinnerVictoria.setBounds(902, 125, 60, 20);
-		background.add(spinnerVictoria);
-
-		spinnerDerrota = new JSpinner();
-		spinnerDerrota.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
-		spinnerDerrota
-				.setModel(new SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
-		spinnerDerrota.setBounds(902, 196, 60, 20);
-		background.add(spinnerDerrota);
-
-		spinnerEmpate = new JSpinner();
-		spinnerEmpate.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
-		spinnerEmpate
-				.setModel(new SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(0), null, Integer.valueOf(1)));
-		spinnerEmpate.setBounds(902, 270, 60, 20);
-		background.add(spinnerEmpate);
-
 		btnCrear = new JButton("Crear Liga");
+		btnCrear.setEnabled(false);
 		btnCrear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String[] datos = new String[6];
+				datos[0] = txtNombre.getText();
+				datos[1] = txtDeporte.getText();
+				// Obtener la fecha seleccionada del JDateChooser
+			    Date selectedDate = dateFecha.getDate();
+			    
+			    // Formatear la fecha a una cadena con el formato deseado
+			    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+			    String dateString = dateFormat.format(selectedDate);
+			    
+			    datos[2] = dateString;
+				if (rdbtnPrivada.isSelected())
+					datos[3] = "publico";
+				else
+					datos[3] = "privado";
+				datos[4] = txtSede.getText();
+				datos[5] = String.valueOf(spnPremio.getValue());
+				miControlador.crearliga(datos);
+				
 			}
 		});
 		btnCrear.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
 		btnCrear.setBounds(773, 478, 107, 41);
 		background.add(btnCrear);
+		
+		spnPremio = new JSpinner();
+		spnPremio.setEnabled(false);
+		spnPremio.setBounds(769, 268, 189, 20);
+		background.add(spnPremio);
+		
+		lblCorrecto = new Label("");
+		lblCorrecto.setFont(new Font("Britannic Bold", Font.BOLD, 13));
+		lblCorrecto.setBounds(678, 422, 290, 24);
+		lblCorrecto.setForeground(new Color(55, 255, 55));
+		background.add(lblCorrecto);
+		
+		lblCodigo = new Label("");
+		lblCodigo.setForeground(new Color(255, 128, 0));
+		lblCodigo.setFont(new Font("Britannic Bold", Font.BOLD, 19));
+		lblCodigo.setBounds(678, 348, 322, 40);
+		background.add(lblCodigo);
 
 		setLocationRelativeTo(null);
 	}
@@ -607,5 +670,10 @@ public class _07_CrearLigas2 extends JFrame implements Vista {
 	@Override
 	public void setControlador(Controlador miControlador) {
 		this.miControlador = miControlador;
+	}
+
+	public void mostrarCorrecto(String codigo) {
+		lblCorrecto.setText("Liga creada correctamente!");
+		lblCodigo.setText("Código de invitación: " + codigo);
 	}
 }
