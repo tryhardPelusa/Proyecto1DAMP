@@ -5,15 +5,18 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import vista.Vista;
 import vista._01_InicioSesion2;
@@ -849,20 +852,21 @@ public class Modelo {
 	}
 
 	public DefaultTableModel getClasificacion() {
-		String[] nombreColumnas = { "ID Equipo", "Nombre Equipo", "Puntos", "PJ", "PG", "PP", "GF", "GC" };
+		String[] nombreColumnas = { "ID Equipo", "Nombre Equipo", "Puntos", "PartidosJugados", "PartidosGanados",
+				"PartidosPerdidos", "GolesAFavor", "GolesEnContra" };
 		DefaultTableModel model = new DefaultTableModel(nombreColumnas, 0);
 
 		try {
-			
+
 			String query = "SELECT Clasificacion.IDEquipo, Equipos.Nombre, Clasificacion.Puntos, "
 					+ "Clasificacion.PartidosJugados, Clasificacion.PartidosGanados, Clasificacion.PartidosPerdidos, "
 					+ "Clasificacion.GolesAFavor, Clasificacion.GolesEnContra FROM Clasificacion "
 					+ "JOIN Equipos ON Clasificacion.IDEquipo = Equipos.IDEquipo WHERE Clasificacion.IDLiga = ?";
 
 			PreparedStatement statement = conexion.prepareStatement(query);
-			statement.setInt(1, 1); 
+			statement.setInt(1, 1);
 			ResultSet resultSet = statement.executeQuery();
-			
+
 			while (resultSet.next()) {
 				int equipoID = resultSet.getInt("IDEquipo");
 				String nombreEquipo = resultSet.getString("Nombre");
@@ -883,6 +887,33 @@ public class Modelo {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
+		// Agregar el listener de cambio de celda al JTable
+		model.addTableModelListener(new TableModelListener() {
+			@Override
+			public void tableChanged(TableModelEvent e) {
+				if (e.getType() == TableModelEvent.UPDATE) {
+					int row = e.getFirstRow();
+					int column = e.getColumn();
+					TableModel model = (TableModel) e.getSource();
+					Object data = model.getValueAt(row, column);
+					int equipoID = (int) model.getValueAt(row, 0);
+					String columnName = model.getColumnName(column);
+
+					// Actualizar la base de datos con el nuevo valor
+					try {
+						String updateQuery = "UPDATE Clasificacion SET " + columnName + " = ? WHERE IDEquipo = ?";
+						PreparedStatement updateStatement = conexion.prepareStatement(updateQuery);
+						updateStatement.setObject(1, data);
+						updateStatement.setInt(2, equipoID);
+						updateStatement.executeUpdate();
+						updateStatement.close();
+					} catch (SQLException ex) {
+						ex.printStackTrace();
+					}
+				}
+			}
+		});
 
 		return model;
 	}

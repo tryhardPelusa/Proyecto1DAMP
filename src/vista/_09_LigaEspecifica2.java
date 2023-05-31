@@ -67,7 +67,6 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 	private JLabel lblNombreLiga;
 	private JButton btnVerEquipo;
 	private JButton btnApostar2;
-	private JButton btnModificar;
 	String[] datosApuesta;
 
 	public _09_LigaEspecifica2() {
@@ -540,14 +539,9 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 		});
 		btnApostar2.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
 		btnApostar2.setBackground(new Color(255, 128, 0));
-		btnApostar2.setBounds(584, 419, 111, 23);
+		btnApostar2.setBounds(734, 419, 111, 23);
 		background.add(btnApostar2);
-
-		btnModificar = new JButton("Modificar");
-		btnModificar.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
-		btnModificar.setBackground(new Color(255, 128, 0));
-		btnModificar.setBounds(733, 419, 111, 23);
-		background.add(btnModificar);
+		
 
 		setLocationRelativeTo(null);
 		
