@@ -773,11 +773,48 @@ public class Modelo {
 			ResultSet rs = proI.executeQuery();
 			rs.next();
 			IdEquipo = rs.getString(1);
+			proI.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return IdEquipo;
+	}
+	
+	public String obtenerIdLiga(String codLiga) {
+		String consulta = "select ID from ligas where CodLiga = ?";
+		PreparedStatement proI;
+		String idLiga = "";
+		try {
+			proI = conexion.prepareStatement(consulta);
+			proI.setString(1, codLiga);
+			ResultSet rs = proI.executeQuery();
+			rs.next();
+			idLiga = rs.getString(1);
+			proI.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return idLiga;
+	}
+
+	public void unirseLiga(String CodLiga, String nombreEquipo) {
+		String idEquipo = (String) obtenerEquipoDeTable(nombreEquipo);
+		String idLiga = obtenerIdLiga(CodLiga);
+		String union = "INSERT INTO equipo_pert_liga (IDEquipo, IDLiga) VALUES (?,?)";
+		PreparedStatement proI;
+		
+		try {
+			proI = conexion.prepareStatement(union);
+			proI.setString(1, idEquipo);
+			proI.setString(2, idLiga);
+			proI.executeUpdate();
+			proI.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

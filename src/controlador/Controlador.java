@@ -2,6 +2,7 @@ package controlador;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.JFrame;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -155,6 +156,11 @@ public class Controlador {
 	public DefaultTableModel obtenerApuestas() {
 		miModelo.setVista(misVistas[12]);
 		return miModelo.obtenerApuestas();
+	}
+
+	public void unirseLiga(String CodLiga, String nombreEquipo) {
+		miModelo.setVista(misVistas[5]);
+		miModelo.unirseLiga(CodLiga, nombreEquipo);
 	}
 
 }

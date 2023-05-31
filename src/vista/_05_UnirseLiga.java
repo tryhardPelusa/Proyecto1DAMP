@@ -47,7 +47,7 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 	private JButton btnUnirseAEquipo;
 	private JButton btnMisApuestas;
 	private JButton btnSignOut;
-	private JTextField textField;
+	private JTextField txtCodLiga;
 	private JLabel lblBarraMoverVentana;
 	private int xMouse, yMouse;
 	private JTextPane txtpnUnirseAUna;
@@ -396,16 +396,17 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 		lblunirse.setBounds(375, 247, 316, 39);
 		background.add(lblunirse);
 
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBackground(new Color(255, 255, 255));
-		textField.setBounds(653, 347, 219, 19);
-		background.add(textField);
+		txtCodLiga = new JTextField();
+		txtCodLiga.setColumns(10);
+		txtCodLiga.setBackground(new Color(255, 255, 255));
+		txtCodLiga.setBounds(653, 347, 219, 19);
+		background.add(txtCodLiga);
 
 		btnUnion = new JButton("Unirse");
 		btnUnion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				miControlador.cambiarVentana(5, 9);
+				miControlador.unirseLiga(txtCodLiga.getText(), (String) listaEquipos.getSelectedItem());
 
 			}
 		});
