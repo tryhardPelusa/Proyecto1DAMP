@@ -191,7 +191,7 @@ public class _04_MiCuenta extends JFrame implements Vista {
 		btnVerLigas = new JButton("VER LIGAS");
 		btnVerLigas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(4, 9);
+				miControlador.cambiarVentana(4, 0);
 			}
 		});
 		btnVerLigas.addMouseListener(new MouseAdapter() {
