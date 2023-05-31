@@ -40,6 +40,8 @@ import com.toedter.calendar.JDateChooser;
 
 import controlador.Controlador;
 import modelo.Modelo;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class _07_CrearLigas2 extends JFrame implements Vista {
 

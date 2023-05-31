@@ -2,7 +2,6 @@ package controlador;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.JFrame;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
