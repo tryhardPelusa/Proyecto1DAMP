@@ -522,7 +522,7 @@ public class _04_MiCuenta extends JFrame implements Vista {
 
 		addWindowListener(new WindowAdapter() {
 			@Override
-			public void windowOpened(WindowEvent e) {
+			public void windowActivated(WindowEvent e) {
 				miControlador.cargarMiCuenta();
 				lblUpdate.setText("");
 			}

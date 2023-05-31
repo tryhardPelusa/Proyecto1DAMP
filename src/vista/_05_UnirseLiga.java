@@ -484,7 +484,7 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 
 		addWindowListener(new WindowAdapter() {
 			@Override
-			public void windowOpened(WindowEvent e) {
+			public void windowActivated(WindowEvent e) {
 				listaEquipos.setModel(miControlador.getEquiposUsuario());
 			}
 		});

@@ -500,7 +500,7 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 
 		addWindowListener(new WindowAdapter() {
 			@Override
-			public void windowOpened(WindowEvent e) {
+			public void windowActivated(WindowEvent e) {
 				tableLigasPrivadas.setModel(miControlador.getLigasPrivadas());
 				tableLigasPublicas.setModel(miControlador.getLigasPublicas());
 			}

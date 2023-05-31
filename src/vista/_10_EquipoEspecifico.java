@@ -467,7 +467,7 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 
 		addWindowListener(new WindowAdapter() {
 			@Override
-			public void windowOpened(WindowEvent e) {
+			public void windowActivated(WindowEvent e) {
 				tableLigas.setModel(miControlador.getLigasDeEquipo(equipoActual));
 				TableJugadores.setModel(miControlador.getUsuariosPorEquipo(equipoActual));
 				lblsede.setText(miControlador.getSede(equipoActual));
