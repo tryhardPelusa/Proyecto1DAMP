@@ -70,14 +70,9 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 	private JButton btnModificar;
 	String[] datosApuesta;
 
-<<<<<<< HEAD
 	public _09_LigaEspecifica2() {
 
-=======
-    public _09_LigaEspecifica2() {
-    	
-    	datosApuesta = new String[2];
->>>>>>> refs/remotes/MiGithub/JoseUD16Tarea
+		datosApuesta = new String[2];
 		setTitle("Liga Especifica");
 		setResizable(false);
 		setUndecorated(true);
@@ -197,15 +192,9 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 
 		btnMiCuenta.setHorizontalAlignment(SwingConstants.LEFT);
 		btnMiCuenta.setFont(new Font("Britannic Bold", Font.BOLD, 25));
-<<<<<<< HEAD
-		btnMiCuenta.setBounds(10, 13, 262, 49);
+		btnMiCuenta.setBounds(10, 43, 260, 49);
 		btnMiCuenta.setBorderPainted(false);
 		btnMiCuenta.setContentAreaFilled(false);
-=======
-		btnMiCuenta.setBounds(10, 43, 260, 49);
-		btnMiCuenta.setBorderPainted(false); 
-        btnMiCuenta.setContentAreaFilled(false); 
->>>>>>> refs/remotes/MiGithub/JoseUD16Tarea
 		btnMiCuenta.setOpaque(false);
 		btnMiCuenta.setFocusPainted(false);
 		btnMiCuenta.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -391,41 +380,7 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 		btnMisApuestas.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		background.add(btnMisApuestas);
 		background.setComponentZOrder(btnMisApuestas, 0);
-<<<<<<< HEAD
 
-		btnApostar = new JButton("APOSTAR");
-		btnApostar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(9, 11);
-			}
-		});
-		btnApostar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				btnApostar.setBackground(Color.yellow);
-				btnApostar.setOpaque(true);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				btnApostar.setBackground(null);
-				btnApostar.setOpaque(false);
-			}
-		});
-		btnApostar.setHorizontalAlignment(SwingConstants.LEFT);
-		btnApostar.setOpaque(false);
-		btnApostar.setFont(new Font("Britannic Bold", Font.BOLD, 25));
-		btnApostar.setFocusPainted(false);
-		btnApostar.setContentAreaFilled(false);
-		btnApostar.setBorderPainted(false);
-		btnApostar.setBounds(10, 422, 260, 49);
-		btnApostar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		background.add(btnApostar);
-		background.setComponentZOrder(btnApostar, 0);
-
-=======
-		
->>>>>>> refs/remotes/MiGithub/JoseUD16Tarea
 		btnSignOut = new JButton("Sign Out");
 		btnSignOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -480,83 +435,38 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 		tabbedPane.setBounds(416, 165, 429, 206);
 		background.add(tabbedPane);
 
-<<<<<<< HEAD
 		// Crea el panel de "Clasificacion"
 		JPanel panelClasificacion = new JPanel();
 		tabbedPane.addTab("Clasificacion", null, panelClasificacion, null);
 		panelClasificacion.setLayout(null);
-=======
-    
-    JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-	tabbedPane.setBounds(416, 165, 429, 206);
-	background.add(tabbedPane);
-	
-	//Crea el panel de "Clasificacion"
-	JPanel panelClasificacion = new JPanel();
-	tabbedPane.addTab("Clasificacion", null, panelClasificacion, null);
-	panelClasificacion.setLayout(null);
-	
-	//Se crea el scrollpanel para poder meter la clasificacion y su tabla dentro
-	scrollPaneClasificacion = new JScrollPane();
-	scrollPaneClasificacion.setBounds(0, 0, 424, 178);
-	panelClasificacion.add(scrollPaneClasificacion);
-	
-	// Tabla con los resultados de la liga
-	tableClasificacion = new JTable(){
-        @Override
-        public boolean isCellEditable(int row, int column) {
-            return false;
-        }
-    };
-	tableClasificacion.setFont(new Font("Britannic Bold", Font.PLAIN, 11));
-	tableClasificacion.setModel(new DefaultTableModel(
-			new Object[][] { { "Real Madrid", 12, 5, 4, 1, 14, 5 }, { "Barcelona", 10, 5, 3, 1, 12, 6 },
-					{ "Cordoba", 8, 5, 2, 3, 10, 9 }, { null, null, null, null, null, null, null },
-					{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-					{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-					{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null }, },
-			new String[] { "Equipo", "Puntos", "PJ", "PG", "PP", "GF", "GC" }));
-	scrollPaneClasificacion.setViewportView(tableClasificacion);
-    
-    
-    // Personaliza el estilo de las celdas de encabezado de la tabla
-	  JTableHeader headerClasificacion = tableClasificacion.getTableHeader();
-	  headerClasificacion.setFont(new Font("Britannic Bold", Font.PLAIN, 11));
-	  headerClasificacion.setBackground(new Color(0, 128, 192));
-	  headerClasificacion.setForeground(Color.WHITE);
-	 
-	  // Personaliza el estilo de las celdas de datos de la tabla
-    DefaultTableCellRenderer cellRendererClasificacion = new DefaultTableCellRenderer();
-    cellRendererClasificacion.setBackground(new Color(230, 230, 250));
-    cellRendererClasificacion.setForeground(Color.BLACK);
-    for (int i = 0; i < tableClasificacion.getColumnCount(); i++) {
-        tableClasificacion.getColumnModel().getColumn(i).setCellRenderer(cellRendererClasificacion);
-    }
->>>>>>> refs/remotes/MiGithub/JoseUD16Tarea
 
-<<<<<<< HEAD
 		// Se crea el scrollpanel para poder meter la clasificacion y su tabla dentro
 		scrollPaneClasificacion = new JScrollPane();
 		scrollPaneClasificacion.setBounds(0, 0, 424, 178);
 		panelClasificacion.add(scrollPaneClasificacion);
 
 		// Tabla con los resultados de la liga
-		tableClasificacion = new JTable();
-		tableClasificacion.addMouseListener(new MouseAdapter() {
+		tableClasificacion = new JTable() {
 			@Override
-			public void mousePressed(MouseEvent e) {
-				int fila = tableClasificacion.getSelectedRow();
-				miControlador.getEquipoDeTabla(((String) tableClasificacion.getValueAt(fila, 0)));
+			public boolean isCellEditable(int row, int column) {
+				return false;
 			}
-		});
+		};
 		tableClasificacion.setFont(new Font("Britannic Bold", Font.PLAIN, 11));
 		tableClasificacion.setModel(new DefaultTableModel(
-				new Object[][] { { "Real Madrid", 12, 5, 4, 1, 14, 5 }, { "Barcelona", 10, 5, 3, 1, 12, 6 },
-						{ "Cordoba", 8, 5, 2, 3, 10, 9 }, { null, null, null, null, null, null, null },
+				new Object[][] { { "Real Madrid", 12, 5, 4, 1, 14, 5 }, { "Barcelona FC", 10, 5, 3, 1, 12, 6 },
+						{ "Atletico de Madrid", 8, 5, 2, 3, 10, 9 }, { null, null, null, null, null, null, null },
 						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
 						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
 						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null }, },
 				new String[] { "Equipo", "Puntos", "PJ", "PG", "PP", "GF", "GC" }));
+		tableClasificacion.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int fila = tableClasificacion.getSelectedRow();
+                miControlador.getEquipoDeTabla(((String) tableClasificacion.getValueAt(fila, 0)));
+            }
+        });
 		scrollPaneClasificacion.setViewportView(tableClasificacion);
 
 		// Personaliza el estilo de las celdas de encabezado de la tabla
@@ -584,78 +494,48 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 		panelCalendario.add(scrollPaneCalendario);
 
 		// Crea la tabla del calendario
-		tableCalendario = new JTable();
-//		tableCalendario.setModel(new DefaultTableModel(
-//				new Object[][] { { "2023-05-10", "Real Madrid", "Valencia", "Pista U-Tad" },
-//						{ "2023-05-11", "Barcelona", "Cadiz", "Camp Nou" },
-//						{ "2023-05-12", "Valencia", "Sevilla", "Old Trafford" }, { null, null, null, null },
-//						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-//						{ null, null, null, null }, { null, null, null, null }, },
-//				new String[] { "Fecha", "Equipo Local", "Equipo Visitante", "Sede" }));
-=======
-    // Crea el panel de "Calendario"
-    panelCalendario = new JPanel();
-    tabbedPane.addTab("Calendario", null, panelCalendario, null);
-    panelCalendario.setLayout(null);
-	  
-    //Se crea el scrollpanel para poder meter el calendario y su tabla dentro
-	scrollPaneCalendario = new JScrollPane();
-	scrollPaneCalendario.setBounds(0, 0, 424, 178);
-	panelCalendario.add(scrollPaneCalendario);
-	  
-	  // Crea la tabla del calendario
-		tableCalendario = new JTable(){
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
->>>>>>> refs/remotes/MiGithub/JoseUD16Tarea
+		tableCalendario = new JTable() {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
 		tableCalendario.setFont(new Font("Britannic Bold", Font.PLAIN, 11));
 		scrollPaneCalendario.setViewportView(tableCalendario);
-<<<<<<< HEAD
 
-=======
-		
-		
->>>>>>> refs/remotes/MiGithub/JoseUD16Tarea
 		this.addWindowListener(new WindowAdapter() {
-<<<<<<< HEAD
 			@Override
 			public void windowOpened(WindowEvent e) {
 				tableCalendario.setModel(miControlador.obtenerPartidosLigaEspecifica());
 			}
 		});
-
-=======
-            @Override
-            public void windowOpened(WindowEvent e) {
-            	tableCalendario.setModel(miControlador.obtenerPartidosLigaEspecifica());
-            }
-        });
 		tableCalendario.addMouseListener(new MouseAdapter() {
-		    public void mouseClicked(MouseEvent e) {
-		        int filaSeleccionada = tableCalendario.getSelectedRow(); // Obtiene el índice de la fila seleccionada
+			public void mouseClicked(MouseEvent e) {
+				int filaSeleccionada = tableCalendario.getSelectedRow(); // Obtiene el indice de la fila seleccionada
 
-		        Object valorCelda1 = tableCalendario.getValueAt(filaSeleccionada, 0); // Obtiene el valor de la primera columna de la fila seleccionada
-		        Object valorCelda2 = tableCalendario.getValueAt(filaSeleccionada, 1); // Obtiene el valor de la segunda columna de la fila seleccionada
-		        Object valorCelda3 = tableCalendario.getValueAt(filaSeleccionada, 2); // Obtiene el valor de la tercera columna de la fila seleccionada
+				Object valorCelda1 = tableCalendario.getValueAt(filaSeleccionada, 0); // Obtiene el valor de la primera
+																						// columna de la fila
+																						// seleccionada
+				Object valorCelda2 = tableCalendario.getValueAt(filaSeleccionada, 1); // Obtiene el valor de la segunda
+																						// columna de la fila
+																						// seleccionada
+				Object valorCelda3 = tableCalendario.getValueAt(filaSeleccionada, 2); // Obtiene el valor de la tercera
+																						// columna de la fila
+																						// seleccionada
 
-		        if(valorCelda1 != null && valorCelda2 != null && valorCelda3 != null) {
-		            datosApuesta[0] =(String)valorCelda2;
-		            datosApuesta[1] =(String)valorCelda3;
-		        }
-		    }
+				if (valorCelda1 != null && valorCelda2 != null && valorCelda3 != null) {
+					datosApuesta[0] = (String) valorCelda2;
+					datosApuesta[1] = (String) valorCelda3;
+				}
+			}
 		});
-	
->>>>>>> refs/remotes/MiGithub/JoseUD16Tarea
+
 		// Personaliza el estilo de las celdas de encabezado de la tabla
 		JTableHeader headerCalendario = tableCalendario.getTableHeader();
 		headerCalendario.setFont(new Font("Britannic Bold", Font.PLAIN, 11));
 		headerCalendario.setBackground(new Color(0, 128, 192));
 		headerCalendario.setForeground(Color.WHITE);
 
-<<<<<<< HEAD
 		// Personaliza el estilo de las celdas de datos de la tabla
 		DefaultTableCellRenderer cellRendererCalendario = new DefaultTableCellRenderer();
 		cellRendererCalendario.setBackground(new Color(230, 230, 250));
@@ -663,34 +543,6 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 		for (int i = 0; i < tableCalendario.getColumnCount(); i++) {
 			tableCalendario.getColumnModel().getColumn(i).setCellRenderer(cellRendererCalendario);
 		}
-=======
-	 lblNombreLiga = new JLabel("Liga DAM U-Tad");
-	 lblNombreLiga.setFont(new Font("Britannic Bold", Font.BOLD, 40));
-	 lblNombreLiga.setBounds(416, 86, 332, 64);
-	 background.add(lblNombreLiga);
-	
-	 btnApostar2 = new JButton("Apostar");
-	 btnApostar2.addActionListener(new ActionListener() {
-	 	public void actionPerformed(ActionEvent e) {
-	 		miControlador.obtenerEquiposDePartidos(datosApuesta);
-	 		miControlador.cambiarVentana(9, 11);
-//	 		
-	 	}
-	 });
-	 btnApostar2.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
-	 btnApostar2.setBackground(new Color(255, 128, 0));
-	 btnApostar2.setBounds(584, 419, 111, 23);
-	 background.add(btnApostar2);
-	
-	 btnModificar = new JButton("Modificar");
-	 btnModificar.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
-	 btnModificar.setBackground(new Color(255, 128, 0));
-	 btnModificar.setBounds(733, 419, 111, 23);
-	 background.add(btnModificar);
-		
-	 setLocationRelativeTo(null);
-    }
->>>>>>> refs/remotes/MiGithub/JoseUD16Tarea
 
 		lblNombreLiga = new JLabel("Liga DAM U-Tad");
 		lblNombreLiga.setFont(new Font("Britannic Bold", Font.BOLD, 40));
@@ -700,7 +552,9 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 		btnApostar2 = new JButton("Apostar");
 		btnApostar2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				miControlador.obtenerEquiposDePartidos(datosApuesta);
 				miControlador.cambiarVentana(9, 11);
+//	 		
 			}
 		});
 		btnApostar2.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
