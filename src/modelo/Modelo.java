@@ -349,7 +349,7 @@ public class Modelo {
 
 	public boolean verificarCodEquipo(String codEquipo) {
 		ConexionMySQL();
-		String consulta = "SELECT CodEquipo FROM Equipos WHERE CodEquipo = ?";
+		String consulta = "SELECT idequipo, CodEquipo FROM Equipos WHERE CodEquipo = ?";
 
 		try {
 			PreparedStatement stmt = conexion.prepareStatement(consulta);
@@ -358,11 +358,18 @@ public class Modelo {
 
 			// Verificar si existe una fila con el CodEquipo proporcionado
 			boolean existeEquipo = rs.next();
+			String idEquipo = rs.getString("idequipo");
 
 			// Cerrar la conexión y liberar recursos
 			rs.close();
 			stmt.close();
 			((_06_UnirseEquipo2) miVista).error(false);
+			
+			consulta = "INSERT INTO usuario_pertequipo (idusuario, idequipo) VALUES (?, ?)";
+			PreparedStatement stmt2 = conexion.prepareStatement(consulta);
+			stmt2.setString(1, usuario);
+			stmt2.setString(2, idEquipo);
+			stmt2.executeUpdate();
 			return existeEquipo;
 
 		} catch (SQLException e) {
