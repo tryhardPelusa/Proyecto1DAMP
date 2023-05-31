@@ -22,6 +22,8 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import controlador.Controlador;
 import modelo.Modelo;
@@ -90,6 +92,26 @@ public class _01_InicioSesion2 extends JFrame implements Vista {
 		txtUser.setBounds(100, 278, 283, 20);
 		background.add(txtUser);
 		txtUser.setColumns(10);
+		txtUser.getDocument().addDocumentListener(new DocumentListener() {
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				btnAcceder.setEnabled(miModelo.comprobarLoginRelleno(txtUser.getText().isEmpty(),
+						passwordField.getPassword().length));
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				btnAcceder.setEnabled(miModelo.comprobarLoginRelleno(txtUser.getText().isEmpty(),
+						passwordField.getPassword().length));
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				btnAcceder.setEnabled(miModelo.comprobarLoginRelleno(txtUser.getText().isEmpty(),
+						passwordField.getPassword().length));
+			}
+
+		});
 
 		JLabel lblContrasenia = new JLabel("CONTRASE\u00D1A");
 		lblContrasenia.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
@@ -101,6 +123,26 @@ public class _01_InicioSesion2 extends JFrame implements Vista {
 		passwordField.setBackground(new Color(0, 128, 192));
 		passwordField.setBounds(100, 368, 283, 20);
 		background.add(passwordField);
+		passwordField.getDocument().addDocumentListener(new DocumentListener() {
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				btnAcceder.setEnabled(miModelo.comprobarLoginRelleno(txtUser.getText().isEmpty(),
+						passwordField.getPassword().length));
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				btnAcceder.setEnabled(miModelo.comprobarLoginRelleno(txtUser.getText().isEmpty(),
+						passwordField.getPassword().length));
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				btnAcceder.setEnabled(miModelo.comprobarLoginRelleno(txtUser.getText().isEmpty(),
+						passwordField.getPassword().length));
+			}
+
+		});
 
 		lblContraseniaOlvidada = new JLabel("\u00BFHas olvidado tu contrase\u00F1a?");
 		lblContraseniaOlvidada.addMouseListener(new MouseAdapter() {
@@ -114,6 +156,7 @@ public class _01_InicioSesion2 extends JFrame implements Vista {
 		background.add(lblContraseniaOlvidada);
 
 		btnAcceder = new JButton("ACCEDER");
+		btnAcceder.setEnabled(false);
 		btnAcceder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				miControlador.login();

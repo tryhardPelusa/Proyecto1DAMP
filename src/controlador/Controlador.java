@@ -52,6 +52,10 @@ public class Controlador {
 			cambiarVentana(1, 0);
 			return true;
 		} else {
+			miModelo.setNumIntentos();
+			if (miModelo.comprobarIntentos()) {
+				System.exit(0);
+			}
 			return false;
 		}
 	}

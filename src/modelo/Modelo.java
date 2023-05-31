@@ -26,6 +26,7 @@ public class Modelo {
 	private Vista miVista;
 	private String usuario;
 	private String IdEquipo;
+	private int numIntentos = 0;
 
 	// Atributos para la conexion mysql
 	private String db = "ProyectoIntegrador";
@@ -147,6 +148,7 @@ public class Modelo {
 					rset.close();
 					proI.close();
 					System.out.println(usuario);
+					numIntentos = 0;
 					return true;
 				}
 			}
@@ -821,6 +823,28 @@ public class Modelo {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+	}
+
+	public boolean comprobarLoginRelleno(boolean empty, int length) {
+		if (empty || length == 0) {
+			return false;
+		} else {
+			return true;
+		}
+		
+	}
+
+	public void setNumIntentos() {
+		numIntentos++;
+	}
+
+	public boolean comprobarIntentos() {
+		
+		if (numIntentos == 3) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 
