@@ -107,11 +107,11 @@ public class _16_RegistroCorrecto extends JFrame implements Vista {
 		lblMensajeBienvenida.setBounds(135, 66, 336, 40);
 		background.add(lblMensajeBienvenida);
 		
-		btnIrLigas = new JButton("Ir a Mis Ligas");
+		btnIrLigas = new JButton("Haz Login!");
 		btnIrLigas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				miControlador.cerrarVentana(16);
-				miControlador.cambiarVentana(2, 0);
+				miControlador.cambiarVentana(2, 1);
 			}
 		});
 		btnIrLigas.setFont(new Font("Britannic Bold", Font.PLAIN, 16));

@@ -366,7 +366,7 @@ public class Modelo {
 			rs.close();
 			stmt.close();
 			((_06_UnirseEquipo2) miVista).error(false);
-			
+
 			consulta = "INSERT INTO usuario_pertequipo (idusuario, idequipo) VALUES (?, ?)";
 			PreparedStatement stmt2 = conexion.prepareStatement(consulta);
 			stmt2.setString(1, usuario);
@@ -789,7 +789,7 @@ public class Modelo {
 		}
 		return IdEquipo;
 	}
-	
+
 	public String obtenerIdLiga(String codLiga) {
 		String consulta = "select ID from ligas where CodLiga = ?";
 		PreparedStatement proI;
@@ -813,14 +813,14 @@ public class Modelo {
 		String idLiga = obtenerIdLiga(CodLiga);
 		String union = "INSERT INTO equipo_pert_liga (IDEquipo, IDLiga) VALUES (?,?)";
 		PreparedStatement proI;
-		
+
 		try {
 			proI = conexion.prepareStatement(union);
 			proI.setString(1, idEquipo);
 			proI.setString(2, idLiga);
 			proI.executeUpdate();
 			proI.close();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -832,7 +832,7 @@ public class Modelo {
 		} else {
 			return true;
 		}
-		
+
 	}
 
 	public void setNumIntentos() {
@@ -840,12 +840,51 @@ public class Modelo {
 	}
 
 	public boolean comprobarIntentos() {
-		
+
 		if (numIntentos == 3) {
 			return true;
 		} else {
 			return false;
 		}
+	}
+
+	public DefaultTableModel getClasificacion() {
+		String[] nombreColumnas = { "ID Equipo", "Nombre Equipo", "Puntos", "PJ", "PG", "PP", "GF", "GC" };
+		DefaultTableModel model = new DefaultTableModel(nombreColumnas, 0);
+
+		try {
+			
+			String query = "SELECT Clasificacion.IDEquipo, Equipos.Nombre, Clasificacion.Puntos, "
+					+ "Clasificacion.PartidosJugados, Clasificacion.PartidosGanados, Clasificacion.PartidosPerdidos, "
+					+ "Clasificacion.GolesAFavor, Clasificacion.GolesEnContra FROM Clasificacion "
+					+ "JOIN Equipos ON Clasificacion.IDEquipo = Equipos.IDEquipo WHERE Clasificacion.IDLiga = ?";
+
+			PreparedStatement statement = conexion.prepareStatement(query);
+			statement.setInt(1, 1); 
+			ResultSet resultSet = statement.executeQuery();
+			
+			while (resultSet.next()) {
+				int equipoID = resultSet.getInt("IDEquipo");
+				String nombreEquipo = resultSet.getString("Nombre");
+				int puntos = resultSet.getInt("Puntos");
+				int partidosJugados = resultSet.getInt("PartidosJugados");
+				int partidosGanados = resultSet.getInt("PartidosGanados");
+				int partidosPerdidos = resultSet.getInt("PartidosPerdidos");
+				int golesAFavor = resultSet.getInt("GolesAFavor");
+				int golesEnContra = resultSet.getInt("GolesEnContra");
+
+				Object[] rowData = { equipoID, nombreEquipo, puntos, partidosJugados, partidosGanados, partidosPerdidos,
+						golesAFavor, golesEnContra };
+				model.addRow(rowData);
+			}
+
+			resultSet.close();
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return model;
 	}
 
 }

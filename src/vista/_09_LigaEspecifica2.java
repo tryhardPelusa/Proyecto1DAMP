@@ -446,27 +446,8 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 		panelClasificacion.add(scrollPaneClasificacion);
 
 		// Tabla con los resultados de la liga
-		tableClasificacion = new JTable() {
-			@Override
-			public boolean isCellEditable(int row, int column) {
-				return false;
-			}
-		};
+		tableClasificacion = new JTable();
 		tableClasificacion.setFont(new Font("Britannic Bold", Font.PLAIN, 11));
-		tableClasificacion.setModel(new DefaultTableModel(
-				new Object[][] { { "Real Madrid", 12, 5, 4, 1, 14, 5 }, { "Barcelona FC", 10, 5, 3, 1, 12, 6 },
-						{ "Atletico de Madrid", 8, 5, 2, 3, 10, 9 }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null }, },
-				new String[] { "Equipo", "Puntos", "PJ", "PG", "PP", "GF", "GC" }));
-		tableClasificacion.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				int fila = tableClasificacion.getSelectedRow();
-				miControlador.getEquipoDeTabla(((String) tableClasificacion.getValueAt(fila, 0)));
-			}
-		});
 		scrollPaneClasificacion.setViewportView(tableClasificacion);
 
 		// Personaliza el estilo de las celdas de encabezado de la tabla
@@ -569,6 +550,14 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 		background.add(btnModificar);
 
 		setLocationRelativeTo(null);
+		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowActivated(WindowEvent e) {
+				tableClasificacion.setModel(miControlador.getClasificacion());
+				
+			}
+		});
 	}
 
 	@Override

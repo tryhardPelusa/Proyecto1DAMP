@@ -166,4 +166,9 @@ public class Controlador {
 		miModelo.unirseLiga(CodLiga, nombreEquipo);
 	}
 
+	public DefaultTableModel getClasificacion() {
+		miModelo.setVista(misVistas[9]);
+		return miModelo.getClasificacion();
+	}
+
 }
