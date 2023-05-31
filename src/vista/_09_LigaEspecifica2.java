@@ -68,6 +68,8 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 	private JButton btnVerEquipo;
 	private JButton btnApostar2;
 	String[] datosApuesta;
+	int idAdmin;
+	int idLiga;
 
 	public _09_LigaEspecifica2() {
 
@@ -548,8 +550,12 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowActivated(WindowEvent e) {
-				tableClasificacion.setModel(miControlador.getClasificacion());
-				
+				idLiga = miModelo.getIdLigaActual();
+				idAdmin = miModelo.getIdAdminActual();
+				tableClasificacion.setModel(miControlador.getClasificacion(idLiga, idAdmin));
+				if (!miModelo.getUsuario().equals(String.valueOf(idAdmin))) {
+					tableClasificacion.setEnabled(false);
+				}
 			}
 		});
 	}
@@ -563,5 +569,21 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 	@Override
 	public void setControlador(Controlador miControlador) {
 		this.miControlador = miControlador;
+	}
+	
+	public int getIdAdmin() {
+		return idAdmin;
+	}
+
+	public void setIdAdmin(int idAdmin) {
+		this.idAdmin = idAdmin;
+	}
+
+	public int getIdLiga() {
+		return idLiga;
+	}
+
+	public void setIdLiga(int idLiga) {
+		this.idLiga = idLiga;
 	}
 }

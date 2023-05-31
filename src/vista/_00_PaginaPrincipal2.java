@@ -464,6 +464,22 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 		JScrollPane scrollPaneTusLigas = new JScrollPane();
 		scrollPaneTusLigas.setBounds(687, 147, 275, 372);
 		background.add(scrollPaneTusLigas);
+		tableLigasPublicas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 1) { 
+					int row = tableLigasPrivadas.getSelectedRow();
+					String liga = (String) tableLigasPrivadas.getValueAt(row, 0);
+					int ids[] = new int[2];
+					ids = miControlador.obtenerIdsLigaAdmin(liga);
+					int idLiga, idAdmin;
+					idLiga = ids[0];
+					idAdmin = ids[1];
+					miControlador.cambiarVentana(0, 9);
+					miControlador.pasarIdsALigaEspecifica(idLiga, idAdmin);
+				}
+			}
+		});
 
 		tableLigasPrivadas = new JTable() {
 			@Override
@@ -476,6 +492,22 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 		tableLigasPrivadas.setRowHeight(40);
 		tableLigasPrivadas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPaneTusLigas.setViewportView(tableLigasPrivadas);
+		tableLigasPrivadas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 1) { 
+					int row = tableLigasPrivadas.getSelectedRow();
+					String liga = (String) tableLigasPrivadas.getValueAt(row, 0);
+					int ids[] = new int[2];
+					ids = miControlador.obtenerIdsLigaAdmin(liga);
+					int idLiga, idAdmin;
+					idLiga = ids[0];
+					idAdmin = ids[1];
+					miControlador.cambiarVentana(0, 9);
+					miControlador.pasarIdsALigaEspecifica(idLiga, idAdmin);
+				}
+			}
+		});
 
 		JSeparator separatorLigas = new JSeparator();
 		separatorLigas.setBackground(new Color(255, 128, 0));

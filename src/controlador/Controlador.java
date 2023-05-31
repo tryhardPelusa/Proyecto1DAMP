@@ -166,9 +166,19 @@ public class Controlador {
 		miModelo.unirseLiga(CodLiga, nombreEquipo);
 	}
 
-	public DefaultTableModel getClasificacion() {
+	public DefaultTableModel getClasificacion(int idLiga, int idAdmin) {
 		miModelo.setVista(misVistas[9]);
-		return miModelo.getClasificacion();
+		return miModelo.getClasificacion(idLiga, idAdmin);
 	}
+
+	public int[] obtenerIdsLigaAdmin(String liga) {
+		miModelo.setVista(misVistas[0]);
+		return miModelo.obtenerIdsLigaAdmin(liga);
+	}
+
+	public void pasarIdsALigaEspecifica(int idLiga, int idAdmin) {
+		miModelo.pasarIdsALigaEspecifica(idLiga, idAdmin);
+	}
+
 
 }

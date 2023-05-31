@@ -30,6 +30,8 @@ public class Modelo {
 	private String usuario;
 	private String IdEquipo;
 	private int numIntentos = 0;
+	private int idLigaActual;
+	private int idAdminActual;
 
 	// Atributos para la conexion mysql
 	private String db = "ProyectoIntegrador";
@@ -851,7 +853,7 @@ public class Modelo {
 		}
 	}
 
-	public DefaultTableModel getClasificacion() {
+	public DefaultTableModel getClasificacion(int idLiga, int idAdmin) {
 		String[] nombreColumnas = { "ID Equipo", "Nombre Equipo", "Puntos", "PartidosJugados", "PartidosGanados",
 				"PartidosPerdidos", "GolesAFavor", "GolesEnContra" };
 		DefaultTableModel model = new DefaultTableModel(nombreColumnas, 0);
@@ -864,7 +866,7 @@ public class Modelo {
 					+ "JOIN Equipos ON Clasificacion.IDEquipo = Equipos.IDEquipo WHERE Clasificacion.IDLiga = ?";
 
 			PreparedStatement statement = conexion.prepareStatement(query);
-			statement.setInt(1, 1);
+			statement.setInt(1, idLiga);
 			ResultSet resultSet = statement.executeQuery();
 
 			while (resultSet.next()) {
@@ -888,34 +890,71 @@ public class Modelo {
 			e.printStackTrace();
 		}
 
-		// Agregar el listener de cambio de celda al JTable
-		model.addTableModelListener(new TableModelListener() {
-			@Override
-			public void tableChanged(TableModelEvent e) {
-				if (e.getType() == TableModelEvent.UPDATE) {
-					int row = e.getFirstRow();
-					int column = e.getColumn();
-					TableModel model = (TableModel) e.getSource();
-					Object data = model.getValueAt(row, column);
-					int equipoID = (int) model.getValueAt(row, 0);
-					String columnName = model.getColumnName(column);
+			// Agregar el listener de cambio de celda al JTable
+			model.addTableModelListener(new TableModelListener() {
+				@Override
+				public void tableChanged(TableModelEvent e) {
+					if (e.getType() == TableModelEvent.UPDATE) {
+						int row = e.getFirstRow();
+						int column = e.getColumn();
+						TableModel model = (TableModel) e.getSource();
+						Object data = model.getValueAt(row, column);
+						int equipoID = (int) model.getValueAt(row, 0);
+						String columnName = model.getColumnName(column);
 
-					// Actualizar la base de datos con el nuevo valor
-					try {
-						String updateQuery = "UPDATE Clasificacion SET " + columnName + " = ? WHERE IDEquipo = ?";
-						PreparedStatement updateStatement = conexion.prepareStatement(updateQuery);
-						updateStatement.setObject(1, data);
-						updateStatement.setInt(2, equipoID);
-						updateStatement.executeUpdate();
-						updateStatement.close();
-					} catch (SQLException ex) {
-						ex.printStackTrace();
+						// Actualizar la base de datos con el nuevo valor
+						try {
+							String updateQuery = "UPDATE Clasificacion SET " + columnName + " = ? WHERE IDEquipo = ?";
+							PreparedStatement updateStatement = conexion.prepareStatement(updateQuery);
+							updateStatement.setObject(1, data);
+							updateStatement.setInt(2, equipoID);
+							updateStatement.executeUpdate();
+							updateStatement.close();
+						} catch (SQLException ex) {
+							ex.printStackTrace();
+						}
 					}
 				}
-			}
-		});
+			});
 
 		return model;
+	}
+
+	public int[] obtenerIdsLigaAdmin(String liga) {
+		String consulta = "SELECT id, idadmin FROM ligas WHERE nombre = ?";
+		int ids[] = new int[2];
+		try {
+			PreparedStatement stmt = conexion.prepareStatement(consulta);
+			stmt.setString(1, liga);
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				int idLiga = rs.getInt("id");
+				int idAdmin = rs.getInt("idadmin");
+				ids[0] = idLiga;
+				ids[1] = idAdmin;
+			}
+
+			// Cerrar la conexión y liberar recursos
+			rs.close();
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ids;
+	}
+
+	public void pasarIdsALigaEspecifica(int idLiga, int idAdmin) {
+		idLigaActual = idLiga;
+		idAdminActual = idAdmin;
+	}
+	
+	public int getIdLigaActual() {
+		return idLigaActual;
+	}
+
+	public int getIdAdminActual() {
+		return idAdminActual;
 	}
 
 }
