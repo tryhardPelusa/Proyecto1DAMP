@@ -159,7 +159,10 @@ public class _01_InicioSesion2 extends JFrame implements Vista {
 		btnAcceder.setEnabled(false);
 		btnAcceder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				miControlador.login();
+				if (miControlador.login()) {
+					lblIncorrecto.setVisible(false);
+				}
+				
 			}
 		});
 		btnAcceder.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
