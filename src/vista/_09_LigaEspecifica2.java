@@ -535,8 +535,7 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 		btnApostar2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				miControlador.obtenerEquiposDePartidos(datosApuesta);
-				miControlador.cambiarVentana(9, 11);
-//	 		
+				miControlador.cambiarVentana(9, 11);	 		
 			}
 		});
 		btnApostar2.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
@@ -554,7 +553,8 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 				idAdmin = miModelo.getIdAdminActual();
 				tableClasificacion.setModel(miControlador.getClasificacion(idLiga, idAdmin));
 				if (!miModelo.getUsuario().equals(String.valueOf(idAdmin))) {
-					tableClasificacion.setEnabled(false);
+//					tableClasificacion.setEnabled(false);
+					tableClasificacion.setDefaultEditor(Object.class, null);
 				}
 			}
 		});
