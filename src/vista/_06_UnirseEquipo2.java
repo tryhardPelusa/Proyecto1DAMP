@@ -46,8 +46,9 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 	private JButton btnSignOut;
 	private JLabel lblBarraMoverVentana;
 	private int xMouse, yMouse;
-	private JTextField textField;
+	private JTextField textFieldCodigo;
 	private JButton btnUnion;
+	private JLabel lblIncorrecto;
 
 	// Constructor
 	public _06_UnirseEquipo2() {
@@ -55,7 +56,8 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 		setResizable(false);
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationByPlatform(true);;
+		setLocationByPlatform(true);
+		;
 		setSize(1010, 539);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -87,19 +89,20 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 			public void mouseClicked(MouseEvent e) {
 				System.exit(0);
 			}
+
 			@Override
-		    public void mouseEntered(MouseEvent e) {
+			public void mouseEntered(MouseEvent e) {
 				lblBtnCerrar.setBackground(Color.RED);
 				lblBtnCerrar.setOpaque(true);
 				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		    }
+			}
 
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		    	lblBtnCerrar.setBackground(null);
-		    	lblBtnCerrar.setOpaque(false);
-		    	setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		    }
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblBtnCerrar.setBackground(null);
+				lblBtnCerrar.setOpaque(false);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			}
 		});
 		lblBtnCerrar.setIcon(new ImageIcon(_00_PaginaPrincipal2.class.getResource("/img/close.png")));
 		lblBtnCerrar.setBounds(970, 0, 40, 40);
@@ -111,16 +114,18 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 			public void mouseClicked(MouseEvent e) {
 				setState(JFrame.ICONIFIED);
 			}
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				lblBtnMinimizar.setBackground(Color.BLUE);
 				lblBtnMinimizar.setOpaque(true);
 				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				lblBtnMinimizar.setBackground(null);
-		    	lblBtnMinimizar.setOpaque(false);
+				lblBtnMinimizar.setOpaque(false);
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
@@ -135,30 +140,30 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 			}
 		});
 		btnMiCuenta.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mouseEntered(MouseEvent e) {
-		        btnMiCuenta.setBackground(Color.yellow);
-		        btnMiCuenta.setOpaque(true);
-		    }
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnMiCuenta.setBackground(Color.yellow);
+				btnMiCuenta.setOpaque(true);
+			}
 
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		        btnMiCuenta.setBackground(null);
-		        btnMiCuenta.setOpaque(false);
-		    }
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnMiCuenta.setBackground(null);
+				btnMiCuenta.setOpaque(false);
+			}
 		});
 
 		btnMiCuenta.setHorizontalAlignment(SwingConstants.LEFT);
 		btnMiCuenta.setFont(new Font("Britannic Bold", Font.BOLD, 25));
 		btnMiCuenta.setBounds(10, 43, 260, 49);
-		btnMiCuenta.setBorderPainted(false); 
-        btnMiCuenta.setContentAreaFilled(false); 
+		btnMiCuenta.setBorderPainted(false);
+		btnMiCuenta.setContentAreaFilled(false);
 		btnMiCuenta.setOpaque(false);
 		btnMiCuenta.setFocusPainted(false);
 		btnMiCuenta.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		background.add(btnMiCuenta);
 		background.setComponentZOrder(btnMiCuenta, 0);
-		
+
 		btnVerLigas = new JButton("VER LIGAS");
 		btnVerLigas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -166,17 +171,17 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 			}
 		});
 		btnVerLigas.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mouseEntered(MouseEvent e) {
-		    	btnVerLigas.setBackground(Color.yellow);
-		    	btnVerLigas.setOpaque(true);
-		    }
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnVerLigas.setBackground(Color.yellow);
+				btnVerLigas.setOpaque(true);
+			}
 
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		    	btnVerLigas.setBackground(null);
-		    	btnVerLigas.setOpaque(false);
-		    }
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnVerLigas.setBackground(null);
+				btnVerLigas.setOpaque(false);
+			}
 		});
 		btnVerLigas.setHorizontalAlignment(SwingConstants.LEFT);
 		btnVerLigas.setOpaque(false);
@@ -188,7 +193,7 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 		btnVerLigas.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		background.add(btnVerLigas);
 		background.setComponentZOrder(btnVerLigas, 0);
-		
+
 		btnCrearLiga = new JButton("CREAR LIGA");
 		btnCrearLiga.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -196,17 +201,17 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 			}
 		});
 		btnCrearLiga.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mouseEntered(MouseEvent e) {
-		    	btnCrearLiga.setBackground(Color.yellow);
-		    	btnCrearLiga.setOpaque(true);
-		    }
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnCrearLiga.setBackground(Color.yellow);
+				btnCrearLiga.setOpaque(true);
+			}
 
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		    	btnCrearLiga.setBackground(null);
-		    	btnCrearLiga.setOpaque(false);
-		    }
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnCrearLiga.setBackground(null);
+				btnCrearLiga.setOpaque(false);
+			}
 		});
 		btnCrearLiga.setHorizontalAlignment(SwingConstants.LEFT);
 		btnCrearLiga.setOpaque(false);
@@ -218,7 +223,7 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 		btnCrearLiga.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		background.add(btnCrearLiga);
 		background.setComponentZOrder(btnCrearLiga, 0);
-		
+
 		btnUnirseALiga = new JButton("UNIRSE A LIGA");
 		btnUnirseALiga.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -226,17 +231,17 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 			}
 		});
 		btnUnirseALiga.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mouseEntered(MouseEvent e) {
-		    	btnUnirseALiga.setBackground(Color.yellow);
-		    	btnUnirseALiga.setOpaque(true);
-		    }
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnUnirseALiga.setBackground(Color.yellow);
+				btnUnirseALiga.setOpaque(true);
+			}
 
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		    	btnUnirseALiga.setBackground(null);
-		    	btnUnirseALiga.setOpaque(false);
-		    }
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnUnirseALiga.setBackground(null);
+				btnUnirseALiga.setOpaque(false);
+			}
 		});
 		btnUnirseALiga.setHorizontalAlignment(SwingConstants.LEFT);
 		btnUnirseALiga.setOpaque(false);
@@ -248,7 +253,7 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 		btnUnirseALiga.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		background.add(btnUnirseALiga);
 		background.setComponentZOrder(btnUnirseALiga, 0);
-		
+
 		btnCrearEquipo = new JButton("CREAR EQUIPO");
 		btnCrearEquipo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -256,17 +261,17 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 			}
 		});
 		btnCrearEquipo.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mouseEntered(MouseEvent e) {
-		    	btnCrearEquipo.setBackground(Color.yellow);
-		    	btnCrearEquipo.setOpaque(true);
-		    }
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnCrearEquipo.setBackground(Color.yellow);
+				btnCrearEquipo.setOpaque(true);
+			}
 
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		    	btnCrearEquipo.setBackground(null);
-		    	btnCrearEquipo.setOpaque(false);
-		    }
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnCrearEquipo.setBackground(null);
+				btnCrearEquipo.setOpaque(false);
+			}
 		});
 		btnCrearEquipo.setHorizontalAlignment(SwingConstants.LEFT);
 		btnCrearEquipo.setOpaque(false);
@@ -278,7 +283,7 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 		btnCrearEquipo.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		background.add(btnCrearEquipo);
 		background.setComponentZOrder(btnCrearEquipo, 0);
-		
+
 		btnUnirseAEquipo = new JButton("  UNIRSE A EQUIPO");
 		btnUnirseAEquipo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -297,7 +302,7 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 		btnUnirseAEquipo.setBorder(BorderFactory.createLineBorder(new Color(128, 128, 128)));
 		background.add(btnUnirseAEquipo);
 		background.setComponentZOrder(btnUnirseAEquipo, 0);
-		
+
 		btnMisApuestas = new JButton("MIS APUESTAS");
 		btnMisApuestas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -305,17 +310,17 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 			}
 		});
 		btnMisApuestas.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mouseEntered(MouseEvent e) {
-		    	btnMisApuestas.setBackground(Color.yellow);
-		    	btnMisApuestas.setOpaque(true);
-		    }
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnMisApuestas.setBackground(Color.yellow);
+				btnMisApuestas.setOpaque(true);
+			}
 
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		    	btnMisApuestas.setBackground(null);
-		    	btnMisApuestas.setOpaque(false);
-		    }
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnMisApuestas.setBackground(null);
+				btnMisApuestas.setOpaque(false);
+			}
 		});
 		btnMisApuestas.setHorizontalAlignment(SwingConstants.LEFT);
 		btnMisApuestas.setOpaque(false);
@@ -383,40 +388,42 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 		lblTitulo.setBounds(483, 81, 381, 85);
 		background.add(lblTitulo);
 
-		JLabel lblIdEquipo = new JLabel("Introduce el ID del equipo:");
+		JLabel lblIdEquipo = new JLabel("Introduce el c\u00F3digo del equipo:");
 		lblIdEquipo.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-		lblIdEquipo.setBounds(545, 218, 241, 40);
+		lblIdEquipo.setBounds(524, 218, 283, 40);
 		background.add(lblIdEquipo);
 
-		textField = new JTextField();
-		textField.setBackground(new Color(0, 128, 192));
-		textField.setFont(new Font("Britannic Bold", Font.BOLD, 16));
-		textField.setBounds(555, 271, 213, 20);
-		background.add(textField);
-		textField.setColumns(10);
+		textFieldCodigo = new JTextField();
+		textFieldCodigo.setBackground(new Color(0, 128, 192));
+		textFieldCodigo.setFont(new Font("Britannic Bold", Font.BOLD, 16));
+		textFieldCodigo.setBounds(555, 271, 213, 20);
+		background.add(textFieldCodigo);
+		textFieldCodigo.setColumns(10);
 
 		lblFondo = new JLabel("");
 		lblFondo.setIcon(new ImageIcon(_06_UnirseEquipo2.class.getResource("/img/fondoLogin2  - copia.jpg")));
 		lblFondo.setBounds(0, 0, 283, 539);
 		background.add(lblFondo);
-		
+
 		btnUnion = new JButton("Unirse");
 		btnUnion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String codigoIngresado = textField.getText();
-                if (miControlador.verificarCodEquipo(codigoIngresado)) {
-                    miControlador.cambiarVentana(6,0);
-                    System.out.println("Unirse al equipo");
-                } else {
-                    
-                    System.out.println("Código incorrecto");
-                }
+				String codigoIngresado = textFieldCodigo.getText();
+				if (miControlador.verificarCodEquipo(codigoIngresado)) {
+					miControlador.cambiarVentana(6, 0);
+				}
 			}
 		});
 		btnUnion.setBackground(new Color(255, 128, 0));
-		btnUnion.setBounds(679, 316, 85, 21);
+		btnUnion.setBounds(679, 340, 85, 21);
 		background.add(btnUnion);
-		
+
+		lblIncorrecto = new JLabel("");
+		lblIncorrecto.setForeground(new Color(255, 32, 32));
+		lblIncorrecto.setFont(new Font("Britannic Bold", Font.PLAIN, 15));
+		lblIncorrecto.setBounds(524, 302, 297, 26);
+		background.add(lblIncorrecto);
+
 		setLocationRelativeTo(null);
 	}
 
@@ -429,5 +436,12 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 	@Override
 	public void setControlador(Controlador miControlador) {
 		this.miControlador = miControlador;
+	}
+
+	public void error(boolean esCorrecto) {
+
+		if (!esCorrecto) {
+			lblIncorrecto.setText("Código no coincide");
+		}
 	}
 }

@@ -480,7 +480,7 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 		background.add(listaEquipos);
 
 		setLocationRelativeTo(null);
-		
+
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent e) {

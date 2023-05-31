@@ -55,7 +55,7 @@ public class Controlador {
 			return false;
 		}
 	}
-	
+
 	public void cargarMiCuenta() {
 		miModelo.setVista(misVistas[4]);
 		((_04_MiCuenta) misVistas[4]).actualizarDatos(miModelo.getMiCuenta());
@@ -73,7 +73,7 @@ public class Controlador {
 		String codigo = miModelo.crearLiga(datos);
 		if (!codigo.isEmpty())
 			((_07_CrearLigas2) misVistas[7]).mostrarCorrecto(codigo);
-		
+
 	}
 
 	public DefaultTableModel getLigasPublicas() {
@@ -131,24 +131,30 @@ public class Controlador {
 		miModelo.setVista(misVistas[6]);
 		return miModelo.verificarCodEquipo(codigoIngresado);
 	}
-	
+
 	public DefaultTableModel obtenerEquiposDePartidos(String[] apuesta) {
-	    miModelo.setVista(misVistas[11]); 
-	    return miModelo.obtenerEquiposDePartidos(apuesta);
+		miModelo.setVista(misVistas[11]);
+		return miModelo.obtenerEquiposDePartidos(apuesta);
 	}
 
 	public DefaultTableModel obtenerPartidosLigaEspecifica() {
-	    miModelo.setVista(misVistas[9]); 
-	    return miModelo.obtenerPartidosLigaEspecifica();
+		miModelo.setVista(misVistas[9]);
+		return miModelo.obtenerPartidosLigaEspecifica();
 	}
-
 
 	public Object getEquipoDeTabla(String string) {
-		 miModelo.setVista(misVistas[9]); 
-		    return miModelo.obtenerEquipoDeTable(string);
+		miModelo.setVista(misVistas[9]);
+		return miModelo.obtenerEquipoDeTable(string);
 	}
-			public DefaultTableModel getApuesta() {
+
+	public DefaultTableModel getApuesta() {
 		miModelo.setVista(misVistas[11]);
 		return miModelo.getApuestaActual();
 	}
+
+	public DefaultTableModel obtenerApuestas() {
+		miModelo.setVista(misVistas[12]);
+		return miModelo.obtenerApuestas();
+	}
+
 }

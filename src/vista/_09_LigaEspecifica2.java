@@ -461,12 +461,12 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null }, },
 				new String[] { "Equipo", "Puntos", "PJ", "PG", "PP", "GF", "GC" }));
 		tableClasificacion.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                int fila = tableClasificacion.getSelectedRow();
-                miControlador.getEquipoDeTabla(((String) tableClasificacion.getValueAt(fila, 0)));
-            }
-        });
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int fila = tableClasificacion.getSelectedRow();
+				miControlador.getEquipoDeTabla(((String) tableClasificacion.getValueAt(fila, 0)));
+			}
+		});
 		scrollPaneClasificacion.setViewportView(tableClasificacion);
 
 		// Personaliza el estilo de las celdas de encabezado de la tabla

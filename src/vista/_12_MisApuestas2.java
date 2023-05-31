@@ -11,6 +11,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -424,30 +426,50 @@ public class _12_MisApuestas2 extends JFrame implements Vista {
         scrollPaneApuestas.getViewport().setBackground(new Color(0, 128, 192));
         panelApuestas.add(scrollPaneApuestas);
         
+//        tblApuestas = new JTable();
+//        tblApuestas.setBorder(null);
+//        tblApuestas.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
+
+//        DefaultTableModel model = miControlador.obtenerApuestas();
+//        tblApuestas.setModel(model);
+
+//        tblApuestas.getColumnModel().getColumn(0).setPreferredWidth(190);
+//        tblApuestas.getColumnModel().getColumn(1).setPreferredWidth(190);
+//        tblApuestas.getColumnModel().getColumn(2).setPreferredWidth(100);
+//        tblApuestas.getColumnModel().getColumn(3).setPreferredWidth(160);
+
+//        scrollPaneApuestas.setViewportView(tblApuestas);
+//        this.addWindowListener(new WindowAdapter() {
+//            @Override
+//            public void windowOpened(WindowEvent e) {
+//                tblApuestas.setModel(miControlador.obtenerApuestas());
+//            }
+//        });
         tblApuestas = new JTable();
         tblApuestas.setBorder(null);
         tblApuestas.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
         tblApuestas.setModel(new DefaultTableModel(
-        	new Object[][] {
-        		{"Real Madrid - Barcelona", "Real Madrid", new Integer(120), "27/05"},
-        		{"Almeria - Getafe", "Almeria", new Integer(50), "14/06"},
-        	},
-        	new String[] {
-        		"Partido", "Apuesta", "Cantidad", "Fecha"
-        	}
+            new Object[][] {
+                {"Real Madrid - Barcelona", "Real Madrid", new Integer(120), "27/05"},
+                {"Almeria - Getafe", "Almeria", new Integer(50), "14/06"},
+            },
+            new String[] {
+                "Partido", "Apuesta", "Cantidad", "Fecha"
+            }
         ) {
-        	boolean[] columnEditables = new boolean[] {
-        		false, false, false, false
-        	};
-        	public boolean isCellEditable(int row, int column) {
-        		return columnEditables[column];
-        	}
+            boolean[] columnEditables = new boolean[] {
+                false, false, false, false
+            };
+            public boolean isCellEditable(int row, int column) {
+                return columnEditables[column];
+            }
         });
         tblApuestas.getColumnModel().getColumn(0).setPreferredWidth(190);
         tblApuestas.getColumnModel().getColumn(1).setPreferredWidth(190);
         tblApuestas.getColumnModel().getColumn(2).setPreferredWidth(100);
         tblApuestas.getColumnModel().getColumn(3).setPreferredWidth(160);
         scrollPaneApuestas.setViewportView(tblApuestas);
+
         
         txtbuscar = new JTextField();
         txtbuscar.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
