@@ -253,10 +253,6 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 			}
 		});
 		btnUnirseALiga_1 = new JButton("  UNIRSE A LIGA");
-		btnUnirseALiga_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnUnirseALiga_1.setHorizontalAlignment(SwingConstants.LEFT);
 		btnUnirseALiga_1.setFont(new Font("Britannic Bold", Font.BOLD, 25));
 		btnUnirseALiga_1.setFocusPainted(false);

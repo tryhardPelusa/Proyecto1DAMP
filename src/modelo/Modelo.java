@@ -817,7 +817,11 @@ public class Modelo {
 		String idEquipo = (String) obtenerEquipoDeTable(nombreEquipo);
 		String idLiga = obtenerIdLiga(CodLiga);
 		String union = "INSERT INTO equipo_pert_liga (IDEquipo, IDLiga) VALUES (?,?)";
+		String clasificacion = "INSERT INTO clasificacion (IDEquipo, IDLiga, Puntos, PartidosJugados, "
+				+ "PartidosGanados, PartidosPerdidos, GolesAFavor, GolesEnContra, NombreEquipo) "
+				+ "VALUES (?, ?, 0, 0, 0, 0, 0, 0, 'Equipo')";
 		PreparedStatement proI;
+		PreparedStatement proII;
 
 		try {
 			proI = conexion.prepareStatement(union);
@@ -825,6 +829,11 @@ public class Modelo {
 			proI.setString(2, idLiga);
 			proI.executeUpdate();
 			proI.close();
+			proII = conexion.prepareStatement(clasificacion);
+			proII.setString(1, idEquipo);
+			proII.setString(2, idLiga);
+			proII.executeUpdate();
+			proII.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -854,7 +863,7 @@ public class Modelo {
 	}
 
 	public DefaultTableModel getClasificacion(int idLiga, int idAdmin) {
-		String[] nombreColumnas = { "ID Equipo", "Nombre Equipo", "Puntos", "PartidosJugados", "PartidosGanados",
+		String[] nombreColumnas = { "IDEquipo", "Nombre", "Puntos", "PartidosJugados", "PartidosGanados",
 				"PartidosPerdidos", "GolesAFavor", "GolesEnContra" };
 		DefaultTableModel model = new DefaultTableModel(nombreColumnas, 0);
 
@@ -890,24 +899,26 @@ public class Modelo {
 			e.printStackTrace();
 		}
 
-			// Agregar el listener de cambio de celda al JTable
-			model.addTableModelListener(new TableModelListener() {
-				@Override
-				public void tableChanged(TableModelEvent e) {
-					if (e.getType() == TableModelEvent.UPDATE) {
-						int row = e.getFirstRow();
-						int column = e.getColumn();
-						TableModel model = (TableModel) e.getSource();
-						Object data = model.getValueAt(row, column);
-						int equipoID = (int) model.getValueAt(row, 0);
-						String columnName = model.getColumnName(column);
+		// Agregar el listener de cambio de celda al JTable
+		model.addTableModelListener(new TableModelListener() {
+			@Override
+			public void tableChanged(TableModelEvent e) {
+				if (e.getType() == TableModelEvent.UPDATE) {
+					int row = e.getFirstRow();
+					int column = e.getColumn();
+					TableModel model = (TableModel) e.getSource();
+					Object data = model.getValueAt(row, column);
+					String columnName = model.getColumnName(column);
 
-						// Actualizar la base de datos con el nuevo valor
+					// Actualizar la base de datos con el nuevo valor
+					if (!columnName.equals("Nombre") && !columnName.equals("IDEquipo")) {
+						String equipoID = (String) model.getValueAt(row, 0);
+
 						try {
 							String updateQuery = "UPDATE Clasificacion SET " + columnName + " = ? WHERE IDEquipo = ?";
 							PreparedStatement updateStatement = conexion.prepareStatement(updateQuery);
 							updateStatement.setObject(1, data);
-							updateStatement.setInt(2, equipoID);
+							updateStatement.setString(2, equipoID);
 							updateStatement.executeUpdate();
 							updateStatement.close();
 						} catch (SQLException ex) {
@@ -915,7 +926,8 @@ public class Modelo {
 						}
 					}
 				}
-			});
+			}
+		});
 
 		return model;
 	}
@@ -948,7 +960,7 @@ public class Modelo {
 		idLigaActual = idLiga;
 		idAdminActual = idAdmin;
 	}
-	
+
 	public int getIdLigaActual() {
 		return idLigaActual;
 	}
