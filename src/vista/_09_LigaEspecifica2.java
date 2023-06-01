@@ -552,10 +552,10 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 				idLiga = miModelo.getIdLigaActual();
 				idAdmin = miModelo.getIdAdminActual();
 				tableClasificacion.setModel(miControlador.getClasificacion(idLiga, idAdmin));
-				if (!miModelo.getUsuario().equals(String.valueOf(idAdmin))) {
-//					tableClasificacion.setEnabled(false);
-					tableClasificacion.setDefaultEditor(Object.class, null);
-				}
+//				if (!miModelo.getUsuario().equals(String.valueOf(idAdmin))) {
+////					tableClasificacion.setEnabled(false);
+//					tableClasificacion.setDefaultEditor(Object.class, null);
+//				}
 			}
 		});
 	}
