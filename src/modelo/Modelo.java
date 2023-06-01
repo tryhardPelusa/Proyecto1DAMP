@@ -47,7 +47,7 @@ public class Modelo {
 	private Connection conexion;
 	private DefaultTableModel apuestaActual;
 	private File fConfig = new File("Configuracion.ini");
-	Properties fp = new Properties();
+	private Properties fp = new Properties();
 
 	public void setVista(Vista miVista) {
 		this.miVista = miVista;
@@ -57,7 +57,6 @@ public class Modelo {
 		try {
 			FileInputStream fis = new FileInputStream(fConfig);
 			FileOutputStream fos = new FileOutputStream(fConfig);
-			fp.load(fis);
 			fp.setProperty("usr", datos[0]);
 			fp.setProperty("pwd", datos[1]);
 			fp.setProperty("url", datos[2]);
@@ -92,6 +91,7 @@ public class Modelo {
 
 	public void ConexionMySQL() {
 
+		// jdbc:mysql://localhost/ProyectoIntegrador (elminar cuando funcione)
 		try {
 			FileInputStream fis = new FileInputStream(fConfig);
 			Properties fp = new Properties();
