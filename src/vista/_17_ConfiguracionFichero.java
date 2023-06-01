@@ -5,11 +5,15 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controlador.Controlador;
+import modelo.Modelo;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
-public class _17_ConfiguracionFichero extends JFrame {
+public class _17_ConfiguracionFichero extends JFrame implements Vista {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -17,6 +21,8 @@ public class _17_ConfiguracionFichero extends JFrame {
 	private JTextField textField_2;
 	private JLabel lblUsuario;
 	private JButton btnModificar;
+	private Controlador miControlador;
+	private Modelo miModelo;
 
 	public _17_ConfiguracionFichero() {
 		setTitle("Configuracion De Ficheros");
@@ -62,5 +68,18 @@ public class _17_ConfiguracionFichero extends JFrame {
 		JButton btnSalir = new JButton("Salir");
 		btnSalir.setBounds(349, 237, 95, 29);
 		contentPane.add(btnSalir);
+	}
+
+	@Override
+	public void setModelo(Modelo miModelo) {
+
+		this.miModelo = miModelo;
+
+	}
+
+	@Override
+	public void setControlador(Controlador miControlador) {
+		this.miControlador = miControlador;
+
 	}
 }
