@@ -49,6 +49,7 @@ public class Modelo {
 	private DefaultTableModel apuestaActual;
 	private File fConfig = new File("Configuracion.ini");
 	private Properties fp = new Properties();
+	private int idPartidoActual;
 
 	/**
 	 * Establece la vista para el modelo.
@@ -1602,4 +1603,55 @@ public class Modelo {
 		return nombreLiga;
 	}
 
+	/**
+	 * Actualiza la fecha del partido con el id de IdPartidoActual
+	 * 
+	 * @param nuevaFecha String con la nueva fecha del partido
+	 */
+	public void updateFechaPartido(String nuevaFecha) {
+		String consulta = "UPDATE partidos SET fecha = ? WHERE id = ?";
+
+		// Convertir el String de fecha a LocalDate
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		LocalDate localDate = LocalDate.parse(nuevaFecha, formatter);
+
+		// Convertir LocalDate a java.sql.Date
+		java.sql.Date sqlDate = java.sql.Date.valueOf(localDate);
+
+		try {
+			PreparedStatement stmt = conexion.prepareStatement(consulta);
+			stmt.setDate(1, sqlDate);
+			stmt.setInt(2, idPartidoActual);
+			stmt.executeUpdate();
+
+			// Liberar recursos
+			stmt.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Establece el id de un partido concreto sacándolo de la DB
+	 * 
+	 * @param datos un array de strings que contiene equipo local, equipo visitante
+	 *              y sede del partido para buscarlo en la DB
+	 */
+	public void setIdPartido(String[] datos) {
+		String consulta = "SELECT id FROM partidos WHERE EquipoLocal = ? and EquipoVisitante = ? and lugar = ?";
+
+		try {
+			PreparedStatement stmt = conexion.prepareStatement(consulta);
+			stmt.setString(1, datos[0]);
+			stmt.setString(2, datos[1]);
+			stmt.setString(3, datos[2]);
+			idPartidoActual = stmt.executeUpdate();
+
+			// Liberar recursos
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
