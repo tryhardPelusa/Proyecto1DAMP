@@ -480,7 +480,7 @@ public class _12_MisApuestas2 extends JFrame implements Vista {
         btnBuscar = new JButton("BUSCAR");
         btnBuscar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		tblApuestas.setModel(miControlador.BuscarApuesta(txtbuscar.getText()));
+        		tblApuestas.setModel(miControlador.buscarApuesta(txtbuscar.getText()));
         	}
         });
         btnBuscar.setFont(new Font("Britannic Bold", Font.PLAIN, 14));

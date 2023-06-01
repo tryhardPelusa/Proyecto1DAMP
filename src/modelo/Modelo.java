@@ -1177,9 +1177,44 @@ public class Modelo {
 		return model;
 	}
 
-	public TableModel BuscarApuesta(String nombreEquipoApostado) {
+	public TableModel buscarApuesta(String nombreEquipoApostado) {
 
-		return null;
+		DefaultTableModel model = new DefaultTableModel();
+		ConexionMySQL();
+		String consulta = "SELECT * FROM apuestas WHERE LOWER(gandor) like LOWER(?)";
+
+		try {
+			PreparedStatement stmt = conexion.prepareStatement(consulta);
+			nombreEquipoApostado = "%" + nombreEquipoApostado + "%";
+			stmt.setString(1, nombreEquipoApostado);
+			ResultSet rs = stmt.executeQuery();
+
+			model.addColumn("");
+
+			// Obtener los datos de las filas
+			while (rs.next()) {
+				String[] rowData = new String[1];
+				rowData[0] = rs.getString(1);
+				model.addRow(rowData);
+			}
+
+			// Cerrar la conexión y liberar recursos
+			rs.close();
+			stmt.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return model;
+
+	}
+
+	public boolean comprobarInvitado() {
+		if(usuario.equals("invitado")) {
+			return true;
+		}else {
+			return false;			
+		}
 	}
 
 	public boolean comprobarDatosEnPartidos(int idLiga) {
