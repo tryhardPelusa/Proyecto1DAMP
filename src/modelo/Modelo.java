@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 import java.util.Random;
 
@@ -1030,8 +1031,77 @@ public class Modelo {
 	}
 
 	public void generarPartidos(int idLiga) {
+        List<Integer> equipos = obtenerEquiposDeLiga(idLiga);
 
+        int numEquipos = equipos.size();
+        for (int i = 0; i < numEquipos - 1; i++) {
+            int equipoLocal = equipos.get(i);
+            for (int j = i + 1; j < numEquipos; j++) {
+                int equipoVisitante = equipos.get(j);
+                insertarPartido(equipoLocal, equipoVisitante, idLiga);
+            }
+        }
 	}
+
+	private List<Integer> obtenerEquiposDeLiga(int idLiga) {
+		List<Integer> equipos = new ArrayList<>();
+
+		try {
+			String query = "SELECT IDEquipo FROM Equipo_Pert_Liga WHERE IDLiga = ?";
+			PreparedStatement statement = conexion.prepareStatement(query);
+			statement.setInt(1, idLiga);
+
+			ResultSet resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				int equipo = resultSet.getInt("IDEquipo");
+				equipos.add(equipo);
+			}
+
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return equipos;
+	}
+	
+	private void insertarPartido(int equipoLocal, int equipoVisitante, int idLiga) {
+        try {
+            String query = "INSERT INTO Partidos (EquipLocal, EquipVisitante, Lugar, Fecha, IDLiga) " +
+                           "VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement statement = conexion.prepareStatement(query);
+            statement.setString(1, obtenerNombreEquipo(equipoLocal));
+            statement.setString(2, obtenerNombreEquipo(equipoVisitante));
+            statement.setString(3, "Lugar del partido"); 
+            statement.setDate(4, new java.sql.Date(System.currentTimeMillis()));  
+            statement.setInt(5, idLiga);
+            statement.executeUpdate();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+	
+	private String obtenerNombreEquipo(int idEquipo) {
+        String nombreEquipo = "";
+
+        try {
+            String query = "SELECT Nombre FROM Equipos WHERE IDEquipo = ?";
+            PreparedStatement statement = conexion.prepareStatement(query);
+            statement.setInt(1, idEquipo);
+
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                nombreEquipo = resultSet.getString("Nombre");
+            }
+
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return nombreEquipo;
+    }
 
 	public DefaultTableModel BuscarLigas(String nombreLiga) {
 		DefaultTableModel model = new DefaultTableModel();
