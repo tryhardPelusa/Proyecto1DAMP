@@ -474,8 +474,8 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 1) { 
-					int row = tableLigasPrivadas.getSelectedRow();
-					String liga = (String) tableLigasPrivadas.getValueAt(row, 0);
+					int row = tableLigasPublicas.getSelectedRow();
+					String liga = (String) tableLigasPublicas.getValueAt(row, 0);
 					int ids[] = new int[2];
 					ids = miControlador.obtenerIdsLigaAdmin(liga);
 					int idLiga, idAdmin;

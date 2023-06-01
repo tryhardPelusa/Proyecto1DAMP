@@ -1,37 +1,32 @@
 package vista;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
 
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Font;
-import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 import controlador.Controlador;
 import modelo.Modelo;
-
-import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
 
 /**
  * 
@@ -549,7 +544,8 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 			public void mouseClicked(MouseEvent e) {
 				idLiga = miModelo.getIdLigaActual();
 				miControlador.generarPartidos(idLiga);
-				miControlador.obtenerPartidosLigaEspecifica(idLiga);
+				tableCalendario.setModel(miControlador.obtenerPartidosLigaEspecifica(idLiga)); 
+				btnCrearPartidos.setVisible(!miControlador.comprobarDatosEnPartidos(idLiga));
 			}
 		});
 		
@@ -563,6 +559,7 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowActivated(WindowEvent e) {
+				btnCrearPartidos.setVisible(true);
 				idLiga = miModelo.getIdLigaActual();
 				idAdmin = miModelo.getIdAdminActual();
 				tableCalendario.setModel(miControlador.obtenerPartidosLigaEspecifica(idLiga));
@@ -570,7 +567,8 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 				if (!miModelo.getUsuario().equals(String.valueOf(idAdmin))) {
 					tableClasificacion.setDefaultEditor(Object.class, null);
 				}
-				btnCrearPartidos.setEnabled(miControlador.comprobarDatosEnPartidos(idLiga));
+				btnCrearPartidos.setVisible(!miControlador.comprobarDatosEnPartidos(idLiga));
+				
 			}
 		});
 	}

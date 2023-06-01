@@ -1181,7 +1181,8 @@ public class Modelo {
 
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                return true;
+            	int count = resultSet.getInt("count");
+                return count > 0;
             }
 
             statement.close();
