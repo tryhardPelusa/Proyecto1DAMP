@@ -1,5 +1,10 @@
 package modelo;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,6 +14,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Properties;
 import java.util.Random;
 
 import javax.swing.ComboBoxModel;
@@ -34,22 +40,75 @@ public class Modelo {
 	private int idAdminActual;
 
 	// Atributos para la conexion mysql
-	private String db = "ProyectoIntegrador";
-	private String login = "root";
-	private String pwd = "";
-	private String url = "jdbc:mysql://localhost/" + db
-			+ "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+	private String usr;
+	private String pwd;
+	private String url;
 	private Connection conexion;
 	private DefaultTableModel apuestaActual;
+	private File fConfig = new File("Configuracion.ini");
+	Properties fp = new Properties();
 
 	public void setVista(Vista miVista) {
 		this.miVista = miVista;
 	}
+	
+	public void modificarConfig(String[] datos) {
+		try {
+			FileInputStream fis = new FileInputStream(fConfig);
+			FileOutputStream fos = new FileOutputStream(fConfig);
+			fp.load(fis);
+			fp.setProperty(usr, datos[0]);
+			fp.setProperty(pwd, datos[1]);
+			fp.setProperty(url, datos[2]);
+			fp.store(fos, "");
+			fis.close();
+			fos.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public String[] cargarConfig() {
+		String[] datos = new String[3];
+		FileInputStream fis;
+		try {
+			fis = new FileInputStream(fConfig);
+			fp.load(fis);
+			datos[0] = fp.getProperty("usr");
+			datos[1] = fp.getProperty("pwd");
+			datos[2] = fp.getProperty("url");
+			fis.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return datos;
+	}
 
 	public void ConexionMySQL() {
+
+		try {
+			FileInputStream fis = new FileInputStream(fConfig);
+			Properties fp = new Properties();
+			fp.load(fis);
+			this.usr = fp.getProperty("usr");
+			this.pwd = fp.getProperty("pwd");
+			this.url = fp.getProperty("url")
+					+ "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+			fis.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conexion = DriverManager.getConnection(url, login, pwd);
+			conexion = DriverManager.getConnection(url, usr, pwd);
 			System.out.println("-> Conexión con MySQL establecida");
 		} catch (ClassNotFoundException e) {
 			System.out.println("Driver JDBC No encontrado");
@@ -890,32 +949,32 @@ public class Modelo {
 			e.printStackTrace();
 		}
 
-			// Agregar el listener de cambio de celda al JTable
-			model.addTableModelListener(new TableModelListener() {
-				@Override
-				public void tableChanged(TableModelEvent e) {
-					if (e.getType() == TableModelEvent.UPDATE) {
-						int row = e.getFirstRow();
-						int column = e.getColumn();
-						TableModel model = (TableModel) e.getSource();
-						Object data = model.getValueAt(row, column);
-						int equipoID = (int) model.getValueAt(row, 0);
-						String columnName = model.getColumnName(column);
+		// Agregar el listener de cambio de celda al JTable
+		model.addTableModelListener(new TableModelListener() {
+			@Override
+			public void tableChanged(TableModelEvent e) {
+				if (e.getType() == TableModelEvent.UPDATE) {
+					int row = e.getFirstRow();
+					int column = e.getColumn();
+					TableModel model = (TableModel) e.getSource();
+					Object data = model.getValueAt(row, column);
+					int equipoID = (int) model.getValueAt(row, 0);
+					String columnName = model.getColumnName(column);
 
-						// Actualizar la base de datos con el nuevo valor
-						try {
-							String updateQuery = "UPDATE Clasificacion SET " + columnName + " = ? WHERE IDEquipo = ?";
-							PreparedStatement updateStatement = conexion.prepareStatement(updateQuery);
-							updateStatement.setObject(1, data);
-							updateStatement.setInt(2, equipoID);
-							updateStatement.executeUpdate();
-							updateStatement.close();
-						} catch (SQLException ex) {
-							ex.printStackTrace();
-						}
+					// Actualizar la base de datos con el nuevo valor
+					try {
+						String updateQuery = "UPDATE Clasificacion SET " + columnName + " = ? WHERE IDEquipo = ?";
+						PreparedStatement updateStatement = conexion.prepareStatement(updateQuery);
+						updateStatement.setObject(1, data);
+						updateStatement.setInt(2, equipoID);
+						updateStatement.executeUpdate();
+						updateStatement.close();
+					} catch (SQLException ex) {
+						ex.printStackTrace();
 					}
 				}
-			});
+			}
+		});
 
 		return model;
 	}
@@ -948,7 +1007,7 @@ public class Modelo {
 		idLigaActual = idLiga;
 		idAdminActual = idAdmin;
 	}
-	
+
 	public int getIdLigaActual() {
 		return idLigaActual;
 	}
