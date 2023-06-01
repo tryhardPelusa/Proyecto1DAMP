@@ -202,4 +202,9 @@ public class Controlador {
 		return miModelo.buscarApuesta(NombreEquipoApostado);
 	}
 
+	public boolean comprobarInvitado() {
+		miModelo.setVista(misVistas[0]);
+		return miModelo.comprobarInvitado();
+	}
+
 }

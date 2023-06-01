@@ -473,7 +473,7 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 		tableLigasPublicas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 1) { 
+				if (e.getClickCount() == 1) {
 					int row = tableLigasPrivadas.getSelectedRow();
 					String liga = (String) tableLigasPrivadas.getValueAt(row, 0);
 					int ids[] = new int[2];
@@ -501,7 +501,7 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 		tableLigasPrivadas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 1) { 
+				if (e.getClickCount() == 1) {
 					int row = tableLigasPrivadas.getSelectedRow();
 					String liga = (String) tableLigasPrivadas.getValueAt(row, 0);
 					int ids[] = new int[2];
@@ -555,8 +555,12 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 	public void setControlador(Controlador miControlador) {
 		this.miControlador = miControlador;
 	}
-	
+
 	public String getNombreLiga() {
 		return txtBuscador.getText();
 	}
+	public boolean invitado() {
+		return miControlador.comprobarInvitado();
+	}
+	
 }

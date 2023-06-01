@@ -1200,4 +1200,12 @@ public class Modelo {
 
 	}
 
+	public boolean comprobarInvitado() {
+		if(usuario.equals("invitado")) {
+			return true;
+		}else {
+			return false;			
+		}
+	}
+
 }
