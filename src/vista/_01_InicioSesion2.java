@@ -288,6 +288,7 @@ public class _01_InicioSesion2 extends JFrame implements Vista {
 		background.add(lblIncorrecto);
 		
 		lblConfiguracion = new JLabel("");
+		lblConfiguracion.setIcon(new ImageIcon(_01_InicioSesion2.class.getResource("/img/configuracion.png")));
 		lblConfiguracion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
