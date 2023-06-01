@@ -1021,4 +1021,9 @@ public class Modelo {
 		return model;
 	}
 
+	public TableModel BuscarApuesta(String nombreEquipoApostado) {
+		
+		return null;
+	}
+
 }
