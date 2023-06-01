@@ -197,9 +197,9 @@ public class Controlador {
 		return miModelo.BuscarLigasPrivadas(nombreLiga);
 	}
 
-	public TableModel BuscarApuesta(String NombreEquipoApostado) {
+	public TableModel buscarApuesta(String NombreEquipoApostado) {
 		miModelo.setVista(misVistas[12]);
-		return miModelo.BuscarApuesta(NombreEquipoApostado);
+		return miModelo.buscarApuesta(NombreEquipoApostado);
 	}
 
 }

@@ -1168,7 +1168,7 @@ public class Modelo {
 		return model;
 	}
 
-	public TableModel BuscarApuesta(String nombreEquipoApostado) {
+	public TableModel buscarApuesta(String nombreEquipoApostado) {
 
 		DefaultTableModel model = new DefaultTableModel();
 		ConexionMySQL();
