@@ -408,9 +408,9 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 		btnUnion = new JButton("Unirse");
 		btnUnion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(5, 9);
 				miControlador.unirseLiga(txtCodLiga.getText(), (String) listaEquipos.getSelectedItem());
 				if (miModelo.isUnionLigaCorrecta()) {
+					miControlador.cambiarVentana(5, 9);
 					lblUnionIncorrecta.setVisible(false);
 				}else {
 					lblUnionIncorrecta.setVisible(true);
