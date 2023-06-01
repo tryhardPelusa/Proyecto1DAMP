@@ -548,6 +548,8 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 					btnUnirseAEquipo.setVisible(false);
 					btnUnirseALiga.setVisible(false);
 					btnMisApuestas.setVisible(false);
+					btnSignOut.setBounds(10, 277, 260, 49);
+					btnVerLigas.setBounds(10, 217, 260, 49);
 				}
 			}
 		});

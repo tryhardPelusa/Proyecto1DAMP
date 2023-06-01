@@ -578,7 +578,8 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 					btnUnirseALiga.setVisible(false);
 					btnMisApuestas.setVisible(false);
 					btnApostar2.setVisible(false);
-					
+					btnSignOut.setBounds(10, 277, 260, 49);
+					btnVerLigas.setBounds(10, 217, 260, 49);
 				}
 
 			}
