@@ -1,5 +1,10 @@
 package modelo;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,6 +14,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Properties;
 import java.util.Random;
 
 import javax.swing.ComboBoxModel;
@@ -34,22 +41,75 @@ public class Modelo {
 	private int idAdminActual;
 
 	// Atributos para la conexion mysql
-	private String db = "ProyectoIntegrador";
-	private String login = "root";
-	private String pwd = "";
-	private String url = "jdbc:mysql://localhost/" + db
-			+ "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+	private String usr;
+	private String pwd;
+	private String url;
 	private Connection conexion;
 	private DefaultTableModel apuestaActual;
+	private File fConfig = new File("Configuracion.ini");
+	Properties fp = new Properties();
 
 	public void setVista(Vista miVista) {
 		this.miVista = miVista;
 	}
 
+	public void modificarConfig(String[] datos) {
+		try {
+			FileInputStream fis = new FileInputStream(fConfig);
+			FileOutputStream fos = new FileOutputStream(fConfig);
+			fp.load(fis);
+			fp.setProperty(usr, datos[0]);
+			fp.setProperty(pwd, datos[1]);
+			fp.setProperty(url, datos[2]);
+			fp.store(fos, "");
+			fis.close();
+			fos.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public String[] cargarConfig() {
+		String[] datos = new String[3];
+		FileInputStream fis;
+		try {
+			fis = new FileInputStream(fConfig);
+			fp.load(fis);
+			datos[0] = fp.getProperty("usr");
+			datos[1] = fp.getProperty("pwd");
+			datos[2] = fp.getProperty("url");
+			fis.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return datos;
+	}
+
 	public void ConexionMySQL() {
+
+		try {
+			FileInputStream fis = new FileInputStream(fConfig);
+			Properties fp = new Properties();
+			fp.load(fis);
+			this.usr = fp.getProperty("usr");
+			this.pwd = fp.getProperty("pwd");
+			this.url = fp.getProperty("url")
+					+ "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+			fis.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conexion = DriverManager.getConnection(url, login, pwd);
+			conexion = DriverManager.getConnection(url, usr, pwd);
 			System.out.println("-> Conexión con MySQL establecida");
 		} catch (ClassNotFoundException e) {
 			System.out.println("Driver JDBC No encontrado");
@@ -672,13 +732,14 @@ public class Modelo {
 		return apuestaActual;
 	}
 
-	public DefaultTableModel obtenerPartidosLigaEspecifica() {
+	public DefaultTableModel obtenerPartidosLigaEspecifica(int idLiga) {
 		DefaultTableModel model = new DefaultTableModel();
 		ConexionMySQL();
-		String consulta = "SELECT Fecha, EquipLocal, EquipVisitante, Lugar FROM Partidos WHERE IDLiga = 1";
+		String consulta = "SELECT Fecha, EquipLocal, EquipVisitante, Lugar FROM Partidos WHERE IDLiga = ?";
 
 		try {
 			PreparedStatement stmt = conexion.prepareStatement(consulta);
+			stmt.setInt(1, idLiga);
 			ResultSet rs = stmt.executeQuery();
 
 			model.addColumn("Fecha");
@@ -817,7 +878,11 @@ public class Modelo {
 		String idEquipo = (String) obtenerEquipoDeTable(nombreEquipo);
 		String idLiga = obtenerIdLiga(CodLiga);
 		String union = "INSERT INTO equipo_pert_liga (IDEquipo, IDLiga) VALUES (?,?)";
+		String clasificacion = "INSERT INTO clasificacion (IDEquipo, IDLiga, Puntos, PartidosJugados, "
+				+ "PartidosGanados, PartidosPerdidos, GolesAFavor, GolesEnContra, NombreEquipo) "
+				+ "VALUES (?, ?, 0, 0, 0, 0, 0, 0, 'Equipo')";
 		PreparedStatement proI;
+		PreparedStatement proII;
 
 		try {
 			proI = conexion.prepareStatement(union);
@@ -825,6 +890,11 @@ public class Modelo {
 			proI.setString(2, idLiga);
 			proI.executeUpdate();
 			proI.close();
+			proII = conexion.prepareStatement(clasificacion);
+			proII.setString(1, idEquipo);
+			proII.setString(2, idLiga);
+			proII.executeUpdate();
+			proII.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -854,7 +924,7 @@ public class Modelo {
 	}
 
 	public DefaultTableModel getClasificacion(int idLiga, int idAdmin) {
-		String[] nombreColumnas = { "ID Equipo", "Nombre Equipo", "Puntos", "PartidosJugados", "PartidosGanados",
+		String[] nombreColumnas = { "IDEquipo", "Nombre", "Puntos", "PartidosJugados", "PartidosGanados",
 				"PartidosPerdidos", "GolesAFavor", "GolesEnContra" };
 		DefaultTableModel model = new DefaultTableModel(nombreColumnas, 0);
 
@@ -899,19 +969,22 @@ public class Modelo {
 					int column = e.getColumn();
 					TableModel model = (TableModel) e.getSource();
 					Object data = model.getValueAt(row, column);
-					int equipoID = (int) model.getValueAt(row, 0);
 					String columnName = model.getColumnName(column);
 
 					// Actualizar la base de datos con el nuevo valor
-					try {
-						String updateQuery = "UPDATE Clasificacion SET " + columnName + " = ? WHERE IDEquipo = ?";
-						PreparedStatement updateStatement = conexion.prepareStatement(updateQuery);
-						updateStatement.setObject(1, data);
-						updateStatement.setInt(2, equipoID);
-						updateStatement.executeUpdate();
-						updateStatement.close();
-					} catch (SQLException ex) {
-						ex.printStackTrace();
+					if (!columnName.equals("Nombre") && !columnName.equals("IDEquipo")) {
+						String equipoID = (String) model.getValueAt(row, 0);
+
+						try {
+							String updateQuery = "UPDATE Clasificacion SET " + columnName + " = ? WHERE IDEquipo = ?";
+							PreparedStatement updateStatement = conexion.prepareStatement(updateQuery);
+							updateStatement.setObject(1, data);
+							updateStatement.setString(2, equipoID);
+							updateStatement.executeUpdate();
+							updateStatement.close();
+						} catch (SQLException ex) {
+							ex.printStackTrace();
+						}
 					}
 				}
 			}
@@ -956,6 +1029,79 @@ public class Modelo {
 	public int getIdAdminActual() {
 		return idAdminActual;
 	}
+
+	public void generarPartidos(int idLiga) {
+        List<Integer> equipos = obtenerEquiposDeLiga(idLiga);
+
+        int numEquipos = equipos.size();
+        for (int i = 0; i < numEquipos - 1; i++) {
+            int equipoLocal = equipos.get(i);
+            for (int j = i + 1; j < numEquipos; j++) {
+                int equipoVisitante = equipos.get(j);
+                insertarPartido(equipoLocal, equipoVisitante, idLiga);
+            }
+        }
+	}
+
+	private List<Integer> obtenerEquiposDeLiga(int idLiga) {
+		List<Integer> equipos = new ArrayList<>();
+
+		try {
+			String query = "SELECT IDEquipo FROM Equipo_Pert_Liga WHERE IDLiga = ?";
+			PreparedStatement statement = conexion.prepareStatement(query);
+			statement.setInt(1, idLiga);
+
+			ResultSet resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				int equipo = resultSet.getInt("IDEquipo");
+				equipos.add(equipo);
+			}
+
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return equipos;
+	}
+	
+	private void insertarPartido(int equipoLocal, int equipoVisitante, int idLiga) {
+        try {
+            String query = "INSERT INTO Partidos (EquipLocal, EquipVisitante, Lugar, Fecha, IDLiga) " +
+                           "VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement statement = conexion.prepareStatement(query);
+            statement.setString(1, obtenerNombreEquipo(equipoLocal));
+            statement.setString(2, obtenerNombreEquipo(equipoVisitante));
+            statement.setString(3, "Lugar del partido"); 
+            statement.setDate(4, new java.sql.Date(System.currentTimeMillis()));  
+            statement.setInt(5, idLiga);
+            statement.executeUpdate();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+	
+	private String obtenerNombreEquipo(int idEquipo) {
+        String nombreEquipo = "";
+
+        try {
+            String query = "SELECT Nombre FROM Equipos WHERE IDEquipo = ?";
+            PreparedStatement statement = conexion.prepareStatement(query);
+            statement.setInt(1, idEquipo);
+
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                nombreEquipo = resultSet.getString("Nombre");
+            }
+
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return nombreEquipo;
+    }
 
 	public DefaultTableModel BuscarLigas(String nombreLiga) {
 		DefaultTableModel model = new DefaultTableModel();
@@ -1051,6 +1197,7 @@ public class Modelo {
 			e.printStackTrace();
 		}
 		return model;
+
 	}
 
 }

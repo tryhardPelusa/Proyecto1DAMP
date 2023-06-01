@@ -141,9 +141,9 @@ public class Controlador {
 		return miModelo.obtenerEquiposDePartidos(apuesta);
 	}
 
-	public DefaultTableModel obtenerPartidosLigaEspecifica() {
+	public DefaultTableModel obtenerPartidosLigaEspecifica(int idLiga) {
 		miModelo.setVista(misVistas[9]);
-		return miModelo.obtenerPartidosLigaEspecifica();
+		return miModelo.obtenerPartidosLigaEspecifica(idLiga);
 	}
 
 	public Object getEquipoDeTabla(String string) {
@@ -177,9 +177,15 @@ public class Controlador {
 	}
 
 	public void pasarIdsALigaEspecifica(int idLiga, int idAdmin) {
+		miModelo.setVista(misVistas[9]);
 		miModelo.pasarIdsALigaEspecifica(idLiga, idAdmin);
 	}
 
+	public void generarPartidos(int idLiga) {
+		miModelo.setVista(misVistas[9]);
+		miModelo.generarPartidos(idLiga);
+	}
+	
 	public TableModel buscarLigas(String nombreLiga) {
 		miModelo.setVista(misVistas[0]);
 		return miModelo.BuscarLigas(nombreLiga);

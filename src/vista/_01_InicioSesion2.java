@@ -50,6 +50,7 @@ public class _01_InicioSesion2 extends JFrame implements Vista {
 	private JLabel lblBtnCerrar;
 	private JLabel lblBtnMinimizar;
 	private JLabel lblIncorrecto;
+	private JLabel lblConfiguracion;
 
 	// Constructor
 	public _01_InicioSesion2() {
@@ -285,6 +286,15 @@ public class _01_InicioSesion2 extends JFrame implements Vista {
 		lblIncorrecto.setFont(new Font("Britannic Bold", Font.PLAIN, 15));
 		lblIncorrecto.setBounds(246, 452, 297, 14);
 		background.add(lblIncorrecto);
+		
+		lblConfiguracion = new JLabel("");
+		lblConfiguracion.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		lblConfiguracion.setBounds(694, 492, 31, 39);
+		background.add(lblConfiguracion);
 
 		setLocationRelativeTo(null);
 	}
