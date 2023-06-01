@@ -180,5 +180,16 @@ public class Controlador {
 		miModelo.pasarIdsALigaEspecifica(idLiga, idAdmin);
 	}
 
+	public TableModel buscarLigas(String nombreLiga) {
+		miModelo.setVista(misVistas[0]);
+		return miModelo.BuscarLigas(nombreLiga);
+		
+	}
+
+	public TableModel buscarLigasPrivadas(String nombreLiga) {
+		miModelo.setVista(misVistas[0]);
+		return miModelo.BuscarLigasPrivadas(nombreLiga);
+	}
+
 
 }
