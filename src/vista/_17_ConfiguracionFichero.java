@@ -40,7 +40,7 @@ public class _17_ConfiguracionFichero extends JFrame implements Vista {
 			}
 		});
 		setTitle("Configuracion De Ficheros");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -78,6 +78,9 @@ public class _17_ConfiguracionFichero extends JFrame implements Vista {
 		btnModificar = new JButton("Modificar");
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				datos[0] = txtUsr.getText();
+				datos[1] = txtPwd.getText();
+				datos[2] = txtUrl.getText();
 				miModelo.modificarConfig(datos);
 			}
 		});
@@ -90,7 +93,7 @@ public class _17_ConfiguracionFichero extends JFrame implements Vista {
 				miControlador.cerrarVentana(17);
 			}
 		});
-		btnSalir.setBounds(349, 237, 95, 29);
+		btnSalir.setBounds(329, 221, 95, 29);
 		contentPane.add(btnSalir);
 	}
 

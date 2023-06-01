@@ -48,7 +48,7 @@ public class Modelo {
 	private Connection conexion;
 	private DefaultTableModel apuestaActual;
 	private File fConfig = new File("Configuracion.ini");
-	Properties fp = new Properties();
+	private Properties fp = new Properties();
 
 	public void setVista(Vista miVista) {
 		this.miVista = miVista;
@@ -56,14 +56,11 @@ public class Modelo {
 
 	public void modificarConfig(String[] datos) {
 		try {
-			FileInputStream fis = new FileInputStream(fConfig);
 			FileOutputStream fos = new FileOutputStream(fConfig);
-			fp.load(fis);
 			fp.setProperty("usr", datos[0]);
 			fp.setProperty("pwd", datos[1]);
 			fp.setProperty("url", datos[2]);
 			fp.store(fos, "");
-			fis.close();
 			fos.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -93,22 +90,22 @@ public class Modelo {
 
 	public void ConexionMySQL() {
 
+		FileInputStream fis;
 		try {
-			FileInputStream fis = new FileInputStream(fConfig);
-			Properties fp = new Properties();
+			fis = new FileInputStream(fConfig);
 			fp.load(fis);
-			this.usr = fp.getProperty("usr");
-			this.pwd = fp.getProperty("pwd");
-			this.url = fp.getProperty("url")
-					+ "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-			fis.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		this.usr = fp.getProperty("usr");
+		this.pwd = fp.getProperty("pwd");
+		this.url = fp.getProperty("url")
+				+ "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
 		try {
+			
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conexion = DriverManager.getConnection(url, usr, pwd);
 			System.out.println("-> Conexión con MySQL establecida");
