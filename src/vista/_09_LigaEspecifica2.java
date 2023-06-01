@@ -37,9 +37,10 @@ import modelo.Modelo;
 public class _09_LigaEspecifica2 extends JFrame implements Vista {
 
 	// Atributos
+	private String nombreEquipo;
 	private Controlador miControlador;
 	private Modelo miModelo;
-
+	private boolean resultado;
 	private JPanel contentPane;
 	private JLabel lblFondo;
 	private JLabel lblLogo;
@@ -65,6 +66,7 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 	String[] datosApuesta;
 	int idAdmin;
 	int idLiga;
+	private JLabel lblErrorNoSeleccion;
 
 	public _09_LigaEspecifica2() {
 
@@ -91,7 +93,12 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 		btnVerEquipo = new JButton("Ver Equipo");
 		btnVerEquipo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				miControlador.cambiarVentana(9, 10);
+				if (nombreEquipo != null) {
+					miControlador.getEquipoDeTabla(nombreEquipo);
+					miControlador.cambiarVentana(9, 10);
+				}else {
+					lblErrorNoSeleccion.setText("Equipo no seleccionado de la tabla");
+				}
 			}
 		});
 		btnVerEquipo.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
@@ -448,7 +455,7 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int fila = tableClasificacion.getSelectedRow();
-				miControlador.getEquipoDeTabla((String) tableClasificacion.getValueAt(fila, 1));
+				nombreEquipo = (String) tableClasificacion.getValueAt(fila, 1);
 			}
 		});
 		scrollPaneClasificacion.setViewportView(tableClasificacion);
@@ -521,9 +528,9 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 			tableCalendario.getColumnModel().getColumn(i).setCellRenderer(cellRendererCalendario);
 		}
 
-		lblNombreLiga = new JLabel("Liga DAM U-Tad");
+		lblNombreLiga = new JLabel("");
 		lblNombreLiga.setFont(new Font("Britannic Bold", Font.BOLD, 40));
-		lblNombreLiga.setBounds(416, 86, 332, 64);
+		lblNombreLiga.setBounds(416, 86, 502, 64);
 		background.add(lblNombreLiga);
 
 		btnApostar2 = new JButton("Apostar");
@@ -537,26 +544,34 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 		btnApostar2.setBackground(new Color(255, 128, 0));
 		btnApostar2.setBounds(734, 419, 111, 23);
 		background.add(btnApostar2);
-		
+
 		JButton btnCrearPartidos = new JButton("Crear Partidos");
 		btnCrearPartidos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				idLiga = miModelo.getIdLigaActual();
 				miControlador.generarPartidos(idLiga);
-				tableCalendario.setModel(miControlador.obtenerPartidosLigaEspecifica(idLiga)); 
+				tableCalendario.setModel(miControlador.obtenerPartidosLigaEspecifica(idLiga));
 				btnCrearPartidos.setVisible(!miControlador.comprobarDatosEnPartidos(idLiga));
 			}
 		});
-		
+
 		btnCrearPartidos.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
 		btnCrearPartidos.setBackground(new Color(255, 128, 0));
 		btnCrearPartidos.setBounds(555, 419, 150, 23);
 		background.add(btnCrearPartidos);
+		
+		lblErrorNoSeleccion = new JLabel("");
+		lblErrorNoSeleccion.setForeground(new Color(255, 128, 128));
+		
+		lblErrorNoSeleccion.setFont(new Font("Britannic Bold", Font.BOLD, 14));
+		lblErrorNoSeleccion.setBounds(362, 476, 542, 40);
+		background.add(lblErrorNoSeleccion);
 
 		setLocationRelativeTo(null);
 
 		addWindowListener(new WindowAdapter() {
+
 			@Override
 			public void windowActivated(WindowEvent e) {
 				btnCrearPartidos.setVisible(true);
@@ -564,11 +579,23 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 				idAdmin = miModelo.getIdAdminActual();
 				tableCalendario.setModel(miControlador.obtenerPartidosLigaEspecifica(idLiga));
 				tableClasificacion.setModel(miControlador.getClasificacion(idLiga, idAdmin));
+				lblErrorNoSeleccion.setText("");
 				if (!miModelo.getUsuario().equals(String.valueOf(idAdmin))) {
 					tableClasificacion.setDefaultEditor(Object.class, null);
 				}
+				lblNombreLiga.setText(miControlador.getNombreLiga(idLiga));
 				btnCrearPartidos.setVisible(!miControlador.comprobarDatosEnPartidos(idLiga));
-				
+				resultado = invitado();
+				if (resultado) {
+					btnMiCuenta.setEnabled(false);
+					btnCrearEquipo.setEnabled(false);
+					btnCrearLiga.setEnabled(false);
+					btnUnirseAEquipo.setEnabled(false);
+					btnUnirseALiga.setEnabled(false);
+					btnMisApuestas.setEnabled(false);
+					btnApostar2.setEnabled(false);
+				}
+
 			}
 		});
 	}
@@ -598,5 +625,9 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 
 	public void setIdLiga(int idLiga) {
 		this.idLiga = idLiga;
+	}
+
+	public boolean invitado() {
+		return miControlador.comprobarInvitado();
 	}
 }

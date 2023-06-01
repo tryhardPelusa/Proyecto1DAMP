@@ -29,6 +29,7 @@ import modelo.Modelo;
 public class _10_EquipoEspecifico extends JFrame implements Vista {
 
 	// Atributos
+	private boolean resultado;
 	private Controlador miControlador;
 	private Modelo miModelo;
 	private JPanel contentPane;
@@ -447,17 +448,17 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 		lblsede.setFont(new Font("Britannic Bold", Font.PLAIN, 17));
 		lblsede.setBounds(554, 442, 193, 49);
 		background.add(lblsede);
-		
+
 		lblTituloDeporte = new JLabel("Deporte");
 		lblTituloDeporte.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
 		lblTituloDeporte.setBounds(605, 228, 107, 40);
 		background.add(lblTituloDeporte);
-		
+
 		lblTituloSede = new JLabel("Sede");
 		lblTituloSede.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
 		lblTituloSede.setBounds(605, 392, 107, 40);
 		background.add(lblTituloSede);
-		
+
 		lblTituloCodigo = new JLabel("Codigo");
 		lblTituloCodigo.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
 		lblTituloCodigo.setBounds(862, 83, 127, 40);
@@ -474,6 +475,15 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 				lbldeporte.setText(miControlador.getdeporte(equipoActual));
 				lblEquipoEspecifico.setText(miControlador.getEquipo(equipoActual));
 				lblcodigoEquip.setText(miControlador.getCodigo(equipoActual));
+				resultado = invitado();
+				if (resultado) {
+					btnMiCuenta.setEnabled(false);
+					btnCrearEquipo.setEnabled(false);
+					btnCrearLiga.setEnabled(false);
+					btnUnirseAEquipo.setEnabled(false);
+					btnUnirseALiga.setEnabled(false);
+					btnMisApuestas.setEnabled(false);
+				}
 			}
 		});
 	}
@@ -491,5 +501,9 @@ public class _10_EquipoEspecifico extends JFrame implements Vista {
 
 	public void setEquipoActual(String equipoActual) {
 		this.equipoActual = equipoActual;
+	}
+
+	public boolean invitado() {
+		return miControlador.comprobarInvitado();
 	}
 }

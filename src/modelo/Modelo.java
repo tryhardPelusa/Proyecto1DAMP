@@ -1192,7 +1192,7 @@ public class Modelo {
 
 		DefaultTableModel model = new DefaultTableModel();
 		ConexionMySQL();
-		String consulta = "SELECT * FROM apuestas WHERE LOWER(gandor) like LOWER(?)";
+		String consulta = "SELECT * FROM apuestas WHERE LOWER(ganador) like LOWER(?)";
 
 		try {
 			PreparedStatement stmt = conexion.prepareStatement(consulta);
@@ -1246,6 +1246,27 @@ public class Modelo {
 		}
 
 		return false;
+	}
+
+	public String getNombreLiga(int idLiga) {
+		String nombreLiga = "";
+
+		try {
+			String query = "SELECT Nombre FROM ligas WHERE ID = ?";
+			PreparedStatement statement = conexion.prepareStatement(query);
+			statement.setInt(1, idLiga);
+
+			ResultSet resultSet = statement.executeQuery();
+			if (resultSet.next()) {
+				nombreLiga = resultSet.getString("Nombre");
+			}
+
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return nombreLiga;
 	}
 
 }

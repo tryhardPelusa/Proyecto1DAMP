@@ -36,7 +36,7 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 	// Atributos
 	private Controlador miControlador;
 	private Modelo miModelo;
-
+	private boolean resultado;
 	private JPanel contentPane;
 	private JLabel lblFondo;
 	private JLabel lblLogo;
@@ -540,8 +540,18 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 			public void windowActivated(WindowEvent e) {
 				tableLigasPrivadas.setModel(miControlador.getLigasPrivadas());
 				tableLigasPublicas.setModel(miControlador.getLigasPublicas());
+				resultado = invitado();
+				if(resultado) {
+					btnMiCuenta.setEnabled(false);
+					btnCrearEquipo.setEnabled(false);
+					btnCrearLiga.setEnabled(false);
+					btnUnirseAEquipo.setEnabled(false);
+					btnUnirseALiga.setEnabled(false);
+					btnMisApuestas.setEnabled(false);
+				}
 			}
 		});
+		
 	}
 
 	@Override
@@ -562,5 +572,4 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 	public boolean invitado() {
 		return miControlador.comprobarInvitado();
 	}
-
 }
