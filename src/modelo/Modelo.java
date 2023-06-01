@@ -1269,4 +1269,28 @@ public class Modelo {
 		return nombreLiga;
 	}
 
+	public void eliminarEquipoDeTabla(Object idEquipo2, int idLiga) {
+		 // Eliminar fila de la tabla Equipo_Pert_Liga
+        String deleteEquipoPertLigaQuery = "DELETE FROM Equipo_Pert_Liga WHERE IDEquipo = ? AND IDLiga = ?";
+        try (PreparedStatement deleteEquipoPertLigaStmt = conexion.prepareStatement(deleteEquipoPertLigaQuery)) {
+            deleteEquipoPertLigaStmt.setString(1, (String) idEquipo2);
+            deleteEquipoPertLigaStmt.setInt(2, idLiga);
+            deleteEquipoPertLigaStmt.executeUpdate();
+        } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+        // Eliminar fila de la tabla Clasificacion
+        String deleteClasificacionQuery = "DELETE FROM Clasificacion WHERE IDEquipo = ? AND IDLiga = ?";
+        try (PreparedStatement deleteClasificacionStmt = conexion.prepareStatement(deleteClasificacionQuery)) {
+            deleteClasificacionStmt.setString(1, (String) idEquipo2);
+            deleteClasificacionStmt.setInt(2, idLiga);
+            deleteClasificacionStmt.executeUpdate();
+        } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 }

@@ -217,4 +217,9 @@ public class Controlador {
 		return miModelo.getNombreLiga(idLiga);
 	}
 
+	public void eliminarEquipoDeTabla(Object idEquipo, int idLiga) {
+		miModelo.setVista(misVistas[9]);
+		miModelo.eliminarEquipoDeTabla(idEquipo, idLiga);
+	}
+
 }

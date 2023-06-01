@@ -67,6 +67,7 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 	int idAdmin;
 	int idLiga;
 	private JLabel lblErrorNoSeleccion;
+	private JButton btnEliminarEquipo;
 
 	public _09_LigaEspecifica2() {
 
@@ -558,7 +559,7 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 
 		btnCrearPartidos.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
 		btnCrearPartidos.setBackground(new Color(255, 128, 0));
-		btnCrearPartidos.setBounds(555, 419, 150, 23);
+		btnCrearPartidos.setBounds(558, 457, 150, 23);
 		background.add(btnCrearPartidos);
 		
 		lblErrorNoSeleccion = new JLabel("");
@@ -567,6 +568,20 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 		lblErrorNoSeleccion.setFont(new Font("Britannic Bold", Font.BOLD, 14));
 		lblErrorNoSeleccion.setBounds(362, 476, 542, 40);
 		background.add(lblErrorNoSeleccion);
+		
+		btnEliminarEquipo = new JButton("Eliminar Equipo");
+		btnEliminarEquipo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Object idEquipo = miControlador.getEquipoDeTabla(nombreEquipo);
+				miControlador.eliminarEquipoDeTabla(idEquipo, idLiga);
+				tableClasificacion.setModel(miControlador.getClasificacion(idLiga, idAdmin));
+			}
+		});
+		btnEliminarEquipo.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
+		btnEliminarEquipo.setBackground(new Color(255, 128, 0));
+		btnEliminarEquipo.setBounds(558, 419, 150, 23);
+		background.add(btnEliminarEquipo);
 
 		setLocationRelativeTo(null);
 
@@ -574,6 +589,7 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 
 			@Override
 			public void windowActivated(WindowEvent e) {
+				btnEliminarEquipo.setVisible(false);
 				btnCrearPartidos.setVisible(true);
 				idLiga = miModelo.getIdLigaActual();
 				idAdmin = miModelo.getIdAdminActual();
@@ -582,6 +598,8 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 				lblErrorNoSeleccion.setText("");
 				if (!miModelo.getUsuario().equals(String.valueOf(idAdmin))) {
 					tableClasificacion.setDefaultEditor(Object.class, null);
+				}else {
+					btnEliminarEquipo.setVisible(true);
 				}
 				lblNombreLiga.setText(miControlador.getNombreLiga(idLiga));
 				btnCrearPartidos.setVisible(!miControlador.comprobarDatosEnPartidos(idLiga));
