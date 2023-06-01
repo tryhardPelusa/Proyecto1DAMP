@@ -1173,4 +1173,23 @@ public class Modelo {
 		return null;
 	}
 
+	public boolean comprobarDatosEnPartidos(int idLiga) {
+		try {
+            String query = "SELECT COUNT(*) AS count FROM Partidos WHERE IDLiga = ?";
+            PreparedStatement statement = conexion.prepareStatement(query);
+            statement.setInt(1, idLiga);
+
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return true;
+            }
+
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+	}
+
 }

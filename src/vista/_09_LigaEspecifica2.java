@@ -549,6 +549,7 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 			public void mouseClicked(MouseEvent e) {
 				idLiga = miModelo.getIdLigaActual();
 				miControlador.generarPartidos(idLiga);
+				miControlador.obtenerPartidosLigaEspecifica(idLiga);
 			}
 		});
 		
@@ -569,6 +570,7 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 				if (!miModelo.getUsuario().equals(String.valueOf(idAdmin))) {
 					tableClasificacion.setDefaultEditor(Object.class, null);
 				}
+				btnCrearPartidos.setEnabled(miControlador.comprobarDatosEnPartidos(idLiga));
 			}
 		});
 	}

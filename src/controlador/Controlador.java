@@ -202,4 +202,9 @@ public class Controlador {
 		return miModelo.BuscarApuesta(NombreEquipoApostado);
 	}
 
+	public boolean comprobarDatosEnPartidos(int idLiga) {
+		miModelo.setVista(misVistas[9]);
+		return miModelo.comprobarDatosEnPartidos(idLiga);
+	}
+
 }
