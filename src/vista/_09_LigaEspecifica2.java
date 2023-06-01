@@ -491,13 +491,6 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 		};
 		tableCalendario.setFont(new Font("Britannic Bold", Font.PLAIN, 11));
 		scrollPaneCalendario.setViewportView(tableCalendario);
-
-		this.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowOpened(WindowEvent e) {
-				tableCalendario.setModel(miControlador.obtenerPartidosLigaEspecifica());
-			}
-		});
 		tableCalendario.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				int filaSeleccionada = tableCalendario.getSelectedRow(); // Obtiene el indice de la fila seleccionada
@@ -557,6 +550,7 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 			public void windowActivated(WindowEvent e) {
 				idLiga = miModelo.getIdLigaActual();
 				idAdmin = miModelo.getIdAdminActual();
+				tableCalendario.setModel(miControlador.obtenerPartidosLigaEspecifica(idLiga));
 				tableClasificacion.setModel(miControlador.getClasificacion(idLiga, idAdmin));
 				if (!miModelo.getUsuario().equals(String.valueOf(idAdmin))) {
 					tableClasificacion.setDefaultEditor(Object.class, null);

@@ -672,13 +672,14 @@ public class Modelo {
 		return apuestaActual;
 	}
 
-	public DefaultTableModel obtenerPartidosLigaEspecifica() {
+	public DefaultTableModel obtenerPartidosLigaEspecifica(int idLiga) {
 		DefaultTableModel model = new DefaultTableModel();
 		ConexionMySQL();
-		String consulta = "SELECT Fecha, EquipLocal, EquipVisitante, Lugar FROM Partidos WHERE IDLiga = 1";
+		String consulta = "SELECT Fecha, EquipLocal, EquipVisitante, Lugar FROM Partidos WHERE IDLiga = ?";
 
 		try {
 			PreparedStatement stmt = conexion.prepareStatement(consulta);
+			stmt.setInt(1, idLiga);
 			ResultSet rs = stmt.executeQuery();
 
 			model.addColumn("Fecha");

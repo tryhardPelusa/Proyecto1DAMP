@@ -141,9 +141,9 @@ public class Controlador {
 		return miModelo.obtenerEquiposDePartidos(apuesta);
 	}
 
-	public DefaultTableModel obtenerPartidosLigaEspecifica() {
+	public DefaultTableModel obtenerPartidosLigaEspecifica(int idLiga) {
 		miModelo.setVista(misVistas[9]);
-		return miModelo.obtenerPartidosLigaEspecifica();
+		return miModelo.obtenerPartidosLigaEspecifica(idLiga);
 	}
 
 	public Object getEquipoDeTabla(String string) {
