@@ -177,7 +177,13 @@ public class Controlador {
 	}
 
 	public void pasarIdsALigaEspecifica(int idLiga, int idAdmin) {
+		miModelo.setVista(misVistas[9]);
 		miModelo.pasarIdsALigaEspecifica(idLiga, idAdmin);
+	}
+
+	public void generarPartidos(int idLiga) {
+		miModelo.setVista(misVistas[9]);
+		miModelo.generarPartidos(idLiga);
 	}
 
 

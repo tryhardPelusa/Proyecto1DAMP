@@ -970,4 +970,9 @@ public class Modelo {
 		return idAdminActual;
 	}
 
+	public void generarPartidos(int idLiga) {
+		
+		
+	}
+
 }

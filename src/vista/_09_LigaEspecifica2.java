@@ -542,6 +542,20 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 		btnApostar2.setBackground(new Color(255, 128, 0));
 		btnApostar2.setBounds(734, 419, 111, 23);
 		background.add(btnApostar2);
+		
+		JButton btnCrearPartidos = new JButton("Crear Partidos");
+		btnCrearPartidos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				idLiga = miModelo.getIdLigaActual();
+				miControlador.generarPartidos(idLiga);
+			}
+		});
+		
+		btnCrearPartidos.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
+		btnCrearPartidos.setBackground(new Color(255, 128, 0));
+		btnCrearPartidos.setBounds(555, 419, 150, 23);
+		background.add(btnCrearPartidos);
 
 		setLocationRelativeTo(null);
 
