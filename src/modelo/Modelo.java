@@ -1,5 +1,10 @@
 package modelo;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,6 +14,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Properties;
 import java.util.Random;
 
 import javax.swing.ComboBoxModel;
@@ -34,22 +40,75 @@ public class Modelo {
 	private int idAdminActual;
 
 	// Atributos para la conexion mysql
-	private String db = "ProyectoIntegrador";
-	private String login = "root";
-	private String pwd = "";
-	private String url = "jdbc:mysql://localhost/" + db
-			+ "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+	private String usr;
+	private String pwd;
+	private String url;
 	private Connection conexion;
 	private DefaultTableModel apuestaActual;
+	private File fConfig = new File("Configuracion.ini");
+	Properties fp = new Properties();
 
 	public void setVista(Vista miVista) {
 		this.miVista = miVista;
 	}
 
+	public void modificarConfig(String[] datos) {
+		try {
+			FileInputStream fis = new FileInputStream(fConfig);
+			FileOutputStream fos = new FileOutputStream(fConfig);
+			fp.load(fis);
+			fp.setProperty(usr, datos[0]);
+			fp.setProperty(pwd, datos[1]);
+			fp.setProperty(url, datos[2]);
+			fp.store(fos, "");
+			fis.close();
+			fos.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public String[] cargarConfig() {
+		String[] datos = new String[3];
+		FileInputStream fis;
+		try {
+			fis = new FileInputStream(fConfig);
+			fp.load(fis);
+			datos[0] = fp.getProperty("usr");
+			datos[1] = fp.getProperty("pwd");
+			datos[2] = fp.getProperty("url");
+			fis.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return datos;
+	}
+
 	public void ConexionMySQL() {
+
+		try {
+			FileInputStream fis = new FileInputStream(fConfig);
+			Properties fp = new Properties();
+			fp.load(fis);
+			this.usr = fp.getProperty("usr");
+			this.pwd = fp.getProperty("pwd");
+			this.url = fp.getProperty("url")
+					+ "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+			fis.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conexion = DriverManager.getConnection(url, login, pwd);
+			conexion = DriverManager.getConnection(url, usr, pwd);
 			System.out.println("-> Conexión con MySQL establecida");
 		} catch (ClassNotFoundException e) {
 			System.out.println("Driver JDBC No encontrado");
@@ -909,7 +968,6 @@ public class Modelo {
 					int column = e.getColumn();
 					TableModel model = (TableModel) e.getSource();
 					Object data = model.getValueAt(row, column);
-
 					String columnName = model.getColumnName(column);
 
 					// Actualizar la base de datos con el nuevo valor
@@ -972,8 +1030,9 @@ public class Modelo {
 	}
 
 	public void generarPartidos(int idLiga) {
-		
-	}	
+
+	}
+
 	public DefaultTableModel BuscarLigas(String nombreLiga) {
 		DefaultTableModel model = new DefaultTableModel();
 		ConexionMySQL();
@@ -1011,7 +1070,8 @@ public class Modelo {
 				+ "JOIN Equipo_Pert_Liga ON Ligas.ID = Equipo_Pert_Liga.IDLiga\r\n"
 				+ "JOIN Equipos ON Equipo_Pert_Liga.IDEquipo = Equipos.IDEquipo\r\n"
 				+ "JOIN Usuario_PertEquipo ON Equipos.IDEquipo = Usuario_PertEquipo.IDEquipo\r\n"
-				+ "JOIN Usuario ON Usuario_PertEquipo.IDUsuario = Usuario.ID\r\n" + "WHERE LOWER(ligas.Nombre) like LOWER(?)";
+				+ "JOIN Usuario ON Usuario_PertEquipo.IDUsuario = Usuario.ID\r\n"
+				+ "WHERE LOWER(ligas.Nombre) like LOWER(?)";
 
 		try {
 			PreparedStatement stmt = conexion.prepareStatement(consulta);
@@ -1039,7 +1099,7 @@ public class Modelo {
 	}
 
 	public TableModel BuscarApuesta(String nombreEquipoApostado) {
-		
+
 		return null;
 	}
 
