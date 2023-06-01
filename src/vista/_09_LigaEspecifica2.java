@@ -562,6 +562,7 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 		background.add(btnCrearPartidos);
 		
 		lblErrorNoSeleccion = new JLabel("");
+		lblErrorNoSeleccion.setForeground(new Color(255, 128, 128));
 		
 		lblErrorNoSeleccion.setFont(new Font("Britannic Bold", Font.BOLD, 14));
 		lblErrorNoSeleccion.setBounds(362, 476, 542, 40);
