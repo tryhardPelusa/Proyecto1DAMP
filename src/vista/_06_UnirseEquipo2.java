@@ -22,6 +22,9 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -49,6 +52,7 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 	private JTextField textFieldCodigo;
 	private JButton btnUnion;
 	private JLabel lblIncorrecto;
+	private JLabel lblCodIncorrecto;
 
 	// Constructor
 	public _06_UnirseEquipo2() {
@@ -411,6 +415,8 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 				String codigoIngresado = textFieldCodigo.getText();
 				if (miControlador.verificarCodEquipo(codigoIngresado)) {
 					miControlador.cambiarVentana(6, 0);
+				}else {
+					lblCodIncorrecto.setVisible(true);
 				}
 			}
 		});
@@ -423,8 +429,20 @@ public class _06_UnirseEquipo2 extends JFrame implements Vista {
 		lblIncorrecto.setFont(new Font("Britannic Bold", Font.PLAIN, 15));
 		lblIncorrecto.setBounds(524, 302, 297, 26);
 		background.add(lblIncorrecto);
+		
+		lblCodIncorrecto = new JLabel("C\u00F3digo Incorrecto!");
+		lblCodIncorrecto.setForeground(new Color(255, 128, 128));
+		lblCodIncorrecto.setBounds(534, 337, 135, 23);
+		background.add(lblCodIncorrecto);
 
 		setLocationRelativeTo(null);
+		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowActivated(WindowEvent e) {
+				lblCodIncorrecto.setVisible(false);
+			}
+		});
 	}
 
 	@Override

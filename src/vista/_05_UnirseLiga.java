@@ -495,6 +495,7 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 			@Override
 			public void windowActivated(WindowEvent e) {
 				listaEquipos.setModel(miControlador.getEquiposUsuario());
+				lblUnionIncorrecta.setVisible(false);
 			}
 		});
 	}

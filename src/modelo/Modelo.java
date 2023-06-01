@@ -105,7 +105,7 @@ public class Modelo {
 				+ "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
 		try {
-			
+
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conexion = DriverManager.getConnection(url, usr, pwd);
 			System.out.println("-> Conexión con MySQL establecida");
@@ -421,27 +421,31 @@ public class Modelo {
 			stmt.setString(1, codEquipo);
 			ResultSet rs = stmt.executeQuery();
 
-			// Verificar si existe una fila con el CodEquipo proporcionado
 			boolean existeEquipo = rs.next();
-			String idEquipo = rs.getString("idequipo");
+			if (existeEquipo) {
 
-			// Cerrar la conexión y liberar recursos
+				String idEquipo = rs.getString("idequipo");
+
+				rs.close();
+				stmt.close();
+				((_06_UnirseEquipo2) miVista).error(false);
+
+				consulta = "INSERT INTO usuario_pertequipo (idusuario, idequipo) VALUES (?, ?)";
+				PreparedStatement stmt2 = conexion.prepareStatement(consulta);
+				stmt2.setString(1, usuario);
+				stmt2.setString(2, idEquipo);
+				stmt2.executeUpdate();
+				stmt2.close();
+			}
 			rs.close();
 			stmt.close();
-			((_06_UnirseEquipo2) miVista).error(false);
-
-			consulta = "INSERT INTO usuario_pertequipo (idusuario, idequipo) VALUES (?, ?)";
-			PreparedStatement stmt2 = conexion.prepareStatement(consulta);
-			stmt2.setString(1, usuario);
-			stmt2.setString(2, idEquipo);
-			stmt2.executeUpdate();
 			return existeEquipo;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		return false; // En caso de error o si no se encuentra el CodEquipo
+		return false;
 	}
 
 	public DefaultTableModel getMisApuestas(int idUsuario) {
@@ -487,7 +491,7 @@ public class Modelo {
 
 	}
 
-	public Boolean comprobarCodigoEquipo(String codigo) {
+	public boolean comprobarCodigoEquipo(String codigo) {
 		String consulta = "SELECT nombre FROM Equipos WHERE CodEquipo=?";
 		PreparedStatement proI;
 		try {
@@ -862,8 +866,10 @@ public class Modelo {
 			proI = conexion.prepareStatement(consulta);
 			proI.setString(1, codLiga);
 			ResultSet rs = proI.executeQuery();
-			rs.next();
-			idLiga = rs.getString(1);
+			if (rs.next()) {
+				idLiga = rs.getString(1);
+			}
+
 			proI.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -874,38 +880,43 @@ public class Modelo {
 
 	public void unirseLiga(String CodLiga, String nombreEquipo) {
 		String idLiga = obtenerIdLiga(CodLiga);
-		int idLigaInt = Integer.parseInt(idLiga);
-		boolean ligaEmpezada = comprobarDatosEnPartidos(idLigaInt);
-		if (!ligaEmpezada) {
-			String idEquipo = (String) obtenerEquipoDeTable(nombreEquipo);
-			String union = "INSERT INTO equipo_pert_liga (IDEquipo, IDLiga) VALUES (?,?)";
-			String clasificacion = "INSERT INTO clasificacion (IDEquipo, IDLiga, Puntos, PartidosJugados, "
-					+ "PartidosGanados, PartidosPerdidos, GolesAFavor, GolesEnContra, NombreEquipo) "
-					+ "VALUES (?, ?, 0, 0, 0, 0, 0, 0, 'Equipo')";
-			PreparedStatement proI;
-			PreparedStatement proII;
+		if (!idLiga.equals("")) {
 
-			try {
-				proI = conexion.prepareStatement(union);
-				proI.setString(1, idEquipo);
-				proI.setString(2, idLiga);
-				proI.executeUpdate();
-				proI.close();
-				proII = conexion.prepareStatement(clasificacion);
-				proII.setString(1, idEquipo);
-				proII.setString(2, idLiga);
-				proII.executeUpdate();
-				proII.close();
+			int idLigaInt = Integer.parseInt(idLiga);
+			boolean ligaEmpezada = comprobarDatosEnPartidos(idLigaInt);
+			if (!ligaEmpezada) {
+				String idEquipo = (String) obtenerEquipoDeTable(nombreEquipo);
+				String union = "INSERT INTO equipo_pert_liga (IDEquipo, IDLiga) VALUES (?,?)";
+				String clasificacion = "INSERT INTO clasificacion (IDEquipo, IDLiga, Puntos, PartidosJugados, "
+						+ "PartidosGanados, PartidosPerdidos, GolesAFavor, GolesEnContra, NombreEquipo) "
+						+ "VALUES (?, ?, 0, 0, 0, 0, 0, 0, 'Equipo')";
+				PreparedStatement proI;
+				PreparedStatement proII;
 
-			} catch (SQLException e) {
-				e.printStackTrace();
+				try {
+					proI = conexion.prepareStatement(union);
+					proI.setString(1, idEquipo);
+					proI.setString(2, idLiga);
+					proI.executeUpdate();
+					proI.close();
+					proII = conexion.prepareStatement(clasificacion);
+					proII.setString(1, idEquipo);
+					proII.setString(2, idLiga);
+					proII.executeUpdate();
+					proII.close();
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				unionLigaCorrecta = true;
+			} else {
+				unionLigaCorrecta = false;
 			}
-			unionLigaCorrecta = true;
 		}else {
 			unionLigaCorrecta = false;
 		}
 	}
-	
+
 	public boolean isUnionLigaCorrecta() {
 		return unionLigaCorrecta;
 	}
@@ -1210,10 +1221,10 @@ public class Modelo {
 	}
 
 	public boolean comprobarInvitado() {
-		if(usuario.equals("invitado")) {
+		if (usuario.equals("invitado")) {
 			return true;
-		}else {
-			return false;			
+		} else {
+			return false;
 		}
 	}
 
