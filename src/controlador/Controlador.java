@@ -185,7 +185,7 @@ public class Controlador {
 		miModelo.setVista(misVistas[9]);
 		miModelo.generarPartidos(idLiga);
 	}
-	
+
 	public TableModel buscarLigas(String nombreLiga) {
 		miModelo.setVista(misVistas[0]);
 		return miModelo.BuscarLigas(nombreLiga);
@@ -210,6 +210,11 @@ public class Controlador {
 	public boolean comprobarDatosEnPartidos(int idLiga) {
 		miModelo.setVista(misVistas[9]);
 		return miModelo.comprobarDatosEnPartidos(idLiga);
+	}
+
+	public String getNombreLiga(int idLiga) {
+		miModelo.setVista(misVistas[9]);
+		return miModelo.getNombreLiga(idLiga);
 	}
 
 }

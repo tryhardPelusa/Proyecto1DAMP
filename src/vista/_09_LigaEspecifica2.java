@@ -528,9 +528,9 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 			tableCalendario.getColumnModel().getColumn(i).setCellRenderer(cellRendererCalendario);
 		}
 
-		lblNombreLiga = new JLabel("Liga DAM U-Tad");
+		lblNombreLiga = new JLabel("");
 		lblNombreLiga.setFont(new Font("Britannic Bold", Font.BOLD, 40));
-		lblNombreLiga.setBounds(416, 86, 332, 64);
+		lblNombreLiga.setBounds(416, 86, 502, 64);
 		background.add(lblNombreLiga);
 
 		btnApostar2 = new JButton("Apostar");
@@ -583,6 +583,7 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 				if (!miModelo.getUsuario().equals(String.valueOf(idAdmin))) {
 					tableClasificacion.setDefaultEditor(Object.class, null);
 				}
+				lblNombreLiga.setText(miControlador.getNombreLiga(idLiga));
 				btnCrearPartidos.setVisible(!miControlador.comprobarDatosEnPartidos(idLiga));
 				resultado = invitado();
 				if (resultado) {

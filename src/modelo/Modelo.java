@@ -1237,4 +1237,25 @@ public class Modelo {
 		return false;
 	}
 
+	public String getNombreLiga(int idLiga) {
+		String nombreLiga = "";
+
+		try {
+			String query = "SELECT Nombre FROM ligas WHERE ID = ?";
+			PreparedStatement statement = conexion.prepareStatement(query);
+			statement.setInt(1, idLiga);
+
+			ResultSet resultSet = statement.executeQuery();
+			if (resultSet.next()) {
+				nombreLiga = resultSet.getString("Nombre");
+			}
+
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return nombreLiga;
+	}
+
 }
