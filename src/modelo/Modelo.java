@@ -993,13 +993,13 @@ public class Modelo {
 
 					// Actualizar la base de datos con el nuevo valor
 					if (!columnName.equals("Nombre") && !columnName.equals("IDEquipo")) {
-						String equipoID = (String) model.getValueAt(row, 0);
+						int equipoID = (int) model.getValueAt(row, 0);
 
 						try {
 							String updateQuery = "UPDATE Clasificacion SET " + columnName + " = ? WHERE IDEquipo = ?";
 							PreparedStatement updateStatement = conexion.prepareStatement(updateQuery);
 							updateStatement.setObject(1, data);
-							updateStatement.setString(2, equipoID);
+							updateStatement.setInt(2, equipoID);
 							updateStatement.executeUpdate();
 							updateStatement.close();
 						} catch (SQLException ex) {
