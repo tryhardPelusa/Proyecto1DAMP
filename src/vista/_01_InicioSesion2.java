@@ -294,7 +294,6 @@ public class _01_InicioSesion2 extends JFrame implements Vista {
 				miControlador.nuevaVentana(17);
 			}
 		});
-		lblConfiguracion.setIcon(new ImageIcon(_01_InicioSesion2.class.getResource("/img/configuracion.png")));
 		lblConfiguracion.setBounds(694, 492, 31, 39);
 		background.add(lblConfiguracion);
 
