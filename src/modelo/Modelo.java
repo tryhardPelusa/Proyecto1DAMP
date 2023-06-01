@@ -39,6 +39,7 @@ public class Modelo {
 	private int numIntentos = 0;
 	private int idLigaActual;
 	private int idAdminActual;
+	private boolean unionLigaCorrecta;
 
 	// Atributos para la conexion mysql
 	private String usr;
@@ -875,30 +876,41 @@ public class Modelo {
 	}
 
 	public void unirseLiga(String CodLiga, String nombreEquipo) {
-		String idEquipo = (String) obtenerEquipoDeTable(nombreEquipo);
 		String idLiga = obtenerIdLiga(CodLiga);
-		String union = "INSERT INTO equipo_pert_liga (IDEquipo, IDLiga) VALUES (?,?)";
-		String clasificacion = "INSERT INTO clasificacion (IDEquipo, IDLiga, Puntos, PartidosJugados, "
-				+ "PartidosGanados, PartidosPerdidos, GolesAFavor, GolesEnContra, NombreEquipo) "
-				+ "VALUES (?, ?, 0, 0, 0, 0, 0, 0, 'Equipo')";
-		PreparedStatement proI;
-		PreparedStatement proII;
+		int idLigaInt = Integer.parseInt(idLiga);
+		boolean ligaEmpezada = comprobarDatosEnPartidos(idLigaInt);
+		if (!ligaEmpezada) {
+			String idEquipo = (String) obtenerEquipoDeTable(nombreEquipo);
+			String union = "INSERT INTO equipo_pert_liga (IDEquipo, IDLiga) VALUES (?,?)";
+			String clasificacion = "INSERT INTO clasificacion (IDEquipo, IDLiga, Puntos, PartidosJugados, "
+					+ "PartidosGanados, PartidosPerdidos, GolesAFavor, GolesEnContra, NombreEquipo) "
+					+ "VALUES (?, ?, 0, 0, 0, 0, 0, 0, 'Equipo')";
+			PreparedStatement proI;
+			PreparedStatement proII;
 
-		try {
-			proI = conexion.prepareStatement(union);
-			proI.setString(1, idEquipo);
-			proI.setString(2, idLiga);
-			proI.executeUpdate();
-			proI.close();
-			proII = conexion.prepareStatement(clasificacion);
-			proII.setString(1, idEquipo);
-			proII.setString(2, idLiga);
-			proII.executeUpdate();
-			proII.close();
+			try {
+				proI = conexion.prepareStatement(union);
+				proI.setString(1, idEquipo);
+				proI.setString(2, idLiga);
+				proI.executeUpdate();
+				proI.close();
+				proII = conexion.prepareStatement(clasificacion);
+				proII.setString(1, idEquipo);
+				proII.setString(2, idLiga);
+				proII.executeUpdate();
+				proII.close();
 
-		} catch (SQLException e) {
-			e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			unionLigaCorrecta = true;
+		}else {
+			unionLigaCorrecta = false;
 		}
+	}
+	
+	public boolean isUnionLigaCorrecta() {
+		return unionLigaCorrecta;
 	}
 
 	public boolean comprobarLoginRelleno(boolean empty, int length) {
@@ -1031,16 +1043,16 @@ public class Modelo {
 	}
 
 	public void generarPartidos(int idLiga) {
-        List<Integer> equipos = obtenerEquiposDeLiga(idLiga);
+		List<Integer> equipos = obtenerEquiposDeLiga(idLiga);
 
-        int numEquipos = equipos.size();
-        for (int i = 0; i < numEquipos - 1; i++) {
-            int equipoLocal = equipos.get(i);
-            for (int j = i + 1; j < numEquipos; j++) {
-                int equipoVisitante = equipos.get(j);
-                insertarPartido(equipoLocal, equipoVisitante, idLiga);
-            }
-        }
+		int numEquipos = equipos.size();
+		for (int i = 0; i < numEquipos - 1; i++) {
+			int equipoLocal = equipos.get(i);
+			for (int j = i + 1; j < numEquipos; j++) {
+				int equipoVisitante = equipos.get(j);
+				insertarPartido(equipoLocal, equipoVisitante, idLiga);
+			}
+		}
 	}
 
 	private List<Integer> obtenerEquiposDeLiga(int idLiga) {
@@ -1064,44 +1076,44 @@ public class Modelo {
 
 		return equipos;
 	}
-	
+
 	private void insertarPartido(int equipoLocal, int equipoVisitante, int idLiga) {
-        try {
-            String query = "INSERT INTO Partidos (EquipLocal, EquipVisitante, Lugar, Fecha, IDLiga) " +
-                           "VALUES (?, ?, ?, ?, ?)";
-            PreparedStatement statement = conexion.prepareStatement(query);
-            statement.setString(1, obtenerNombreEquipo(equipoLocal));
-            statement.setString(2, obtenerNombreEquipo(equipoVisitante));
-            statement.setString(3, "Lugar del partido"); 
-            statement.setDate(4, new java.sql.Date(System.currentTimeMillis()));  
-            statement.setInt(5, idLiga);
-            statement.executeUpdate();
-            statement.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-	
+		try {
+			String query = "INSERT INTO Partidos (EquipLocal, EquipVisitante, Lugar, Fecha, IDLiga) "
+					+ "VALUES (?, ?, ?, ?, ?)";
+			PreparedStatement statement = conexion.prepareStatement(query);
+			statement.setString(1, obtenerNombreEquipo(equipoLocal));
+			statement.setString(2, obtenerNombreEquipo(equipoVisitante));
+			statement.setString(3, "Lugar del partido");
+			statement.setDate(4, new java.sql.Date(System.currentTimeMillis()));
+			statement.setInt(5, idLiga);
+			statement.executeUpdate();
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 	private String obtenerNombreEquipo(int idEquipo) {
-        String nombreEquipo = "";
+		String nombreEquipo = "";
 
-        try {
-            String query = "SELECT Nombre FROM Equipos WHERE IDEquipo = ?";
-            PreparedStatement statement = conexion.prepareStatement(query);
-            statement.setInt(1, idEquipo);
+		try {
+			String query = "SELECT Nombre FROM Equipos WHERE IDEquipo = ?";
+			PreparedStatement statement = conexion.prepareStatement(query);
+			statement.setInt(1, idEquipo);
 
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                nombreEquipo = resultSet.getString("Nombre");
-            }
+			ResultSet resultSet = statement.executeQuery();
+			if (resultSet.next()) {
+				nombreEquipo = resultSet.getString("Nombre");
+			}
 
-            statement.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
-        return nombreEquipo;
-    }
+		return nombreEquipo;
+	}
 
 	public DefaultTableModel BuscarLigas(String nombreLiga) {
 		DefaultTableModel model = new DefaultTableModel();
@@ -1175,22 +1187,22 @@ public class Modelo {
 
 	public boolean comprobarDatosEnPartidos(int idLiga) {
 		try {
-            String query = "SELECT COUNT(*) AS count FROM Partidos WHERE IDLiga = ?";
-            PreparedStatement statement = conexion.prepareStatement(query);
-            statement.setInt(1, idLiga);
+			String query = "SELECT COUNT(*) AS count FROM Partidos WHERE IDLiga = ?";
+			PreparedStatement statement = conexion.prepareStatement(query);
+			statement.setInt(1, idLiga);
 
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-            	int count = resultSet.getInt("count");
-                return count > 0;
-            }
+			ResultSet resultSet = statement.executeQuery();
+			if (resultSet.next()) {
+				int count = resultSet.getInt("count");
+				return count > 0;
+			}
 
-            statement.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
-        return false;
+		return false;
 	}
 
 }

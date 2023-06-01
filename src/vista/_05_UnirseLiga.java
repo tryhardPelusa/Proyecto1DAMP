@@ -252,6 +252,13 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 				btnUnirseALiga.setOpaque(false);
 			}
 		});
+		
+		JLabel lblUnionIncorrecta = new JLabel("El c\u00F3digo es incorrecto o la liga ha empezado");
+		lblUnionIncorrecta.setForeground(new Color(255, 128, 128));
+		lblUnionIncorrecta.setBounds(504, 393, 270, 19);
+		lblUnionIncorrecta.setVisible(false);
+		background.add(lblUnionIncorrecta);
+		
 		btnUnirseALiga_1 = new JButton("  UNIRSE A LIGA");
 		btnUnirseALiga_1.setHorizontalAlignment(SwingConstants.LEFT);
 		btnUnirseALiga_1.setFont(new Font("Britannic Bold", Font.BOLD, 25));
@@ -403,6 +410,12 @@ public class _05_UnirseLiga extends JFrame implements Vista {
 			public void actionPerformed(ActionEvent e) {
 				miControlador.cambiarVentana(5, 9);
 				miControlador.unirseLiga(txtCodLiga.getText(), (String) listaEquipos.getSelectedItem());
+				if (miModelo.isUnionLigaCorrecta()) {
+					lblUnionIncorrecta.setVisible(false);
+				}else {
+					lblUnionIncorrecta.setVisible(true);
+				}
+				
 
 			}
 		});
