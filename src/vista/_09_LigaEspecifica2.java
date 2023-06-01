@@ -387,6 +387,13 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 		btnSignOut = new JButton("Sign Out");
 		btnSignOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				btnMiCuenta.setEnabled(true);
+				btnCrearEquipo.setEnabled(true);
+				btnCrearLiga.setEnabled(true);
+				btnUnirseAEquipo.setEnabled(true);
+				btnUnirseALiga.setEnabled(true);
+				btnMisApuestas.setEnabled(true);
+				btnApostar2.setEnabled(true);
 				miControlador.cambiarVentana(9, 1);
 			}
 		});
