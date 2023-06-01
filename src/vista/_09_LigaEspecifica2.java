@@ -39,7 +39,7 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 	// Atributos
 	private Controlador miControlador;
 	private Modelo miModelo;
-
+	private boolean resultado;
 	private JPanel contentPane;
 	private JLabel lblFondo;
 	private JLabel lblLogo;
@@ -537,18 +537,18 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 		btnApostar2.setBackground(new Color(255, 128, 0));
 		btnApostar2.setBounds(734, 419, 111, 23);
 		background.add(btnApostar2);
-		
+
 		JButton btnCrearPartidos = new JButton("Crear Partidos");
 		btnCrearPartidos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				idLiga = miModelo.getIdLigaActual();
 				miControlador.generarPartidos(idLiga);
-				tableCalendario.setModel(miControlador.obtenerPartidosLigaEspecifica(idLiga)); 
+				tableCalendario.setModel(miControlador.obtenerPartidosLigaEspecifica(idLiga));
 				btnCrearPartidos.setVisible(!miControlador.comprobarDatosEnPartidos(idLiga));
 			}
 		});
-		
+
 		btnCrearPartidos.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
 		btnCrearPartidos.setBackground(new Color(255, 128, 0));
 		btnCrearPartidos.setBounds(555, 419, 150, 23);
@@ -557,6 +557,7 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 		setLocationRelativeTo(null);
 
 		addWindowListener(new WindowAdapter() {
+
 			@Override
 			public void windowActivated(WindowEvent e) {
 				btnCrearPartidos.setVisible(true);
@@ -568,7 +569,18 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 					tableClasificacion.setDefaultEditor(Object.class, null);
 				}
 				btnCrearPartidos.setVisible(!miControlador.comprobarDatosEnPartidos(idLiga));
-				
+				resultado = invitado();
+				if (resultado) {
+					btnMiCuenta.setVisible(false);
+					btnCrearEquipo.setVisible(false);
+					btnCrearLiga.setVisible(false);
+					btnUnirseAEquipo.setVisible(false);
+					btnUnirseALiga.setVisible(false);
+					btnMisApuestas.setVisible(false);
+					btnApostar2.setVisible(false);
+					
+				}
+
 			}
 		});
 	}
@@ -598,5 +610,9 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 
 	public void setIdLiga(int idLiga) {
 		this.idLiga = idLiga;
+	}
+
+	public boolean invitado() {
+		return miControlador.comprobarInvitado();
 	}
 }
