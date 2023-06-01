@@ -50,10 +50,21 @@ public class Modelo {
 	private File fConfig = new File("Configuracion.ini");
 	private Properties fp = new Properties();
 
+	/**
+	 * Establece la vista para el modelo.
+	 * 
+	 * @param miVista la vista a establecer
+	 */
 	public void setVista(Vista miVista) {
 		this.miVista = miVista;
 	}
 
+	/**
+	 * Modifica el fichero de configuración con los datos proporcionados.
+	 * 
+	 * @param datos un array de Strings que contiene los nuevos datos de
+	 *              configuración
+	 */
 	public void modificarConfig(String[] datos) {
 		try {
 			FileOutputStream fos = new FileOutputStream(fConfig);
@@ -69,6 +80,12 @@ public class Modelo {
 		}
 	}
 
+	/**
+	 * Carga la configuración guardada en el fichero.
+	 * 
+	 * @return un array de Strings que contiene los datos del fichero de
+	 *         configuración
+	 */
 	public String[] cargarConfig() {
 		String[] datos = new String[3];
 		FileInputStream fis;
@@ -88,8 +105,10 @@ public class Modelo {
 		return datos;
 	}
 
+	/**
+	 * Realiza la conexión a MySQL utilizando la configuración guardada.
+	 */
 	public void ConexionMySQL() {
-
 		FileInputStream fis;
 		try {
 			fis = new FileInputStream(fConfig);
@@ -105,7 +124,6 @@ public class Modelo {
 				+ "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
 		try {
-
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conexion = DriverManager.getConnection(url, usr, pwd);
 			System.out.println("-> Conexión con MySQL establecida");
@@ -121,8 +139,13 @@ public class Modelo {
 		}
 	}
 
+	/**
+	 * Recoge los datos del registro de la vista y se los pasa al método registrarse
+	 * para hacer el registro
+	 * 
+	 * @return verdadero si el registro fue exitoso, falso de lo contrario
+	 */
 	public boolean registro() {
-
 		String nombre = ((_02_Registro) miVista).getNombre();
 		String apellido1 = ((_02_Registro) miVista).getApellido1();
 		String apellido2 = ((_02_Registro) miVista).getApellido2();
@@ -132,9 +155,21 @@ public class Modelo {
 		String User = ((_02_Registro) miVista).getUser();
 		ConexionMySQL();
 		return registrarse(nombre, apellido1, apellido2, correo, fecha, Pwd, User);
-
 	}
 
+	/**
+	 * Realiza el registro del usuario utilizando los datos proporcionados, además
+	 * comprueba si el usuario ya existía, en dicho caso no realiza el registro
+	 * 
+	 * @param nombre    el nombre del usuario
+	 * @param apellido1 el primer apellido del usuario
+	 * @param apellido2 el segundo apellido del usuario
+	 * @param correo    el correo del usuario
+	 * @param fecha     la fecha de nacimiento del usuario
+	 * @param Pwd       la contraseña del usuario
+	 * @param User      el nombre de usuario del usuario
+	 * @return verdadero si el registro fue exitoso, falso de lo contrario
+	 */
 	public boolean registrarse(String nombre, String apellido1, String apellido2, String correo, String fecha,
 			String Pwd, String User) {
 		boolean resultado;
@@ -176,7 +211,16 @@ public class Modelo {
 		return resultado;
 	}
 
-	// Comprobamos que se puede pulsar el boton registrarse
+	/**
+	 * Comprueba que los campos obligatorios del registro están rellenos
+	 * 
+	 * @param nombre
+	 * @param correo
+	 * @param user
+	 * @param password
+	 * @param apellido1
+	 * @return verdadero si estan rellenos, falso de lo contrario
+	 */
 	public boolean comprobarTodosRellenos(boolean nombre, boolean correo, boolean user, int password,
 			boolean apellido1) {
 		boolean todoRelleno = true;
@@ -187,6 +231,14 @@ public class Modelo {
 		return todoRelleno;
 	}
 
+	/**
+	 * Comprueba que los campos obligatorios de creación de liga están rellenos
+	 * 
+	 * @param nombre
+	 * @param deporte
+	 * @param fecha
+	 * @return verdadero si están rellenos, falso de lo contrario
+	 */
 	public boolean comprobarTodosRellenos(boolean nombre, boolean deporte, Date fecha) {
 		boolean todoRelleno = true;
 		if (nombre || deporte || fecha == null) {
@@ -196,11 +248,17 @@ public class Modelo {
 		return todoRelleno;
 	}
 
+	/**
+	 * Realiza el inicio de sesión del usuario con las credenciales proporcionadas.
+	 * 
+	 * @param usr el nombre de usuario
+	 * @param pwd la contraseña
+	 * @return verdadero si el inicio de sesión es exitoso, falso de lo contrario
+	 */
 	public boolean login(String usr, String pwd) {
 		ConexionMySQL();
 		String id;
 		try {
-
 			String insert = "Select id, usuario, contraseña from usuario";
 			PreparedStatement proI = conexion.prepareStatement(insert);
 			ResultSet rset = proI.executeQuery();
@@ -225,14 +283,29 @@ public class Modelo {
 		}
 	}
 
+	/**
+	 * Obtiene el nombre de usuario actualmente activo.
+	 * 
+	 * @return el nombre de usuario actual
+	 */
 	public String getUsuario() {
 		return usuario;
 	}
 
+	/**
+	 * Establece el nombre de usuario actualmente activo.
+	 * 
+	 * @param usuario el nombre de usuario a establecer
+	 */
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
 
+	/**
+	 * Obtiene las ligas públicas
+	 * 
+	 * @return un DefaultTableModel que contiene las ligas públicas
+	 */
 	public DefaultTableModel getLigasPublicas() {
 		DefaultTableModel model = new DefaultTableModel();
 		ConexionMySQL();
@@ -261,6 +334,11 @@ public class Modelo {
 		return model;
 	}
 
+	/**
+	 * Obtiene las ligas privadas a las que pertenece el usuario actual.
+	 * 
+	 * @return un DefaultTableModel que contiene las ligas privadas del usuario
+	 */
 	public DefaultTableModel getLigasPrivadas() {
 		DefaultTableModel model = new DefaultTableModel();
 		ConexionMySQL();
@@ -294,8 +372,14 @@ public class Modelo {
 		return model;
 	}
 
+	/**
+	 * Obtiene la información de la cuenta del usuario actual.
+	 * 
+	 * @return un array de strings que contiene los datos de la cuenta del usuario
+	 *         en el siguiente orden: [usuario, nombre, apellido1, apellido2,
+	 *         contraseña, correo, edad]
+	 */
 	public String[] getMiCuenta() {
-
 		String consulta = "SELECT usuario,nombre,apellido1,apellido2,contraseña,correo,edad FROM usuario WHERE id = ?";
 		String[] datos = new String[7];
 
@@ -320,8 +404,14 @@ public class Modelo {
 		return datos;
 	}
 
+	/**
+	 * Actualiza la información de la cuenta del usuario con los nuevos datos
+	 * proporcionados.
+	 * 
+	 * @param datos un array de strings que contiene los nuevos datos de la cuenta
+	 * @return el número de filas actualizadas en la base de datos
+	 */
 	public int actualizarCuenta(String[] datos) {
-
 		String consulta = "UPDATE usuario SET nombre = ?, apellido1 = ?, apellido2 = ?, contraseña = ?, correo = ?, edad = ? WHERE id = ?";
 
 		try {
@@ -347,6 +437,11 @@ public class Modelo {
 		}
 	}
 
+	/**
+	 * Obtiene los equipos a los que pertenece el usuario actual.
+	 * 
+	 * @return un ComboBoxModel que contiene los nombres de los equipos del usuario
+	 */
 	public ComboBoxModel<String> getEquiposUsuario() {
 		DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
 		ConexionMySQL();
@@ -376,6 +471,11 @@ public class Modelo {
 		return model;
 	}
 
+	/**
+	 * Genera un código único para un equipo con formato 12ABC
+	 * 
+	 * @return el código generado
+	 */
 	public String getCodigoEquipo() {
 		String codigo = "";
 		Random random = new Random();
@@ -394,6 +494,11 @@ public class Modelo {
 		return codigo;
 	}
 
+	/**
+	 * Genera un código único para una liga con formato ABC12.
+	 * 
+	 * @return el código generado
+	 */
 	public String getCodigoLiga() {
 		String codigo = "";
 		Random random = new Random();
@@ -412,6 +517,14 @@ public class Modelo {
 		return codigo;
 	}
 
+	/**
+	 * Verifica si el código de equipo proporcionado existe en la base de datos. Si
+	 * existe, agrega al usuario actual al equipo correspondiente.
+	 * 
+	 * @param codEquipo el código de equipo
+	 * @return true si el código de equipo existe y se agrega al usuario, false de
+	 *         lo contrario
+	 */
 	public boolean verificarCodEquipo(String codEquipo) {
 		ConexionMySQL();
 		String consulta = "SELECT idequipo, CodEquipo FROM Equipos WHERE CodEquipo = ?";
@@ -423,7 +536,6 @@ public class Modelo {
 
 			boolean existeEquipo = rs.next();
 			if (existeEquipo) {
-
 				String idEquipo = rs.getString("idequipo");
 
 				rs.close();
@@ -448,6 +560,12 @@ public class Modelo {
 		return false;
 	}
 
+	/**
+	 * Obtiene las apuestas realizadas por un usuario.
+	 * 
+	 * @param idUsuario el ID del usuario
+	 * @return un DefaultTableModel que contiene las apuestas del usuario
+	 */
 	public DefaultTableModel getMisApuestas(int idUsuario) {
 		DefaultTableModel model = new DefaultTableModel();
 		ConexionMySQL();
@@ -479,6 +597,11 @@ public class Modelo {
 		return model;
 	}
 
+	/**
+	 * Obtiene el nombre, sede y deporte de un equipo a través de la vista. Genera
+	 * un código de equipo único y lo asigna al equipo. Luego llama al método
+	 * InsertarEquipo para insertar el equipo en la base de datos.
+	 */
 	public void InsertEquipo() {
 		String codigo;
 		String nombreEquip = ((_08_CrearEquipos) miVista).getNombreEquipo();
@@ -488,9 +611,14 @@ public class Modelo {
 			codigo = getCodigoEquipo();
 		} while (comprobarCodigoEquipo(codigo));
 		InsertarEquipo(nombreEquip, deporte, sede, codigo);
-
 	}
 
+	/**
+	 * Comprueba si un código de equipo ya existe en la base de datos.
+	 * 
+	 * @param codigo el código de equipo a comprobar
+	 * @return true si el código de equipo existe, false en caso contrario
+	 */
 	public boolean comprobarCodigoEquipo(String codigo) {
 		String consulta = "SELECT nombre FROM Equipos WHERE CodEquipo=?";
 		PreparedStatement proI;
@@ -507,9 +635,16 @@ public class Modelo {
 			e.printStackTrace();
 			return true;
 		}
-
 	}
 
+	/**
+	 * Inserta un equipo en la base de datos.
+	 * 
+	 * @param NombreEquipo el nombre del equipo
+	 * @param Deporte      el deporte del equipo
+	 * @param Sede         la sede del equipo
+	 * @param CodEquipo    el código del equipo
+	 */
 	public void InsertarEquipo(String NombreEquipo, String Deporte, String Sede, String CodEquipo) {
 		ConexionMySQL();
 		String insert = "INSERT INTO Equipos (Nombre, Deporte, Estadio, CodEquipo) VALUES (?,?,?,?)";
@@ -542,6 +677,11 @@ public class Modelo {
 		}
 	}
 
+	/**
+	 * Obtiene las ligas a las que pertenece un equipo.
+	 * 
+	 * @return un DefaultTableModel con las ligas del equipo
+	 */
 	public DefaultTableModel getLigasDeEquipo() {
 		DefaultTableModel model = new DefaultTableModel();
 		ConexionMySQL();
@@ -574,12 +714,17 @@ public class Modelo {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return model;
 	}
 
+	/**
+	 * Obtiene los usuarios que pertenecen a un equipo.
+	 * 
+	 * @param equipoActual el equipo actual
+	 * @return un DefaultTableModel con los usuarios del equipo
+	 */
 	public DefaultTableModel getUsuarioDeLiga(String equipoActual) {
 		DefaultTableModel model = new DefaultTableModel();
 		ConexionMySQL();
@@ -594,7 +739,6 @@ public class Modelo {
 			ResultSet rs = proI.executeQuery();
 
 			ArrayList<String> idUsuarios = new ArrayList<>();
-			System.out.println(rs.getRow());
 			while (rs.next()) {
 				idUsuarios.add(rs.getString(1));
 			}
@@ -612,12 +756,17 @@ public class Modelo {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return model;
 	}
 
+	/**
+	 * Obtiene la sede de un equipo.
+	 * 
+	 * @param equipoActual el equipo actual
+	 * @return la sede del equipo
+	 */
 	public String getSede(String equipoActual) {
 		String consulta = "select Estadio from equipos where IDEquipo = ?;";
 		PreparedStatement proI;
@@ -630,13 +779,18 @@ public class Modelo {
 			estadio = rs.getString(1);
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return estadio;
 	}
 
-	public String getdeporte(String equipoActual) {
+	/**
+	 * Obtiene el deporte de un equipo.
+	 * 
+	 * @param equipoActual el equipo actual
+	 * @return el deporte del equipo
+	 */
+	public String getDeporte(String equipoActual) {
 		String consulta = "select Deporte from equipos where IDEquipo = ?;";
 		PreparedStatement proI;
 		String deporte = "";
@@ -646,50 +800,63 @@ public class Modelo {
 			ResultSet rs = proI.executeQuery();
 			rs.next();
 			deporte = rs.getString(1);
-
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return deporte;
 	}
 
+	/**
+	 * Obtiene el nombre de un equipo.
+	 * 
+	 * @param equipoActual el equipo actual
+	 * @return el nombre del equipo
+	 */
 	public String getEquipo(String equipoActual) {
 		String consulta = "select Nombre from equipos where IDEquipo = ?;";
 		PreparedStatement proI;
-		String Equipo = "";
+		String equipo = "";
 		try {
 			proI = conexion.prepareStatement(consulta);
 			proI.setString(1, IdEquipo);
 			ResultSet rs = proI.executeQuery();
 			rs.next();
-			Equipo = rs.getString(1);
-
+			equipo = rs.getString(1);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return Equipo;
+		return equipo;
 	}
 
+	/**
+	 * Obtiene el código de un equipo.
+	 * 
+	 * @param equipoActual el equipo actual
+	 * @return el código del equipo
+	 */
 	public String getCodigo(String equipoActual) {
 		String consulta = "select CodEquipo from equipos where IDEquipo = ?;";
 		PreparedStatement proI;
-		String Codigo = "";
+		String codigo = "";
 		try {
 			proI = conexion.prepareStatement(consulta);
 			proI.setString(1, IdEquipo);
 			ResultSet rs = proI.executeQuery();
 			rs.next();
-			Codigo = rs.getString(1);
-
+			codigo = rs.getString(1);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return Codigo;
+		return codigo;
 	}
 
+	/**
+	 * Obtiene los equipos de los partidos que coinciden con los datos de apuesta
+	 * proporcionados.
+	 * 
+	 * @param datosApuesta los datos de apuesta (EquipLocal y EquipVisitante)
+	 * @return un DefaultTableModel con los equipos de los partidos
+	 */
 	public DefaultTableModel obtenerEquiposDePartidos(String[] datosApuesta) {
 		DefaultTableModel model = new DefaultTableModel();
 		ConexionMySQL();
@@ -727,13 +894,23 @@ public class Modelo {
 		}
 		apuestaActual = model;
 		return model;
-
 	}
 
+	/**
+	 * Obtiene la tabla de la apuesta actual.
+	 * 
+	 * @return la tabla de la apuesta actual
+	 */
 	public DefaultTableModel getApuestaActual() {
 		return apuestaActual;
 	}
 
+	/**
+	 * Obtiene los partidos de una liga específica.
+	 * 
+	 * @param idLiga el ID de la liga
+	 * @return un DefaultTableModel con los partidos de la liga
+	 */
 	public DefaultTableModel obtenerPartidosLigaEspecifica(int idLiga) {
 		DefaultTableModel model = new DefaultTableModel();
 		ConexionMySQL();
@@ -769,8 +946,13 @@ public class Modelo {
 		return model;
 	}
 
+	/**
+	 * Crea una nueva liga con los datos proporcionados.
+	 * 
+	 * @param datos los datos de la liga
+	 * @return el código de la liga creada
+	 */
 	public String crearLiga(String[] datos) {
-
 		String consulta = "INSERT INTO ligas (premio,nombre,sede,fechaInicio,privacidad,deporte,idAdmin,CodLiga) VALUES (?,?,?,?,?,?,?,?)";
 		String codigo = getCodigoLiga();
 		try {
@@ -778,6 +960,7 @@ public class Modelo {
 			stmt.setInt(1, Integer.parseInt(datos[5]));
 			stmt.setString(2, datos[0]);
 			stmt.setString(3, datos[4]);
+
 			// Convertir el String de fecha a LocalDate
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 			LocalDate localDate = LocalDate.parse(datos[2], formatter);
@@ -805,6 +988,11 @@ public class Modelo {
 		}
 	}
 
+	/**
+	 * Obtiene las apuestas del usuario actual.
+	 * 
+	 * @return un DefaultTableModel con las apuestas del usuario
+	 */
 	public DefaultTableModel obtenerApuestas() {
 		DefaultTableModel model = new DefaultTableModel();
 		ConexionMySQL();
@@ -841,6 +1029,12 @@ public class Modelo {
 		return model;
 	}
 
+	/**
+	 * Obtiene el ID del equipo.
+	 * 
+	 * @param string el nombre del equipo
+	 * @return el ID de equipo
+	 */
 	public Object obtenerEquipoDeTable(String string) {
 		String consulta = "select IDEquipo from equipos where Nombre = ?";
 		PreparedStatement proI;
@@ -852,12 +1046,17 @@ public class Modelo {
 			IdEquipo = rs.getString(1);
 			proI.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return IdEquipo;
 	}
 
+	/**
+	 * Obtiene el ID de una liga a partir de su código.
+	 * 
+	 * @param codLiga el código de la liga
+	 * @return el ID de la liga
+	 */
 	public String obtenerIdLiga(String codLiga) {
 		String consulta = "select ID from ligas where CodLiga = ?";
 		PreparedStatement proI;
@@ -872,21 +1071,31 @@ public class Modelo {
 
 			proI.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return idLiga;
 	}
 
+	/**
+	 * Añade un equipo a una liga.
+	 * 
+	 * @param CodLiga      el código de la liga
+	 * @param nombreEquipo el nombre del equipo
+	 */
 	public void unirseLiga(String CodLiga, String nombreEquipo) {
+		// Obtener el ID de la liga
 		String idLiga = obtenerIdLiga(CodLiga);
 		if (!idLiga.equals("")) {
-
+			// Convertir el ID de la liga a entero
 			int idLigaInt = Integer.parseInt(idLiga);
+			// Comprobar si la liga ya ha empezado
 			boolean ligaEmpezada = comprobarDatosEnPartidos(idLigaInt);
 			if (!ligaEmpezada) {
+				// Obtener el ID del equipo
 				String idEquipo = (String) obtenerEquipoDeTable(nombreEquipo);
+				// Insertar una nueva fila en la tabla equipo_pert_liga
 				String union = "INSERT INTO equipo_pert_liga (IDEquipo, IDLiga) VALUES (?,?)";
+				// Insertar una nueva fila en la tabla clasificacion
 				String clasificacion = "INSERT INTO clasificacion (IDEquipo, IDLiga, Puntos, PartidosJugados, "
 						+ "PartidosGanados, PartidosPerdidos, GolesAFavor, GolesEnContra, NombreEquipo) "
 						+ "VALUES (?, ?, 0, 0, 0, 0, 0, 0, 'Equipo')";
@@ -912,30 +1121,49 @@ public class Modelo {
 			} else {
 				unionLigaCorrecta = false;
 			}
-		}else {
+		} else {
 			unionLigaCorrecta = false;
 		}
 	}
 
+	/**
+	 * Verifica si la unión de la liga se ha realizado correctamente.
+	 * 
+	 * @return true si la unión de la liga es correcta, false en caso contrario
+	 */
 	public boolean isUnionLigaCorrecta() {
 		return unionLigaCorrecta;
 	}
 
+	/**
+	 * Comprueba si los campos de login estan rellenos
+	 * 
+	 * @param empty  indica si el usuario está vacío
+	 * @param length longitud de la contraseña
+	 * @return true si los campos del login estan rellenos, false en caso contrario
+	 */
 	public boolean comprobarLoginRelleno(boolean empty, int length) {
 		if (empty || length == 0) {
 			return false;
 		} else {
 			return true;
 		}
-
 	}
 
+	/**
+	 * Incrementa el contador de intentos de login.
+	 */
 	public void setNumIntentos() {
 		numIntentos++;
 	}
 
+	/**
+	 * Comprueba si se ha alcanzado el número máximo de intentos de login.
+	 * 
+	 * @return true si se ha alcanzado el número máximo de intentos, false en caso
+	 *         contrario
+	 */
 	public boolean comprobarIntentos() {
-
 		if (numIntentos == 3) {
 			return true;
 		} else {
@@ -943,13 +1171,23 @@ public class Modelo {
 		}
 	}
 
+	/**
+	 * Obtiene los datos de clasificación de una liga y un administrador
+	 * específicos.
+	 * 
+	 * @param idLiga  el ID de la liga
+	 * @param idAdmin el ID del administrador
+	 * @return un objeto DefaultTableModel que contiene los datos de clasificación
+	 *         de la liga
+	 */
 	public DefaultTableModel getClasificacion(int idLiga, int idAdmin) {
 		String[] nombreColumnas = { "IDEquipo", "Nombre", "Puntos", "PartidosJugados", "PartidosGanados",
 				"PartidosPerdidos", "GolesAFavor", "GolesEnContra" };
 		DefaultTableModel model = new DefaultTableModel(nombreColumnas, 0);
 
 		try {
-
+			// Consulta SQL para obtener los datos de clasificación de la liga y el
+			// administrador especificados
 			String query = "SELECT Clasificacion.IDEquipo, Equipos.Nombre, Clasificacion.Puntos, "
 					+ "Clasificacion.PartidosJugados, Clasificacion.PartidosGanados, Clasificacion.PartidosPerdidos, "
 					+ "Clasificacion.GolesAFavor, Clasificacion.GolesEnContra FROM Clasificacion "
@@ -960,6 +1198,7 @@ public class Modelo {
 			ResultSet resultSet = statement.executeQuery();
 
 			while (resultSet.next()) {
+				// Obtener los datos de cada fila
 				int equipoID = resultSet.getInt("IDEquipo");
 				String nombreEquipo = resultSet.getString("Nombre");
 				int puntos = resultSet.getInt("Puntos");
@@ -1013,6 +1252,14 @@ public class Modelo {
 		return model;
 	}
 
+	/**
+	 * Obtiene los IDs de una liga y su administrador basado en el nombre de la
+	 * liga.
+	 * 
+	 * @param liga el nombre de la liga
+	 * @return un array de enteros que contiene los IDs de la liga y su
+	 *         administrador
+	 */
 	public int[] obtenerIdsLigaAdmin(String liga) {
 		String consulta = "SELECT id, idadmin FROM ligas WHERE nombre = ?";
 		int ids[] = new int[2];
@@ -1037,19 +1284,40 @@ public class Modelo {
 		return ids;
 	}
 
+	/**
+	 * Establece los IDs de la liga y el administrador actual.
+	 * 
+	 * @param idLiga  el ID de la liga actual
+	 * @param idAdmin el ID del administrador actual
+	 */
 	public void pasarIdsALigaEspecifica(int idLiga, int idAdmin) {
 		idLigaActual = idLiga;
 		idAdminActual = idAdmin;
 	}
 
+	/**
+	 * Obtiene el ID de la liga actual.
+	 * 
+	 * @return el ID de la liga actual
+	 */
 	public int getIdLigaActual() {
 		return idLigaActual;
 	}
 
+	/**
+	 * Obtiene el ID del administrador de la liga actual.
+	 * 
+	 * @return el ID del administrador de la liga actual
+	 */
 	public int getIdAdminActual() {
 		return idAdminActual;
 	}
 
+	/**
+	 * Genera los partidos para una liga especificada.
+	 * 
+	 * @param idLiga el ID de la liga
+	 */
 	public void generarPartidos(int idLiga) {
 		List<Integer> equipos = obtenerEquiposDeLiga(idLiga);
 
@@ -1063,6 +1331,12 @@ public class Modelo {
 		}
 	}
 
+	/**
+	 * Obtiene la lista de equipos de una liga especificada.
+	 * 
+	 * @param idLiga el ID de la liga
+	 * @return una lista de enteros que contiene los IDs de los equipos de la liga
+	 */
 	private List<Integer> obtenerEquiposDeLiga(int idLiga) {
 		List<Integer> equipos = new ArrayList<>();
 
@@ -1085,6 +1359,13 @@ public class Modelo {
 		return equipos;
 	}
 
+	/**
+	 * Inserta un partido en la base de datos.
+	 * 
+	 * @param equipoLocal     el ID del equipo local
+	 * @param equipoVisitante el ID del equipo visitante
+	 * @param idLiga          el ID de la liga
+	 */
 	private void insertarPartido(int equipoLocal, int equipoVisitante, int idLiga) {
 		try {
 			String query = "INSERT INTO Partidos (EquipLocal, EquipVisitante, Lugar, Fecha, IDLiga) "
@@ -1102,6 +1383,12 @@ public class Modelo {
 		}
 	}
 
+	/**
+	 * Obtiene el nombre de un equipo basado en su ID.
+	 * 
+	 * @param idEquipo el ID del equipo
+	 * @return el nombre del equipo
+	 */
 	private String obtenerNombreEquipo(int idEquipo) {
 		String nombreEquipo = "";
 
@@ -1123,6 +1410,13 @@ public class Modelo {
 		return nombreEquipo;
 	}
 
+	/**
+	 * Busca ligas públicas en la base de datos que coincidan con el nombre
+	 * especificado.
+	 * 
+	 * @param nombreLiga el nombre de la liga a buscar
+	 * @return un DefaultTableModel que contiene las ligas públicas encontradas
+	 */
 	public DefaultTableModel BuscarLigas(String nombreLiga) {
 		DefaultTableModel model = new DefaultTableModel();
 		ConexionMySQL();
@@ -1153,6 +1447,13 @@ public class Modelo {
 		return model;
 	}
 
+	/**
+	 * Busca ligas privadas en la base de datos que coincidan con el nombre
+	 * especificado.
+	 * 
+	 * @param nombreLiga el nombre de la liga a buscar
+	 * @return un TableModel que contiene las ligas privadas encontradas
+	 */
 	public TableModel BuscarLigasPrivadas(String nombreLiga) {
 		DefaultTableModel model = new DefaultTableModel();
 		ConexionMySQL();
@@ -1188,19 +1489,33 @@ public class Modelo {
 		return model;
 	}
 
+	/**
+	 * Busca las apuestas realizadas para un equipo específico en la base de datos.
+	 * 
+	 * @param nombreEquipoApostado el nombre del equipo apostado
+	 * @return un TableModel que contiene las apuestas encontradas
+	 */
 	public TableModel buscarApuesta(String nombreEquipoApostado) {
 
+		// Crear modelo de tabla por defecto
 		DefaultTableModel model = new DefaultTableModel();
+
+		// Conectar a la base de datos
 		ConexionMySQL();
+
+		// Consulta SQL para buscar las apuestas
 		String consulta = "SELECT * FROM apuestas WHERE LOWER(ganador) like LOWER(?)";
 
 		try {
+			// Preparar la declaración SQL
 			PreparedStatement stmt = conexion.prepareStatement(consulta);
 			nombreEquipoApostado = "%" + nombreEquipoApostado + "%";
 			stmt.setString(1, nombreEquipoApostado);
+
+			// Ejecutar la consulta y obtener el resultado
 			ResultSet rs = stmt.executeQuery();
 
-			model.addColumn("");
+			// Agregar columnas al modelo de tabla
 
 			// Obtener los datos de las filas
 			while (rs.next()) {
@@ -1220,6 +1535,11 @@ public class Modelo {
 
 	}
 
+	/**
+	 * Comprueba si el usuario actual es un invitado.
+	 * 
+	 * @return true si el usuario es un invitado, false en caso contrario
+	 */
 	public boolean comprobarInvitado() {
 		if (usuario.equals("invitado")) {
 			return true;
@@ -1228,6 +1548,13 @@ public class Modelo {
 		}
 	}
 
+	/**
+	 * Comprueba si existen datos en la tabla de partidos para una liga específica.
+	 * 
+	 * @param idLiga el ID de la liga
+	 * @return true si existen datos en la tabla de partidos para la liga, false en
+	 *         caso contrario
+	 */
 	public boolean comprobarDatosEnPartidos(int idLiga) {
 		try {
 			String query = "SELECT COUNT(*) AS count FROM Partidos WHERE IDLiga = ?";
@@ -1248,6 +1575,12 @@ public class Modelo {
 		return false;
 	}
 
+	/**
+	 * Obtiene el nombre de una liga dado su ID.
+	 * 
+	 * @param idLiga el ID de la liga
+	 * @return el nombre de la liga
+	 */
 	public String getNombreLiga(int idLiga) {
 		String nombreLiga = "";
 
