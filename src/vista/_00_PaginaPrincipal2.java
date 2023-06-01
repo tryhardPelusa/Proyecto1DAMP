@@ -542,14 +542,12 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 				tableLigasPublicas.setModel(miControlador.getLigasPublicas());
 				resultado = invitado();
 				if(resultado) {
-					btnMiCuenta.setVisible(false);
-					btnCrearEquipo.setVisible(false);
-					btnCrearLiga.setVisible(false);
-					btnUnirseAEquipo.setVisible(false);
-					btnUnirseALiga.setVisible(false);
-					btnMisApuestas.setVisible(false);
-					btnSignOut.setBounds(10, 277, 260, 49);
-					btnVerLigas.setBounds(10, 217, 260, 49);
+					btnMiCuenta.setEnabled(false);
+					btnCrearEquipo.setEnabled(false);
+					btnCrearLiga.setEnabled(false);
+					btnUnirseAEquipo.setEnabled(false);
+					btnUnirseALiga.setEnabled(false);
+					btnMisApuestas.setEnabled(false);
 				}
 			}
 		});

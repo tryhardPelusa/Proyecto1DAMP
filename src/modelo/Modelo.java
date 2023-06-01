@@ -1181,7 +1181,7 @@ public class Modelo {
 
 		DefaultTableModel model = new DefaultTableModel();
 		ConexionMySQL();
-		String consulta = "SELECT * FROM apuestas WHERE LOWER(gandor) like LOWER(?)";
+		String consulta = "SELECT * FROM apuestas WHERE LOWER(ganador) like LOWER(?)";
 
 		try {
 			PreparedStatement stmt = conexion.prepareStatement(consulta);
