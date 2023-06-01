@@ -54,7 +54,7 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 	private JLabel lblBarraMoverVentana;
 	private int xMouse, yMouse;
 	private JLabel lblBuscarLigas;
-	private JTextField textField;
+	private JTextField txtBuscador;
 	private JTable tableLigasPublicas;
 	private JTable tableLigasPrivadas;
 
@@ -427,13 +427,19 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 		lblBuscarLigas.setBounds(335, 94, 106, 23);
 		background.add(lblBuscarLigas);
 
-		textField = new JTextField();
-		textField.setBackground(new Color(0, 128, 192));
-		textField.setBounds(429, 96, 121, 20);
-		background.add(textField);
-		textField.setColumns(10);
+		txtBuscador = new JTextField();
+		txtBuscador.setBackground(new Color(0, 128, 192));
+		txtBuscador.setBounds(429, 96, 121, 20);
+		background.add(txtBuscador);
+		txtBuscador.setColumns(10);
 
 		JLabel lblLupa = new JLabel("");
+		lblLupa.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				tableLigasPrivadas.setModel(miControlador.buscarLigasPrivadas(getNombreLiga()));
+				tableLigasPublicas.setModel(miControlador.buscarLigas(getNombreLiga()));
+			}
+		});
 		lblLupa.setIcon(new ImageIcon(_00_PaginaPrincipal2.class.getResource("/img/lupa.png")));
 		lblLupa.setBounds(554, 92, 26, 30);
 		background.add(lblLupa);
@@ -548,5 +554,9 @@ public class _00_PaginaPrincipal2 extends JFrame implements Vista {
 	@Override
 	public void setControlador(Controlador miControlador) {
 		this.miControlador = miControlador;
+	}
+	
+	public String getNombreLiga() {
+		return txtBuscador.getText();
 	}
 }

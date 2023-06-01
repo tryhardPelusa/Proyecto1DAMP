@@ -909,6 +909,7 @@ public class Modelo {
 					int column = e.getColumn();
 					TableModel model = (TableModel) e.getSource();
 					Object data = model.getValueAt(row, column);
+
 					String columnName = model.getColumnName(column);
 
 					// Actualizar la base de datos con el nuevo valor
@@ -972,7 +973,74 @@ public class Modelo {
 
 	public void generarPartidos(int idLiga) {
 		
+	}	
+	public DefaultTableModel BuscarLigas(String nombreLiga) {
+		DefaultTableModel model = new DefaultTableModel();
+		ConexionMySQL();
+		String consulta = "SELECT nombre FROM ligas WHERE idadmin=1 and LOWER(ligas.nombre) like LOWER(?)";
+
+		try {
+			PreparedStatement stmt = conexion.prepareStatement(consulta);
+			nombreLiga = "%" + nombreLiga + "%";
+			stmt.setString(1, nombreLiga);
+			ResultSet rs = stmt.executeQuery();
+
+			model.addColumn("Ligas Públicas");
+
+			// Obtener los datos de las filas
+			while (rs.next()) {
+				String[] rowData = new String[1];
+				rowData[0] = rs.getString(1);
+				model.addRow(rowData);
+			}
+
+			// Cerrar la conexión y liberar recursos
+			rs.close();
+			stmt.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return model;
+	}
+
+	public TableModel BuscarLigasPrivadas(String nombreLiga) {
+		DefaultTableModel model = new DefaultTableModel();
+		ConexionMySQL();
+		String consulta = "SELECT Ligas.Nombre AS NombreLiga\r\n" + "FROM Ligas\r\n"
+				+ "JOIN Equipo_Pert_Liga ON Ligas.ID = Equipo_Pert_Liga.IDLiga\r\n"
+				+ "JOIN Equipos ON Equipo_Pert_Liga.IDEquipo = Equipos.IDEquipo\r\n"
+				+ "JOIN Usuario_PertEquipo ON Equipos.IDEquipo = Usuario_PertEquipo.IDEquipo\r\n"
+				+ "JOIN Usuario ON Usuario_PertEquipo.IDUsuario = Usuario.ID\r\n" + "WHERE LOWER(ligas.Nombre) like LOWER(?)";
+
+		try {
+			PreparedStatement stmt = conexion.prepareStatement(consulta);
+			nombreLiga = "%" + nombreLiga + "%";
+			stmt.setString(1, nombreLiga);
+			ResultSet rs = stmt.executeQuery();
+
+			model.addColumn("Ligas Privadas");
+
+			// Obtener los datos de las filas
+			while (rs.next()) {
+				String[] rowData = new String[1];
+				rowData[0] = rs.getString(1);
+				model.addRow(rowData);
+			}
+
+			// Cerrar la conexión y liberar recursos
+			rs.close();
+			stmt.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return model;
+	}
+
+	public TableModel BuscarApuesta(String nombreEquipoApostado) {
 		
+		return null;
 	}
 
 }

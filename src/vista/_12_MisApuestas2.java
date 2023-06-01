@@ -478,6 +478,11 @@ public class _12_MisApuestas2 extends JFrame implements Vista {
         txtbuscar.setColumns(10);
         
         btnBuscar = new JButton("BUSCAR");
+        btnBuscar.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		tblApuestas.setModel(miControlador.BuscarApuesta(txtbuscar.getText()));
+        	}
+        });
         btnBuscar.setFont(new Font("Britannic Bold", Font.PLAIN, 14));
         btnBuscar.setBackground(new Color(255, 128, 0));
         btnBuscar.setBounds(853, 79, 101, 23);
@@ -495,5 +500,8 @@ public class _12_MisApuestas2 extends JFrame implements Vista {
 	@Override
 	public void setControlador(Controlador miControlador) {
 		this.miControlador = miControlador;
+	}
+	public String NombreEquipoABuscar() {
+		return txtbuscar.getText();
 	}
 }

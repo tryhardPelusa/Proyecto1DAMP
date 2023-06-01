@@ -185,6 +185,21 @@ public class Controlador {
 		miModelo.setVista(misVistas[9]);
 		miModelo.generarPartidos(idLiga);
 	}
+	
+	public TableModel buscarLigas(String nombreLiga) {
+		miModelo.setVista(misVistas[0]);
+		return miModelo.BuscarLigas(nombreLiga);
 
+	}
+
+	public TableModel buscarLigasPrivadas(String nombreLiga) {
+		miModelo.setVista(misVistas[0]);
+		return miModelo.BuscarLigasPrivadas(nombreLiga);
+	}
+
+	public TableModel BuscarApuesta(String NombreEquipoApostado) {
+		miModelo.setVista(misVistas[12]);
+		return miModelo.BuscarApuesta(NombreEquipoApostado);
+	}
 
 }
