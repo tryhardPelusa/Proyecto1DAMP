@@ -449,6 +449,13 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 		// Tabla con los resultados de la liga
 		tableClasificacion = new JTable();
 		tableClasificacion.setFont(new Font("Britannic Bold", Font.PLAIN, 11));
+		tableClasificacion.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int fila = tableClasificacion.getSelectedRow();
+				miControlador.getEquipoDeTabla((String) tableClasificacion.getValueAt(fila, 1));
+			}
+		});
 		scrollPaneClasificacion.setViewportView(tableClasificacion);
 
 		// Personaliza el estilo de las celdas de encabezado de la tabla
@@ -535,27 +542,25 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 		btnApostar2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				miControlador.obtenerEquiposDePartidos(datosApuesta);
-				miControlador.cambiarVentana(9, 11);	 		
+				miControlador.cambiarVentana(9, 11);
 			}
 		});
 		btnApostar2.setFont(new Font("Britannic Bold", Font.PLAIN, 16));
 		btnApostar2.setBackground(new Color(255, 128, 0));
 		btnApostar2.setBounds(734, 419, 111, 23);
 		background.add(btnApostar2);
-		
 
 		setLocationRelativeTo(null);
-		
+
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowActivated(WindowEvent e) {
 				idLiga = miModelo.getIdLigaActual();
 				idAdmin = miModelo.getIdAdminActual();
 				tableClasificacion.setModel(miControlador.getClasificacion(idLiga, idAdmin));
-//				if (!miModelo.getUsuario().equals(String.valueOf(idAdmin))) {
-////					tableClasificacion.setEnabled(false);
-//					tableClasificacion.setDefaultEditor(Object.class, null);
-//				}
+				if (!miModelo.getUsuario().equals(String.valueOf(idAdmin))) {
+					tableClasificacion.setDefaultEditor(Object.class, null);
+				}
 			}
 		});
 	}
@@ -570,7 +575,7 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 	public void setControlador(Controlador miControlador) {
 		this.miControlador = miControlador;
 	}
-	
+
 	public int getIdAdmin() {
 		return idAdmin;
 	}
