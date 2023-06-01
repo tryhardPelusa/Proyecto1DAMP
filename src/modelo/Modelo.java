@@ -994,7 +994,8 @@ public class Modelo {
 				+ "JOIN Equipo_Pert_Liga ON Ligas.ID = Equipo_Pert_Liga.IDLiga\r\n"
 				+ "JOIN Equipos ON Equipo_Pert_Liga.IDEquipo = Equipos.IDEquipo\r\n"
 				+ "JOIN Usuario_PertEquipo ON Equipos.IDEquipo = Usuario_PertEquipo.IDEquipo\r\n"
-				+ "JOIN Usuario ON Usuario_PertEquipo.IDUsuario = Usuario.ID\r\n" + "WHERE LOWER(ligas.Nombre) like LOWER(?)";
+				+ "JOIN Usuario ON Usuario_PertEquipo.IDUsuario = Usuario.ID\r\n"
+				+ "WHERE LOWER(ligas.Nombre) like LOWER(?)";
 
 		try {
 			PreparedStatement stmt = conexion.prepareStatement(consulta);
@@ -1022,8 +1023,34 @@ public class Modelo {
 	}
 
 	public TableModel BuscarApuesta(String nombreEquipoApostado) {
-		
-		return null;
+
+		DefaultTableModel model = new DefaultTableModel();
+		ConexionMySQL();
+		String consulta = "SELECT * FROM apuestas WHERE LOWER(gandor) like LOWER(?)";
+
+		try {
+			PreparedStatement stmt = conexion.prepareStatement(consulta);
+			nombreEquipoApostado = "%" + nombreEquipoApostado + "%";
+			stmt.setString(1, nombreEquipoApostado);
+			ResultSet rs = stmt.executeQuery();
+
+			model.addColumn("");
+
+			// Obtener los datos de las filas
+			while (rs.next()) {
+				String[] rowData = new String[1];
+				rowData[0] = rs.getString(1);
+				model.addRow(rowData);
+			}
+
+			// Cerrar la conexión y liberar recursos
+			rs.close();
+			stmt.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return model;
 	}
 
 }
