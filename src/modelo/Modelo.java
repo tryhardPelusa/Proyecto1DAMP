@@ -57,9 +57,9 @@ public class Modelo {
 			FileInputStream fis = new FileInputStream(fConfig);
 			FileOutputStream fos = new FileOutputStream(fConfig);
 			fp.load(fis);
-			fp.setProperty(usr, datos[0]);
-			fp.setProperty(pwd, datos[1]);
-			fp.setProperty(url, datos[2]);
+			fp.setProperty("usr", datos[0]);
+			fp.setProperty("pwd", datos[1]);
+			fp.setProperty("url", datos[2]);
 			fp.store(fos, "");
 			fis.close();
 			fos.close();

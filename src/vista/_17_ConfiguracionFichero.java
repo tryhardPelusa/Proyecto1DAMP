@@ -12,19 +12,33 @@ import modelo.Modelo;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class _17_ConfiguracionFichero extends JFrame implements Vista {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField txtUsr;
+	private JTextField txtPwd;
+	private JTextField txtUrl;
 	private JLabel lblUsuario;
 	private JButton btnModificar;
 	private Controlador miControlador;
 	private Modelo miModelo;
+	private String[] datos = new String[3];
 
 	public _17_ConfiguracionFichero() {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowActivated(WindowEvent e) {
+				datos = miModelo.cargarConfig();
+				txtUsr.setText(datos[0]);
+				txtPwd.setText(datos[1]);
+				txtUrl.setText(datos[2]);
+			}
+		});
 		setTitle("Configuracion De Ficheros");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -34,20 +48,20 @@ public class _17_ConfiguracionFichero extends JFrame implements Vista {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		textField = new JTextField();
-		textField.setBounds(177, 62, 182, 26);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		txtUsr = new JTextField();
+		txtUsr.setBounds(177, 62, 182, 26);
+		contentPane.add(txtUsr);
+		txtUsr.setColumns(10);
 
-		textField_1 = new JTextField();
-		textField_1.setBounds(177, 104, 182, 26);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		txtPwd = new JTextField();
+		txtPwd.setBounds(177, 104, 182, 26);
+		contentPane.add(txtPwd);
+		txtPwd.setColumns(10);
 
-		textField_2 = new JTextField();
-		textField_2.setBounds(177, 142, 182, 26);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
+		txtUrl = new JTextField();
+		txtUrl.setBounds(177, 142, 182, 26);
+		contentPane.add(txtUrl);
+		txtUrl.setColumns(10);
 
 		lblUsuario = new JLabel("Usuario:");
 		lblUsuario.setBounds(77, 70, 61, 16);
@@ -62,10 +76,20 @@ public class _17_ConfiguracionFichero extends JFrame implements Vista {
 		contentPane.add(lblUrl);
 
 		btnModificar = new JButton("Modificar");
+		btnModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miModelo.modificarConfig(datos);
+			}
+		});
 		btnModificar.setBounds(173, 192, 117, 29);
 		contentPane.add(btnModificar);
 
 		JButton btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cerrarVentana(17);
+			}
+		});
 		btnSalir.setBounds(349, 237, 95, 29);
 		contentPane.add(btnSalir);
 	}
