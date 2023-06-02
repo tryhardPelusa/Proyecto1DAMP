@@ -33,7 +33,9 @@ import javax.swing.JSpinner;
 import javax.swing.JScrollPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JComboBox;
 
 public class _11_Apuestas2 extends JFrame implements Vista {
 
@@ -55,28 +57,28 @@ public class _11_Apuestas2 extends JFrame implements Vista {
 	private JButton btnUnirseAEquipo;
 	private JButton btnMisApuestas;
 	private JButton btnSignOut;
-	private JScrollPane scrollPaneApuestas;
-	private JScrollPane scrollPaneListado;
-	private JPanel panelListado;
-	private JLabel lblApuesta;
-	private JLabel lblRealMadridtokens;
-	private JSeparator separator_Hor_4;
-	private JLabel lblAlmeriagetafe;
-	private JLabel lblalmeriaTokens;
-	private JSeparator separator_Hor_5;
-	private JSeparator separator_Hor_6;
-	private JLabel lblTotal;
-	private JLabel lblJornada;
+	private JScrollPane scrollPaneEquipoLocal;
 	private JTable tblApuestas;
 	private JSpinner spinnerCantidad;
 	private JButton btnConfirmar;
-	private JButton btnSiguiente;
 	private JButton btnAnterior;
 	private JSeparator separator;
+	private JScrollPane scrollPaneEquipoVisitante;
+	private JTable tblEquipoVisitante;
+	private JTable tblEquipoLocal;
+	private JComboBox listaEleccionResultado;
+	private JTextField txtCantidadApostada;
+	private JLabel lblNewLabel;
+	private JLabel lblCantidadApostada;
+	private JLabel lblPronostico;
+	private Object[] datosApuesta;
+	private String[] datosApuestaRealizada;
+	private JLabel lblFecha;
 
 	// Constructor
 	public _11_Apuestas2() {
 		
+		datosApuestaRealizada = new String[4];
 		setTitle("Plantilla");
 		setResizable(false);
 		setUndecorated(true);
@@ -438,144 +440,127 @@ public class _11_Apuestas2 extends JFrame implements Vista {
 		lblBarraMoverVentana.setBounds(0, 0, 918, 23);
 		background.add(lblBarraMoverVentana);
 
-		scrollPaneApuestas = new JScrollPane();
-		scrollPaneApuestas.setBackground(new Color(0, 128, 192));
-		scrollPaneApuestas.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
-		scrollPaneApuestas.setBounds(305, 109, 464, 410);
-		scrollPaneApuestas.getViewport().setBackground(new Color(0, 128, 192));
-		background.add(scrollPaneApuestas);
+		scrollPaneEquipoLocal = new JScrollPane();
+		scrollPaneEquipoLocal.setBackground(new Color(0, 128, 192));
+		scrollPaneEquipoLocal.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
+		scrollPaneEquipoLocal.setBounds(359, 189, 193, 43);
+		scrollPaneEquipoLocal.getViewport().setBackground(new Color(0, 128, 192));
+		background.add(scrollPaneEquipoLocal);
 
-		tblApuestas = new JTable();
-		tblApuestas.setShowGrid(false);
-		tblApuestas.setRowSelectionAllowed(false);
-		tblApuestas.setOpaque(false);
-		tblApuestas.setShowVerticalLines(false);
-		tblApuestas.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
-//		tblApuestas.setModel(new DefaultTableModel(
-//				new Object[][] { { "Real Madrid", true, 0, null, "Barcelona" }, { "Almeria", true, 0, null, "Getafe" },
-//						{ "Betis", null, 0, null, "Valencia" }, { "Valladolid", null, 0, null, "Valencia" }, },
-//				new String[] { "Local", "", "Cantidad", "", "Visitante" }) {
-//			boolean[] columnEditables = new boolean[] { false, true, false, true, false };
-//
-//			public boolean isCellEditable(int row, int column) {
-//				return columnEditables[column];
-//			}
-//		});
+		tblEquipoLocal = new JTable();
+		tblEquipoLocal.setShowGrid(false);
+		tblEquipoLocal.setRowSelectionAllowed(false);
+		tblEquipoLocal.setOpaque(false);
+		tblEquipoLocal.setShowVerticalLines(false);
+		tblEquipoLocal.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
 
-		tblApuestas.setModel(
-				new DefaultTableModel(new Object[][] {}, new String[] { "Local", "", "Cantidad", "", "Visitante" }) {
-					Class<?>[] columnTypes = new Class<?>[] { Object.class, Boolean.class, Object.class, Boolean.class, Object.class };
-
-				    public Class<?> getColumnClass(int columnIndex) {
-				        return columnTypes[columnIndex];
-				    }
-					
-					boolean[] columnEditables = new boolean[] { false, true, true, true, false };
-
-					public boolean isCellEditable(int row, int column) {
-						return columnEditables[column];
-					}
-				});
-		tblApuestas.getColumnModel().getColumn(1).setCellRenderer(tblApuestas.getDefaultRenderer(Boolean.class));
-		tblApuestas.getColumnModel().getColumn(1).setCellEditor(tblApuestas.getDefaultEditor(Boolean.class));
-
-		tblApuestas.getColumnModel().getColumn(3).setCellRenderer(tblApuestas.getDefaultRenderer(Boolean.class));
-		tblApuestas.getColumnModel().getColumn(3).setCellEditor(tblApuestas.getDefaultEditor(Boolean.class));
-
-		tblApuestas.getColumnModel().getColumn(3).setCellEditor(new DefaultCellEditor(new JCheckBox()));
-		tblApuestas.getColumnModel().getColumn(0).setPreferredWidth(174);
-		tblApuestas.getColumnModel().getColumn(1).setPreferredWidth(26);
-		tblApuestas.getColumnModel().getColumn(2).setPreferredWidth(92);
-		tblApuestas.getColumnModel().getColumn(3).setPreferredWidth(31);
-		tblApuestas.getColumnModel().getColumn(4).setPreferredWidth(174);
-
-		scrollPaneApuestas.setViewportView(tblApuestas);
-
-		scrollPaneListado = new JScrollPane();
-		scrollPaneListado.setBounds(787, 109, 213, 410);
-		background.add(scrollPaneListado);
-
-		panelListado = new JPanel();
-		panelListado.setBackground(new Color(0, 128, 192));
-		scrollPaneListado.setViewportView(panelListado);
-		panelListado.setLayout(null);
-
-		lblApuesta = new JLabel("Real Madrid - Barcelona");
-		lblApuesta.setFont(new Font("Britannic Bold", Font.PLAIN, 15));
-		lblApuesta.setBounds(10, 0, 191, 27);
-		panelListado.add(lblApuesta);
-
-		lblRealMadridtokens = new JLabel("(Real Madrid) 120 tokens");
-		lblRealMadridtokens.setVerticalAlignment(SwingConstants.TOP);
-		lblRealMadridtokens.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblRealMadridtokens.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
-		lblRealMadridtokens.setBounds(10, 29, 191, 27);
-		panelListado.add(lblRealMadridtokens);
-
-		separator_Hor_4 = new JSeparator();
-		separator_Hor_4.setBounds(20, 54, 183, 8);
-		panelListado.add(separator_Hor_4);
-
-		lblAlmeriagetafe = new JLabel("Almeria - Getafe");
-		lblAlmeriagetafe.setFont(new Font("Britannic Bold", Font.PLAIN, 15));
-		lblAlmeriagetafe.setBounds(10, 67, 191, 27);
-		panelListado.add(lblAlmeriagetafe);
-
-		lblalmeriaTokens = new JLabel("(Almeria) 50 tokens");
-		lblalmeriaTokens.setVerticalAlignment(SwingConstants.TOP);
-		lblalmeriaTokens.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblalmeriaTokens.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
-		lblalmeriaTokens.setBounds(10, 96, 191, 27);
-		panelListado.add(lblalmeriaTokens);
-
-		separator_Hor_5 = new JSeparator();
-		separator_Hor_5.setBounds(20, 121, 183, 8);
-		panelListado.add(separator_Hor_5);
-
-		separator_Hor_6 = new JSeparator();
-		separator_Hor_6.setForeground(Color.BLACK);
-		separator_Hor_6.setBounds(10, 304, 201, 8);
-		panelListado.add(separator_Hor_6);
-
-		lblTotal = new JLabel("TOTAL: 170 tokens");
-		lblTotal.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblTotal.setFont(new Font("Britannic Bold", Font.PLAIN, 15));
-		lblTotal.setBounds(10, 323, 193, 23);
-		panelListado.add(lblTotal);
+	
+//		model.setValueAt(datosApuesta[1], 0, 0);
+		scrollPaneEquipoLocal.setViewportView(tblEquipoLocal);
 		
-		btnConfirmar = new JButton("CONFIRMAR");
-		btnConfirmar.setFont(new Font("Britannic Bold", Font.PLAIN, 14));
-		btnConfirmar.setBackground(new Color(255, 128, 0));
-		btnConfirmar.setBounds(48, 357, 117, 39);
-		panelListado.add(btnConfirmar);
-
-		lblJornada = new JLabel("Jornada 7");
-		lblJornada.setHorizontalAlignment(SwingConstants.CENTER);
-		lblJornada.setFont(new Font("Britannic Bold", Font.PLAIN, 20));
-		lblJornada.setBounds(469, 77, 126, 34);
-		background.add(lblJornada);
-		
-		btnSiguiente = new JButton("SIGUIENTE");
-		btnSiguiente.setFont(new Font("Britannic Bold", Font.PLAIN, 14));
-		btnSiguiente.setBackground(new Color(255, 128, 0));
-		btnSiguiente.setBounds(651, 79, 101, 23);
-		background.add(btnSiguiente);
-		
-		btnAnterior = new JButton("ANTERIOR");
+		btnAnterior = new JButton("VOLVER");
+		btnAnterior.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miControlador.cambiarVentana(11, 9);
+			}
+		});
 		btnAnterior.setFont(new Font("Britannic Bold", Font.PLAIN, 14));
 		btnAnterior.setBackground(new Color(255, 128, 0));
-		btnAnterior.setBounds(320, 79, 101, 23);
+		btnAnterior.setBounds(588, 447, 117, 23);
 		background.add(btnAnterior);
+		
+		scrollPaneEquipoVisitante = new JScrollPane();
+		scrollPaneEquipoVisitante.setBackground(new Color(0, 128, 192));
+		scrollPaneEquipoVisitante.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
+		scrollPaneEquipoVisitante.setBounds(756, 189, 175, 43);
+		scrollPaneEquipoVisitante.getViewport().setBackground(new Color(0, 128, 192));
+		background.add(scrollPaneEquipoVisitante);
+		
+		tblEquipoVisitante = new JTable();
+		tblEquipoVisitante.setShowGrid(false);
+		tblEquipoVisitante.setRowSelectionAllowed(false);
+		tblEquipoVisitante.setOpaque(false);
+		tblEquipoVisitante.setShowVerticalLines(false);
+		tblEquipoVisitante.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
+
+		
+		scrollPaneEquipoVisitante.setViewportView(tblEquipoVisitante);
+		
+		btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				datosApuestaRealizada[0] = tblEquipoLocal.getValueAt(0, 0).toString();
+				datosApuestaRealizada[1] = listaEleccionResultado.getSelectedItem().toString();
+				datosApuestaRealizada[2] = tblEquipoVisitante.getValueAt(0, 0).toString();
+				datosApuestaRealizada[3] = txtCantidadApostada.getText();
+				miControlador.actualizarListaApuestasRealizadas(datosApuestaRealizada);
+				miControlador.nuevaVentana(18);
+				listaEleccionResultado.setSelectedItem("1");
+				txtCantidadApostada.setText("");
+			}
+		});
+		btnConfirmar.setBounds(588, 386, 117, 39);
+		background.add(btnConfirmar);
+		btnConfirmar.setFont(new Font("Britannic Bold", Font.PLAIN, 14));
+		btnConfirmar.setBackground(new Color(255, 128, 0));
+		
+		listaEleccionResultado = new JComboBox<>();
+		listaEleccionResultado.setBounds(627, 213, 40, 19);
+		listaEleccionResultado.addItem("1");
+		listaEleccionResultado.addItem("2");
+		listaEleccionResultado.addItem("X");
+		background.add(listaEleccionResultado);
+		
+		lblPronostico = new JLabel("Pron\u00F3stico");
+		lblPronostico.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPronostico.setBounds(609, 189, 69, 14);
+		lblPronostico.setFont(new Font("Britannic Bold", Font.PLAIN, 14));
+		background.add(lblPronostico);
+		
+		lblCantidadApostada = new JLabel("Cantidad");
+		lblCantidadApostada.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCantidadApostada.setBounds(609, 311, 69, 14);
+		lblCantidadApostada.setFont(new Font("Britannic Bold", Font.PLAIN, 14));
+		background.add(lblCantidadApostada);
+		
+		txtCantidadApostada = new JTextField();
+		txtCantidadApostada.setColumns(10);
+		txtCantidadApostada.setBackground(new Color(255, 255, 255));
+		txtCantidadApostada.setBounds(588, 336, 117, 19);
+		background.add(txtCantidadApostada);
+		
+		lblFecha = new JLabel();
+		lblFecha.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFecha.setFont(new Font("Britannic Bold", Font.PLAIN, 14));
+		lblFecha.setBounds(552, 106, 193, 37);
+
+		background.add(lblFecha);
 
 		setLocationRelativeTo(null);
-		
-		 this.addWindowListener(new WindowAdapter() {
-	            @Override
-	            public void windowActivated(WindowEvent e) {
-	            	DefaultTableModel model = miControlador.getApuesta();
-	                tblApuestas.setModel(model);
-	            }
-	        });
+
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowActivated(WindowEvent e) {
+				datosApuesta = miControlador.obtenerDatosApuesta();
+//				lblFecha.setText("Fecha: " + datosApuesta[2]);
+				tblEquipoLocal.setModel(
+						new DefaultTableModel(new Object[][] {{datosApuesta[0]},}, new String[] { "Local" }) {
+							Class[] columnTypes = new Class[] { String.class };
+
+							public Class getColumnClass(int columnIndex) {
+								return columnTypes[columnIndex];
+							}
+						});
+				tblEquipoVisitante.setModel(
+						new DefaultTableModel(new Object[][] { { datosApuesta[1] }, }, new String[] { "Visitante" }) {
+							Class[] columnTypes = new Class[] { String.class };
+
+							public Class getColumnClass(int columnIndex) {
+								return columnTypes[columnIndex];
+							}
+						});
+			}
+		});
 	}
 
 	@Override

@@ -136,7 +136,7 @@ public class Controlador {
 		return miModelo.verificarCodEquipo(codigoIngresado);
 	}
 
-	public DefaultTableModel obtenerEquiposDePartidos(String[] apuesta) {
+	public String[] obtenerEquiposDePartidos(String[] apuesta) {
 		miModelo.setVista(misVistas[11]);
 		return miModelo.obtenerEquiposDePartidos(apuesta);
 	}
@@ -151,7 +151,7 @@ public class Controlador {
 		return miModelo.obtenerEquipoDeTable(string);
 	}
 
-	public DefaultTableModel getApuesta() {
+	public Object[] getApuesta() {
 		miModelo.setVista(misVistas[11]);
 		return miModelo.getApuestaActual();
 	}
@@ -215,6 +215,22 @@ public class Controlador {
 	public String getNombreLiga(int idLiga) {
 		miModelo.setVista(misVistas[9]);
 		return miModelo.getNombreLiga(idLiga);
+	}
+
+	public void actualizarDatosApuesta(Object[] datosApuesta) {
+		miModelo.setApuestaActual(datosApuesta);
+	}
+
+	public Object[] obtenerDatosApuesta() {
+		return miModelo.getApuestaActual();
+	}
+
+	public void actualizarListaApuestasRealizadas(String[] datosApuestaRealizada) {
+		miModelo.actualizarListaApuesatasRealizadas(datosApuestaRealizada);		
+	}
+
+	public void eliminarApuesta(Object[] datosApuesta) {
+		miModelo.eliminarApuesta(datosApuesta);	
 	}
 
 }

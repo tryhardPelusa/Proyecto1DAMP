@@ -10,6 +10,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -46,7 +48,7 @@ public class Modelo {
 	private String pwd;
 	private String url;
 	private Connection conexion;
-	private DefaultTableModel apuestaActual;
+	private Object[] apuestaActual;
 	private File fConfig = new File("Configuracion.ini");
 	private Properties fp = new Properties();
 
@@ -690,48 +692,20 @@ public class Modelo {
 		return Codigo;
 	}
 
-	public DefaultTableModel obtenerEquiposDePartidos(String[] datosApuesta) {
-		DefaultTableModel model = new DefaultTableModel();
-		ConexionMySQL();
-		String consulta = "SELECT EquipLocal, EquipVisitante FROM Partidos WHERE EquipLocal=? AND EquipVisitante=?";
-
-		try {
-			PreparedStatement stmt = conexion.prepareStatement(consulta);
-			stmt.setString(1, datosApuesta[0]);
-			stmt.setString(2, datosApuesta[1]);
-			ResultSet rs = stmt.executeQuery();
-
-			model.addColumn("Equipo Local");
-			model.addColumn("Gana");
-			model.addColumn("Cantidad");
-			model.addColumn("Gana");
-			model.addColumn("Equipo Visitante");
-
-			// Obtener los datos de las filas
-			while (rs.next()) {
-				Object[] rowData = new Object[5];
-				rowData[0] = rs.getString(1); // Equipo Local
-				rowData[1] = null;
-				rowData[2] = 0;
-				rowData[3] = null;
-				rowData[4] = rs.getString(2); // Equipo Visitante
-				model.addRow(rowData);
-			}
-
-			// Cerrar la conexión y liberar recursos
-			rs.close();
-			stmt.close();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		apuestaActual = model;
-		return model;
+	public String[] obtenerEquiposDePartidos(String[] datosApuesta) {
+		
+		apuestaActual = datosApuesta;
+		return datosApuesta;
 
 	}
 
-	public DefaultTableModel getApuestaActual() {
+	public Object[] getApuestaActual() {
 		return apuestaActual;
+	}
+	
+	
+	public void setApuestaActual(Object[] apuestaActual) {
+		this.apuestaActual = apuestaActual;
 	}
 
 	public DefaultTableModel obtenerPartidosLigaEspecifica(int idLiga) {
@@ -806,39 +780,42 @@ public class Modelo {
 	}
 
 	public DefaultTableModel obtenerApuestas() {
-		DefaultTableModel model = new DefaultTableModel();
+		 DefaultTableModel tableModel = new DefaultTableModel(
+	                new Object[][] {},
+	                new String[] {"Equipo Local", "Pronóstico", "Equipo Visitante","Cantidad", "Fecha"}
+	            );
 		ConexionMySQL();
-		String consulta = "SELECT Fecha, Partido, Cantidad, Pronostico FROM Apuestas WHERE IDUsuario = ?";
+		String consulta = "SELECT EquipLocal, Pronostico, EquipVisitante, Cantidad, fecha FROM apuestas WHERE IDUsuario = ?";
 
 		try {
 			PreparedStatement stmt = conexion.prepareStatement(consulta);
 			stmt.setInt(1, Integer.parseInt(getUsuario()));
 
-			ResultSet rs = stmt.executeQuery();
+			ResultSet resultSet = stmt.executeQuery();
 
-			model.addColumn("Fecha");
-			model.addColumn("Partido");
-			model.addColumn("Cantidad");
-			model.addColumn("Pronostico");
+			while (resultSet.next()) {
+                String equipLocal = resultSet.getString("EquipLocal");
+                String pronostico = resultSet.getString("Pronostico");
+                String equipVisitante = resultSet.getString("EquipVisitante");
+                Integer cantidad = resultSet.getInt("Cantidad");
+                Date fecha = resultSet.getDate("fecha");
 
-			// Obtener los datos de las filas
-			while (rs.next()) {
-				Object[] rowData = new Object[4];
-				rowData[0] = rs.getDate("Fecha"); // Fecha
-				rowData[1] = rs.getString("Partido"); // Partido
-				rowData[2] = rs.getInt("Cantidad"); // Cantidad
-				rowData[3] = rs.getString("Pronostico");// Pronostico
-				model.addRow(rowData);
-			}
+             // Formatear fecha a String en el formato "dd/MM/yyyy"
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                String strFecha = dateFormat.format(fecha);
+
+                // Añadir fila a la tabla
+                tableModel.addRow(new Object[] {equipLocal, pronostico, equipVisitante, cantidad, strFecha});
+            }
 
 			// Cerrar la conexión y liberar recursos
-			rs.close();
+			resultSet.close();
 			stmt.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return model;
+		return tableModel;
 	}
 
 	public Object obtenerEquipoDeTable(String string) {
@@ -1267,6 +1244,92 @@ public class Modelo {
 		}
 
 		return nombreLiga;
+	}
+
+	public Date getFechaPartido(String equipoLocal, String equipoVisitante) {
+        Date fechaPartido = null;
+
+        try {
+            String query = "SELECT Fecha FROM partidos WHERE EquipLocal = ? AND EquipVisitante = ? LIMIT 1";
+
+            PreparedStatement statement = conexion.prepareStatement(query);
+            statement.setString(1, equipoLocal);
+            statement.setString(2, equipoVisitante);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                fechaPartido = resultSet.getDate("Fecha");
+            }
+
+            resultSet.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return fechaPartido;
+    }
+	
+	public void actualizarListaApuesatasRealizadas(String[] datosApuestaRealizada) {
+	    boolean ganada = true;
+	    try {
+	        // Preparar la consulta SQL
+	        String query = "INSERT INTO apuestas (Cantidad, Pronostico, EquipLocal, EquipVisitante, ganada, fecha, IDUsuario) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+	        PreparedStatement statement = conexion.prepareStatement(query);
+
+	        // Establecer los valores de los parámetros
+	        statement.setInt(1, Integer.parseInt(datosApuestaRealizada[3]));     // Asegúrate de que estos índices corresponden correctamente a tus datos
+	        statement.setString(2, datosApuestaRealizada[1]);
+	        statement.setString(3, datosApuestaRealizada[0]);
+	        statement.setString(4, datosApuestaRealizada[2]);
+	        statement.setBoolean(5, ganada);
+	        //Se mete este metodo porque con el valor de la variable del array no era suficiente daba error por tipo
+	        java.util.Date utilDate = getFechaPartido(datosApuestaRealizada[0], datosApuestaRealizada[2]);
+	        if (utilDate != null) {
+	            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+	            statement.setDate(6, sqlDate);
+	        } else {
+	            statement.setDate(6, new java.sql.Date(System.currentTimeMillis()));
+	        }
+	        statement.setInt(7, Integer.parseInt(getUsuario()));
+
+	        // Ejecutar la consulta
+	        int filasInsertadas = statement.executeUpdate();
+
+	        // Cerrar el PreparedStatement
+	        statement.close();
+	     
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    
+	}
+
+	public void eliminarApuesta(Object[] datosApuesta) {
+			String equipoLocal = (String) datosApuesta[0];
+			String equipoVisitante = (String) datosApuesta[1];
+			System.out.println("EquipLocal: " + equipoLocal + ", EquipVisitante: " + equipoVisitante);
+		    try {
+		        // Preparar la consulta SQL
+		        String query = "DELETE FROM apuestas WHERE EquipLocal = ? AND EquipVisitante = ?";
+
+		        PreparedStatement statement = conexion.prepareStatement(query);
+
+		        // Establecer los valores de los parámetros
+		        statement.setString(1, equipoLocal);  // EquipLocal
+		        statement.setString(2, equipoVisitante);  // EquipVisitante
+
+		        // Ejecutar la consulta
+		        int filasEliminadas = statement.executeUpdate();
+
+		        // Cerrar el PreparedStatement
+		        statement.close();
+
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
 	}
 
 }

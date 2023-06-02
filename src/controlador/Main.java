@@ -22,6 +22,7 @@ import vista._13_Lanzadera;
 import vista._15_ErrorRegistro;
 import vista._16_RegistroCorrecto;
 import vista._17_ConfiguracionFichero;
+import vista._18_ApuestaCorrecta;
 
 public class Main {
 
@@ -30,7 +31,7 @@ public class Main {
 		Modelo miModelo = new Modelo();
 		Controlador miControlador = new Controlador();
 
-		Vista[] misVistas = new Vista[18];
+		Vista[] misVistas = new Vista[19];
 		misVistas[0] = new _00_PaginaPrincipal2();
 		misVistas[1] = new _01_InicioSesion2();
 		misVistas[2] = new _02_Registro();
@@ -49,6 +50,7 @@ public class Main {
 		misVistas[15] = new _15_ErrorRegistro();
 		misVistas[16] = new _16_RegistroCorrecto();
 		misVistas[17] = new _17_ConfiguracionFichero();
+		misVistas[18] = new _18_ApuestaCorrecta();
 
 		miControlador.setVista(misVistas);
 		miControlador.setModelo(miModelo);

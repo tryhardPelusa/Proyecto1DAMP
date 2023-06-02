@@ -3,6 +3,7 @@
  */
 package vista;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -61,9 +62,12 @@ public class _12_MisApuestas2 extends JFrame implements Vista {
 	private JTable tblApuestas;
 	private JTextField txtbuscar;
 	private JButton btnBuscar;
+	private JButton btnEliminarApuesta;
+	Object[] datosApuesta;
 
 	// Constructor
 	public _12_MisApuestas2() {
+		datosApuesta = new String[2];
 		setTitle("Plantilla");
 		setResizable(false);
 		setUndecorated(true);
@@ -412,62 +416,43 @@ public class _12_MisApuestas2 extends JFrame implements Vista {
         tabbedPane.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
         tabbedPane.setBorder(null);
         tabbedPane.setBackground(new Color(0, 128, 200));
-        tabbedPane.setBounds(329, 111, 620, 390);
+        tabbedPane.setBounds(329, 111, 620, 266);
         background.add(tabbedPane);
         
         panelApuestas = new JPanel();
         panelApuestas.setBorder(null);
         panelApuestas.setBackground(new Color(0, 128, 200));
+        panelApuestas.setLayout(new BorderLayout()); // change layout to BorderLayout
         tabbedPane.addTab("Apuestas", null, panelApuestas, null);
-        panelApuestas.setLayout(null);
+        
+//        scrollPaneApuestas = new JScrollPane();
+//        scrollPaneApuestas.setBounds(0, 0, 615, 362);
+//        scrollPaneApuestas.getViewport().setBackground(new Color(0, 128, 192));
+//        panelApuestas.add(scrollPaneApuestas);
         
         scrollPaneApuestas = new JScrollPane();
-        scrollPaneApuestas.setBounds(0, 0, 615, 362);
         scrollPaneApuestas.getViewport().setBackground(new Color(0, 128, 192));
-        panelApuestas.add(scrollPaneApuestas);
+        panelApuestas.add(scrollPaneApuestas, BorderLayout.CENTER);
         
-//        tblApuestas = new JTable();
-//        tblApuestas.setBorder(null);
-//        tblApuestas.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
-
-//        DefaultTableModel model = miControlador.obtenerApuestas();
-//        tblApuestas.setModel(model);
-
-//        tblApuestas.getColumnModel().getColumn(0).setPreferredWidth(190);
-//        tblApuestas.getColumnModel().getColumn(1).setPreferredWidth(190);
-//        tblApuestas.getColumnModel().getColumn(2).setPreferredWidth(100);
-//        tblApuestas.getColumnModel().getColumn(3).setPreferredWidth(160);
-
-//        scrollPaneApuestas.setViewportView(tblApuestas);
-//        this.addWindowListener(new WindowAdapter() {
-//            @Override
-//            public void windowOpened(WindowEvent e) {
-//                tblApuestas.setModel(miControlador.obtenerApuestas());
-//            }
-//        });
         tblApuestas = new JTable();
         tblApuestas.setBorder(null);
         tblApuestas.setFont(new Font("Britannic Bold", Font.PLAIN, 13));
-        tblApuestas.setModel(new DefaultTableModel(
-            new Object[][] {
-                {"Real Madrid - Barcelona", "Real Madrid", new Integer(120), "27/05"},
-                {"Almeria - Getafe", "Almeria", new Integer(50), "14/06"},
-            },
-            new String[] {
-                "Partido", "Apuesta", "Cantidad", "Fecha"
-            }
-        ) {
-            boolean[] columnEditables = new boolean[] {
-                false, false, false, false
-            };
-            public boolean isCellEditable(int row, int column) {
-                return columnEditables[column];
-            }
-        });
-        tblApuestas.getColumnModel().getColumn(0).setPreferredWidth(190);
-        tblApuestas.getColumnModel().getColumn(1).setPreferredWidth(190);
-        tblApuestas.getColumnModel().getColumn(2).setPreferredWidth(100);
-        tblApuestas.getColumnModel().getColumn(3).setPreferredWidth(160);
+        tblApuestas.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				int filaSeleccionada = tblApuestas.getSelectedRow(); // Obtiene el indice de la fila seleccionada
+
+				Object valorCelda1 = tblApuestas.getValueAt(filaSeleccionada, 0); // Obtiene el valor de la primera
+																						// columna de la fila
+																						// seleccionada
+				Object valorCelda2 = tblApuestas.getValueAt(filaSeleccionada, 2); // Obtiene el valor de la segunda
+																						// columna de la fila
+																						// seleccionada
+
+				if (valorCelda1 != null && valorCelda2 != null) {
+					datosApuesta[0] = (String) valorCelda1;
+					datosApuesta[1] = (String) valorCelda2;
+				}
+			}});
         scrollPaneApuestas.setViewportView(tblApuestas);
 
         
@@ -487,8 +472,38 @@ public class _12_MisApuestas2 extends JFrame implements Vista {
         btnBuscar.setBackground(new Color(255, 128, 0));
         btnBuscar.setBounds(853, 79, 101, 23);
         background.add(btnBuscar);
+        
+        btnEliminarApuesta = new JButton("Eliminar");
+        btnEliminarApuesta.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		miControlador.eliminarApuesta(datosApuesta);
+        		tblApuestas.setModel(miControlador.obtenerApuestas());
+        		tblApuestas.revalidate();
+		        tblApuestas.repaint();
+        	}
+        });
+        btnEliminarApuesta.setFont(new Font("Britannic Bold", Font.PLAIN, 14));
+        btnEliminarApuesta.setBackground(new Color(255, 128, 0));
+        btnEliminarApuesta.setBounds(329, 414, 101, 23);
+        background.add(btnEliminarApuesta);
 		
         setLocationRelativeTo(null);
+        
+		addWindowListener(new WindowAdapter() {
+
+			@Override
+			public void windowActivated(WindowEvent e) {
+				tblApuestas.setModel(miControlador.obtenerApuestas());
+				tblApuestas.getColumnModel().getColumn(0).setPreferredWidth(190);
+				tblApuestas.getColumnModel().getColumn(1).setPreferredWidth(70);
+				tblApuestas.getColumnModel().getColumn(2).setPreferredWidth(190);
+				tblApuestas.getColumnModel().getColumn(3).setPreferredWidth(50);
+				tblApuestas.getColumnModel().getColumn(3).setPreferredWidth(150);
+				
+				tblApuestas.revalidate();
+		        tblApuestas.repaint();
+			}
+		});
 	}
 
 	@Override

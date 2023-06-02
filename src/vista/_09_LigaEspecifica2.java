@@ -24,6 +24,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
+import java.sql.Date;
 
 import controlador.Controlador;
 import modelo.Modelo;
@@ -63,14 +64,14 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 	private JLabel lblNombreLiga;
 	private JButton btnVerEquipo;
 	private JButton btnApostar2;
-	String[] datosApuesta;
+	Object[] datosApuesta;
 	int idAdmin;
 	int idLiga;
 	private JLabel lblErrorNoSeleccion;
 
 	public _09_LigaEspecifica2() {
 
-		datosApuesta = new String[2];
+		datosApuesta = new String[3];
 		setTitle("Liga Especifica");
 		setResizable(false);
 		setUndecorated(true);
@@ -510,6 +511,8 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 				if (valorCelda1 != null && valorCelda2 != null && valorCelda3 != null) {
 					datosApuesta[0] = (String) valorCelda2;
 					datosApuesta[1] = (String) valorCelda3;
+					datosApuesta[2] = valorCelda1.toString();
+					miControlador.actualizarDatosApuesta(datosApuesta);
 				}
 			}
 		});
@@ -536,7 +539,6 @@ public class _09_LigaEspecifica2 extends JFrame implements Vista {
 		btnApostar2 = new JButton("Apostar");
 		btnApostar2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				miControlador.obtenerEquiposDePartidos(datosApuesta);
 				miControlador.cambiarVentana(9, 11);
 			}
 		});
