@@ -843,7 +843,7 @@ public class Modelo {
 
 		try {
 			proI = conexion.prepareStatement(consulta);
-			proI.setString(1, equipoActual);
+			proI.setString(1, IdEquipo);
 			ResultSet rs = proI.executeQuery();
 
 			ArrayList<String> idUsuarios = new ArrayList<>();
@@ -889,7 +889,7 @@ public class Modelo {
 		String estadio = "";
 		try {
 			proI = conexion.prepareStatement(consulta); // Preparar la consulta SQL
-			proI.setString(1, equipoActual); // Establecer el parámetro de la consulta con el valor del equipo actual
+			proI.setString(1, IdEquipo); // Establecer el parámetro de la consulta con el valor del equipo actual
 			ResultSet rs = proI.executeQuery(); // Ejecutar la consulta y obtener el resultado
 			rs.next(); // Mover el cursor al primer resultado
 			estadio = rs.getString(1); // Obtener el valor del estadio desde el resultado
