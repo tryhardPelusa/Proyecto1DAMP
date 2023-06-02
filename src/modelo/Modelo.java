@@ -1310,7 +1310,7 @@ public class Modelo {
 	public void eliminarApuesta(Object[] datosApuesta) {
 			String equipoLocal = (String) datosApuesta[0];
 			String equipoVisitante = (String) datosApuesta[1];
-			System.out.println("EquipLocal: " + equipoLocal + ", EquipVisitante: " + equipoVisitante);
+//			System.out.println("EquipLocal: " + equipoLocal + ", EquipVisitante: " + equipoVisitante);
 		    try {
 		        // Preparar la consulta SQL
 		        String query = "DELETE FROM apuestas WHERE EquipLocal = ? AND EquipVisitante = ?";
