@@ -118,7 +118,7 @@ public class Controlador {
 
 	public String getdeporte(String equipoActual) {
 		miModelo.setVista(misVistas[10]);
-		return miModelo.getdeporte(equipoActual);
+		return miModelo.getDeporte(equipoActual);
 	}
 
 	public String getEquipo(String equipoActual) {
